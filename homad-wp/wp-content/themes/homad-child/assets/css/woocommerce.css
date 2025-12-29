@@ -1,0 +1,11 @@
+/* Estilos mínimos; lo fino y UX de checkout/cart va en Parte 3 */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button{
+  border-radius: var(--homad-radius-sm);
+}
+
+.woocommerce div.product .price,
+.woocommerce ul.products li.product .price{
+  color: var(--homad-text);
+}

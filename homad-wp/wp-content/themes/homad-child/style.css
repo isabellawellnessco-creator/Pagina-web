@@ -1,0 +1,15 @@
+/*
+Theme Name: homad-child
+Theme URI: https://example.com/
+Description: Child theme para WoodMart. Base estable para Homad (WooCommerce + Elementor).
+Author: Homad
+Template: woodmart
+Version: 1.0.0
+Text Domain: homad-child
+*/
+
+/*
+  Nota:
+  - Este archivo existe para que WordPress reconozca el theme hijo.
+  - El CSS real vive en /assets/css/ y se encola desde inc/enqueue.php.
+*/

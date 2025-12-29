@@ -1,0 +1,56 @@
+.homad-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--homad-radius-sm);
+  border: 1px solid var(--homad-border);
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.homad-btn--primary{
+  background: var(--homad-primary);
+  border-color: rgba(255,255,255,.10);
+}
+
+.homad-btn--secondary{
+  background: transparent;
+}
+
+.homad-kicker{
+  color: var(--homad-muted);
+  font-size: 14px;
+  letter-spacing: .02em;
+}
+
+.homad-title{
+  font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.homad-subtitle{
+  color: var(--homad-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.homad-trust-mini{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--homad-border);
+  border-radius: var(--homad-radius-sm);
+  background: rgba(255,255,255,.03);
+}
+.homad-trust-mini__item{
+  color: var(--homad-muted);
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--homad-border);
+  border-radius: 999px;
+}

@@ -1,0 +1,23 @@
+.homad-container{
+  width: min(var(--homad-container), calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.homad-section{
+  padding: var(--homad-space-6) 0;
+}
+
+.homad-section--tight{
+  padding: var(--homad-space-4) 0;
+}
+
+.homad-card{
+  background: var(--homad-surface);
+  border: 1px solid var(--homad-border);
+  border-radius: var(--homad-radius);
+  box-shadow: var(--homad-shadow);
+}
+
+.homad-card__pad{
+  padding: var(--homad-space-4);
+}

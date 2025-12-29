@@ -1,0 +1,14 @@
+# WordPress core (if added)
+homad-wp/wp-admin/
+homad-wp/wp-includes/
+
+# Uploads
+homad-wp/wp-content/uploads/
+
+# Third-party theme/plugin
+homad-wp/wp-content/themes/woodmart/
+homad-wp/wp-content/plugins/elementskit*/
+
+# OS/IDE
+.DS_Store
+Thumbs.db

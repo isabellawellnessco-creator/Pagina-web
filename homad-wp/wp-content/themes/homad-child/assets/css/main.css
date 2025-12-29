@@ -1,0 +1,11 @@
+/* Homad child theme styles placeholder */
+
+.homad-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+section[class^="homad-"] {
+    padding: 3rem 0;
+}

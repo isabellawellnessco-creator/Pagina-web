@@ -28,3 +28,270 @@
 @media(max-width:900px){.homad-hero{flex-direction:column;align-items:flex-start;padding:var(--homad-space-4) 0;}
 .homad-hero-left,.homad-hero-right{width:100%;max-width:100%;}.homad-hero-progress,.homad-hero-scroll-hint{display:none;}
 }
+/* Botones */
+.homad-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 18px;
+  border-radius:var(--homad-radius-sm);
+  border:1px solid var(--homad-border);
+  text-decoration:none;
+  cursor:pointer;
+}
+.homad-btn--primary{
+  background:var(--homad-primary);
+  border-color:rgba(255,255,255,.10);
+}
+.homad-btn--secondary{
+  background:transparent;
+}
+.homad-kicker{
+  color:var(--homad-muted);
+  font-size:14px;
+  letter-spacing:.02em;
+}
+.homad-title{
+  font-size:clamp(26px,3.2vw,44px);
+  line-height:1.05;
+  margin:0;
+}
+.homad-subtitle{
+  color:var(--homad-muted);
+  font-size:16px;
+  line-height:1.5;
+  margin-top:10px;
+}
+
+/* Barra de navegación (GNB) y pills */
+.homad-gnb{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:var(--homad-space-3) var(--homad-space-4);
+}
+.homad-nav-pills{
+  display:flex;
+  gap:var(--homad-space-2);
+}
+.homad-nav-pill{
+  padding:var(--homad-space-1) var(--homad-space-3);
+  border-radius:999px;
+  font-size:14px;
+  cursor:pointer;
+}
+.homad-nav-pill--active{
+  background:var(--homad-text);
+  color:var(--homad-bg);
+}
+.homad-nav-pill--inactive{
+  background:transparent;
+  color:var(--homad-muted);
+  border:1px solid var(--homad-border);
+}
+.homad-brand{
+  font-size:22px;
+  font-weight:600;
+  color:var(--homad-text);
+}
+.homad-customer-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,.08);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:13px;
+  color:var(--homad-text);
+}
+.homad-icon-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--homad-border);
+  color:var(--homad-text);
+  transition:background .2s;
+}
+.homad-icon-button:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* Hero */
+.homad-hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:calc(100vh - 180px);
+  position:relative;
+  padding:var(--homad-space-6) 0;
+}
+.homad-hero-left{
+  max-width:50%;
+  z-index:2;
+}
+.homad-hero-left .homad-kicker{margin-bottom:var(--homad-space-2);}
+.homad-hero-left .homad-title{font-size:clamp(32px,5vw,64px);}
+.homad-hero-left .homad-subtitle{margin-top:var(--homad-space-2);}
+.homad-hero-ctas{margin-top:var(--homad-space-4);display:flex;gap:var(--homad-space-2);}
+.homad-hero-right{
+  position:relative;
+  width:50%;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.homad-hero-image{
+  max-width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:var(--homad-radius);
+}
+.homad-hero-overlay{
+  position:absolute;
+  bottom:var(--homad-space-5);
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--homad-border);
+  border-radius:var(--homad-radius);
+  padding:var(--homad-space-3) var(--homad-space-4);
+  display:flex;
+  gap:var(--homad-space-3);
+}
+.homad-hero-overlay-thumb{
+  width:80px;
+  height:80px;
+  border-radius:var(--homad-radius);
+  overflow:hidden;
+}
+.homad-hero-overlay-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.homad-hero-overlay .homad-btn{margin-top:var(--homad-space-2);}
+.homad-hero-progress{
+  position:absolute;
+  bottom:var(--homad-space-4);
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:2px;
+  background:rgba(255,255,255,.1);
+}
+.homad-hero-progress span{
+  position:absolute;
+  top:-10px;
+  font-size:14px;
+  color:var(--homad-muted);
+}
+.homad-hero-scroll-hint{
+  position:absolute;
+  bottom:var(--homad-space-2);
+  left:50%;
+  transform:translateX(-50%);
+  font-size:14px;
+  color:var(--homad-muted);
+  text-align:center;
+}
+@media(max-width:900px){
+  .homad-hero{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:var(--homad-space-4) 0;
+  }
+  .homad-hero-left,
+  .homad-hero-right{
+    width:100%;
+    max-width:100%;
+  }
+  .homad-hero-progress,
+  .homad-hero-scroll-hint{
+    display:none;
+  }
+}
+
+/* Grids para productos, servicios y prueba */
+.homad-products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:var(--homad-space-4);
+}
+.homad-services-grid,
+.homad-packages-grid,
+.homad-proof-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:var(--homad-space-4);
+}
+
+/* Chips de categorías */
+.homad-categories-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--homad-space-2);
+}
+.homad-category-chip{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--homad-border);
+  background:rgba(255,255,255,.05);
+  color:var(--homad-muted);
+  font-size:14px;
+  text-decoration:none;
+}
+.homad-category-chip:hover{
+  background:rgba(255,255,255,.08);
+  color:var(--homad-text);
+}
+
+/* Formularios */
+.homad-form-row{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:var(--homad-space-3);
+}
+.homad-contact-form input,
+.homad-contact-form textarea,
+.homad-contact-form select,
+.homad-quote-form input,
+.homad-quote-form select{
+  background:var(--homad-surface);
+  border:1px solid var(--homad-border);
+  color:var(--homad-text);
+  padding:8px 10px;
+  border-radius:var(--homad-radius-sm);
+}
+.homad-contact-form textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* FAQ */
+.homad-faq details{
+  margin-bottom:var(--homad-space-2);
+}
+.homad-faq summary{
+  cursor:pointer;
+  font-weight:600;
+}
+.homad-faq p{
+  margin-top:var(--homad-space-1);
+  color:var(--homad-muted);
+}
+
+/* Sticky tabs en Projects */
+#projects-tabs{
+  position:sticky;
+  top:80px;
+  background:var(--homad-surface);
+  padding:var(--homad-space-2) 0;
+  z-index:10;
+}

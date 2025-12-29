@@ -10,3 +10,274 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-theme, elementor, responsive
 Text Domain: homad
 */
+
+/*--------------------------------------------------------------
+# Global Styles & Layout
+--------------------------------------------------------------*/
+:root {
+    --color-background: #ffffff;
+    --color-panel-bg: linear-gradient(180deg, rgba(230, 238, 233, 0.8) 0%, rgba(218, 228, 221, 0.8) 100%);
+    --color-text: #333333;
+    --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --panel-border-radius: 24px;
+    --panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    margin: 0;
+    padding: 2rem; /* Give breathing room for the panel */
+}
+
+/* The main Panel Container for Desktop/Tablet */
+.homad-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--color-panel-bg);
+    border-radius: var(--panel-border-radius);
+    box-shadow: var(--panel-shadow);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Basic Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-top: 0;
+}
+
+a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Rule: On mobile, the panel should take up the full screen */
+@media (max-width: 900px) {
+    body {
+        padding: 0;
+    }
+
+    .homad-container {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 1rem;
+        box-shadow: none;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# UI Component Styles
+--------------------------------------------------------------*/
+.product-card,
+.service-card,
+.package-card,
+.case-card {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover,
+.service-card:hover,
+.package-card:hover,
+.case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid layout for cards */
+.product-grid,
+.services-grid,
+.packages-grid,
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+
+/*--------------------------------------------------------------
+# Desktop Header
+--------------------------------------------------------------*/
+.site-header-desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem; /* Space between header and content */
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Navigation Menu */
+.site-header-desktop .menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+}
+
+.site-header-desktop .menu-item a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px; /* Pill shape */
+    font-weight: 500;
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.site-header-desktop .menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.site-header-desktop .current-menu-item a {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 700;
+}
+
+/* Brand/Logo - Assuming it's added via widget or directly in header.php */
+.site-branding {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Right-side utilities */
+.header-utilities {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-utilities .icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+
+/*--------------------------------------------------------------
+# Mobile App-like Design
+--------------------------------------------------------------*/
+
+/* Hide desktop header and show mobile header on small screens */
+.site-header-desktop {
+    display: none;
+}
+.site-header-mobile {
+    display: block;
+}
+
+/* Hide mobile nav on larger screens */
+.mobile-bottom-nav {
+    display: block;
+}
+
+@media (min-width: 901px) {
+    .site-header-desktop {
+        display: flex;
+    }
+    .site-header-mobile {
+        display: none;
+    }
+    .mobile-bottom-nav {
+        display: none;
+    }
+}
+
+/* Mobile Header (2-row) */
+.site-header-mobile {
+    padding: 1rem 0;
+}
+.mobile-header-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.mobile-header-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.mobile-header-row-2 {
+    display: flex;
+    gap: 1rem;
+}
+.search-pill-input {
+    flex-grow: 1;
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+}
+.filter-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    border: none;
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7e7e7;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom)); /* iOS safe area */
+}
+.mobile-bottom-nav .menu {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.mobile-bottom-nav .menu-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #888;
+}
+.mobile-bottom-nav .current-menu-item a {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+/* Responsive Grid for products on mobile */
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}

@@ -13,7 +13,8 @@
          <?php
             wp_nav_menu( array(
                 'theme_location' => 'mobile',
-                'menu_id'        => 'mobile-menu',
+                'menu_class'     => 'menu',
+                'container'      => false,
             ) );
         ?>
     </nav>

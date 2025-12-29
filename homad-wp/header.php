@@ -13,12 +13,25 @@
     <!-- This container will be styled as the PanelContainer (desktop) or AppShell (mobile) -->
     <div class="homad-container">
 
-        <!-- Desktop Header (hidden on mobile) -->
+        <!-- Mobile Header (conditionally displayed via CSS) -->
+        <header id="masthead-mobile" class="site-header-mobile">
+            <div class="mobile-header-row-1">
+                <div class="mobile-header-title"><?php bloginfo( 'name' ); ?></div>
+                <div class="notifications-icon"></div> <!-- Placeholder for icon -->
+            </div>
+            <div class="mobile-header-row-2">
+                <input type="search" class="search-pill-input" placeholder="<?php esc_attr_e( 'Search products...', 'homad' ); ?>">
+                <button class="filter-button"></button> <!-- Placeholder for icon -->
+            </div>
+        </header>
+
+        <!-- Desktop Header (conditionally displayed via CSS) -->
         <header id="masthead-desktop" class="site-header-desktop">
              <?php
                 wp_nav_menu( array(
                     'theme_location' => 'primary',
-                    'menu_id'        => 'primary-menu',
+                    'menu_class'     => 'menu',
+                    'container'      => false,
                 ) );
             ?>
         </header>

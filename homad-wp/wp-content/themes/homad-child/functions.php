@@ -24,3 +24,7 @@ foreach ($homad_includes as $file) {
         require_once $path;
     }
 }
+<?php
+// ... (código que ya tenías)
+
+require_once get_stylesheet_directory() . '/inc/custom.php';

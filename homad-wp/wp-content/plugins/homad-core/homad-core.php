@@ -17,9 +17,15 @@ require_once HOMAD_CORE_PATH . 'inc/cpts.php';
 require_once HOMAD_CORE_PATH . 'inc/meta-boxes.php'; // New Native Meta Boxes
 require_once HOMAD_CORE_PATH . 'inc/admin-columns.php'; // New Admin Tracking
 require_once HOMAD_CORE_PATH . 'inc/admin.php';
+require_once HOMAD_CORE_PATH . 'inc/admin-forms.php'; // Form Builder
 require_once HOMAD_CORE_PATH . 'inc/helpers.php';
 require_once HOMAD_CORE_PATH . 'inc/forms.php';
 require_once HOMAD_CORE_PATH . 'inc/custom.php'; // Shortcodes & Logic
+
+// Elementor Integration
+if ( did_action( 'elementor/loaded' ) ) {
+    require_once HOMAD_CORE_PATH . 'inc/elementor/class-homad-elementor.php';
+}
 
 // Activation Hook
 register_activation_hook( __FILE__, 'homad_core_activate' );

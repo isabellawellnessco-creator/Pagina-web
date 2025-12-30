@@ -12,13 +12,12 @@ define('HOMAD_CHILD_URI', get_stylesheet_directory_uri());
 
 $homad_includes = array(
     'inc/setup.php',
-    'inc/enqueue.php',
+    // 'inc/enqueue.php', // Removed custom CSS/JS
     'inc/helpers.php',
     'inc/woocommerce.php',
     'inc/shortcodes.php',
-    'inc/content-seeder.php', // Added Content Seeder
-    // 'inc/admin-settings.php', // Moved to homad-core plugin
-    // 'inc/footer-injections.php',
+    'inc/content-seeder.php',
+    'inc/hooks-special-states.php', // Added Special States Hooks
 );
 
 foreach ($homad_includes as $file) {

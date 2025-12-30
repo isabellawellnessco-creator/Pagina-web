@@ -1,49 +1,63 @@
-/**
- * Global Layout Architecture
- * Implements the "Panel Container" system.
- */
+/* Global Layout - Glass Panel & App Shell */
 
-/*
-  Panel Container (Desktop)
-  Wraps EVERYTHING inside a floating, rounded container.
-*/
-.homad-panel-wrapper {
-  max-width: 1440px; /* Max width for large screens */
-  margin: var(--spacing-container) auto; /* Floating margin */
-  background: var(--color-homad-panel-bg);
-  border-radius: var(--radius-panel);
-  box-shadow: var(--color-homad-panel-shadow);
-  border: 4px solid var(--color-homad-panel-border);
-  position: relative;
-  overflow: hidden; /* Clip content to radius */
-  min-height: calc(100vh - (var(--spacing-container) * 2));
+/* Desktop - Glass Panel */
+@media (min-width: 769px) {
+    body {
+        background-color: var(--color-secondary);
+        display: flex;
+        justify-content: center;
+        padding-top: var(--spacing-lg);
+        min-height: 100vh;
+    }
+
+    .panel-container {
+        background: #fff;
+        border-radius: var(--panel-radius);
+        border: var(--panel-border);
+        box-shadow: var(--panel-shadow);
+        width: 100%;
+        max-width: 1440px; /* Reference width */
+        min-height: calc(100vh - 40px);
+        margin-bottom: var(--spacing-lg);
+        position: relative;
+        overflow: hidden; /* For rounded corners */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content {
+        flex: 1;
+    }
+
+    /* Header Pill */
+    .header-pill {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 10px 30px;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        z-index: 100;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
 }
 
-/*
-  Mobile App Layout (Resets Panel)
-  On mobile, the "Panel" becomes the full viewport.
-*/
-@media (max-width: 900px) {
-  .homad-panel-wrapper {
-    margin: 0;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    max-width: 100%;
-    min-height: 100vh;
-  }
-}
+/* Mobile - Native App Feel */
+@media (max-width: 768px) {
+    body {
+        background-color: #fff;
+        padding-bottom: 70px; /* Space for Bottom Nav */
+    }
 
-/*
-  Main Content Area
-*/
-.homad-main {
-  padding-bottom: 80px; /* Space for footer */
-}
-
-/* Mobile Bottom Nav Spacer */
-@media (max-width: 900px) {
-  .homad-main {
-    padding-bottom: 100px; /* More space for fixed bottom nav */
-  }
+    .panel-container {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+    }
 }

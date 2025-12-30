@@ -28,7 +28,6 @@ function homad_child_enqueue_assets() {
         'tokens.css',
         'layout.css',
         'components.css',
-        'elementor.css',
         'woocommerce.css',
     );
 
@@ -52,8 +51,7 @@ function homad_child_enqueue_assets() {
      * 3) JS base del tema hijo
      */
     $js_files = array(
-        'app-shell.js',
-        'projects-tabs.js',
+        'homad-app.js',
     );
 
     foreach ($js_files as $file) {

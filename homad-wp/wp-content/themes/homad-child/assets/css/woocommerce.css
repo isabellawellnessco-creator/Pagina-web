@@ -1,11 +1,52 @@
-/* Estilos mínimos; lo fino y UX de checkout/cart va en Parte 3 */
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button{
-  border-radius: var(--homad-radius-sm);
+/* WooCommerce Mobile Optimizations */
+
+/* 1. PLP (Product Grid) */
+@media (max-width: 768px) {
+    /* Force 2 columns grid */
+    ul.products {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+    ul.products li.product {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Card Style */
+    ul.products li.product .product-element-top {
+        border-radius: var(--card-radius);
+        overflow: hidden;
+    }
+    ul.products li.product h3.product-title {
+        font-size: 14px;
+        margin-top: 10px;
+    }
 }
 
-.woocommerce div.product .price,
-.woocommerce ul.products li.product .price{
-  color: var(--homad-text);
+/* 2. PDP (Product Detail) - Buy Section */
+@media (max-width: 768px) {
+    /* If we want a floating buy button or sticky summary */
+    .single-product .summary.entry-summary {
+        padding-bottom: 80px; /* Space for sticky cart if added */
+    }
+
+    /* Example: Make Add to Cart full width pill */
+    .single_add_to_cart_button {
+        width: 100%;
+        border-radius: 50px !important;
+        background-color: var(--color-primary) !important;
+        color: #fff !important;
+        height: 50px;
+    }
+}
+
+/* 3. General Shop UI */
+.woocommerce-pagination .page-numbers {
+    border: none;
+}
+.woocommerce-pagination .page-numbers li span.current {
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
 }

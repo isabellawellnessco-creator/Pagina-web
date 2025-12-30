@@ -281,3 +281,201 @@ a:hover {
         gap: 1rem;
     }
 }
+
+/*--------------------------------------------------------------
+# Home Page - Hero Section
+--------------------------------------------------------------*/
+.hero-router {
+    padding: 4rem 0;
+    min-height: 70vh;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-left-copy {
+    grid-column: 1 / span 6;
+    z-index: 2;
+}
+
+.hero-h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin: 1rem 0;
+}
+
+.h1-line-gray {
+    color: #6c757d;
+}
+
+.h1-line-white {
+    color: #ffffff;
+}
+
+.h1-line-white-bold {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.hero-ctas {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.hero-center-image {
+    grid-column: 5 / span 8;
+    grid-row: 1;
+    height: 100%;
+    min-height: 500px; /* Placeholder height */
+    background-image: url('https://via.placeholder.com/600x800.png?text=Product'); /* Placeholder Image */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.hero-right-overlays {
+    grid-column: 10 / span 3;
+    grid-row: 1;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.overlay-card-main,
+.side-media-card {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 150px;
+}
+
+@media (max-width: 900px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+    .hero-left-copy,
+    .hero-center-image,
+    .hero-right-overlays {
+        grid-column: 1 / -1;
+    }
+    .hero-center-image {
+        order: -1; /* Move image to top on mobile */
+    }
+    .hero-h1 {
+        font-size: 2.5rem;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Splash Screen
+--------------------------------------------------------------*/
+.splash-screen-container {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-image: url('https://via.placeholder.com/600x800.png?text=Splash+BG'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+    z-index: 9999;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.splash-content {
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.splash-line-strong {
+    font-size: 2.5rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+
+/*--------------------------------------------------------------
+# WooCommerce - Cart & Checkout
+--------------------------------------------------------------*/
+/* General Layout */
+.cart-layout,
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.cart-layout__main, .checkout-layout__main {
+    /* Main content styles */
+}
+
+.cart-layout__sidebar, .checkout-layout__sidebar {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+/* Minimalist Forms */
+.woocommerce-cart-form,
+.woocommerce-checkout {
+    font-size: 1rem;
+}
+.woocommerce .col2-set .col-1,
+.woocommerce .col2-set .col-2 {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Hide distracting elements */
+.woocommerce-checkout .site-header-desktop,
+.woocommerce-checkout .site-header-mobile,
+.woocommerce-checkout .mobile-bottom-nav,
+.woocommerce-checkout .site-footer {
+    display: none !important;
+}
+
+/* Responsive for Cart & Checkout */
+@media (max-width: 900px) {
+    .cart-layout,
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+    .cart-layout__sidebar, .checkout-layout__sidebar {
+        order: -1; /* Move summary to top on mobile */
+    }
+}

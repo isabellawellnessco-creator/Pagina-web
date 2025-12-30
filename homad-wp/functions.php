@@ -47,6 +47,9 @@ add_action( 'after_setup_theme', 'homad_setup' );
  */
 function homad_scripts() {
     wp_enqueue_style( 'homad-style', get_stylesheet_uri(), array(), '1.0.0' );
+
+    // Enqueue splash screen script
+    wp_enqueue_script( 'homad-splash', get_template_directory_uri() . '/scripts/splash.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'homad_scripts' );
 
@@ -98,3 +101,66 @@ function homad_register_taxonomies() {
     register_taxonomy( 'package_segment', array( 'package' ), $args_package_segment );
 }
 add_action( 'init', 'homad_register_taxonomies', 0 );
+
+/**
+ * Handle the Quote Wizard form submission.
+ */
+function homad_handle_quote_form_submission() {
+    // Verify nonce - corrected field name
+    if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'quote_form_nonce' ) ) {
+        wp_die( 'Security check failed.' );
+    }
+
+    // Sanitize and prepare data
+    $contact_info = sanitize_text_field( $_POST['contact_info'] );
+    $project_type = sanitize_text_field( $_POST['project_type'] );
+    $country_city = sanitize_text_field( $_POST['country_city'] );
+    $area_sqm = sanitize_text_field( $_POST['area_sqm'] );
+    $budget_range = sanitize_text_field( $_POST['budget_range'] );
+
+    // Create post title
+    $post_title = 'New Lead: ' . $contact_info . ' - ' . $project_type;
+
+    // Create post content
+    $post_content = "Project Type: {$project_type}\n";
+    $post_content .= "Country/City: {$country_city}\n";
+    $post_content .= "Area (sqm): {$area_sqm}\n";
+    $post_content .= "Budget Range: {$budget_range}\n";
+    $post_content .= "Contact Info: {$contact_info}\n";
+
+    // Prepare new post data
+    $new_lead = array(
+        'post_title'    => $post_title,
+        'post_content'  => $post_content,
+        'post_status'   => 'publish', // Or 'pending' for review
+        'post_type'     => 'lead',
+    );
+
+    // Insert the post into the database
+    $post_id = wp_insert_post( $new_lead );
+
+    // Redirect after submission
+    $redirect_url = add_query_arg( 'quote_success', 'true', wp_get_referer() );
+    wp_safe_redirect( $redirect_url );
+    // Omitting exit as per environment constraints. WordPress will handle it.
+    exit;
+}
+add_action( 'admin_post_nopriv_quote_form', 'homad_handle_quote_form_submission' );
+add_action( 'admin_post_quote_form', 'homad_handle_quote_form_submission' );
+
+/**
+ * Register Elementor locations.
+ */
+function homad_register_elementor_locations( $elementor_theme_manager ) {
+    $elementor_theme_manager->register_all_core_location();
+}
+add_action( 'elementor/theme/register_locations', 'homad_register_elementor_locations' );
+
+/**
+ * Register custom Elementor widgets.
+ */
+function homad_register_elementor_widgets( $widgets_manager ) {
+    require_once( __DIR__ . '/elementor-widgets/widget-packages-grid.php' );
+    $widgets_manager->register_widget_type( new \Homad_Packages_Grid_Widget() );
+}
+add_action( 'elementor/widgets/widgets_registered', 'homad_register_elementor_widgets' );

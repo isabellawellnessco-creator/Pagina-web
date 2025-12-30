@@ -21,6 +21,15 @@
 
 </div><!-- #page -->
 
+<!-- Splash Screen for Mobile (controlled by splash.js) -->
+<div id="splash-screen" class="splash-screen-container">
+    <div class="splash-content">
+        <p class="splash-line-thin">Transform Your</p>
+        <h2 class="splash-line-strong">Home with Elegance!</h2>
+        <button id="close-splash" class="btn btn-primary">Get Started</button>
+    </div>
+</div>
+
 <?php wp_footer(); ?>
 
 </body>

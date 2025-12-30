@@ -106,7 +106,14 @@ get_header(); ?>
         <section id="quote-wizard" class="projects-section quote-wizard">
             <div class="container">
                 <h2><?php esc_html_e( 'Request a Quote', 'homad' ); ?></h2>
-                <form class="quote-form">
+                <?php
+                if ( isset( $_GET['quote_success'] ) && $_GET['quote_success'] == 'true' ) {
+                    echo '<div class="quote-success-message"><p>' . esc_html__( 'Thank you for your request! We will get back to you shortly.', 'homad' ) . '</p></div>';
+                }
+                ?>
+                <form class="quote-form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+                    <input type="hidden" name="action" value="quote_form">
+                    <?php wp_nonce_field( 'quote_form_nonce' ); ?>
                     <div class="form-row">
                         <label for="country-city"><?php esc_html_e( 'Country/City', 'homad' ); ?></label>
                         <input type="text" id="country-city" name="country_city" required>

@@ -10,8 +10,6 @@ defined('ABSPATH') || exit;
 function homad_child_enqueue_assets() {
     /**
      * 1) Encolar CSS del tema padre WoodMart
-     * WoodMart normalmente expone su propio handle, pero por compatibilidad
-     * encolamos directamente el style.css del tema padre.
      */
     $parent_style_path = get_template_directory() . '/style.css';
     wp_enqueue_style(
@@ -22,13 +20,15 @@ function homad_child_enqueue_assets() {
     );
 
     /**
-     * 2) Encolar CSS del tema hijo en orden (tokens -> layout -> components -> elementor -> woocommerce)
+     * 2) Encolar CSS del tema hijo en orden (tokens -> layout -> components -> woocommerce)
      */
     $css_files = array(
         'tokens.css',
         'layout.css',
         'components.css',
         'woocommerce.css',
+        'print.css', // Print specific styles
+        'projects-hub.css' // New Hub styles
     );
 
     $deps = array('woodmart-parent-style');
@@ -37,13 +37,18 @@ function homad_child_enqueue_assets() {
         $path = HOMAD_CHILD_DIR . '/assets/css/' . $file;
         if (file_exists($path)) {
             $handle = 'homad-' . basename($file, '.css');
+            $media  = ($file === 'print.css') ? 'print' : 'all';
+
             wp_enqueue_style(
                 $handle,
                 HOMAD_CHILD_URI . '/assets/css/' . $file,
                 $deps,
-                filemtime($path)
+                filemtime($path),
+                $media
             );
-            $deps = array($handle);
+            if ($media === 'all') {
+                $deps = array($handle);
+            }
         }
     }
 
@@ -65,6 +70,10 @@ function homad_child_enqueue_assets() {
                 filemtime($path),
                 true
             );
+            // Localize script for AJAX
+            wp_localize_script($handle, 'homad_vars', array(
+                'ajax_url' => admin_url('admin-ajax.php')
+            ));
         }
     }
 }

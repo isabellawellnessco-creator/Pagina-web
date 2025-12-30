@@ -1,0 +1,203 @@
+/**
+ * Projects Hub Styles
+ * Sticky Tabs, Service Cards, Package Grids, B2B Banner.
+ */
+
+.homad-projects-hub {
+  padding-bottom: 60px;
+}
+
+/* Hero Small */
+.homad-hero-small {
+  padding: 80px 20px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%);
+}
+.homad-hero-title {
+  font-size: 42px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.homad-hero-subtitle {
+  color: var(--color-homad-text-muted);
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+/* Sticky Tabs */
+.homad-sticky-tabs {
+  position: sticky;
+  top: 72px; /* Height of header */
+  z-index: 90;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 0;
+}
+
+.homad-container-scroll {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-link {
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-homad-text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-link.active, .tab-link:hover {
+  background: #eee;
+  color: var(--color-homad-text-main);
+}
+.tab-link.highlight {
+  background: var(--color-homad-primary);
+  color: #fff;
+}
+
+/* Section Common */
+.homad-hub-section {
+  padding: 60px 0;
+}
+.homad-hub-section.bg-light { background: #f9f9f9; }
+.homad-hub-section.bg-dark { background: #1a1a1a; color: #fff; }
+
+.homad-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-title {
+  font-size: 32px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Service Grid */
+.homad-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.homad-service-card {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 30px;
+  border-radius: var(--radius-card);
+  transition: transform 0.2s;
+}
+.homad-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.homad-service-card h3 { margin-top: 0; }
+.homad-service-card .check-list {
+  padding-left: 20px;
+  color: var(--color-homad-text-muted);
+  font-size: 14px;
+}
+
+/* Package Grid */
+.homad-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.homad-package-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+}
+.pkg-header {
+  padding: 30px;
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+.pkg-header .price {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-homad-secondary);
+  margin-top: 8px;
+}
+.pkg-body {
+  padding: 30px;
+  flex-grow: 1;
+}
+
+/* B2B Banner */
+.homad-b2b-banner {
+  background: var(--color-homad-secondary);
+  color: #fff;
+  border-radius: var(--radius-card);
+  padding: 60px;
+  text-align: center;
+}
+.b2b-content h2 { margin-top: 0; }
+.homad-btn--dark {
+  background: #000;
+  color: #fff;
+}
+
+/* Quote Wizard */
+.homad-wizard-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: var(--radius-card);
+  color: #333;
+}
+.wizard-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.homad-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.homad-form .form-group {
+  margin-bottom: 20px;
+}
+.homad-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.homad-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+.form-note {
+  font-size: 12px;
+  text-align: center;
+  color: #888;
+  margin-top: 15px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+  .homad-hero-title { font-size: 32px; }
+  .homad-sticky-tabs { top: 120px; /* Account for 2-row header */ }
+  .homad-form .form-row { grid-template-columns: 1fr; }
+  .homad-wizard-wrapper { padding: 20px; }
+}

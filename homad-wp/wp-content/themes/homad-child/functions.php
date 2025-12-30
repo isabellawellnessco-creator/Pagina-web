@@ -16,8 +16,8 @@ $homad_includes = array(
     'inc/helpers.php',
     'inc/woocommerce.php',
     'inc/shortcodes.php',
-    'inc/admin-settings.php',
-    'inc/footer-injections.php',
+    // 'inc/admin-settings.php', // Moved to homad-core plugin
+    // 'inc/footer-injections.php',
 );
 
 foreach ($homad_includes as $file) {
@@ -26,7 +26,3 @@ foreach ($homad_includes as $file) {
         require_once $path;
     }
 }
-<?php
-// ... (código que ya tenías)
-
-require_once get_stylesheet_directory() . '/inc/custom.php';

@@ -1,31 +1,32 @@
 <?php
-// ... (código anterior de CPT y Quote handler) ...
+/**
+ * Custom Logic & Shortcodes.
+ *
+ * @package Homad_Core
+ */
 
-/** Manejar el formulario de contacto */
-add_action('admin_post_nopriv_homad_contact_form', 'homad_handle_contact_form');
-add_action('admin_post_homad_contact_form', 'homad_handle_contact_form');
-function homad_handle_contact_form() {
-  $reason  = sanitize_text_field($_POST['reason'] ?? '');
-  $message = sanitize_textarea_field($_POST['message'] ?? '');
-  $contact = sanitize_text_field($_POST['contact'] ?? '');
+defined( 'ABSPATH' ) || exit;
 
-  // Guardar lead
-  $lead_id = wp_insert_post(array(
-    'post_type'   => 'lead',
-    'post_title'  => 'Contact from '.$contact.' ['.current_time('mysql').']',
-    'post_status' => 'publish',
-    'meta_input'  => array(
-      'reason'  => $reason,
-      'message' => $message,
-      'contact' => $contact,
-    ),
-  ));
-
-  // Notificar por correo
-  wp_mail(get_option('admin_email'), 'New Contact Inquiry',
-    "You have a new inquiry from $contact:\n\n$message");
-
-  // Redirigir con parámetro de éxito
-  wp_redirect(home_url('/contact?submitted=1'));
-  exit;
+/**
+ * Trust Badge Shortcode [homad_trust_mini]
+ */
+function homad_shortcode_trust_mini() {
+    ob_start();
+    ?>
+    <div class="homad-trust-strip-mini">
+        <div class="trust-item"><span class="dashicons dashicons-saved"></span> Garantía Directa</div>
+        <div class="trust-item"><span class="dashicons dashicons-truck"></span> Envíos Lima</div>
+        <div class="trust-item"><span class="dashicons dashicons-hammer"></span> Instalación</div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
+add_shortcode('homad_trust_mini', 'homad_shortcode_trust_mini');
+
+/**
+ * Filter Drawer Trigger [homad_filter_trigger]
+ */
+function homad_shortcode_filter_trigger() {
+    return '<button class="homad-btn homad-btn--outline" id="homad-filter-trigger">Filters</button>';
+}
+add_shortcode('homad_filter_trigger', 'homad_shortcode_filter_trigger');

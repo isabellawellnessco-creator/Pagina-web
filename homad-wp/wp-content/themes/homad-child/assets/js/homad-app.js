@@ -1,100 +1,133 @@
 /**
  * Homad App Logic
- * - Splash Screen (30 min logic)
- * - Bottom Navigation Active States
- * - Mobile Filter Drawer
- * - Sticky Buy Box
+ * Handles Sticky Tabs, Quote Wizard, and Mobile Interactions.
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    initSplash();
-    initBottomNav();
-    initFilterDrawer(); // In case manual implementation is needed
-});
 
-function initSplash() {
-    // Only on mobile
-    if (window.innerWidth > 900) return;
+    // --- Mobile Splash Screen Logic ---
+    const splash = document.getElementById('homad-splash');
+    if (splash) {
+        const lastSeen = localStorage.getItem('homad_splash_seen');
+        const now = new Date().getTime();
+        const thirtyMin = 30 * 60 * 1000;
 
-    var splash = document.getElementById('homad-splash-screen');
-    if (!splash) return;
+        if (!lastSeen || (now - lastSeen > thirtyMin)) {
+            // Show splash
+            splash.style.display = 'flex';
+        } else {
+            // Hide immediately
+            splash.style.display = 'none';
+        }
 
-    // Check storage (30 mins = 1800 * 1000 ms)
-    var lastSeen = localStorage.getItem('homad_splash_seen');
-    var now = new Date().getTime();
-    var expiry = 30 * 60 * 1000;
-
-    if (!lastSeen || (now - lastSeen > expiry)) {
-        // Show Splash
-        splash.style.display = 'flex';
-        // Force reflow
-        splash.offsetHeight;
-        splash.classList.add('visible');
-
-        var btn = document.getElementById('homad-splash-btn');
+        // Dismiss button
+        const btn = document.getElementById('homad-splash-dismiss');
         if(btn) {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                dismissSplash();
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 500);
+                localStorage.setItem('homad_splash_seen', new Date().getTime());
             });
         }
-    } else {
-        splash.style.display = 'none';
     }
 
-    function dismissSplash() {
-        splash.classList.remove('visible');
-        splash.classList.add('hiding');
-        setTimeout(function(){
-            splash.style.display = 'none';
-        }, 500);
-        localStorage.setItem('homad_splash_seen', new Date().getTime());
-    }
-}
+    // --- Quote Wizard (Projects Hub) ---
+    const leadForm = document.getElementById('homad-lead-form');
+    if (leadForm) {
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-function initBottomNav() {
-    var nav = document.querySelector('.homad-bottom-nav');
-    if (!nav) return;
+            const btn = leadForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
 
-    // Highlight active link based on URL
-    var currentUrl = window.location.href;
-    var links = nav.querySelectorAll('a');
+            const formData = new FormData(leadForm);
 
-    links.forEach(function(link) {
-        // Simple matching
-        if (currentUrl.indexOf(link.getAttribute('href')) !== -1) {
-             // Reset others
-             links.forEach(l => l.classList.remove('active'));
-             link.classList.add('active');
-        }
-    });
-}
-
-function initFilterDrawer() {
-    // Logic mostly handled by inline onclicks in shortcode,
-    // but here we can add swipe-to-close or outside click listener enhancement
-    var overlay = document.querySelector('.homad-drawer-overlay');
-    if(overlay) {
-        overlay.addEventListener('click', function() {
-            document.querySelector('.homad-filter-drawer').classList.remove('is-open');
-            this.classList.remove('is-open');
+            // Native Fetch API
+            fetch(homad_vars.ajax_url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.data.message);
+                    leadForm.reset();
+                } else {
+                    alert('Error: ' + data.data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Something went wrong. Please try again.');
+            })
+            .finally(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
         });
     }
-}
 
-// PDP Sticky Buy Box Logic (Mobile Only)
-window.addEventListener('scroll', function() {
-    if(window.innerWidth > 900) return;
+    // --- Global: Prefill Quote Helper ---
+    window.HomadApp = {
+        prefillQuote: function(type, name) {
+            const form = document.getElementById('homad-lead-form');
+            if (form) {
+                // Scroll to form
+                form.scrollIntoView({ behavior: 'smooth' });
 
-    // Logic: If user scrolls past 300px (approx image height), show box
-    var scrollPos = window.scrollY;
-    var box = document.querySelector('.homad-sticky-buy-box');
+                // Set values
+                const typeSelect = form.querySelector('select[name="service_type"]');
+                if(typeSelect) typeSelect.value = type;
 
-    if(box) {
-        if(scrollPos > 400) {
-            box.classList.add('is-visible');
-        } else {
-            box.classList.remove('is-visible');
+                const hiddenType = document.getElementById('input_interest_type');
+                if(hiddenType) hiddenType.value = type;
+
+                const hiddenName = document.getElementById('input_interest_name');
+                if(hiddenName) hiddenName.value = name;
+            }
         }
+    };
+
+    // --- Sticky Tabs Highlighting ---
+    const tabs = document.querySelectorAll('.tab-link');
+    if (tabs.length > 0) {
+        window.addEventListener('scroll', function() {
+            let fromTop = window.scrollY + 150; // Offset
+
+            tabs.forEach(link => {
+                let section = document.querySelector(link.hash);
+                if (section &&
+                    section.offsetTop <= fromTop &&
+                    section.offsetTop + section.offsetHeight > fromTop) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
     }
+
+    // --- Mobile Filter Drawer ---
+    const filterTrigger = document.getElementById('homad-mobile-filter-trigger');
+    const drawer = document.querySelector('.homad-shop-sidebar'); // Using sidebar as drawer on mobile
+    const closeDrawer = document.querySelector('.close-drawer');
+
+    if (filterTrigger && drawer) {
+        filterTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            drawer.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+        });
+    }
+    if (closeDrawer && drawer) {
+        closeDrawer.addEventListener('click', function(e) {
+            e.preventDefault();
+            drawer.classList.remove('open');
+            document.body.style.overflow = ''; // Unlock
+        });
+    }
+
 });

@@ -70,6 +70,10 @@ function homad_child_enqueue_assets() {
                 filemtime($path),
                 true
             );
+            // Localize script for AJAX
+            wp_localize_script($handle, 'homad_vars', array(
+                'ajax_url' => admin_url('admin-ajax.php')
+            ));
         }
     }
 }

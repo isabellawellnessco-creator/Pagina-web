@@ -40,17 +40,21 @@ function homad_settings_init() {
     add_settings_field('homad_splash_subtitle', 'Subtitle', 'homad_text_render', 'homad_settings', 'homad_splash_section', ['label_for' => 'homad_splash_subtitle']);
     add_settings_field('homad_splash_image', 'Splash Image URL', 'homad_image_render', 'homad_settings', 'homad_splash_section', ['label_for' => 'homad_splash_image']);
 
-    // --- Header & Brand Assets ---
-    add_settings_section('homad_brand_section', 'Brand Assets & Header', 'homad_brand_section_callback', 'homad_settings');
+    // --- Header & Brand Assets (Visual Identity) ---
+    add_settings_section('homad_brand_section', 'Brand Assets & Global Style', 'homad_brand_section_callback', 'homad_settings');
 
     register_setting('homad_options', 'homad_logo_url');
     register_setting('homad_options', 'homad_primary_color');
     register_setting('homad_options', 'homad_accent_color');
+    register_setting('homad_options', 'homad_panel_bg_start'); // Gradient start
+    register_setting('homad_options', 'homad_panel_bg_end');   // Gradient end
     register_setting('homad_options', 'homad_customer_count_label');
 
     add_settings_field('homad_logo_url', 'Custom Logo URL', 'homad_image_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_logo_url']);
-    add_settings_field('homad_primary_color', 'Primary Color', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_primary_color']);
-    add_settings_field('homad_accent_color', 'Accent Color', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_accent_color']);
+    add_settings_field('homad_primary_color', 'Primary Color (Buttons)', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_primary_color']);
+    add_settings_field('homad_accent_color', 'Accent Color (Highlights)', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_accent_color']);
+    add_settings_field('homad_panel_bg_start', 'Panel Gradient Start', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_panel_bg_start']);
+    add_settings_field('homad_panel_bg_end', 'Panel Gradient End', 'homad_color_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_panel_bg_end']);
     add_settings_field('homad_customer_count_label', 'Customer Count Label', 'homad_text_render', 'homad_settings', 'homad_brand_section', ['label_for' => 'homad_customer_count_label']);
 
     // --- Footer & Contact ---
@@ -83,22 +87,36 @@ function homad_add_dashboard_widgets() {
 add_action('wp_dashboard_setup', 'homad_add_dashboard_widgets');
 
 function homad_dashboard_widget_function() {
-    echo '<div style="display:flex; gap:10px; flex-wrap:wrap;">';
-    echo '<a href="'.admin_url('admin.php?page=wc-admin').'" class="button button-primary button-hero">View Sales Analytics</a>';
-    echo '<a href="'.admin_url('edit.php?post_type=shop_order').'" class="button button-secondary button-hero">Manage Orders</a>';
-    echo '<a href="'.admin_url('admin.php?page=homad_settings').'" class="button button-secondary button-hero">Store Settings</a>';
+    echo '<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">';
+    echo '<a href="'.admin_url('admin.php?page=wc-admin').'" class="button button-primary button-hero">Analytics</a>';
+    echo '<a href="'.admin_url('edit.php?post_type=shop_order').'" class="button button-secondary button-hero">Orders</a>';
+    echo '<a href="'.admin_url('edit.php?post_type=lead').'" class="button button-secondary button-hero">Leads</a>';
+    echo '<a href="'.admin_url('admin.php?page=homad_settings').'" class="button button-secondary button-hero">Settings</a>';
     echo '</div>';
-    echo '<p style="margin-top:15px;"><strong>Quick Stats:</strong></p>';
-    // Simple stat placeholders (real implementation would query wc_get_orders)
-    $order_count = wp_count_posts('shop_order')->wc-processing;
-    echo '<p>Orders Processing: <strong>' . ($order_count ? $order_count : 0) . '</strong></p>';
+
+    // Quick Stats
+    $new_leads = count(get_posts(['post_type'=>'lead', 'meta_key'=>'_homad_lead_status', 'meta_value'=>'new']));
+
+    // Check WooCommerce status
+    $processing_orders = 0;
+    if (class_exists('WooCommerce')) {
+         $processing_orders = wc_orders_count('processing');
+    }
+
+    echo '<div style="background:#f0f0f1; padding:15px; border-radius:8px;">';
+    echo '<p style="margin:0 0 5px;"><strong>Action Items:</strong></p>';
+    echo '<ul style="list-style:disc; margin-left:20px;">';
+    echo '<li>Orders to fulfill: <strong>' . intval($processing_orders) . '</strong></li>';
+    echo '<li>New Leads: <strong>' . intval($new_leads) . '</strong></li>';
+    echo '</ul>';
+    echo '</div>';
 }
 
 
 // --- Callbacks & Renderers ---
 
 function homad_splash_section_callback() { echo '<p>Configure the mobile "App-like" splash screen.</p>'; }
-function homad_brand_section_callback() { echo '<p>Global visual settings. Colors will update the site CSS variables.</p>'; }
+function homad_brand_section_callback() { echo '<p>Global visual settings. These define the "Panel" look.</p>'; }
 function homad_footer_section_callback() { echo '<p>Manage footer content and contact details.</p>'; }
 
 function homad_settings_page_html() {
@@ -142,5 +160,5 @@ function homad_color_render($args) {
 function homad_image_render($args) {
     $option = get_option($args['label_for']);
     echo '<input type="text" id="' . esc_attr($args['label_for']) . '" name="' . esc_attr($args['label_for']) . '" value="' . esc_attr($option) . '" class="regular-text"> ';
-    echo '<p class="description">Enter image URL directly (Media Uploader integration pending).</p>';
+    echo '<p class="description">Enter image URL directly.</p>';
 }

@@ -1,66 +1,57 @@
 <?php
 /**
- * Form Handling and AJAX Logic.
+ * Form Handlers (AJAX).
  *
  * @package Homad_Core
  */
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * AJAX Handler for Quote Wizard.
- * Receives JSON data from the frontend wizard.
- */
-add_action('wp_ajax_homad_submit_quote_wizard', 'homad_ajax_submit_quote_wizard');
-add_action('wp_ajax_nopriv_homad_submit_quote_wizard', 'homad_ajax_submit_quote_wizard');
+add_action('wp_ajax_homad_submit_lead', 'homad_handle_lead_submission');
+add_action('wp_ajax_nopriv_homad_submit_lead', 'homad_handle_lead_submission');
 
-function homad_ajax_submit_quote_wizard() {
-    // Verify nonce
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'homad_quote_nonce')) {
-        wp_send_json_error(array('message' => 'Invalid security token.'));
+function homad_handle_lead_submission() {
+    // 1. Verify Nonce
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'homad_lead_action')) {
+        wp_send_json_error(['message' => 'Security check failed. Please refresh.']);
     }
 
-    // Parse fields
-    $fields = isset($_POST['fields']) ? json_decode(stripslashes($_POST['fields']), true) : array();
+    // 2. Sanitize Input
+    $service_type = sanitize_text_field($_POST['service_type'] ?? '');
+    $email        = sanitize_email($_POST['email'] ?? '');
+    $phone        = sanitize_text_field($_POST['phone'] ?? '');
+    $budget       = sanitize_text_field($_POST['budget'] ?? '');
+    $details      = sanitize_textarea_field($_POST['details'] ?? '');
+    $interest_type = sanitize_text_field($_POST['interest_type'] ?? ''); // service/package/b2b
+    $interest_name = sanitize_text_field($_POST['interest_name'] ?? ''); // "Kitchen Package", etc.
 
-    if (empty($fields)) {
-        wp_send_json_error(array('message' => 'No data received.'));
+    if (!$email) {
+        wp_send_json_error(['message' => 'Email is required.']);
     }
 
-    // Extract basic info
-    $contact_name = isset($fields['name']) ? sanitize_text_field($fields['name']) : 'Unknown';
-    $contact_email = isset($fields['email']) ? sanitize_email($fields['email']) : '';
-    $lead_type = isset($fields['quote_type']) ? sanitize_text_field($fields['quote_type']) : 'General'; // B2B, Package, Service
+    // 3. Create Lead Post
+    $post_title = "Lead: $email ($service_type)";
+    if($interest_name) $post_title .= " - $interest_name";
 
-    // Create Lead Post
-    $post_id = wp_insert_post(array(
+    $lead_id = wp_insert_post([
         'post_type'   => 'lead',
-        'post_title'  => sprintf('%s Quote: %s', ucfirst($lead_type), $contact_name),
-        'post_status' => 'publish',
-        'post_content' => 'Lead generated via Quote Wizard.',
-    ));
+        'post_title'  => $post_title,
+        'post_status' => 'publish', // Internal use only
+        'post_content'=> $details,  // Store notes in content
+    ]);
 
-    if (is_wp_error($post_id)) {
-        wp_send_json_error(array('message' => 'Could not save lead.'));
+    if (is_wp_error($lead_id)) {
+        wp_send_json_error(['message' => 'Could not save lead.']);
     }
 
-    // Save Meta Fields
-    foreach ($fields as $key => $value) {
-        if (is_array($value)) {
-            $value = implode(', ', $value);
-        }
-        update_post_meta($post_id, sanitize_key($key), sanitize_text_field($value));
-    }
+    // 4. Save Meta Data
+    update_post_meta($lead_id, '_homad_lead_email', $email);
+    update_post_meta($lead_id, '_homad_lead_phone', $phone);
+    update_post_meta($lead_id, '_homad_lead_budget', $budget);
+    update_post_meta($lead_id, '_homad_lead_status', 'new');
 
-    // Send Email Notification
-    $admin_email = get_option('homad_contact_email', get_option('admin_email'));
-    $subject = "New Quote Request ($lead_type) from $contact_name";
-    $message = "New lead received:\n\n";
-    foreach ($fields as $key => $value) {
-        $message .= ucfirst($key) . ": " . (is_array($value) ? implode(', ', $value) : $value) . "\n";
-    }
+    // 5. Send Notification (Optional - simplified for MVP)
+    // wp_mail(get_option('admin_email'), "New Lead: $post_title", "Details:\n\n$details\n\nContact: $email / $phone");
 
-    wp_mail($admin_email, $subject, $message);
-
-    wp_send_json_success(array('message' => 'Quote received successfully!', 'lead_id' => $post_id));
+    wp_send_json_success(['message' => 'Quote request received! We will contact you shortly.']);
 }

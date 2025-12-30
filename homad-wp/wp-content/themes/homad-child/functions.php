@@ -17,7 +17,7 @@ $homad_includes = array(
     'inc/woocommerce.php',
     'inc/shortcodes.php',
     // 'inc/admin-settings.php', // Moved to homad-core plugin
-    'inc/footer-injections.php',
+    // 'inc/footer-injections.php',
 );
 
 foreach ($homad_includes as $file) {

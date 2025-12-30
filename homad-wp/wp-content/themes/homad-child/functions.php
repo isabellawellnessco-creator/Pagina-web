@@ -16,6 +16,8 @@ $homad_includes = array(
     'inc/helpers.php',
     'inc/woocommerce.php',
     'inc/shortcodes.php',
+    'inc/admin-settings.php',
+    'inc/footer-injections.php',
 );
 
 foreach ($homad_includes as $file) {

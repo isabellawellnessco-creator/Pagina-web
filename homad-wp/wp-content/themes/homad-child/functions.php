@@ -16,6 +16,7 @@ $homad_includes = array(
     'inc/helpers.php',
     'inc/woocommerce.php',
     'inc/shortcodes.php',
+    'inc/content-seeder.php', // Added Content Seeder
     // 'inc/admin-settings.php', // Moved to homad-core plugin
     // 'inc/footer-injections.php',
 );

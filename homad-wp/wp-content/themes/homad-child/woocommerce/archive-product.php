@@ -2,65 +2,66 @@
 /**
  * The Template for displaying product archives, including the main shop page which is a post type archive
  *
- * This template follows the Homad "Panel" & "Filter Drawer" concept.
- *
- * @package Homad
+ * This template handles the Sidebar Filters + Grid Layout.
  */
 
 defined( 'ABSPATH' ) || exit;
 
-get_header(); // Starts Panel Wrapper
+get_header( 'shop' );
 
 /**
  * Hook: woocommerce_before_main_content.
  */
 do_action( 'woocommerce_before_main_content' );
-
 ?>
-<header class="homad-shop-header">
-    <h1 class="homad-page-title"><?php woocommerce_page_title(); ?></h1>
 
-    <!-- Sort & Filter Toggle (Mobile) -->
-    <div class="homad-shop-controls">
-        <div class="homad-cat-chips-scroll">
-            <?php
-             // Quick Sub-category chips
-             $current_term = is_product_category() ? get_queried_object_id() : 0;
-             $terms = get_terms('product_cat', ['parent' => $current_term, 'hide_empty' => true]);
-             foreach($terms as $term) {
-                 echo '<a href="'.get_term_link($term).'" class="homad-chip">'.$term->name.'</a>';
-             }
-            ?>
-        </div>
-
-        <div class="homad-sort-wrap">
-            <?php woocommerce_catalog_ordering(); ?>
-        </div>
+<header class="woocommerce-products-header panel-header">
+	<h1 class="woocommerce-products-header__title page-title">Muebles de Diseño y Acabados Premium</h1>
+    <div class="term-description">
+        <p>Piezas creadas para resistir la vida real. Estética de lujo, durabilidad industrial.</p>
     </div>
 </header>
 
 <div class="homad-shop-layout">
 
-    <!-- Sidebar Filter (Desktop) / Drawer (Mobile) -->
+    <!-- Sidebar / Drawer Filters -->
     <aside class="homad-shop-sidebar">
-        <div class="homad-filter-drawer-inner">
-            <div class="drawer-header hide-on-desktop">
-                <h3>Filters</h3>
-                <button class="close-drawer">X</button>
-            </div>
-            <?php
-            /**
-             * Hook: woocommerce_sidebar.
-             */
-            do_action( 'woocommerce_sidebar' );
-            ?>
+        <div class="filter-group">
+            <h4>Estilo de Vida</h4>
+            <ul class="filter-list">
+                <li><label><input type="checkbox"> Para Mascotas/Niños</label></li>
+                <li><label><input type="checkbox"> Home Office</label></li>
+                <li><label><input type="checkbox"> Relax</label></li>
+            </ul>
+        </div>
+
+        <div class="filter-group">
+            <h4>Material (Clave)</h4>
+             <ul class="filter-list">
+                <li><label><input type="checkbox"> Maderas Eterna (HPL)</label></li>
+                <li><label><input type="checkbox"> Piedra Sinterizada</label></li>
+                <li><label><input type="checkbox"> Metal Mate</label></li>
+                <li><label><input type="checkbox"> Polímero Técnico</label></li>
+            </ul>
+        </div>
+
+         <div class="filter-group">
+            <h4>Disponibilidad</h4>
+             <ul class="filter-list">
+                <li><label><input type="checkbox"> Entrega Express (24h)</label></li>
+                <li><label><input type="checkbox"> Pre-order</label></li>
+            </ul>
         </div>
     </aside>
 
-    <!-- Product Grid -->
     <div class="homad-shop-grid">
         <?php
         if ( woocommerce_product_loop() ) {
+
+            /**
+             * Hook: woocommerce_before_shop_loop.
+             */
+            do_action( 'woocommerce_before_shop_loop' );
 
             woocommerce_product_loop_start();
 
@@ -83,7 +84,6 @@ do_action( 'woocommerce_before_main_content' );
              * Hook: woocommerce_after_shop_loop.
              */
             do_action( 'woocommerce_after_shop_loop' );
-
         } else {
             /**
              * Hook: woocommerce_no_products_found.
@@ -92,14 +92,6 @@ do_action( 'woocommerce_before_main_content' );
         }
         ?>
     </div>
-
-</div>
-
-<!-- Trust Strip Mini -->
-<div class="homad-trust-strip-mini">
-    <div class="trust-item"><span class="dashicons dashicons-saved"></span> Garantía Directa</div>
-    <div class="trust-item"><span class="dashicons dashicons-truck"></span> Envíos a todo Lima</div>
-    <div class="trust-item"><span class="dashicons dashicons-hammer"></span> Instalación Disponible</div>
 </div>
 
 <?php
@@ -108,4 +100,4 @@ do_action( 'woocommerce_before_main_content' );
  */
 do_action( 'woocommerce_after_main_content' );
 
-get_footer(); // Closes Panel Wrapper
+get_footer( 'shop' );

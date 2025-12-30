@@ -1,215 +1,62 @@
-/**
- * Component Styles
- * Header, Nav, Pills, Cards
- */
+/* UI Components */
 
-/* --- Desktop Header (GNB) --- */
-.homad-gnb {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 16px 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.homad-gnb__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Buttons */
+.homad-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 
-.homad-gnb__left, .homad-gnb__right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.homad-btn--primary {
+    background-color: var(--color-primary);
+    color: #fff;
 }
 
-.homad-gnb__center {
-  flex-grow: 1;
-  text-align: center;
+.homad-btn--primary:hover {
+    background-color: #333;
+    color: #fff;
 }
 
-.homad-brand {
-  font-size: 24px;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--color-homad-text-main);
-  letter-spacing: -0.5px;
+.homad-btn--outline {
+    background-color: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
-/* Pills */
-.homad-pill-link {
-  display: inline-block;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  color: var(--color-homad-text-muted);
-  background: rgba(255,255,255,0.3);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+.homad-btn--dark {
+    background-color: #000;
+    color: #fff;
 }
 
-.homad-pill-link.active, .homad-pill-link:hover {
-  background: #FFFFFF;
-  color: var(--color-homad-text-main);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.full-width {
+    width: 100%;
 }
 
-/* Icon Buttons */
-.homad-icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: transparent;
-  color: var(--color-homad-text-main);
+/* Cards */
+.homad-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    /* border: 1px solid var(--color-border); */ /* Optional based on design preference */
 }
 
-.homad-icon-btn--solid {
-  background: #000;
-  color: #fff;
-}
-
-/* Customer Pill */
-.homad-customer-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.homad-avatars {
-  display: flex;
-}
-.homad-avatars .avatar {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ddd;
-  border: 2px solid #fff;
-  margin-right: -8px;
-}
-
-/* --- Mobile Header (App) --- */
-.homad-app-header {
-  background: #fff;
-  padding: 16px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-}
-
-.homad-app-header__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.homad-app-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.homad-app-header__bottom {
-  display: flex;
-  gap: 10px;
-}
-
-.homad-search-pill {
-  flex-grow: 1;
-  background: #f5f5f5;
-  border-radius: var(--radius-pill);
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  height: 44px;
-}
-
-.homad-search-input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  margin-left: 8px;
-  font-size: 14px;
-}
-.homad-search-input:focus {
-  outline: none;
-}
-
-.homad-filter-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid #eee;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* --- Bottom Nav --- */
-.homad-bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #eee;
-  padding-bottom: env(safe-area-inset-bottom);
-  z-index: 999;
-}
-
-.homad-bottom-nav__list {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  margin: 0;
-  padding: 10px 0;
-}
-
-.nav-item a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: #999;
-  font-size: 10px;
-  gap: 4px;
-}
-
-.nav-item.active a {
-  color: var(--color-homad-secondary);
-}
-
-.nav-item .dashicons {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-.nav-item--main .circle-btn {
-  background: var(--color-homad-secondary);
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -20px; /* Pop out effect */
-  box-shadow: 0 4px 10px rgba(92, 107, 94, 0.3);
-}
-.nav-item--main .circle-btn .dashicons {
-  color: #fff;
+/* Chips/Pills */
+.homad-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    text-decoration: none;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }

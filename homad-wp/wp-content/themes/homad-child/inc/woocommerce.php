@@ -7,6 +7,8 @@
 
 defined('ABSPATH') || exit;
 
+require_once get_stylesheet_directory() . '/inc/woocommerce-print.php';
+
 function homad_child_woocommerce_minimal_hooks() {
     if (!homad_is_woocommerce_active()) {
         return;

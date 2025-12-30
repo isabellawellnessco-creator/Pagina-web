@@ -64,3 +64,42 @@ function initBottomNav() {
         }
     });
 }
+
+// Hub Nav Logic
+document.addEventListener('click', function(e){
+    if(e.target.closest('.homad-hub-nav a')) {
+        e.preventDefault();
+        var targetId = e.target.closest('a').getAttribute('href');
+        var target = document.querySelector(targetId);
+
+        // Update active class
+        document.querySelectorAll('.homad-hub-nav a').forEach(function(el){ el.classList.remove('active'); });
+        e.target.closest('a').classList.add('active');
+
+        // Scroll
+        if(target) {
+            var offset = 150; // header + nav height
+            window.scrollTo({
+                top: target.offsetTop - offset,
+                behavior: 'smooth'
+            });
+        }
+    }
+});
+
+// PDP Sticky Buy Box Logic (Mobile Only)
+window.addEventListener('scroll', function() {
+    if(window.innerWidth > 900) return;
+
+    // Logic: If user scrolls past 300px (approx image height), show box
+    var scrollPos = window.scrollY;
+    var box = document.querySelector('.homad-sticky-buy-box');
+
+    if(box) {
+        if(scrollPos > 400) {
+            box.classList.add('is-visible');
+        } else {
+            box.classList.remove('is-visible');
+        }
+    }
+});

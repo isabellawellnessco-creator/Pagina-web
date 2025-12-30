@@ -1,7 +1,7 @@
 <?php
 /**
  * Helper to inject markup into Footer.
- * Splash Screen + Bottom Nav.
+ * Splash Screen + Bottom Nav + Sticky Buy Box.
  *
  * @package homad-child
  */
@@ -42,7 +42,6 @@ function homad_render_mobile_elements() {
     <?php endif;
 
     // 2. Bottom Navigation (Visible only on Mobile via CSS)
-    // Links are hardcoded for now, or can be dynamic
     ?>
     <div class="homad-bottom-nav">
         <a href="<?php echo home_url('/'); ?>" class="nav-item">
@@ -84,5 +83,25 @@ function homad_render_mobile_elements() {
             body { padding-bottom: 70px; } /* Prevent footer overlap */
         }
     </style>
+
     <?php
+    // 3. Sticky Buy Box (Inject only on PDP)
+    if(is_product()):
+        global $product;
+        if($product):
+    ?>
+        <div class="homad-sticky-buy-box">
+            <div class="homad-sbb-info">
+                <h4><?php the_title(); ?></h4>
+                <div class="price"><?php echo $product->get_price_html(); ?></div>
+            </div>
+            <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+                <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="homad-btn homad-btn--primary">
+                    Buy Now
+                </button>
+            </form>
+        </div>
+    <?php
+        endif;
+    endif;
 }

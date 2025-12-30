@@ -91,6 +91,121 @@ function homad_shortcode_packages_grid($atts) {
 add_shortcode('homad_packages_grid', 'homad_shortcode_packages_grid');
 
 /**
+ * [homad_category_chips]
+ * Horizontal scrolling pills for categories.
+ */
+function homad_shortcode_category_chips($atts) {
+    ob_start();
+    $terms = get_terms(array(
+        'taxonomy' => 'product_cat',
+        'hide_empty' => true,
+        'number' => 8,
+        'parent' => 0 // Top level only
+    ));
+
+    if (!empty($terms) && !is_wp_error($terms)) : ?>
+        <div class="homad-chips-container">
+            <?php foreach ($terms as $term) :
+                // Placeholder icon logic (can be replaced with ACF field)
+                $icon_url = '';
+                $thumbnail_id = get_term_meta( $term->term_id, 'thumbnail_id', true );
+                if($thumbnail_id) {
+                    $image = wp_get_attachment_image_src( $thumbnail_id, 'thumbnail' );
+                    $icon_url = $image[0];
+                }
+            ?>
+                <a href="<?php echo esc_url(get_term_link($term)); ?>" class="homad-chip">
+                    <?php if($icon_url): ?><img src="<?php echo esc_url($icon_url); ?>" alt=""><?php endif; ?>
+                    <?php echo esc_html($term->name); ?>
+                </a>
+            <?php endforeach; ?>
+             <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="homad-chip">See All</a>
+        </div>
+    <?php endif;
+    return ob_get_clean();
+}
+add_shortcode('homad_category_chips', 'homad_shortcode_category_chips');
+
+/**
+ * [homad_process_steps]
+ * Timeline 01-04
+ */
+function homad_shortcode_process_steps() {
+    ob_start();
+    $steps = array(
+        1 => array('title' => 'Brief', 'desc' => 'Tell us your vision.'),
+        2 => array('title' => 'Proposal', 'desc' => 'We estimate scope.'),
+        3 => array('title' => 'Design', 'desc' => 'We create the plans.'),
+        4 => array('title' => 'Build', 'desc' => 'We make it real.'),
+    );
+    ?>
+    <div class="homad-timeline">
+        <div class="homad-timeline-steps">
+            <?php foreach($steps as $num => $step): ?>
+                <div class="homad-step">
+                    <div class="homad-step__marker">0<?php echo $num; ?></div>
+                    <div class="homad-step__content">
+                        <h4><?php echo esc_html($step['title']); ?></h4>
+                        <p><?php echo esc_html($step['desc']); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('homad_process_steps', 'homad_shortcode_process_steps');
+
+/**
+ * [homad_hub_nav]
+ * Sticky Navigation for Projects Hub.
+ */
+function homad_shortcode_hub_nav() {
+    ob_start();
+    ?>
+    <div class="homad-hub-nav-wrapper">
+        <ul class="homad-hub-nav">
+            <li><a href="#services" class="active">Services</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#b2b">B2B</a></li>
+            <li><a href="#quote">Quote</a></li>
+        </ul>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('homad_hub_nav', 'homad_shortcode_hub_nav');
+
+/**
+ * [homad_filter_drawer_start] & [homad_filter_drawer_end]
+ * Wrappers for Elementor Filters to make them collapsible on Mobile.
+ */
+function homad_shortcode_filter_drawer_start() {
+    ob_start();
+    ?>
+    <div class="homad-filter-wrapper">
+        <button class="homad-filter-toggle-btn" onclick="document.querySelector('.homad-filter-drawer').classList.add('is-open'); document.querySelector('.homad-drawer-overlay').classList.add('is-open');">
+            <span class="dashicons dashicons-filter"></span> Filters
+        </button>
+        <div class="homad-drawer-overlay" onclick="document.querySelector('.homad-filter-drawer').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+        <div class="homad-filter-drawer">
+            <div class="homad-drawer-header">
+                <h3>Filters</h3>
+                <button class="homad-close-drawer" onclick="document.querySelector('.homad-filter-drawer').classList.remove('is-open'); document.querySelector('.homad-drawer-overlay').classList.remove('is-open');">&times;</button>
+            </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('homad_filter_drawer_start', 'homad_shortcode_filter_drawer_start');
+
+function homad_shortcode_filter_drawer_end() {
+    return '</div></div>';
+}
+add_shortcode('homad_filter_drawer_end', 'homad_shortcode_filter_drawer_end');
+
+
+/**
  * [homad_quote_wizard]
  * Multi-step form. Logic handled by assets/js/quote-wizard.js
  */

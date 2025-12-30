@@ -28,7 +28,6 @@ function homad_child_enqueue_assets() {
         'tokens.css',
         'layout.css',
         'components.css',
-        'elementor.css',
         'woocommerce.css',
     );
 

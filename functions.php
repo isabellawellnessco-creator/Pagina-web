@@ -14,6 +14,7 @@ define('HOMAD_CORE_PATH', HOMAD_CHILD_DIR . '/inc/core/'); // Adjusted to point 
 
 // 1. Theme Setup
 require_once HOMAD_CHILD_DIR . '/inc/setup.php';
+require_once HOMAD_CHILD_DIR . '/inc/enqueue.php';
 
 // 2. Helpers (Merged Utilities)
 require_once HOMAD_CHILD_DIR . '/inc/helpers.php';

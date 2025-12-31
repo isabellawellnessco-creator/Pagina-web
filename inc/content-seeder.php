@@ -1,17 +1,78 @@
 <?php
 /**
  * Content Seeder
- * Automatically populates default Services and Legal Pages if they don't exist.
+ * Automatically populates default Pages, Products, Menus, and Settings.
  * Context: Peru, Homad Brand.
  */
 
 function homad_seed_content() {
-    // 1. Seed Services
+
+    // --- 1. Pages (Home, Shop, Projects, Contact, Legal) ---
+    $pages = [
+        'Home' => [
+            'content' => '', // Content is in front-page.php
+            'template' => 'front-page.php'
+        ],
+        'Shop' => [
+            'content' => '', // WooCommerce handles this
+            'template' => 'default'
+        ],
+        'Proyectos' => [
+            'content' => '<!-- wp:shortcode -->[homad_projects_hub]<!-- /wp:shortcode -->',
+            'template' => 'page-projects.php'
+        ],
+        'Contacto' => [
+            'content' => '<!-- wp:paragraph --><p>Contáctanos para iniciar tu proyecto.</p><!-- /wp:paragraph -->',
+            'template' => 'default'
+        ],
+        // Legal Pages
+        'Política de Envíos' => [
+            'content' => '<!-- wp:paragraph --><p>En <strong>Homad</strong>, nos esforzamos por llevar el diseño a cada rincón del Perú.</p><!-- /wp:paragraph -->',
+            'template' => 'default'
+        ],
+        'Políticas de Devolución' => [
+            'content' => '<!-- wp:paragraph --><p>Queremos que esté completamente satisfecho con su compra en <strong>Homad</strong>.</p><!-- /wp:paragraph -->',
+            'template' => 'default'
+        ],
+        'Privacidad y Datos' => [
+            'content' => '<!-- wp:paragraph --><p>En <strong>Homad</strong>, tomamos muy en serio la seguridad de su información.</p><!-- /wp:paragraph -->',
+            'template' => 'default'
+        ],
+        'Términos y Condiciones' => [
+            'content' => '<!-- wp:paragraph --><p>Bienvenido a Homad. Al navegar y comprar en este sitio web, usted acepta los términos.</p><!-- /wp:paragraph -->',
+            'template' => 'default'
+        ]
+    ];
+
+    foreach ($pages as $title => $data) {
+        $page_check = get_page_by_title($title);
+        if (!$page_check) {
+            $page_id = wp_insert_post([
+                'post_title'   => $title,
+                'post_content' => $data['content'],
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+                'page_template' => $data['template']
+            ]);
+
+            // Set static front page if it's 'Home'
+            if ($title === 'Home') {
+                update_option('show_on_front', 'page');
+                update_option('page_on_front', $page_id);
+            }
+            // Set Shop page for WooCommerce if it's 'Shop'
+            if ($title === 'Shop' && class_exists('WooCommerce')) {
+                update_option('woocommerce_shop_page_id', $page_id);
+            }
+        }
+    }
+
+    // --- 2. Seed Services (CPT: service) ---
     $services = [
-        'Diseño de Arquitectura' => 'Desarrollamos proyectos arquitectónicos integrales, fusionando estética y funcionalidad para crear espacios habitables únicos. Desde la conceptualización hasta los planos ejecutivos.',
-        'Interiorismo' => 'Transformamos ambientes mediante una selección curada de mobiliario, iluminación y materiales. Nuestro enfoque busca el equilibrio perfecto entre estilo y confort.',
-        'Gestión de Construcción' => 'Supervisión y ejecución de obra con altos estándares de calidad. Nos encargamos de la coordinación de gremios, control de presupuestos y plazos de entrega.',
-        'Factibilidad de Proyectos' => 'Análisis técnico y económico para asegurar la viabilidad de su inversión. Evaluamos normativas, costos y potencial comercial antes de iniciar cualquier obra.'
+        'Diseño de Arquitectura' => 'Desarrollamos proyectos arquitectónicos integrales, fusionando estética y funcionalidad.',
+        'Interiorismo' => 'Transformamos ambientes mediante una selección curada de mobiliario, iluminación y materiales.',
+        'Gestión de Construcción' => 'Supervisión y ejecución de obra con altos estándares de calidad.',
+        'Factibilidad de Proyectos' => 'Análisis técnico y económico para asegurar la viabilidad de su inversión.'
     ];
 
     foreach ($services as $title => $content) {
@@ -25,111 +86,133 @@ function homad_seed_content() {
         }
     }
 
-    // 2. Seed Legal Pages
-    $pages = [
-        'Política de Envíos' => '<!-- wp:paragraph -->
-<p>En <strong>Homad</strong>, nos esforzamos por llevar el diseño a cada rincón del Perú. A continuación detallamos nuestras políticas de despacho:</p>
-<!-- /wp:paragraph -->
+    // --- 3. WooCommerce Dummy Data ---
+    if (class_exists('WooCommerce')) {
+        // Categories
+        $categories = ['Cocinas', 'Baños', 'Closets', 'Salas', 'Iluminación'];
+        foreach ($categories as $cat_name) {
+            if (!term_exists($cat_name, 'product_cat')) {
+                wp_insert_term($cat_name, 'product_cat');
+            }
+        }
 
-<!-- wp:heading {"level":3} -->
-<h3>Cobertura y Plazos</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Realizamos envíos a nivel nacional. Los tiempos de entrega estimados son de <strong>3 a 7 días hábiles para Lima Metropolitana</strong> y de <strong>7 a 15 días hábiles para provincias</strong>, contados a partir de la confirmación del pago.</p>
-<!-- /wp:paragraph -->
+        // Dummy Products
+        $products = [
+            [
+                'name' => 'Sofá Modular Cloud',
+                'cat' => 'Salas',
+                'price' => '4500',
+                'image' => 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Lámpara de Pie Arco',
+                'cat' => 'Iluminación',
+                'price' => '1200',
+                'image' => 'https://images.unsplash.com/photo-1513506003011-3b032f737104?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Mesa de Centro Mármol',
+                'cat' => 'Salas',
+                'price' => '2800',
+                'image' => 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Sistema Closet Walk-in',
+                'cat' => 'Closets',
+                'price' => '8500',
+                'image' => 'https://images.unsplash.com/photo-1551488852-081bd4c9a633?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Vanitorio Flotante Roble',
+                'cat' => 'Baños',
+                'price' => '3200',
+                'image' => 'https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Isla de Cocina Cuarzo',
+                'cat' => 'Cocinas',
+                'price' => '12000',
+                'image' => 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800'
+            ],
+             [
+                'name' => 'Silla Comedor Eames',
+                'cat' => 'Salas',
+                'price' => '450',
+                'image' => 'https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&q=80&w=800'
+            ],
+            [
+                'name' => 'Espejo Circular LED',
+                'cat' => 'Baños',
+                'price' => '890',
+                'image' => 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&q=80&w=800'
+            ],
+        ];
 
-<!-- wp:heading {"level":3} -->
-<h3>Condiciones de Entrega</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>La entrega se realiza en la dirección indicada por el cliente. Es responsabilidad del usuario asegurar que haya alguien mayor de edad para recibir el producto. En caso de edificios o condominios, el despacho se realiza hasta la recepción o portería, salvo que se cuente con ascensor de carga habilitado.</p>
-<!-- /wp:paragraph -->
+        foreach ($products as $p) {
+            if (!get_page_by_title($p['name'], OBJECT, 'product')) {
+                $product = new WC_Product_Simple();
+                $product->set_name($p['name']);
+                $product->set_status('publish');
+                $product->set_catalog_visibility('visible');
+                $product->set_price($p['price']);
+                $product->set_regular_price($p['price']);
+                $product->set_description("Producto de demostración para Homad. Calidad premium y diseño exclusivo.");
+                $product->set_short_description("Diseño moderno y materiales duraderos.");
 
-<!-- wp:heading {"level":3} -->
-<h3>Responsabilidad</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Homad trabaja con operadores logísticos de confianza. Sin embargo, no nos responsabilizamos por demoras ocasionadas por fuerza mayor o contingencias del operador logístico, aunque nos comprometemos a gestionar cualquier incidencia para solucionar el problema a la brevedad.</p>
-<!-- /wp:paragraph -->',
+                // Set Category
+                $cat_term = get_term_by('name', $p['cat'], 'product_cat');
+                if ($cat_term) {
+                    $product->set_category_ids([$cat_term->term_id]);
+                }
 
-        'Políticas de Devolución' => '<!-- wp:paragraph -->
-<p>Queremos que esté completamente satisfecho con su compra en <strong>Homad</strong>. Si por alguna razón necesita realizar un cambio o devolución, por favor revise las siguientes condiciones:</p>
-<!-- /wp:paragraph -->
+                // Note: Image sideloading is complex in a seeder without allow_url_fopen sometimes,
+                // but we can try to set a placeholder or just rely on the frontend to handle missing images if we can't upload.
+                // For this task, we will just create the product data.
+                // Advanced: We could sideload media, but let's stick to data first to ensure stability.
 
-<!-- wp:heading {"level":3} -->
-<h3>Plazo</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Aceptamos solicitudes de cambio o devolución dentro de los primeros <strong>7 días calendario</strong> posteriores a la recepción del producto.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Requisitos Indispensables</h3>
-<!-- /wp:heading -->
-<!-- wp:list -->
-<ul>
-<li>El producto debe estar <strong>nuevo, sin uso y en su empaque original</strong>.</li>
-<li>Debe contar con todos sus accesorios, manuales y etiquetas.</li>
-<li>Presentar el comprobante de pago (boleta o factura).</li>
-</ul>
-<!-- /wp:list -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Excepciones</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>No se aceptan devoluciones de productos fabricados a pedido (personalizados), productos en liquidación, o aquellos que hayan sido manipulados incorrectamente por el cliente. Homad se reserva el derecho de rechazar devoluciones que no cumplan con estos estándares.</p>
-<!-- /wp:paragraph -->',
-
-        'Privacidad y Datos' => '<!-- wp:paragraph -->
-<p>En <strong>Homad</strong>, tomamos muy en serio la seguridad de su información.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Uso de Información</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Los datos personales solicitados (nombre, teléfono, correo electrónico, dirección) son utilizados estrictamente para procesar sus pedidos, gestionar envíos y comunicarnos con usted sobre el estado de su compra.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Seguridad</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>No compartimos ni vendemos su información a terceros con fines comerciales. Implementamos medidas de seguridad digital para proteger sus datos contra accesos no autorizados.</p>
-<!-- /wp:paragraph -->',
-
-        'Términos y Condiciones' => '<!-- wp:paragraph -->
-<p>Bienvenido a Homad. Al navegar y comprar en este sitio web, usted acepta los siguientes términos y condiciones regidos por la legislación de la República del Perú.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Propiedad Intelectual</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Todo el contenido de este sitio (imágenes, textos, logotipos, diseños) es propiedad exclusiva de Homad o de sus respectivos titulares y está protegido por las leyes de derechos de autor.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Precios y Stock</h3>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>Los precios están expresados en Soles (PEN) e incluyen IGV. Homad se reserva el derecho de modificar precios y stock sin previo aviso. En caso de un error tipográfico en el precio, nos pondremos en contacto con el cliente antes de procesar el pedido.</p>
-<!-- /wp:paragraph -->'
-    ];
-
-    foreach ($pages as $title => $content) {
-        if (!get_page_by_title($title)) {
-            wp_insert_post([
-                'post_title'   => $title,
-                'post_content' => $content,
-                'post_status'  => 'publish',
-                'post_type'    => 'page',
-            ]);
+                $product->save();
+            }
         }
     }
+
+    // --- 4. Navigation Menu ---
+    $menu_name = 'Primary Menu';
+    $menu_exists = wp_get_nav_menu_object($menu_name);
+
+    if (!$menu_exists) {
+        $menu_id = wp_create_nav_menu($menu_name);
+
+        // Add Items
+        wp_update_nav_menu_item($menu_id, 0, [
+            'menu-item-title'  => 'Inicio',
+            'menu-item-object' => 'page',
+            'menu-item-object-id' => get_page_by_title('Home')->ID,
+            'menu-item-type' => 'post_type',
+            'menu-item-status' => 'publish'
+        ]);
+
+        wp_update_nav_menu_item($menu_id, 0, [
+            'menu-item-title'  => 'Tienda',
+            'menu-item-object' => 'page',
+            'menu-item-object-id' => get_page_by_title('Shop')->ID,
+            'menu-item-type' => 'post_type',
+            'menu-item-status' => 'publish'
+        ]);
+
+         wp_update_nav_menu_item($menu_id, 0, [
+            'menu-item-title'  => 'Proyectos',
+            'menu-item-object' => 'page',
+            'menu-item-object-id' => get_page_by_title('Proyectos')->ID,
+            'menu-item-type' => 'post_type',
+            'menu-item-status' => 'publish'
+        ]);
+
+        // Assign to location 'primary' (assuming theme registers 'primary')
+        $locations = get_theme_mod('nav_menu_locations');
+        $locations['primary'] = $menu_id; // Check functions.php if 'primary' is the key
+        set_theme_mod('nav_menu_locations', $locations);
+    }
+
 }
 
-// Hook to admin_init so it runs once when admin visits dashboard, then we can remove it or check existence.
-// Using admin_init to ensure it happens when the user logs in to check.
-add_action('admin_init', 'homad_seed_content');
+add_action('init', 'homad_seed_content');

@@ -14,7 +14,7 @@
             </button>
             <nav class="homad-gnb__nav">
                 <a href="<?php echo home_url('/'); ?>" class="homad-pill-link <?php echo is_front_page() ? 'active' : ''; ?>">Home</a>
-                <a href="<?php echo home_url('/shop'); ?>" class="homad-pill-link <?php echo is_shop() ? 'active' : ''; ?>">Shop</a>
+                <a href="<?php echo home_url('/shop'); ?>" class="homad-pill-link <?php echo homad_is_shop() ? 'active' : ''; ?>">Shop</a>
                 <a href="<?php echo home_url('/projects'); ?>" class="homad-pill-link <?php echo is_page('projects') ? 'active' : ''; ?>">Projects</a>
             </nav>
         </div>

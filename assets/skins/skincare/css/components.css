@@ -1,0 +1,101 @@
+/* Skincare Skin - Component Styles */
+
+/* Rewards Page Hero */
+.rewards-hero {
+    background-color: var(--skin-color-bg-pink);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.rewards-hero h1 {
+    font-size: 2.5rem;
+    color: var(--skin-color-primary);
+    margin-bottom: 16px;
+}
+
+.rewards-hero .actions {
+    margin-top: 24px;
+}
+
+.rewards-hero .button {
+    background: black;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 99px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Ways to Earn */
+.rewards-earn {
+    padding: 40px 20px;
+    background: white;
+}
+
+.rewards-earn h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rewards-earn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.rewards-earn .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+/* Tiers Scroll */
+.rewards-tiers {
+    background: #fafafa;
+    padding: 40px 20px;
+}
+
+.rewards-tiers h2 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.rewards-tiers-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 20px;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.rewards-tiers-scroll::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome */
+}
+
+.tier-card {
+    min-width: 280px;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.tier-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.tier-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 16px;
+    color: var(--skin-color-text-light);
+}
+
+/* Cursor Override */
+body.skin-skincare.has-custom-cursor,
+body.skin-skincare.has-custom-cursor a,
+body.skin-skincare.has-custom-cursor button {
+    cursor: none !important;
+}

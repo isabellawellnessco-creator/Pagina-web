@@ -1,0 +1,90 @@
+/* Skincare Skin Layout overrides */
+
+/* 1. App Shell Logic */
+.skin-skincare #homad-app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Remove "Panel" styling from parent theme if present */
+.skin-skincare .homad-panel-container {
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    position: static !important;
+}
+
+/* 2. Mobile Header Removal */
+@media (max-width: 768px) {
+    .skin-skincare header.site-header {
+        display: none !important;
+    }
+
+    /* Ensure content starts at top since header is gone */
+    .skin-skincare #content {
+        padding-top: 0;
+        /* Add padding-bottom for fixed nav */
+        padding-bottom: var(--skin-bottom-nav-height);
+    }
+}
+
+/* 3. Bottom Navigation (App Bar) */
+.skin-skincare .homad-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--skin-bottom-nav-height);
+    background: white;
+    border-top: 1px solid var(--skin-color-border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.skin-skincare .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--skin-color-text-light);
+    font-size: 10px;
+    text-decoration: none;
+    flex: 1;
+}
+
+.skin-skincare .nav-item.active {
+    color: var(--skin-color-primary);
+}
+
+.skin-skincare .nav-item svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 2px;
+    fill: currentColor;
+}
+
+/* 4. Desktop Adjustments */
+@media (min-width: 769px) {
+    .skin-skincare .homad-bottom-nav {
+        display: none;
+    }
+
+    /* Ensure standard header is clean */
+    .skin-skincare header.site-header {
+        background: white;
+        border-bottom: 1px solid var(--skin-color-border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+}

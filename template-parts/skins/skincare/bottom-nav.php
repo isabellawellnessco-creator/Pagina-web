@@ -1,11 +1,12 @@
 <?php
 /**
  * Skincare Skin - Mobile Bottom Navigation
+ * "App-like" behavior: Home, Search, Wishlist (Heart), Cart, Profile.
  */
 
 $home_url    = home_url( '/' );
-$shop_url    = wc_get_page_permalink( 'shop' );
-$rewards_url = home_url( '/rewards' ); // Assumes page slug is 'rewards'
+$search_url  = home_url( '/?s=' ); // Or a dedicated search page
+$wishlist_url = home_url( '/wishlist' ); // Assumes wishlist page
 $cart_url    = wc_get_cart_url();
 $account_url = wc_get_page_permalink( 'myaccount' );
 $cart_count  = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
@@ -13,32 +14,34 @@ $cart_count  = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 
 <div class="homad-bottom-nav">
     <a href="<?php echo esc_url( $home_url ); ?>" class="nav-item <?php echo is_front_page() ? 'active' : ''; ?>">
-        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span>Home</span>
     </a>
 
-    <a href="<?php echo esc_url( $shop_url ); ?>" class="nav-item <?php echo is_shop() ? 'active' : ''; ?>">
-        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        <span>Shop</span>
+    <!-- Search Trigger (could be a link or a JS trigger) -->
+    <a href="#" class="nav-item search-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>Search</span>
     </a>
 
-    <a href="<?php echo esc_url( $rewards_url ); ?>" class="nav-item <?php echo is_page('rewards') ? 'active' : ''; ?>">
-        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <span>Rewards</span>
+    <!-- Wishlist (Heart) instead of Shop/Rewards -->
+    <a href="<?php echo esc_url( $wishlist_url ); ?>" class="nav-item <?php echo is_page('wishlist') ? 'active' : ''; ?>">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Saved</span>
     </a>
 
     <a href="<?php echo esc_url( $cart_url ); ?>" class="nav-item <?php echo is_cart() ? 'active' : ''; ?>">
-        <div style="position: relative;">
-            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             <?php if ( $cart_count > 0 ) : ?>
-                <span style="position: absolute; top: -5px; right: -8px; background: var(--skin-color-primary); color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; display: flex; align-items: center; justify-content: center;"><?php echo esc_html( $cart_count ); ?></span>
+                <span style="position: absolute; top: -5px; right: -8px; background: var(--skin-color-primary); color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid white;"><?php echo esc_html( $cart_count ); ?></span>
             <?php endif; ?>
         </div>
-        <span>Cart</span>
+        <span>Bag</span>
     </a>
 
     <a href="<?php echo esc_url( $account_url ); ?>" class="nav-item <?php echo is_account_page() ? 'active' : ''; ?>">
-        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        <span>Profile</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Me</span>
     </a>
 </div>

@@ -1,16 +1,121 @@
 /* Skincare Skin - Component Styles */
 
+/* =========================================
+   Home Page Sections
+   ========================================= */
+
+/* Hero Banner */
+.skin-skincare .hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust based on content */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.skin-skincare .hero-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    max-width: 600px;
+    border-radius: 0; /* Boxy */
+}
+
+/* Circular Category Icons (Shop by Category) */
+.skin-skincare .category-circles {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 40px;
+    scrollbar-width: none;
+    justify-content: flex-start; /* Left align on mobile */
+}
+
+@media (min-width: 769px) {
+    .skin-skincare .category-circles {
+        justify-content: center;
+        gap: 40px;
+    }
+}
+
+.skin-skincare .cat-circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    text-align: center;
+}
+
+.skin-skincare .cat-circle-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--skin-color-bg-pink);
+    margin-bottom: 12px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.skin-skincare .cat-circle-item:hover .cat-circle-img {
+    border-color: var(--skin-color-primary);
+}
+
+.skin-skincare .cat-circle-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--skin-color-text);
+}
+
+/* Blog Section */
+.skin-skincare .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+@media (min-width: 769px) {
+    .skin-skincare .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.skin-skincare .blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.skin-skincare .blog-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+/* =========================================
+   Rewards & Other Pages
+   ========================================= */
+
 /* Rewards Page Hero */
 .rewards-hero {
     background-color: var(--skin-color-bg-pink);
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .rewards-hero h1 {
     font-size: 2.5rem;
     color: var(--skin-color-primary);
     margin-bottom: 16px;
+    font-family: var(--skin-font-heading);
 }
 
 .rewards-hero .actions {
@@ -18,79 +123,15 @@
 }
 
 .rewards-hero .button {
-    background: black;
+    background: var(--skin-color-primary);
     color: white;
-    padding: 12px 24px;
+    padding: 12px 32px;
     border-radius: 99px;
     text-decoration: none;
     display: inline-block;
-}
-
-/* Ways to Earn */
-.rewards-earn {
-    padding: 40px 20px;
-    background: white;
-}
-
-.rewards-earn h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.rewards-earn-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    text-align: center;
-}
-
-.rewards-earn .icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-}
-
-/* Tiers Scroll */
-.rewards-tiers {
-    background: #fafafa;
-    padding: 40px 20px;
-}
-
-.rewards-tiers h2 {
-    text-align: center;
-    margin-bottom: 24px;
-}
-
-.rewards-tiers-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 20px;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-}
-
-.rewards-tiers-scroll::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome */
-}
-
-.tier-card {
-    min-width: 280px;
-    background: white;
-    padding: 24px;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-}
-
-.tier-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-}
-
-.tier-card ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-top: 16px;
-    color: var(--skin-color-text-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 /* Cursor Override */

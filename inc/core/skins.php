@@ -54,6 +54,10 @@ class Homad_Skins {
 
 		// Load Tokens (Variables)
 		if ( file_exists( $dir . '/css/variables.css' ) ) {
+            // Load Google Font for Skincare Skin
+            if ( $skin === 'skincare' ) {
+                wp_enqueue_style( 'homad-skin-font', 'https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap', array(), null );
+            }
 			wp_enqueue_style( 'homad-skin-tokens', $uri . '/css/variables.css', array(), '1.0.0' );
 		}
 

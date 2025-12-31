@@ -14,7 +14,7 @@
             </a>
         </li>
 
-        <li class="nav-item <?php echo is_shop() ? 'active' : ''; ?>">
+        <li class="nav-item <?php echo homad_is_shop() ? 'active' : ''; ?>">
             <a href="<?php echo home_url('/shop'); ?>">
                 <span class="dashicons dashicons-store"></span>
                 <span class="label">Shop</span>
@@ -31,18 +31,18 @@
             </a>
         </li>
 
-        <li class="nav-item <?php echo is_cart() ? 'active' : ''; ?>">
-            <a href="<?php echo wc_get_cart_url(); ?>">
+        <li class="nav-item <?php echo homad_is_cart() ? 'active' : ''; ?>">
+            <a href="<?php echo homad_get_cart_url(); ?>">
                 <span class="dashicons dashicons-cart"></span>
                 <span class="label">Cart</span>
-                <?php if (WC()->cart->get_cart_contents_count() > 0): ?>
+                <?php if (homad_is_woocommerce_active() && WC()->cart && WC()->cart->get_cart_contents_count() > 0): ?>
                     <span class="badge"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 <?php endif; ?>
             </a>
         </li>
 
-        <li class="nav-item <?php echo is_account_page() ? 'active' : ''; ?>">
-            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">
+        <li class="nav-item <?php echo homad_is_account_page() ? 'active' : ''; ?>">
+            <a href="<?php echo homad_is_woocommerce_active() ? get_permalink( get_option('woocommerce_myaccount_page_id') ) : home_url('/my-account'); ?>">
                 <span class="dashicons dashicons-admin-users"></span>
                 <span class="label">Profile</span>
             </a>

@@ -15,6 +15,27 @@ function homad_is_woocommerce_active() {
 }
 
 /**
+ * Safe wrapper for is_cart().
+ */
+function homad_is_cart() {
+    return function_exists('is_cart') && is_cart();
+}
+
+/**
+ * Safe wrapper for is_account_page().
+ */
+function homad_is_account_page() {
+    return function_exists('is_account_page') && is_account_page();
+}
+
+/**
+ * Safe wrapper for wc_get_cart_url().
+ */
+function homad_get_cart_url() {
+    return function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart');
+}
+
+/**
  * Check if Elementor is active.
  */
 function homad_is_elementor_active() {
@@ -73,6 +94,27 @@ function homad_section_class($extra = '') {
 /* -------------------------------------------------------------------------- */
 /*                                CORE LOGIC                                  */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Safe wrapper for is_shop().
+ */
+function homad_is_shop() {
+    return function_exists('is_shop') && is_shop();
+}
+
+/**
+ * Safe wrapper for is_product_category().
+ */
+function homad_is_product_category() {
+    return function_exists('is_product_category') && is_product_category();
+}
+
+/**
+ * Safe wrapper for is_product().
+ */
+function homad_is_product() {
+    return function_exists('is_product') && is_product();
+}
 
 /**
  * Handle Custom Price for Configurator.

@@ -20,6 +20,8 @@ require_once HOMAD_CHILD_DIR . '/inc/enqueue.php';
 require_once HOMAD_CHILD_DIR . '/inc/helpers.php';
 
 // 3. Core Logic (Migrated from Plugin)
+require_once HOMAD_CHILD_DIR . '/inc/core/skins.php';
+require_once HOMAD_CHILD_DIR . '/inc/core/admin-skin-settings.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/cpts.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/meta-boxes.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/admin-columns.php';

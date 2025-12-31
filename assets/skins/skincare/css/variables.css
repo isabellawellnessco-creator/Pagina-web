@@ -1,0 +1,38 @@
+:root {
+    /* Palette - Sukoshi Inspired (K-Beauty Clean) */
+    --skin-color-bg: #ffffff;
+    --skin-color-bg-alt: #f9f9f9;
+    --skin-color-bg-pink: #ffeef2;
+    --skin-color-text: #1a1a1a;
+    --skin-color-text-light: #666666;
+    --skin-color-primary: #ff4785; /* Vibrant Pink for CTAs */
+    --skin-color-secondary: #000000;
+    --skin-color-border: #e5e5e5;
+
+    /* Typography */
+    --skin-font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --skin-font-heading: 'Poppins', sans-serif;
+
+    /* Spacing & Shapes */
+    --skin-radius-sm: 4px;
+    --skin-radius-md: 8px;
+    --skin-radius-lg: 16px;
+    --skin-radius-full: 9999px;
+
+    /* App Shell */
+    --skin-bottom-nav-height: 60px;
+    --skin-header-height: 60px;
+}
+
+body.skin-skincare {
+    background-color: var(--skin-color-bg);
+    color: var(--skin-color-text);
+    font-family: var(--skin-font-main);
+}
+
+body.skin-skincare h1,
+body.skin-skincare h2,
+body.skin-skincare h3 {
+    font-family: var(--skin-font-heading);
+    font-weight: 600;
+}

@@ -6,7 +6,13 @@
 
         <?php
         // Fixed Bottom Navigation for Mobile
-        get_template_part('template-parts/navigation/bottom-nav');
+        // Check for Skin override
+        $skin = defined('HOMAD_SKIN') ? HOMAD_SKIN : 'default';
+        if ( $skin === 'skincare' ) {
+            get_template_part('template-parts/skins/skincare/bottom-nav');
+        } else {
+            get_template_part('template-parts/navigation/bottom-nav');
+        }
         ?>
 
     </div><!-- .homad-panel-container -->

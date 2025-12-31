@@ -30,9 +30,11 @@
             // Logic to load desktop or mobile header part
             // In a responsive modern theme, often both are loaded and hidden via CSS,
             // or we stick to one structure that adapts.
-            // Given the memory "2-row Header (Title/Bell + Search/Filter)" for mobile,
-            // let's try to load specific parts if they exist.
 
+            // Check for Skin overrides
+            // Note: We always output header parts to ensure tablets (which wp_is_mobile() treats as mobile)
+            // can display the desktop header via CSS media queries if needed.
+            // Visibility is controlled by assets/skins/skincare/css/layout.css
             get_template_part('template-parts/header/desktop');
             get_template_part('template-parts/header/mobile');
             ?>

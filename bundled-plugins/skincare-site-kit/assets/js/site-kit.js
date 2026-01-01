@@ -114,4 +114,24 @@ jQuery(document).ready(function($) {
         console.log('Filtering by:', activeBrands);
     });
 
+    // Quick View (Static Demo)
+    $(document).on('click', '.sk-quick-view-btn', function(e) {
+        e.preventDefault();
+        var pid = $(this).data('product_id');
+
+        // Open Modal (Pseudo-code)
+        var modalHtml = '<div class="sk-qv-modal"><div class="sk-qv-content">Loading...<button class="close">x</button></div></div>';
+        $('body').append(modalHtml);
+
+        // Simulate AJAX fetch
+        setTimeout(function() {
+            $('.sk-qv-content').html('<div class="qv-inner"><img src="https://via.placeholder.com/300"><div><h3>Product Title</h3><span class="price">£25.00</span><button class="btn">Add to Cart</button></div><button class="close">&times;</button></div>');
+        }, 500);
+    });
+
+    $(document).on('click', '.sk-qv-modal .close, .sk-qv-modal', function(e) {
+        if (e.target !== this) return;
+        $('.sk-qv-modal').remove();
+    });
+
 });

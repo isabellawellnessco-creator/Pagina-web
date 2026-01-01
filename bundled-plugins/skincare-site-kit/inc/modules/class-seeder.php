@@ -129,21 +129,44 @@ class Seeder {
 			'Ficha de Producto Estándar' => 'single_product'
 		];
 
+		// Header Content (Basic layout for seeded site)
+		$header_content = '
+		<div class="sk-header-row">
+			<div class="sk-logo"><h1>Skin Cupid</h1></div>
+			<div class="sk-menu">[sk_widget name="nav_menu"]</div>
+			<div class="sk-icons">
+				<a href="#" class="sk-search-trigger"><i class="eicon-search"></i></a>
+				<a href="/wishlist/"><i class="eicon-heart"></i></a>
+				<a href="#cart-drawer" class="sk-cart-trigger"><i class="eicon-bag-medium"></i></a>
+			</div>
+		</div>';
+
+		$footer_content = '<div class="sk-footer-content"><p>© 2023 Skin Cupid Replica. All rights reserved.</p></div>';
+
 		$settings = get_option( 'sk_theme_builder_settings', [] );
 
 		foreach ( $parts as $title => $key ) {
 			$existing = get_page_by_title( $title, OBJECT, 'sk_template' );
+			$content = '';
+
+			if ( $key === 'global_header' ) $content = $header_content;
+			if ( $key === 'global_footer' ) $content = $footer_content;
+
 			if ( ! $existing ) {
 				$post_id = wp_insert_post( [
 					'post_type'   => 'sk_template',
 					'post_title'  => $title,
-					'post_content' => '',
+					'post_content' => $content,
 					'post_status' => 'publish',
 				] );
 
 				$settings[ $key ] = $post_id;
 			} else {
 				$settings[ $key ] = $existing->ID;
+				// Update content if empty for existing parts
+				if ( empty( $existing->post_content ) ) {
+					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
+				}
 			}
 		}
 

@@ -15,6 +15,8 @@ class Loader {
 		\Skincare\SiteKit\Modules\Ajax_Search::init();
 		\Skincare\SiteKit\Modules\Wishlist::init();
 		\Skincare\SiteKit\Modules\Rewards::init();
+		\Skincare\SiteKit\Modules\Cart_Drawer::init();
+		\Skincare\SiteKit\Modules\Swatches::init();
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -56,14 +58,15 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Shipping_Table() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Store_Locator() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Account_Dashboard() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Marquee() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Icon_Box_Grid() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Concern_Grid() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Brand_Slider() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Instagram_Feed() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Marquee() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Icon_Box_Grid() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Concern_Grid() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Brand_Slider() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Instagram_Feed() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() ); // Added
 
 		// Theme Builder Widgets
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );

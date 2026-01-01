@@ -468,3 +468,98 @@
     color: #108474;
     font-weight: bold;
 }
+
+
+/* Swatches */
+.sk-swatches {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.sk-swatch-label {
+    position: relative;
+    cursor: pointer;
+}
+
+.sk-swatch-label input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sk-swatch-visual {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 0 0 2px #fff;
+}
+
+.sk-swatch-label input:checked + .sk-swatch-visual {
+    border-color: #0F3062;
+    transform: scale(1.1);
+}
+
+.sk-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sk-swatch-label:hover .sk-tooltip {
+    opacity: 1;
+}
+
+/* Quick View Modal */
+.sk-qv-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sk-qv-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+    width: 800px;
+    max-width: 90%;
+    min-height: 400px;
+}
+
+.qv-inner {
+    display: flex;
+    gap: 30px;
+}
+
+.qv-inner img {
+    width: 50%;
+    border-radius: 8px;
+}
+
+.sk-qv-content .close {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}

@@ -19,15 +19,39 @@ class Ajax_Filter extends Widget_Base {
 		<div class="sk-sidebar-filters">
 			<div class="sk-filter-group">
 				<h4><?php _e( 'Brand', 'skincare' ); ?></h4>
-				<!-- Static Demo -->
-				<label><input type="checkbox" name="brand" value="cosrx"> COSRX</label>
-				<label><input type="checkbox" name="brand" value="anua"> Anua</label>
-			</div>
-			<div class="sk-filter-group">
-				<h4><?php _e( 'Price', 'skincare' ); ?></h4>
-				<input type="range" min="0" max="100" />
+				<!-- Filter Form -->
+				<form id="sk-filter-form">
+					<label><input type="checkbox" name="brand[]" value="cosrx"> COSRX</label>
+					<label><input type="checkbox" name="brand[]" value="anua"> Anua</label>
+					<label><input type="checkbox" name="brand[]" value="beauty-of-joseon"> Beauty of Joseon</label>
+
+					<div class="sk-price-filter">
+						<h4><?php _e( 'Price', 'skincare' ); ?></h4>
+						<input type="range" name="max_price" min="0" max="100" value="100" oninput="this.nextElementSibling.value = '£' + this.value">
+						<output>£100</output>
+					</div>
+				</form>
 			</div>
 		</div>
+		<script>
+		jQuery(document).ready(function($) {
+			$('#sk-filter-form input').on('change', function() {
+				// Collect data
+				var data = $('#sk-filter-form').serialize();
+
+				// In a real WP instance, we would fire an AJAX request to 'sk_filter_products'
+				// and replace the .products grid.
+				console.log('Filter change:', data);
+
+				// Simulate loading
+				$('.sk-product-grid').css('opacity', 0.5);
+				setTimeout(function() {
+					$('.sk-product-grid').css('opacity', 1);
+					// Here we would replace HTML
+				}, 500);
+			});
+		});
+		</script>
 		<?php
 	}
 }

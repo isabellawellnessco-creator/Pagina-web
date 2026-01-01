@@ -27,6 +27,11 @@ class Rewards_Dashboard extends Widget_Base {
 		echo '<div class="sk-points-balance">';
 		echo '<h3>' . __( 'Tus Puntos', 'skincare' ) . '</h3>';
 		echo '<span class="points-value">' . intval( $points ) . '</span>';
+
+		if ( intval( $points ) >= 500 ) {
+			echo '<button id="sk-redeem-btn" class="btn sk-btn" style="margin-top:10px;">' . __( 'Canjear 500 pts por £5', 'skincare' ) . '</button>';
+		}
+
 		echo '</div>';
 
 		if ( ! empty( $history ) ) {
@@ -37,12 +42,31 @@ class Rewards_Dashboard extends Widget_Base {
 				echo '<li>';
 				echo '<span class="date">' . esc_html( $item['date'] ) . '</span>';
 				echo '<span class="reason">' . esc_html( $item['reason'] ) . '</span>';
-				echo '<span class="amount">+' . esc_html( $item['points'] ) . '</span>';
+				$sign = $item['points'] > 0 ? '+' : '';
+				echo '<span class="amount">' . $sign . esc_html( $item['points'] ) . '</span>';
 				echo '</li>';
 			}
 			echo '</ul>';
 			echo '</div>';
 		}
 		echo '</div>';
+
+		?>
+		<script>
+		jQuery(document).ready(function($){
+			$('#sk-redeem-btn').click(function(){
+				if(!confirm('¿Canjear 500 puntos?')) return;
+				$.post(sk_vars.ajax_url, { action: 'sk_redeem_points' }, function(res){
+					if(res.success) {
+						alert('Cupón: ' + res.data.code);
+						location.reload();
+					} else {
+						alert(res.data.message);
+					}
+				});
+			});
+		});
+		</script>
+		<?php
 	}
 }

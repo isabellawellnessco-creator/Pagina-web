@@ -1,0 +1,71 @@
+{
+    "version": "0.4",
+    "title": "SC Archive Product Main",
+    "type": "product-archive",
+    "content": [
+        {
+            "id": "section_archive_header",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffeeef",
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_archive_title",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "archive_title",
+                            "elType": "widget",
+                            "widgetType": "theme-archive-title",
+                            "settings": { "align": "center", "header_size": "h1" }
+                        },
+                        {
+                            "id": "archive_desc",
+                            "elType": "widget",
+                            "widgetType": "theme-archive-description",
+                            "settings": { "align": "center" }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section_archive_body",
+            "elType": "section",
+            "settings": {
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_filters",
+                    "elType": "column",
+                    "settings": { "_column_size": 25 },
+                    "elements": [
+                        {
+                            "id": "filter_cats",
+                            "elType": "widget",
+                            "widgetType": "skincare_ajax_filter",
+                            "settings": { "taxonomy": "product_cat" }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_products",
+                    "elType": "column",
+                    "settings": { "_column_size": 75 },
+                    "elements": [
+                        {
+                            "id": "archive_products",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-products",
+                            "settings": { "columns": 3, "rows": 4, "paginate": "yes" }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -22,6 +22,9 @@ require_once SKINCARE_KIT_PATH . 'includes/class-skincare-loader.php';
 function skincare_kit_init() {
     // Hooks
     require_once SKINCARE_KIT_PATH . 'includes/woocommerce-hooks.php';
+    require_once SKINCARE_KIT_PATH . 'includes/class-skincare-mega-menu.php';
+    require_once SKINCARE_KIT_PATH . 'includes/ajax-functions.php';
+    require_once SKINCARE_KIT_PATH . 'includes/class-skincare-stock-notifier.php';
 
     // Seeder (run on init to check for activation flag or manual trigger)
     if ( is_admin() ) {
@@ -36,16 +39,29 @@ function skincare_register_elementor_widgets( $widgets_manager ) {
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-product-loop.php';
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-category-tiles.php';
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-usp-bar.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-announcement-bar.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-ajax-search.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-search-chips.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-category-tabs.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-ajax-filter.php';
 
     $widgets_manager->register( new \Skincare_Hero_Widget() );
     $widgets_manager->register( new \Skincare_Product_Loop_Widget() );
     $widgets_manager->register( new \Skincare_Category_Tiles_Widget() );
     $widgets_manager->register( new \Skincare_USP_Bar_Widget() );
+    $widgets_manager->register( new \Skincare_Announcement_Bar() );
+    $widgets_manager->register( new \Skincare_Ajax_Search_Widget() );
+    $widgets_manager->register( new \Skincare_Search_Chips_Widget() );
+    $widgets_manager->register( new \Skincare_Category_Tabs_Widget() );
+    $widgets_manager->register( new \Skincare_Ajax_Filter_Widget() );
 }
 add_action( 'elementor/widgets/register', 'skincare_register_elementor_widgets' );
 
 // Enqueue Widget Styles (Frontend)
 function skincare_kit_scripts() {
     wp_enqueue_style( 'skincare-kit-widgets', SKINCARE_KIT_URL . 'assets/css/widgets.css', [], '1.0.0' );
+    wp_enqueue_style( 'skincare-mega-menu', SKINCARE_KIT_URL . 'assets/css/mega-menu.css', [], '1.0.0' );
+    wp_enqueue_style( 'skincare-cart-drawer', SKINCARE_KIT_URL . 'assets/css/cart-drawer.css', [], '1.0.0' );
+    wp_enqueue_script( 'skincare-cart-drawer', SKINCARE_KIT_URL . 'assets/js/cart-drawer.js', ['jquery'], '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'skincare_kit_scripts' );

@@ -1,0 +1,62 @@
+{
+    "version": "0.4",
+    "title": "Loop Blog Card Skin Cupid",
+    "type": "loop-item",
+    "content": [
+        {
+            "id": "section_blog_card",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "margin": { "unit": "px", "top": "0", "right": "0", "bottom": "20", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_blog_card",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "post_thumbnail",
+                            "elType": "widget",
+                            "widgetType": "theme-post-featured-image",
+                            "settings": {
+                                "image_size": "medium_large"
+                            }
+                        },
+                        {
+                            "id": "post_meta_data",
+                            "elType": "widget",
+                            "widgetType": "post-info",
+                            "settings": {
+                                "icon_list": [
+                                    { "type": "date", "icon": { "value": "far fa-calendar-alt", "library": "fa-regular" } },
+                                    { "type": "custom", "text": "3 Minute Read", "icon": { "value": "far fa-clock", "library": "fa-regular" } }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "post_title",
+                            "elType": "widget",
+                            "widgetType": "theme-post-title",
+                            "settings": {
+                                "link_to": "post",
+                                "header_size": "h3"
+                            }
+                        },
+                        {
+                            "id": "read_more",
+                            "elType": "widget",
+                            "widgetType": "button",
+                            "settings": {
+                                "text": "Read Post",
+                                "link": { "url": "[post_url]" },
+                                "button_type": "default"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

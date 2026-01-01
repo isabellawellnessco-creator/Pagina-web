@@ -1,0 +1,114 @@
+{
+    "version": "0.4",
+    "title": "SC Single Product Main",
+    "type": "single-product",
+    "content": [
+        {
+            "id": "section_product_main",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_images",
+                    "elType": "column",
+                    "settings": { "_column_size": 50 },
+                    "elements": [
+                        {
+                            "id": "product_images",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-images",
+                            "settings": {}
+                        }
+                    ]
+                },
+                {
+                    "id": "col_summary",
+                    "elType": "column",
+                    "settings": { "_column_size": 50 },
+                    "elements": [
+                        {
+                            "id": "product_title",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-title",
+                            "settings": { "header_size": "h1" }
+                        },
+                        {
+                            "id": "product_rating",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-rating",
+                            "settings": {}
+                        },
+                        {
+                            "id": "product_price",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-price",
+                            "settings": {}
+                        },
+                        {
+                            "id": "product_short_desc",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-short-description",
+                            "settings": {}
+                        },
+                        {
+                            "id": "add_to_cart",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-add-to-cart",
+                            "settings": {}
+                        },
+                        {
+                            "id": "product_meta",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-meta",
+                            "settings": { "view": "table" }
+                        },
+                        {
+                            "id": "product_tabs_accordion",
+                            "elType": "widget",
+                            "widgetType": "toggle",
+                            "settings": {
+                                "tabs": [
+                                    { "tab_title": "Description", "tab_content": "[product_description]" },
+                                    { "tab_title": "Ingredients", "tab_content": "Full ingredients list here..." },
+                                    { "tab_title": "How to Use", "tab_content": "Usage instructions..." },
+                                    { "tab_title": "Shipping & Returns", "tab_content": "Free shipping over £30..." }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section_related",
+            "elType": "section",
+            "settings": {
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_related",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "related_heading",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": { "title": "You May Also Like", "align": "center" }
+                        },
+                        {
+                            "id": "related_products",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-related",
+                            "settings": { "posts_per_page": 4 }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+    "version": "0.4",
+    "title": "Loop Product Card Skin Cupid",
+    "type": "loop-item",
+    "content": [
+        {
+            "id": "section_card",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "10", "right": "10", "bottom": "10", "left": "10" },
+                "border_radius": { "unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "8" },
+                "box_shadow": { "horizontal": 0, "vertical": 4, "blur": 10, "spread": 0, "color": "rgba(0,0,0,0.05)" }
+            },
+            "elements": [
+                {
+                    "id": "col_card",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "product_image",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-image",
+                            "settings": {}
+                        },
+                        {
+                            "id": "product_badges",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": {
+                                "title": "[Badges Placeholder]",
+                                "html_tag": "div"
+                            }
+                        },
+                        {
+                            "id": "product_title",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-title",
+                            "settings": {
+                                "link_to": "post"
+                            }
+                        },
+                        {
+                            "id": "product_rating",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-rating",
+                            "settings": {}
+                        },
+                        {
+                            "id": "product_price",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-price",
+                            "settings": {}
+                        },
+                        {
+                            "id": "add_to_cart_btn",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-add-to-cart",
+                            "settings": {
+                                "text": "Añadir",
+                                "icon": "fas fa-shopping-bag"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

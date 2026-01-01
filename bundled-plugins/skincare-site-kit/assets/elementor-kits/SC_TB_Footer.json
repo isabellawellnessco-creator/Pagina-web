@@ -1,0 +1,183 @@
+{
+    "version": "0.4",
+    "title": "SC Footer Main",
+    "type": "footer",
+    "content": [
+        {
+            "id": "section_newsletter",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffeeef",
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_newsletter",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "newsletter_heading",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": {
+                                "title": "Sign up to receive 10% off your first order",
+                                "align": "center"
+                            }
+                        },
+                        {
+                            "id": "newsletter_form",
+                            "elType": "widget",
+                            "widgetType": "form",
+                            "settings": {
+                                "form_name": "Newsletter Footer",
+                                "submit_text": "Subscribe",
+                                "button_width": "20",
+                                "align": "center"
+                            }
+                        },
+                        {
+                            "id": "social_icons",
+                            "elType": "widget",
+                            "widgetType": "social-icons",
+                            "settings": {
+                                "social_icon_list": [
+                                    { "social_icon": { "value": "fab fa-instagram", "library": "fa-brands" } },
+                                    { "social_icon": { "value": "fab fa-facebook", "library": "fa-brands" } },
+                                    { "social_icon": { "value": "fab fa-tiktok", "library": "fa-brands" } },
+                                    { "social_icon": { "value": "fab fa-pinterest", "library": "fa-brands" } },
+                                    { "social_icon": { "value": "fab fa-youtube", "library": "fa-brands" } }
+                                ],
+                                "shape": "circle",
+                                "align": "center"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section_links",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "50", "right": "0", "bottom": "20", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_links_1",
+                    "elType": "column",
+                    "settings": { "_column_size": 25 },
+                    "elements": [
+                        {
+                            "id": "heading_info",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": { "title": "Information", "header_size": "h4" }
+                        },
+                        {
+                            "id": "list_info",
+                            "elType": "widget",
+                            "widgetType": "icon-list",
+                            "settings": {
+                                "icon_list": [
+                                    { "text": "Loyalty Program", "link": { "url": "/loyalty/" } },
+                                    { "text": "Terms and Conditions", "link": { "url": "/terminos-y-condiciones/" } },
+                                    { "text": "Privacy Policy", "link": { "url": "/politica-de-privacidad/" } }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_links_2",
+                    "elType": "column",
+                    "settings": { "_column_size": 25 },
+                    "elements": [
+                        {
+                            "id": "heading_help",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": { "title": "Helpful Links", "header_size": "h4" }
+                        },
+                        {
+                            "id": "list_help",
+                            "elType": "widget",
+                            "widgetType": "icon-list",
+                            "settings": {
+                                "icon_list": [
+                                    { "text": "Careers", "link": { "url": "/careers/" } },
+                                    { "text": "Press", "link": { "url": "/press/" } },
+                                    { "text": "Korean Skincare Routine", "link": { "url": "/routine/" } }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_links_3",
+                    "elType": "column",
+                    "settings": { "_column_size": 25 },
+                    "elements": [
+                        {
+                            "id": "list_big_links",
+                            "elType": "widget",
+                            "widgetType": "icon-list",
+                            "settings": {
+                                "icon_list": [
+                                    { "text": "Contact Us", "link": { "url": "/contacto/" } },
+                                    { "text": "Help & FAQs", "link": { "url": "/faq/" } },
+                                    { "text": "Shipping & Returns", "link": { "url": "/envios-y-devoluciones/" } },
+                                    { "text": "Store Locator", "link": { "url": "/store-locator/" } }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_brand",
+                    "elType": "column",
+                    "settings": { "_column_size": 25 },
+                    "elements": [
+                        {
+                            "id": "footer_logo",
+                            "elType": "widget",
+                            "widgetType": "theme-site-logo",
+                            "settings": { "align": "center" }
+                        },
+                        {
+                            "id": "trustpilot",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": { "title": "Excellent on Trustpilot", "align": "center", "header_size": "h5" }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section_bottom",
+            "elType": "section",
+            "settings": {
+                "padding": { "unit": "px", "top": "20", "right": "0", "bottom": "20", "left": "0" },
+                "border_width": { "unit": "px", "top": "1", "right": "0", "bottom": "0", "left": "0" },
+                "border_color": "#eee"
+            },
+            "elements": [
+                {
+                    "id": "col_payment",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "payment_icons",
+                            "elType": "widget",
+                            "widgetType": "image",
+                            "settings": { "caption": "Visa, Mastercard, Amex, PayPal, Klarna, Apple Pay" }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

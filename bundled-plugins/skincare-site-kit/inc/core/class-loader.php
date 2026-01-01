@@ -41,14 +41,22 @@ class Loader {
 	}
 
 	public function register_widgets( $widgets_manager ) {
-		// Widgets are now autoloaded via namespace
+		// General Widgets
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Hero_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Grid() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Price() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Add_To_Cart() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Wishlist_Grid() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Dashboard() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Search() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Castle() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Contact_Section() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\FAQ_Accordion() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Shipping_Table() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Store_Locator() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Account_Dashboard() ); // New
+
+		// Theme Builder Widgets
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Price() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Add_To_Cart() );
 	}
 }

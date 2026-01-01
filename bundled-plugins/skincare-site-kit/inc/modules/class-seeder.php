@@ -35,39 +35,50 @@ class Seeder {
 	}
 
 	private static function create_pages() {
+		// Map page titles to Elementor shortcodes
 		$pages = [
-			'Inicio' => '2026.html', // Based on home
-			'Tienda' => '',
-			'Sobre Nosotros' => '',
-			'Contacto' => 'Cont.html',
-			'Ayuda / FAQs' => 'FAQs.html',
-			'Envíos' => 'Shi.html',
-			'Política de Privacidad' => 'Priv.html',
-			'Términos y Condiciones' => 'Ter.html',
-			'Wishlist' => 'Wis.html',
-			'Rewards' => 'Rewa.html',
-			'Mi Cuenta' => 'Acc.html',
-			'Localizador de Tiendas' => 'loct.html',
-			'Skincare' => 'Skin.html',
-			'Maquillaje' => 'Mak.html',
-			'Korean Skincare' => 'Korean.html'
+			'Inicio' => '[elementor-template id="HOME_ID"]',
+			'Tienda' => '', // Woo handles this
+			'Sobre Nosotros' => '<h2>Sobre Skin Cupid</h2><p>Tu destino para K-Beauty.</p>',
+			'Contacto' => '[elementor-template id="SK_CONTACT_WIDGET"]', // Fallback, using direct widget code below
+			'Ayuda / FAQs' => '',
+			'Envíos' => '',
+			'Política de Privacidad' => '<h2>Política de Privacidad</h2><p>Lorem ipsum...</p>',
+			'Términos y Condiciones' => '<h2>Términos</h2><p>Lorem ipsum...</p>',
+			'Wishlist' => '',
+			'Rewards' => '',
+			'Mi Cuenta' => '',
+			'Localizador de Tiendas' => '',
+			'Skincare' => '', // Category archive usually
+			'Maquillaje' => '',
+			'Korean Skincare' => ''
 		];
 
-		foreach ( $pages as $title => $ref ) {
+		// Define specific widget shortcodes for key pages
+		$widget_content = [
+			'Contacto' => '[elementor-widget name="sk_contact_section"]', // This is pseudo-code, Elementor doesn't allow direct widget shortcodes easily without a template.
+			// Instead, we will insert text that instructs the user to use the widget, or insert a placeholder div that our JS could target (complex).
+			// BETTER APPROACH: Insert comment placeholders.
+		];
+
+		foreach ( $pages as $title => $content ) {
 			$slug = sanitize_title( $title );
 			if ( ! get_page_by_path( $slug ) ) {
-				$content = '';
-				// Basic template injection could happen here if we parsed the HTMLs
-				// For now, we create blank slate pages ready for Elementor
-				if ( $ref ) {
-					$content = '<!-- Referencia: ' . $ref . ' --> [elementor-template id="XXXX"]';
-				}
+
+				// Customize content for known widgets
+				if ( $title === 'Rewards' ) $content = '<!-- SK Widget --> [elementor-template id="0"] <div class="sk-widget-placeholder" data-widget="sk_rewards_castle"></div><div class="sk-widget-placeholder" data-widget="sk_rewards_dashboard"></div>';
+				if ( $title === 'Contacto' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_contact_section"></div>';
+				if ( $title === 'Ayuda / FAQs' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_faq_accordion"></div>';
+				if ( $title === 'Envíos' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_shipping_table"></div>';
+				if ( $title === 'Localizador de Tiendas' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_store_locator"></div>';
+				if ( $title === 'Mi Cuenta' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_account_dashboard"></div>';
+				if ( $title === 'Wishlist' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_wishlist_grid"></div>';
 
 				wp_insert_post( [
 					'post_type'    => 'page',
 					'post_title'   => $title,
 					'post_name'    => $slug,
-					'post_content' => $content,
+					'post_content' => $content, // In a real Elementor setup, we would insert the JSON data into _elementor_data meta
 					'post_status'  => 'publish',
 				] );
 			}
@@ -77,7 +88,8 @@ class Seeder {
 	private static function create_categories() {
 		$cats = [
 			'Limpiadores', 'Exfoliantes', 'Tónicos', 'Esencias',
-			'Serums', 'Mascarillas', 'Cremas Solares', 'Maquillaje', 'Sets'
+			'Serums', 'Mascarillas', 'Cremas Solares', 'Maquillaje', 'Sets',
+			'K-Beauty', 'J-Beauty'
 		];
 
 		foreach ( $cats as $cat ) {
@@ -93,12 +105,14 @@ class Seeder {
 		if ( ! empty( $existing ) ) return;
 
 		$demo_products = [
-			[ 'name' => 'Limpiador Espumoso Suave', 'price' => '25.00', 'cat' => 'Limpiadores' ],
-			[ 'name' => 'Tónico Hidratante Profundo', 'price' => '30.00', 'cat' => 'Tónicos' ],
-			[ 'name' => 'Serum Vitamina C Iluminador', 'price' => '45.00', 'cat' => 'Serums' ],
-			[ 'name' => 'Crema Solar SPF 50+', 'price' => '22.00', 'cat' => 'Cremas Solares' ],
-			[ 'name' => 'Mascarilla de Arcilla Purificante', 'price' => '18.00', 'cat' => 'Mascarillas' ],
-			[ 'name' => 'Set Rutina Completa Piel Grasa', 'price' => '110.00', 'cat' => 'Sets' ],
+			[ 'name' => 'COSRX Advanced Snail 96 Mucin Power Essence', 'price' => '21.00', 'cat' => 'Esencias' ],
+			[ 'name' => 'Beauty of Joseon Relief Sun: Rice + Probiotics', 'price' => '16.00', 'cat' => 'Cremas Solares' ],
+			[ 'name' => 'Anua Heartleaf 77% Soothing Toner', 'price' => '24.00', 'cat' => 'Tónicos' ],
+			[ 'name' => 'Laneige Lip Sleeping Mask Berry', 'price' => '19.00', 'cat' => 'Mascarillas' ],
+			[ 'name' => 'Round Lab 1025 Dokdo Cleanser', 'price' => '14.00', 'cat' => 'Limpiadores' ],
+			[ 'name' => 'Skin1004 Madagascar Centella Ampoule', 'price' => '18.00', 'cat' => 'Serums' ],
+			[ 'name' => 'Etude House SoonJung 2x Barrier Cream', 'price' => '22.00', 'cat' => 'Cremas' ],
+			[ 'name' => 'Rom&nd Juicy Lasting Tint', 'price' => '11.00', 'cat' => 'Maquillaje' ],
 		];
 
 		foreach ( $demo_products as $p ) {
@@ -179,6 +193,18 @@ class Seeder {
 				wp_update_nav_menu_item( $primary_id, 0, [
 					'menu-item-title' => 'Tienda',
 					'menu-item-object-id' => $shop->ID,
+					'menu-item-object' => 'page',
+					'menu-item-type' => 'post_type',
+					'menu-item-status' => 'publish'
+				] );
+			}
+
+			// Add Rewards
+			$rewards = get_page_by_path( 'rewards' );
+			if ( $rewards ) {
+				wp_update_nav_menu_item( $primary_id, 0, [
+					'menu-item-title' => 'Rewards',
+					'menu-item-object-id' => $rewards->ID,
 					'menu-item-object' => 'page',
 					'menu-item-type' => 'post_type',
 					'menu-item-status' => 'publish'

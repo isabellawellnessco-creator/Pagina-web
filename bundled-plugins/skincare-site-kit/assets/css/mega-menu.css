@@ -1,0 +1,30 @@
+.has-mega-menu {
+    position: static !important; /* Allow full width dropdown */
+}
+
+.skincare-mega-menu-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    z-index: 999;
+    display: none; /* Hidden by default, shown on hover via JS/CSS */
+    border-top: 1px solid #e5e5e5;
+}
+
+.has-mega-menu:hover .skincare-mega-menu-container {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.skincare-mega-menu-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+}

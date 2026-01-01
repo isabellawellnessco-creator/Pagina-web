@@ -1,0 +1,42 @@
+{
+    "version": "0.4",
+    "title": "SC Cart Page",
+    "type": "page",
+    "content": [
+        {
+            "id": "section_cart",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_cart_main",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "woo_cart",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-cart",
+                            "settings": {}
+                        },
+                        {
+                            "id": "cart_upsell",
+                            "elType": "widget",
+                            "widgetType": "heading",
+                            "settings": { "title": "You May Also Like", "margin": { "unit": "px", "top": "40", "right": "0", "bottom": "20", "left": "0" } }
+                        },
+                        {
+                            "id": "cart_related_products",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-product-related",
+                            "settings": { "posts_per_page": 4 }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

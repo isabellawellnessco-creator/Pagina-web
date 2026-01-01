@@ -1,0 +1,30 @@
+{
+    "version": "0.4",
+    "title": "SC My Account Page",
+    "type": "page",
+    "content": [
+        {
+            "id": "section_my_account",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "40", "right": "0", "bottom": "40", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_my_account",
+                    "elType": "column",
+                    "settings": { "_column_size": 100 },
+                    "elements": [
+                        {
+                            "id": "woo_my_account",
+                            "elType": "widget",
+                            "widgetType": "woocommerce-my-account",
+                            "settings": {}
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

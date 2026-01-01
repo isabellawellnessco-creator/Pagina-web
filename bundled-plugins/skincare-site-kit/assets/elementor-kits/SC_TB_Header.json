@@ -1,0 +1,122 @@
+{
+    "version": "0.4",
+    "title": "SC Header Main",
+    "type": "header",
+    "content": [
+        {
+            "id": "section_top_bar",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "10", "right": "0", "bottom": "10", "left": "0" },
+                "border_width": { "unit": "px", "top": "0", "right": "0", "bottom": "1", "left": "0" },
+                "border_color": "#e5e5e5"
+            },
+            "elements": [
+                {
+                    "id": "col_top_left",
+                    "elType": "column",
+                    "settings": { "_column_size": 50 },
+                    "elements": [
+                        {
+                            "id": "btn_subscription",
+                            "elType": "widget",
+                            "widgetType": "button",
+                            "settings": {
+                                "text": "Beauty Subscription Box",
+                                "link": { "url": "/subscription-box/" },
+                                "size": "xs",
+                                "background_color": "#f877a0"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_top_right",
+                    "elType": "column",
+                    "settings": { "_column_size": 50, "content_position": "middle" },
+                    "elements": [
+                        {
+                            "id": "icon_list_top",
+                            "elType": "widget",
+                            "widgetType": "icon-list",
+                            "settings": {
+                                "icon_list": [
+                                    { "text": "Store Locator", "link": { "url": "/store-locator/" } },
+                                    { "text": "Sign In", "link": { "url": "/mi-cuenta/" } }
+                                ],
+                                "view": "inline",
+                                "align": "right"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "section_main_header",
+            "elType": "section",
+            "settings": {
+                "background_color": "#ffffff",
+                "padding": { "unit": "px", "top": "15", "right": "0", "bottom": "15", "left": "0" }
+            },
+            "elements": [
+                {
+                    "id": "col_logo",
+                    "elType": "column",
+                    "settings": { "_column_size": 20 },
+                    "elements": [
+                        {
+                            "id": "site_logo",
+                            "elType": "widget",
+                            "widgetType": "theme-site-logo",
+                            "settings": {
+                                "align": "left"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_nav",
+                    "elType": "column",
+                    "settings": { "_column_size": 60 },
+                    "elements": [
+                        {
+                            "id": "main_menu",
+                            "elType": "widget",
+                            "widgetType": "nav-menu",
+                            "settings": {
+                                "layout": "horizontal",
+                                "menu": "Menú Principal",
+                                "pointer": "underline",
+                                "indicator": "angle",
+                                "dropdown_border_width": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col_actions",
+                    "elType": "column",
+                    "settings": { "_column_size": 20, "content_position": "middle" },
+                    "elements": [
+                        {
+                            "id": "header_actions",
+                            "elType": "widget",
+                            "widgetType": "icon-list",
+                            "settings": {
+                                "view": "inline",
+                                "align": "right",
+                                "icon_list": [
+                                    { "icon": { "value": "fas fa-search", "library": "fa-solid" }, "link": { "url": "#search" } },
+                                    { "icon": { "value": "far fa-heart", "library": "fa-regular" }, "link": { "url": "/wishlist/" } },
+                                    { "icon": { "value": "fas fa-shopping-bag", "library": "fa-solid" }, "link": { "url": "#cart-drawer" } }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

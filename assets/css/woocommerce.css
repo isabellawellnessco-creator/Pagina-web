@@ -1,109 +1,55 @@
-/* WooCommerce Mobile Optimizations (App Furniture Style) */
+/* WooCommerce Layout Fixes */
 
-/* 1. PLP (Product Grid) */
+/* Archive Grid */
+.woocommerce ul.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.woocommerce ul.products li.product {
+  width: 100%;
+  margin: 0;
+}
+
+/* Single Product */
+.single-product div.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
 @media (max-width: 768px) {
-    /* Force 2 columns grid */
-    ul.products {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-    }
-    ul.products li.product {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
-    /* Card Style */
-    ul.products li.product {
-        background: #fff;
-        padding: 0;
-        border-radius: 12px;
-    }
-
-    ul.products li.product .product-element-top {
-        border-radius: 12px;
-        overflow: hidden;
-    }
-    ul.products li.product h3.product-title {
-        font-size: 14px;
-        margin-top: 10px;
-        font-weight: 600;
-    }
+  .single-product div.product {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* 2. Filter Drawer (Mobile) */
-.homad-filter-drawer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80vh;
-    background: #fff;
-    z-index: 10000;
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border-radius: 20px 20px 0 0;
-    padding: 20px;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-    overflow-y: auto;
-}
-.homad-filter-drawer.is-open {
-    transform: translateY(0);
-}
-.homad-drawer-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); z-index: 9999;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-}
-.homad-drawer-overlay.is-open {
-    opacity: 1; pointer-events: auto;
-}
-.homad-drawer-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;
-}
-.homad-close-drawer {
-    background: none; border: none; font-size: 30px; line-height: 1; cursor: pointer;
+/* Cart & Checkout */
+.woocommerce-cart-form,
+.woocommerce-checkout {
+  max-width: var(--container-width);
+  margin: 0 auto;
 }
 
-/* 3. Sticky Buy Box (Hidden by default, shown via JS scroll) */
-.homad-sticky-buy-box {
-    position: fixed;
-    bottom: 0; left: 0; width: 100%;
-    background: #fff;
-    padding: 15px 20px;
-    box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-    display: flex; align-items: center; justify-content: space-between;
-    z-index: 999;
-    transform: translateY(100%); /* Hidden initially */
-    transition: transform 0.3s ease;
-    border-top: 1px solid #f0f0f0;
-}
-.homad-sticky-buy-box.is-visible {
-    transform: translateY(0); /* Slide up */
-}
-.homad-sbb-thumb img {
-    width: 50px; height: 50px; object-fit: cover; border-radius: 6px;
-}
-.homad-sbb-info {
-    margin-left: 15px; flex-grow: 1;
-}
-.homad-sbb-info .price {
-    font-weight: bold; color: var(--homad-primary, #000); font-size: 16px;
-}
-.homad-sticky-buy-box button {
-    border-radius: 50px;
-    padding: 0 25px;
-    height: 44px;
-    font-size: 14px;
-    background: var(--homad-primary, #000);
-    color: #fff;
-    border: none;
+/* Notices */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  border-top: 3px solid var(--c-primary);
+  background-color: var(--c-bg-light);
+  color: var(--c-text-main);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
-/* Bottom Nav spacing correction */
-@media (max-width: 900px) {
-    .homad-sticky-buy-box.is-visible {
-        bottom: 60px; /* Sit above bottom nav */
-    }
+/* Buttons in Woo */
+.woocommerce button.button.alt {
+  background-color: var(--c-secondary);
+  color: var(--c-white);
+  border-radius: var(--radius-full);
+}
+
+.woocommerce button.button.alt:hover {
+  background-color: var(--c-primary);
 }

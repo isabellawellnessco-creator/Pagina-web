@@ -2,50 +2,50 @@
 /**
  * The main template file
  *
- * @package homad
+ * @package SkincareThemeChild
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
-			/* Start the Loop */
+<main id="main" class="site-main sk-container" role="main">
+	<?php if ( have_posts() ) : ?>
+		<div class="page-content">
+			<?php
 			while ( have_posts() ) :
 				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
+				?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<header class="entry-header">
+						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					</header>
+					<div class="entry-content">
+						<?php the_content(); ?>
+					</div>
+				</article>
+				<?php
 			endwhile;
+			?>
+		</div>
 
-			the_posts_navigation();
+        <div class="entry-pagination">
+			<?php
+			the_posts_pagination( [
+				'mid_size'  => 2,
+				'prev_text' => __( '&larr; Anterior', 'skincare' ),
+				'next_text' => __( 'Siguiente &rarr;', 'skincare' ),
+			] );
+			?>
+		</div>
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	<?php else : ?>
+		<p><?php esc_html_e( 'Lo sentimos, no hay publicaciones que coincidan con tu criterio.', 'skincare' ); ?></p>
+	<?php endif; ?>
+</main>
 
 <?php
 get_footer();

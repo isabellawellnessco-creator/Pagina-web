@@ -1,13 +1,15 @@
 /*
-Theme Name: homad-main
+Theme Name: Skincare Theme Child
 Theme URI: https://homad.pe/
-Description: Tema principal para Homad (WooCommerce + Elementor). Arquitectura unificada.
+Description: Child theme for Skincare project using Elementor + WooCommerce.
 Author: Homad
-Version: 2.0.0
-Text Domain: homad
+Author URI: https://homad.pe/
+Template: hello-elementor
+Version: 1.0.0
+Text Domain: skincare
 */
 
 /*
-  Nota:
-  - El CSS real vive en /assets/css/ y se encola desde inc/enqueue.php.
+  Tokens & Base CSS are loaded via wp_enqueue_scripts in functions.php
+  to ensure correct loading order before this file.
 */

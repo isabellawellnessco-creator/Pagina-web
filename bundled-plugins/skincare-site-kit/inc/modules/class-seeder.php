@@ -134,7 +134,7 @@ class Seeder {
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
-			<div class="sk-menu">[sk_widget name="nav_menu"]</div>
+			<div class="sk-menu">[sk_nav_menu]</div>
 			<div class="sk-icons">
 				<a href="#" class="sk-search-trigger"><i class="eicon-search"></i></a>
 				<a href="/wishlist/"><i class="eicon-heart"></i></a>
@@ -144,9 +144,25 @@ class Seeder {
 
 		$footer_content = '<div class="sk-footer-content"><p>© 2023 Skin Cupid Replica. All rights reserved.</p></div>';
 
+		// Single Product Content
+		$single_content = '
+		<div class="sk-single-product-layout" style="display:flex; gap:40px; padding:40px 20px;">
+			<div class="sk-sp-gallery" style="flex:1;">
+				[sk_product_gallery]
+			</div>
+			<div class="sk-sp-summary" style="flex:1;">
+				[sk_theme_part_title]
+				[sk_theme_part_price]
+				<p>Envío gratuito para pedidos superiores a £50.</p>
+				[sk_theme_part_add_to_cart]
+				[sk_product_tabs]
+			</div>
+		</div>
+		';
+
 		// Archive Content
 		$archive_content = '
-		<div class="sk-archive-layout" style="display:flex; gap:30px;">
+		<div class="sk-archive-layout" style="display:flex; gap:30px; padding:40px 20px;">
 			<aside class="sk-sidebar" style="width:250px;">
 				[sk_ajax_filter]
 			</aside>
@@ -165,6 +181,7 @@ class Seeder {
 			if ( $key === 'global_header' ) $content = $header_content;
 			if ( $key === 'global_footer' ) $content = $footer_content;
 			if ( $key === 'shop_archive' ) $content = $archive_content;
+			if ( $key === 'single_product' ) $content = $single_content;
 
 			if ( ! $existing ) {
 				$post_id = wp_insert_post( [
@@ -177,7 +194,7 @@ class Seeder {
 				$settings[ $key ] = $post_id;
 			} else {
 				$settings[ $key ] = $existing->ID;
-				// Update content if empty for existing parts
+				// Force update for demo completeness if empty
 				if ( empty( $existing->post_content ) ) {
 					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
 				}

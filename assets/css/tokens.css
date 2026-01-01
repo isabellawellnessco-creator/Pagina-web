@@ -1,93 +1,135 @@
 :root {
-  /* Brand Palette - Skin Cupid Clone */
-  --c-primary: #ffeeef; /* Light Pink Background - Pastel */
-  --c-primary-dark: #ffdce0; /* Slightly Darker Pink for Hover */
-  --c-secondary: #f0f8ff; /* Light Blue Background - Pastel */
-  --c-accent: #f877a0; /* Hot Pink Accent */
-  --c-accent-hover: #e05e85; /* Darker Pink Accent */
-  --c-accent-2: #fff3cd; /* Pastel Yellow */
-  --c-accent-3: #e2f5ea; /* Pastel Green */
+  /*
+   * SKIN CUPID DESIGN SYSTEM (SCDS)
+   * Extracted from refs/f8/2026.html
+   */
 
-  --c-text-main: #4a4a4a; /* Body Text - Soft Grey */
-  --c-text-heading: #1a1a1a; /* Heading Text - Nearly Black */
-  --c-text-light: #777777;
-  --c-text-inverse: #ffffff;
+  /* Brand Colors */
+  --c-text-main: #0F3062;    /* Dark Blue - Primary Text & Headings */
+  --c-accent: #E5757E;       /* Pink - Buttons, Highlights, Prices */
+  --c-accent-hover: #d4636c; /* Slightly darker pink for hover states */
+  --c-background-main: #FFFFFF;
+  --c-background-alt: #F8F5F1; /* Light Beige - Sections background */
+  --c-background-subtle: #F3F3F3; /* Very Light Grey - Inputs/Cards */
 
-  --c-bg-body: #ffffff;
-  --c-bg-light: #f9f9f9;
-  --c-bg-subtle: #f5f5f5;
+  --c-text-secondary: #303030; /* Dark Grey - Secondary text */
+  --c-text-light: #616161;     /* Medium Grey - Meta text */
+  --c-text-inverse: #FFFFFF;
 
-  --c-border: #e6e6e6;
-  --c-border-dark: #dcdcdc;
-
-  --c-white: #ffffff;
-  --c-black: #000000;
-
-  --c-error: #e53e3e;
-  --c-success: #38a169;
-  --c-warning: #dd6b20;
+  --c-success: #108474;      /* Green - In stock, Success */
+  --c-star: #EAE594;         /* Yellow/Gold - Reviews */
 
   /* Typography */
-  --font-family-base: 'Poppins', sans-serif;
-  --font-family-heading: 'Work Sans', sans-serif;
+  /* Note: Haffer and Quincy are used in the reference, but might be premium.
+     Using close Google Font alternatives if files aren't provided.
+     Haffer (Sans) -> Plus Jakarta Sans or DM Sans
+     Quincy (Serif) -> Fraunces or DM Serif Display
+     For now, we stick to safe defaults or what's enqueued. */
+  --font-heading: 'Haffer', 'DM Sans', sans-serif;
+  --font-body: 'Haffer', 'DM Sans', sans-serif;
 
-  --text-xs: 0.75rem;   /* 12px */
-  --text-sm: 0.875rem;  /* 14px */
-  --text-base: 1rem;    /* 16px */
-  --text-lg: 1.125rem;  /* 18px */
-  --text-xl: 1.25rem;   /* 20px */
-  --text-2xl: 1.5rem;   /* 24px */
-  --text-3xl: 2rem;     /* 32px */
-  --text-4xl: 2.5rem;   /* 40px */
-  --text-5xl: 3.5rem;   /* 56px */
+  /* Font Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
 
-  /* Spacing Scale */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
+  /* Typography Scale (Approximate from visual inspection) */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --text-4xl: 48px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
 
   /* Borders & Radius */
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 20px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
   --radius-full: 9999px;
 
   --border-width: 1px;
+  --c-border: #e0e0e0;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 5px 15px rgba(0,0,0,0.05);
-  --shadow-hover: 0 10px 25px rgba(0,0,0,0.1);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 12px rgba(15, 48, 98, 0.08); /* Colored shadow using brand blue */
 
   /* Layout */
-  --container-width: 1320px;
-  --container-padding: 1.5rem;
+  --container-width: 1440px; /* Wide layout */
+  --container-padding: 24px;
   --header-height: 80px;
-
-  /* Transitions */
-  --transition-fast: 0.15s ease-in-out;
-  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s ease;
 }
 
-@media (max-width: 768px) {
-  :root {
-    --container-padding: 1rem;
-    --text-3xl: 1.75rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 2.75rem;
-  }
+body {
+  color: var(--c-text-main);
+  background-color: var(--c-background-main);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--c-text-main);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--c-text-main);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--c-accent);
+}
+
+/* Button Reset & Base Style */
+.btn, button, input[type="submit"], input[type="button"], .elementor-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background-color: var(--c-accent);
+  color: var(--c-text-inverse);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-full); /* Fully rounded buttons */
+  border: 1px solid var(--c-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover, button:hover, input[type="submit"]:hover, .elementor-button:hover {
+  background-color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
+  color: var(--c-text-inverse);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--c-text-main);
+  border: 1px solid var(--c-text-main);
+}
+
+.btn-outline:hover {
+  background-color: var(--c-text-main);
+  color: var(--c-text-inverse);
 }

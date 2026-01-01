@@ -1,0 +1,127 @@
+/* Mega Menu Container */
+.sk-mega-menu-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-top: 1px solid #eee;
+}
+
+.sk-has-mega-menu {
+    position: static !important; /* Allow container to be full width relative to header */
+}
+
+.sk-has-mega-menu:hover .sk-mega-menu-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hero Slider */
+.sk-hero-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sk-slide {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 500px; /* Default height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none; /* JS toggles this */
+}
+
+.sk-slide:first-child {
+    display: flex;
+}
+
+.sk-slide-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sk-subtitle {
+    display: block;
+    color: var(--c-accent, #E5757E);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.sk-title {
+    font-size: 3rem;
+    color: var(--c-text-main, #0F3062);
+    margin-bottom: 20px;
+}
+
+.sk-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--c-accent, #E5757E);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.sk-btn:hover {
+    background: var(--c-text-main, #0F3062);
+}
+
+/* Rewards Dashboard */
+.sk-rewards-dashboard {
+    background: #F8F5F1;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.sk-points-balance {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sk-points-balance h3 {
+    color: #0F3062;
+}
+
+.points-value {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #E5757E;
+}
+
+.sk-points-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sk-points-history li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sk-points-history .amount {
+    color: #108474;
+    font-weight: bold;
+}

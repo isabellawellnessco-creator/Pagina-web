@@ -134,4 +134,62 @@ jQuery(document).ready(function($) {
         $('.sk-qv-modal').remove();
     });
 
+    // Contact Form AJAX
+    $('.sk-contact-form').on('submit', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var $btn = $form.find('button');
+
+        $btn.prop('disabled', true).text('Enviando...');
+
+        $.post(sk_vars.ajax_url, {
+            action: 'sk_contact_submit',
+            nonce: sk_vars.nonce,
+            name: $form.find('input[type="text"]').val(),
+            email: $form.find('input[type="email"]').val(),
+            message: $form.find('textarea').val()
+        }, function(res) {
+            $btn.prop('disabled', false).text('Enviar Mensaje');
+            if (res.success) {
+                alert(res.data.message);
+                $form[0].reset();
+            } else {
+                alert(res.data.message);
+            }
+        });
+    });
+
+    // Mobile Menu Toggle (Basic)
+    $(document).on('click', '.sk-mobile-menu-trigger', function(e) {
+        e.preventDefault();
+        $('.sk-mobile-menu-drawer').toggleClass('open');
+    });
+
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.sk-mobile-menu-drawer, .sk-mobile-menu-trigger').length) {
+            $('.sk-mobile-menu-drawer').removeClass('open');
+        }
+    });
+
+    // Sticky ATC Logic
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 500) {
+            $('.sk-sticky-atc').addClass('visible');
+        } else {
+            $('.sk-sticky-atc').removeClass('visible');
+        }
+    });
+
+    // Swatches Logic
+    $('.sk-swatch-label input').on('change', function() {
+        var val = $(this).val();
+        var attribute = $(this).closest('.sk-swatches').data('attribute');
+
+        // Find standard woo select
+        var $select = $('select[name="' + attribute + '"]');
+        if ($select.length) {
+            $select.val(val).trigger('change');
+        }
+    });
+
 });

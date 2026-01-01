@@ -17,6 +17,8 @@ class Loader {
 		\Skincare\SiteKit\Modules\Rewards::init();
 		\Skincare\SiteKit\Modules\Cart_Drawer::init();
 		\Skincare\SiteKit\Modules\Swatches::init();
+		\Skincare\SiteKit\Modules\Forms::init();
+		\Skincare\SiteKit\Modules\Filter_Handler::init(); // Added
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -66,7 +68,7 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() ); // Added
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() );
 
 		// Theme Builder Widgets
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );

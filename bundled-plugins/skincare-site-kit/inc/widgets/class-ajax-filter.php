@@ -30,6 +30,7 @@ class Ajax_Filter extends Widget_Base {
 						<input type="range" name="max_price" min="0" max="100" value="100" oninput="this.nextElementSibling.value = '£' + this.value">
 						<output>£100</output>
 					</div>
+					<input type="hidden" name="action" value="sk_filter_products">
 				</form>
 			</div>
 		</div>
@@ -39,16 +40,24 @@ class Ajax_Filter extends Widget_Base {
 				// Collect data
 				var data = $('#sk-filter-form').serialize();
 
-				// In a real WP instance, we would fire an AJAX request to 'sk_filter_products'
-				// and replace the .products grid.
-				console.log('Filter change:', data);
-
-				// Simulate loading
 				$('.sk-product-grid').css('opacity', 0.5);
-				setTimeout(function() {
+
+				$.post(sk_vars.ajax_url, data, function(res) {
 					$('.sk-product-grid').css('opacity', 1);
-					// Here we would replace HTML
-				}, 500);
+					if(res.success) {
+						// Replace grid
+						// Note: This targets the container. The PHP returns the UL.
+						// We assume the widget container wraps it. If not, we might replace content.
+						// For safety, we look for the grid or the main loop container.
+						var $grid = $('.sk-product-grid');
+						if ($grid.length) {
+							$grid.replaceWith(res.data.html);
+						} else {
+							// Try finding archive main loop
+							$('.sk-main-loop').html(res.data.html);
+						}
+					}
+				});
 			});
 		});
 		</script>

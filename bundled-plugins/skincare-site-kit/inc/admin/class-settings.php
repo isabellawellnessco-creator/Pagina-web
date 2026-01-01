@@ -69,6 +69,15 @@ class Settings {
 			'sk_locations_section',
 			[ 'id' => 'single_product' ]
 		);
+
+		add_settings_field(
+			'shop_archive',
+			'Shop Archive Layout',
+			[ __CLASS__, 'render_select_field' ],
+			'sk-theme-builder',
+			'sk_locations_section',
+			[ 'id' => 'shop_archive' ]
+		);
 	}
 
 	public static function render_page() {

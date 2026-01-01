@@ -37,7 +37,7 @@ class Seeder {
 	private static function create_pages() {
 		$pages = [
 			'Inicio' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
-			'Tienda' => '',
+			'Tienda' => '', // Managed by Archive Template
 			'Sobre Nosotros' => '<h2>Sobre Skin Cupid</h2><p>Tu destino para K-Beauty.</p>',
 			'Contacto' => '[sk_contact_section]',
 			'Ayuda / FAQs' => '[sk_faq_accordion]',
@@ -126,10 +126,11 @@ class Seeder {
 		$parts = [
 			'Header Principal' => 'global_header',
 			'Footer Principal' => 'global_footer',
-			'Ficha de Producto Estándar' => 'single_product'
+			'Ficha de Producto Estándar' => 'single_product',
+			'Archivo de Tienda (Catálogo)' => 'shop_archive'
 		];
 
-		// Header Content (Basic layout for seeded site)
+		// Header Content
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
@@ -143,6 +144,18 @@ class Seeder {
 
 		$footer_content = '<div class="sk-footer-content"><p>© 2023 Skin Cupid Replica. All rights reserved.</p></div>';
 
+		// Archive Content
+		$archive_content = '
+		<div class="sk-archive-layout" style="display:flex; gap:30px;">
+			<aside class="sk-sidebar" style="width:250px;">
+				[sk_ajax_filter]
+			</aside>
+			<main class="sk-main-loop" style="flex:1;">
+				[sk_product_grid posts_per_page="12"]
+			</main>
+		</div>
+		';
+
 		$settings = get_option( 'sk_theme_builder_settings', [] );
 
 		foreach ( $parts as $title => $key ) {
@@ -151,6 +164,7 @@ class Seeder {
 
 			if ( $key === 'global_header' ) $content = $header_content;
 			if ( $key === 'global_footer' ) $content = $footer_content;
+			if ( $key === 'shop_archive' ) $content = $archive_content;
 
 			if ( ! $existing ) {
 				$post_id = wp_insert_post( [

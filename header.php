@@ -1,43 +1,22 @@
-<!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<!doctype html>
+<html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<div id="homad-app-root">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'skincare' ); ?></a>
 
-    <?php
-    // Splash screen logic is usually handled via JS/CSS overlay,
-    // but if a template part exists we can include it.
-    get_template_part('template-parts/mobile-splash');
-    ?>
+	<?php
+	if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
+		get_template_part( 'template-parts/header/site-header' );
+	}
+	?>
 
-    <?php
-    // The Panel Container structure for Desktop
-    // Mobile design mimics native app (usually full width/height),
-    // but the request emphasizes the "Panel Container" wrapper.
-    ?>
-    <div class="homad-panel-container">
-
-        <header id="masthead" class="site-header">
-            <?php
-            // Logic to load desktop or mobile header part
-            // In a responsive modern theme, often both are loaded and hidden via CSS,
-            // or we stick to one structure that adapts.
-
-            // Check for Skin overrides
-            // Note: We always output header parts to ensure tablets (which wp_is_mobile() treats as mobile)
-            // can display the desktop header via CSS media queries if needed.
-            // Visibility is controlled by assets/skins/skincare/css/layout.css
-            get_template_part('template-parts/header/desktop');
-            get_template_part('template-parts/header/mobile');
-            ?>
-        </header><!-- #masthead -->
-
-        <div id="content" class="site-content">
+	<div id="content" class="site-content">

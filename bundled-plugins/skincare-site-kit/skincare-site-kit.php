@@ -21,6 +21,7 @@ require_once SKINCARE_KIT_PATH . 'includes/class-skincare-loader.php';
 // Initialize
 function skincare_kit_init() {
     // Hooks
+    require_once SKINCARE_KIT_PATH . 'includes/class-skincare-theme-init.php';
     require_once SKINCARE_KIT_PATH . 'includes/woocommerce-hooks.php';
     require_once SKINCARE_KIT_PATH . 'includes/class-skincare-mega-menu.php';
     require_once SKINCARE_KIT_PATH . 'includes/ajax-functions.php';
@@ -44,6 +45,9 @@ function skincare_register_elementor_widgets( $widgets_manager ) {
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-search-chips.php';
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-category-tabs.php';
     require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-ajax-filter.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-concern-grid.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-testimonials.php';
+    require_once SKINCARE_KIT_PATH . 'includes/elementor/widgets/class-sk-newsletter.php';
 
     $widgets_manager->register( new \Skincare_Hero_Widget() );
     $widgets_manager->register( new \Skincare_Product_Loop_Widget() );

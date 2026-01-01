@@ -16,6 +16,9 @@ class Loader {
 		\Skincare\SiteKit\Modules\Wishlist::init();
 		\Skincare\SiteKit\Modules\Rewards::init();
 
+		// Initialize Shortcodes Wrapper
+		\Skincare\SiteKit\Core\Shortcodes::init();
+
 		// Admin
 		if ( is_admin() ) {
 			\Skincare\SiteKit\Admin\Settings::init();
@@ -47,12 +50,20 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Wishlist_Grid() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Dashboard() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Search() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Castle() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Contact_Section() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\FAQ_Accordion() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Shipping_Table() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Store_Locator() ); // New
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Account_Dashboard() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Castle() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Contact_Section() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\FAQ_Accordion() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Shipping_Table() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Store_Locator() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Account_Dashboard() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Marquee() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Icon_Box_Grid() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Concern_Grid() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Brand_Slider() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Instagram_Feed() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() ); // New
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() ); // New
 
 		// Theme Builder Widgets
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );

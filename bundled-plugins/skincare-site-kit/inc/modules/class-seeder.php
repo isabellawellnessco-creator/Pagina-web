@@ -35,50 +35,32 @@ class Seeder {
 	}
 
 	private static function create_pages() {
-		// Map page titles to Elementor shortcodes
 		$pages = [
-			'Inicio' => '[elementor-template id="HOME_ID"]',
-			'Tienda' => '', // Woo handles this
+			'Inicio' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
+			'Tienda' => '',
 			'Sobre Nosotros' => '<h2>Sobre Skin Cupid</h2><p>Tu destino para K-Beauty.</p>',
-			'Contacto' => '[elementor-template id="SK_CONTACT_WIDGET"]', // Fallback, using direct widget code below
-			'Ayuda / FAQs' => '',
-			'Envíos' => '',
+			'Contacto' => '[sk_contact_section]',
+			'Ayuda / FAQs' => '[sk_faq_accordion]',
+			'Envíos' => '[sk_shipping_table]',
 			'Política de Privacidad' => '<h2>Política de Privacidad</h2><p>Lorem ipsum...</p>',
 			'Términos y Condiciones' => '<h2>Términos</h2><p>Lorem ipsum...</p>',
-			'Wishlist' => '',
-			'Rewards' => '',
-			'Mi Cuenta' => '',
-			'Localizador de Tiendas' => '',
-			'Skincare' => '', // Category archive usually
+			'Wishlist' => '[sk_wishlist_grid]',
+			'Rewards' => '[sk_rewards_castle][sk_rewards_earn_redeem][sk_rewards_dashboard]',
+			'Mi Cuenta' => '[sk_account_dashboard]',
+			'Localizador de Tiendas' => '[sk_store_locator]',
+			'Skincare' => '',
 			'Maquillaje' => '',
 			'Korean Skincare' => ''
-		];
-
-		// Define specific widget shortcodes for key pages
-		$widget_content = [
-			'Contacto' => '[elementor-widget name="sk_contact_section"]', // This is pseudo-code, Elementor doesn't allow direct widget shortcodes easily without a template.
-			// Instead, we will insert text that instructs the user to use the widget, or insert a placeholder div that our JS could target (complex).
-			// BETTER APPROACH: Insert comment placeholders.
 		];
 
 		foreach ( $pages as $title => $content ) {
 			$slug = sanitize_title( $title );
 			if ( ! get_page_by_path( $slug ) ) {
-
-				// Customize content for known widgets
-				if ( $title === 'Rewards' ) $content = '<!-- SK Widget --> [elementor-template id="0"] <div class="sk-widget-placeholder" data-widget="sk_rewards_castle"></div><div class="sk-widget-placeholder" data-widget="sk_rewards_dashboard"></div>';
-				if ( $title === 'Contacto' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_contact_section"></div>';
-				if ( $title === 'Ayuda / FAQs' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_faq_accordion"></div>';
-				if ( $title === 'Envíos' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_shipping_table"></div>';
-				if ( $title === 'Localizador de Tiendas' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_store_locator"></div>';
-				if ( $title === 'Mi Cuenta' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_account_dashboard"></div>';
-				if ( $title === 'Wishlist' ) $content = '<div class="sk-widget-placeholder" data-widget="sk_wishlist_grid"></div>';
-
 				wp_insert_post( [
 					'post_type'    => 'page',
 					'post_title'   => $title,
 					'post_name'    => $slug,
-					'post_content' => $content, // In a real Elementor setup, we would insert the JSON data into _elementor_data meta
+					'post_content' => $content,
 					'post_status'  => 'publish',
 				] );
 			}
@@ -100,7 +82,6 @@ class Seeder {
 	}
 
 	private static function create_products() {
-		// Check if we have products
 		$existing = get_posts( [ 'post_type' => 'product', 'posts_per_page' => 1 ] );
 		if ( ! empty( $existing ) ) return;
 
@@ -129,6 +110,10 @@ class Seeder {
 				update_post_meta( $post_id, '_visibility', 'visible' );
 				update_post_meta( $post_id, '_stock_status', 'instock' );
 
+				// Add attributes for Product Tabs
+				update_post_meta( $post_id, 'ingredients', 'Water, Snail Secretion Filtrate, Betaine...' );
+				update_post_meta( $post_id, 'how_to_use', 'After cleansing and toning, apply a small amount...' );
+
 				$term = get_term_by( 'name', $p['cat'], 'product_cat' );
 				if ( $term ) {
 					wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
@@ -138,7 +123,6 @@ class Seeder {
 	}
 
 	private static function create_theme_parts() {
-		// Create Header, Footer, Single Product templates
 		$parts = [
 			'Header Principal' => 'global_header',
 			'Footer Principal' => 'global_footer',
@@ -153,11 +137,10 @@ class Seeder {
 				$post_id = wp_insert_post( [
 					'post_type'   => 'sk_template',
 					'post_title'  => $title,
-					'post_content' => '', // Empty for Elementor
+					'post_content' => '',
 					'post_status' => 'publish',
 				] );
 
-				// Assign to settings
 				$settings[ $key ] = $post_id;
 			} else {
 				$settings[ $key ] = $existing->ID;
@@ -174,13 +157,11 @@ class Seeder {
 		$primary_id = wp_create_nav_menu( $primary );
 		$footer_id = wp_create_nav_menu( $footer );
 
-		// Assign locations
 		$locations = get_theme_mod( 'nav_menu_locations' );
 		$locations['primary'] = $primary_id;
 		$locations['footer'] = $footer_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
 
-		// Add items to Primary
 		if ( ! is_wp_error( $primary_id ) ) {
 			wp_update_nav_menu_item( $primary_id, 0, [
 				'menu-item-title' => 'Inicio',
@@ -199,7 +180,6 @@ class Seeder {
 				] );
 			}
 
-			// Add Rewards
 			$rewards = get_page_by_path( 'rewards' );
 			if ( $rewards ) {
 				wp_update_nav_menu_item( $primary_id, 0, [

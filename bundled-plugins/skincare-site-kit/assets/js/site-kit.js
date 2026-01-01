@@ -98,4 +98,20 @@ jQuery(document).ready(function($) {
         }
     });
 
+    // Product Tabs
+    $('.sk-tab-toggle').on('click', function() {
+        $(this).toggleClass('active');
+        $(this).next('.sk-tab-content').slideToggle();
+        $(this).find('i').toggleClass('eicon-plus eicon-minus');
+    });
+
+    // Ajax Filter (Static Demo Logic)
+    $('.sk-filter-group input').on('change', function() {
+        var activeBrands = [];
+        $('.sk-filter-group input[name="brand"]:checked').each(function() {
+            activeBrands.push($(this).val());
+        });
+        console.log('Filtering by:', activeBrands);
+    });
+
 });

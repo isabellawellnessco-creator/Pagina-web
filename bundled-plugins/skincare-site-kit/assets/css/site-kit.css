@@ -238,3 +238,233 @@
     background: var(--c-accent, #E5757E);
     transition: width 1s ease;
 }
+
+/* Marquee */
+.sk-marquee-container {
+    background: #0F3062;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 8px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sk-marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.sk-marquee-content span {
+    padding-right: 50px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Icon Box Grid */
+.sk-icon-box-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.sk-icon-box {
+    text-align: center;
+    background: #F8F5F1;
+    padding: 30px 20px;
+    border-radius: 12px;
+}
+
+.sk-ib-icon {
+    font-size: 32px;
+    color: #E5757E;
+    margin-bottom: 15px;
+}
+
+.sk-icon-box h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #0F3062;
+}
+
+.sk-icon-box p {
+    font-size: 13px;
+    color: #616161;
+    margin: 0;
+}
+
+/* Concern Grid */
+.sk-concern-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.sk-concern-item {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    text-align: center;
+}
+
+.sk-concern-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s;
+}
+
+.sk-concern-item:hover .sk-concern-image {
+    transform: scale(1.1);
+}
+
+.sk-concern-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 48, 98, 0.8);
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Brand Slider */
+.sk-brand-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 20px 0;
+    scrollbar-width: none;
+}
+
+.sk-brand-item img {
+    height: 50px;
+    width: auto;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.sk-brand-item:hover img {
+    opacity: 1;
+}
+
+/* Instagram Feed */
+.sk-insta-feed {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.sk-insta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sk-insta-item {
+    aspect-ratio: 1/1;
+    background-color: #eee;
+    background-size: cover;
+}
+
+/* Product Tabs */
+.sk-product-tabs {
+    margin-top: 40px;
+}
+
+.sk-tab-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sk-tab-toggle {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0F3062;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sk-tab-content {
+    display: none;
+    padding-bottom: 20px;
+    color: #444;
+}
+
+/* Ajax Filter Sidebar */
+.sk-sidebar-filters {
+    background: #F8F5F1;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.sk-filter-group {
+    margin-bottom: 30px;
+}
+
+.sk-filter-group h4 {
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #0F3062;
+}
+
+.sk-filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Rewards Earn/Redeem */
+.sk-rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.sk-reward-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.sk-reward-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.sk-reward-card i {
+    font-size: 32px;
+    color: #E5757E;
+    margin-bottom: 10px;
+}
+
+.sk-reward-card h4 {
+    margin: 10px 0;
+    color: #0F3062;
+}
+
+.sk-reward-card .points {
+    color: #108474;
+    font-weight: bold;
+}

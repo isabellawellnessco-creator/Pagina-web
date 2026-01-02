@@ -7,13 +7,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
+	const SEED_VERSION = 2; // Increment this to force re-seeding logic
+	const OPTION_NAME  = 'sk_content_seeded_version';
+
 	public static function init() {
 		// Hook into admin init to run seeder if triggered
 		add_action( 'admin_init', [ __CLASS__, 'run_seeder' ] );
 	}
 
 	public static function run_seeder() {
+		$should_run = false;
+
+		// Manual trigger
 		if ( isset( $_GET['sk_seed_content'] ) && $_GET['sk_seed_content'] == 'true' && current_user_can( 'manage_options' ) ) {
+			$should_run = true;
+		}
+
+		// Auto trigger based on version
+		$current_version = (int) get_option( self::OPTION_NAME, 0 );
+		if ( $current_version < self::SEED_VERSION && current_user_can( 'manage_options' ) ) {
+			$should_run = true;
+		}
+
+		if ( $should_run ) {
 			self::create_pages();
 			self::create_categories();
 			self::create_products();
@@ -31,12 +47,14 @@ class Seeder {
 			update_option( 'blogname', 'Skin Cupid' );
 			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
 
-			// Mark as seeded
+			// Mark as seeded with new version
+			update_option( self::OPTION_NAME, self::SEED_VERSION );
+			// Keep legacy option for compatibility if needed, or update it too
 			update_option( 'sk_content_seeded', 'yes' );
 
 			// Add admin notice
 			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Contenido semilla creado exitosamente. Título del sitio actualizado a "Skin Cupid".</p></div>';
+				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . ').</p></div>';
 			} );
 		}
 	}
@@ -62,7 +80,10 @@ class Seeder {
 
 		foreach ( $pages as $title => $content ) {
 			$slug = sanitize_title( $title );
-			if ( ! get_page_by_path( $slug ) ) {
+			$existing_page = get_page_by_path( $slug );
+
+			if ( ! $existing_page ) {
+				// Create new
 				wp_insert_post( [
 					'post_type'    => 'page',
 					'post_title'   => $title,
@@ -70,6 +91,36 @@ class Seeder {
 					'post_content' => $content,
 					'post_status'  => 'publish',
 				] );
+			} else {
+				// Bulletproof Check:
+				// If the page exists, check if it contains legacy "Homad" content or is missing critical Skincare shortcodes.
+				// This ensures we fix the "broken install" state seen by the user.
+
+				$current_content = $existing_page->post_content;
+				$needs_update = false;
+
+				// Check for Legacy Homad artifacts
+				if ( stripos( $current_content, 'homad' ) !== false ) {
+					$needs_update = true;
+				}
+
+				// Check for specific mismatch on critical pages
+				// e.g., if "Inicio" doesn't have the hero slider, it's likely wrong.
+				if ( $title === 'Inicio' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
+					$needs_update = true;
+				}
+
+				// If "Rewards" page lacks the castle, update it.
+				if ( $title === 'Rewards' && strpos( $current_content, 'sk_rewards_castle' ) === false ) {
+					$needs_update = true;
+				}
+
+				if ( $needs_update ) {
+					wp_update_post( [
+						'ID'           => $existing_page->ID,
+						'post_content' => $content,
+					] );
+				}
 			}
 		}
 	}
@@ -184,7 +235,7 @@ class Seeder {
 				$settings[ $key ] = $post_id;
 			} else {
 				$settings[ $key ] = $existing->ID;
-				// Update content if empty for existing parts
+				// Update content if empty for existing parts or if we suspect it's wrong (optional, keep safe for now)
 				if ( empty( $existing->post_content ) ) {
 					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
 				}
@@ -207,32 +258,41 @@ class Seeder {
 		set_theme_mod( 'nav_menu_locations', $locations );
 
 		if ( ! is_wp_error( $primary_id ) ) {
-			wp_update_nav_menu_item( $primary_id, 0, [
-				'menu-item-title' => 'Inicio',
-				'menu-item-url' => home_url( '/' ),
-				'menu-item-status' => 'publish'
-			] );
+			// Check if menu is empty before adding items, or clearing it?
+			// For now, assume if we created it or it exists, we ensure items.
+			// WordPress doesn't easily let us check "is empty" without fetching items.
+			// We'll proceed with upserting logic if needed, but for simplicity:
 
-			$shop = get_page_by_path( 'tienda' );
-			if ( $shop ) {
+			// Only add if no items exist to avoid duplicates on re-run
+			$items = wp_get_nav_menu_items( $primary_id );
+			if ( empty( $items ) ) {
 				wp_update_nav_menu_item( $primary_id, 0, [
-					'menu-item-title' => 'Tienda',
-					'menu-item-object-id' => $shop->ID,
-					'menu-item-object' => 'page',
-					'menu-item-type' => 'post_type',
+					'menu-item-title' => 'Inicio',
+					'menu-item-url' => home_url( '/' ),
 					'menu-item-status' => 'publish'
 				] );
-			}
 
-			$rewards = get_page_by_path( 'rewards' );
-			if ( $rewards ) {
-				wp_update_nav_menu_item( $primary_id, 0, [
-					'menu-item-title' => 'Rewards',
-					'menu-item-object-id' => $rewards->ID,
-					'menu-item-object' => 'page',
-					'menu-item-type' => 'post_type',
-					'menu-item-status' => 'publish'
-				] );
+				$shop = get_page_by_path( 'tienda' );
+				if ( $shop ) {
+					wp_update_nav_menu_item( $primary_id, 0, [
+						'menu-item-title' => 'Tienda',
+						'menu-item-object-id' => $shop->ID,
+						'menu-item-object' => 'page',
+						'menu-item-type' => 'post_type',
+						'menu-item-status' => 'publish'
+					] );
+				}
+
+				$rewards = get_page_by_path( 'rewards' );
+				if ( $rewards ) {
+					wp_update_nav_menu_item( $primary_id, 0, [
+						'menu-item-title' => 'Rewards',
+						'menu-item-object-id' => $rewards->ID,
+						'menu-item-object' => 'page',
+						'menu-item-type' => 'post_type',
+						'menu-item-status' => 'publish'
+					] );
+				}
 			}
 		}
 	}

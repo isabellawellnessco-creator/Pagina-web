@@ -36,8 +36,8 @@
 .woocommerce-message,
 .woocommerce-info,
 .woocommerce-error {
-  border-top: 3px solid var(--c-primary);
-  background-color: var(--c-bg-light);
+  border-top: 3px solid var(--c-accent);
+  background-color: var(--c-background-subtle);
   color: var(--c-text-main);
   padding: var(--space-4);
   margin-bottom: var(--space-6);
@@ -45,11 +45,11 @@
 
 /* Buttons in Woo */
 .woocommerce button.button.alt {
-  background-color: var(--c-secondary);
-  color: var(--c-white);
+  background-color: var(--c-accent);
+  color: var(--c-text-inverse);
   border-radius: var(--radius-full);
 }
 
 .woocommerce button.button.alt:hover {
-  background-color: var(--c-primary);
+  background-color: var(--c-accent-hover);
 }

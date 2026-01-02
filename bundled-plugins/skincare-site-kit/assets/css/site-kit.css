@@ -10,6 +10,7 @@
     visibility: hidden;
     transition: all 0.3s ease;
     border-top: 1px solid #eee;
+    padding: 20px 0;
 }
 
 .sk-has-mega-menu {
@@ -19,6 +20,35 @@
 .sk-has-mega-menu:hover .sk-mega-menu-container {
     opacity: 1;
     visibility: visible;
+}
+
+/* Ensure mega menu content is structured well */
+.sk-mega-menu-container .elementor-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style links inside mega menu */
+.sk-mega-menu-container a {
+    color: #0F3062;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 0;
+    display: block;
+}
+
+.sk-mega-menu-container a:hover {
+    color: #E5757E;
+}
+
+.sk-mega-menu-container h4 { /* Widget titles */
+    color: #0F3062;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
 }
 
 /* Hero Slider */

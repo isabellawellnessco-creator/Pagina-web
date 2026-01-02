@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 5; // Increment to force aggressive update on Frontend load
+	const SEED_VERSION = 6; // v6: The "Clean Slate" Final Flush
 	const OPTION_NAME  = 'sk_content_seeded_version';
 
 	public static function init() {
-		// UPDATED: Hook into 'init' instead of 'admin_init' to ensure it runs even if user only visits frontend.
+		// Runs on every page load to ensure immediate fix
 		add_action( 'init', [ __CLASS__, 'run_seeder' ] );
 	}
 
@@ -23,21 +23,20 @@ class Seeder {
 			$should_run = true;
 		}
 
-		// Auto trigger based on version
-		// UPDATED: Removed current_user_can('manage_options') check for the version update.
-		// This ensures that if the code is deployed, the update happens on the first visit by ANYONE (admin or guest),
-		// fixing the "broken site" state immediately without waiting for an admin login.
+		// Auto trigger based on version check (No capability check for immediate deployment fix)
 		$current_version = (int) get_option( self::OPTION_NAME, 0 );
 		if ( $current_version < self::SEED_VERSION ) {
 			$should_run = true;
 		}
 
 		if ( $should_run ) {
-			// 1. Force Site Identity
+			// 1. FINAL CLEANUP: Remove any legacy Homad markers
+			delete_option( 'homad_seeded' );
+			delete_option( 'homad_splash_subtitle' );
+
+			// 2. Force Site Identity
 			update_option( 'blogname', 'Skin Cupid' );
 			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
-
-			// 2. Remove Custom Logo (often contains legacy Homad image)
 			remove_theme_mod( 'custom_logo' );
 
 			// 3. Rebuild Content
@@ -45,18 +44,20 @@ class Seeder {
 			self::create_categories();
 			self::create_products();
 			self::create_theme_parts();
-			self::create_menus(); // Aggressive rebuild
+			self::create_menus();
 
-			// Set homepage
+			// 4. Set Homepage
 			$home = get_page_by_path( 'inicio' );
 			if ( $home ) {
 				update_option( 'show_on_front', 'page' );
 				update_option( 'page_on_front', $home->ID );
 			}
 
-			// Mark as seeded with new version
+			// 5. Flush Permalinks (Fixes 404s from theme switch)
+			flush_rewrite_rules();
+
+			// Mark as seeded
 			update_option( self::OPTION_NAME, self::SEED_VERSION );
-			// Keep legacy option for compatibility
 			update_option( 'sk_content_seeded', 'yes' );
 		}
 	}

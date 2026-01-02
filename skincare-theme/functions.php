@@ -2,7 +2,7 @@
 /**
  * Theme Functions
  *
- * @package SkincareTheme
+ * @package SkinCupidTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +17,7 @@ function skincare_enqueue_scripts() {
 	// Helper for versioning
 	$get_ver = function( $path ) use ( $theme_dir ) {
 		$file = $theme_dir . $path;
-		return file_exists( $file ) ? filemtime( $file ) : '1.0.0';
+		return file_exists( $file ) ? filemtime( $file ) : '2.0.0';
 	};
 
 	// CSS
@@ -57,9 +57,9 @@ add_action( 'after_setup_theme', 'skincare_setup' );
 
 // Register Menus
 register_nav_menus( [
-	'primary' => __( 'Primary Menu', 'skincare' ),
-	'mobile'  => __( 'Mobile Menu', 'skincare' ),
-	'footer'  => __( 'Footer Menu', 'skincare' ),
+	'primary' => __( 'Primary Menu', 'skin-cupid-theme' ),
+	'mobile'  => __( 'Mobile Menu', 'skin-cupid-theme' ),
+	'footer'  => __( 'Footer Menu', 'skin-cupid-theme' ),
 ] );
 
 // Helper to check if Woo is active
@@ -68,8 +68,7 @@ function skincare_is_woo() {
 }
 
 /**
- * Load Bundled Plugin if it exists (Simulation of a plugin in a theme repo)
- * In a real scenario, this would be a separate plugin.
+ * Load Bundled Site Kit Plugin
  */
 if ( file_exists( get_stylesheet_directory() . '/bundled-plugins/skincare-site-kit/skincare-site-kit.php' ) ) {
     require_once get_stylesheet_directory() . '/bundled-plugins/skincare-site-kit/skincare-site-kit.php';

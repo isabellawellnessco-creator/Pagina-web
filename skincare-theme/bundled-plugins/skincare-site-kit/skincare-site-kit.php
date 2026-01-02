@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Skincare Site Kit
- * Description: Modular functionality plugin for Skincare Theme (Refactored).
- * Version: 2.1.0
+ * Plugin Name: Skin Cupid Site Kit
+ * Description: Modular functionality plugin for Skin Cupid Theme (v2.0).
+ * Version: 2.0.0
  * Author: Skin Cupid Dev
  * Text Domain: skincare
  */

@@ -27,9 +27,16 @@ class Seeder {
 				update_option( 'page_on_front', $home->ID );
 			}
 
+			// Force Site Title
+			update_option( 'blogname', 'Skin Cupid' );
+			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
+
+			// Mark as seeded
+			update_option( 'sk_content_seeded', 'yes' );
+
 			// Add admin notice
 			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Contenido semilla creado exitosamente.</p></div>';
+				echo '<div class="notice notice-success is-dismissible"><p>Contenido semilla creado exitosamente. Título del sitio actualizado a "Skin Cupid".</p></div>';
 			} );
 		}
 	}

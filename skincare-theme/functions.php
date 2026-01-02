@@ -61,11 +61,21 @@ if ( file_exists( get_stylesheet_directory() . '/bundled-plugins/skincare-site-k
 }
 
 /**
- * Auto-trigger Seeder for "Skin Cupid" setup
+ * Auto-trigger Seeder for "Skin Cupid" setup on theme activation
+ */
+add_action( 'after_switch_theme', function() {
+    if ( class_exists( '\Skincare\SiteKit\Modules\Seeder' ) ) {
+        \Skincare\SiteKit\Modules\Seeder::force_run();
+    }
+} );
+
+/**
+ * Fallback: Auto-trigger Seeder on init if not seeded yet
  */
 add_action( 'init', function() {
     if ( ! get_option( 'sk_content_seeded' ) && current_user_can( 'manage_options' ) ) {
-        // Mock GET request to trigger the seeded in Skincare\SiteKit\Modules\Seeder::run_seeder
-        $_GET['sk_seed_content'] = 'true';
+        if ( class_exists( '\Skincare\SiteKit\Modules\Seeder' ) ) {
+            \Skincare\SiteKit\Modules\Seeder::force_run();
+        }
     }
 } );

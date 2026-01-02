@@ -14,8 +14,17 @@ class Seeder {
 
 	public static function run_seeder() {
 		if ( isset( $_GET['sk_seed_content'] ) && $_GET['sk_seed_content'] == 'true' && current_user_can( 'manage_options' ) ) {
-			self::create_pages();
-			self::create_categories();
+			self::force_run();
+		}
+	}
+
+	public static function force_run() {
+		if ( get_option( 'sk_content_seeded' ) === 'yes' ) {
+			return;
+		}
+
+		self::create_pages();
+		self::create_categories();
 			self::create_products();
 			self::create_theme_parts();
 			self::create_menus();

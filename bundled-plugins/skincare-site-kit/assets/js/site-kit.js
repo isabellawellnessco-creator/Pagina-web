@@ -192,4 +192,50 @@ jQuery(document).ready(function($) {
         }
     });
 
+    // Rewards Redemption
+    $(document).on('click', '.sk-reward-redeem-btn', function(e) {
+        e.preventDefault();
+        var $btn = $(this);
+        var originalText = $btn.text();
+        var pointsCost = parseInt($btn.closest('.sk-reward-item').find('.sk-reward-points').text());
+
+        if(!confirm('¿Estás seguro de que quieres canjear ' + pointsCost + ' puntos?')) return;
+
+        $btn.prop('disabled', true).text('Procesando...');
+
+        $.post(sk_vars.ajax_url, {
+            action: 'sk_redeem_points',
+            nonce: sk_vars.nonce,
+            points_cost: pointsCost
+        }, function(res) {
+            $btn.prop('disabled', false).text(originalText);
+            if (res.success) {
+                // Show modal with coupon
+                var msg = '<div class="sk-coupon-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:9999;">';
+                msg += '<div style="background:#fff;padding:30px;border-radius:12px;text-align:center;max-width:400px;">';
+                msg += '<h3 style="color:#0F3062;">¡Felicidades!</h3>';
+                msg += '<p>Has canjeado tus puntos exitosamente.</p>';
+                msg += '<div style="background:#F8F5F1;padding:15px;margin:20px 0;border:2px dashed #E5757E;font-size:20px;font-weight:bold;color:#0F3062;">' + res.data.coupon_code + '</div>';
+                msg += '<p style="font-size:12px;color:#666;">Copia este código y úsalo al finalizar tu compra.</p>';
+                msg += '<button onclick="jQuery(\'.sk-coupon-modal\').remove();location.reload();" class="button" style="background:#0F3062;color:#fff;border:none;padding:10px 20px;border-radius:20px;margin-top:15px;cursor:pointer;">Cerrar</button>';
+                msg += '</div></div>';
+                $('body').append(msg);
+            } else {
+                alert(res.data.message);
+            }
+        });
+    });
+
+    // Rewards Actions (Simulation)
+    $(document).on('click', '.sk-action-btn', function(e) {
+        // e.preventDefault(); // Allow link follow if real
+        // Simulate earning
+        var $card = $(this).closest('.sk-reward-action-card');
+        $card.css('opacity', 0.5);
+        setTimeout(function(){
+            $card.css('opacity', 1);
+            alert('¡Gracias! Si completaste la acción, los puntos se añadirán a tu cuenta en breve (Simulación).');
+        }, 1000);
+    });
+
 });

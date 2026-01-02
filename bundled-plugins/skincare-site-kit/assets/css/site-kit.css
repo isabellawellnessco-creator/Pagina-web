@@ -445,7 +445,9 @@
 }
 
 .sk-filter-group {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
 }
 
 .sk-filter-group h4 {
@@ -453,6 +455,13 @@
     font-size: 14px;
     text-transform: uppercase;
     color: #0F3062;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sk-filter-group.collapsed .sk-filter-content {
+    display: none;
 }
 
 .sk-filter-group label {

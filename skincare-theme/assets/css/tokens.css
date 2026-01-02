@@ -11,6 +11,7 @@
   --c-background-main: #FFFFFF;
   --c-background-alt: #F8F5F1; /* Light Beige - Sections background */
   --c-background-subtle: #F3F3F3; /* Very Light Grey - Inputs/Cards */
+  --c-white: #FFFFFF;
 
   --c-text-secondary: #303030; /* Dark Grey - Secondary text */
   --c-text-light: #616161;     /* Medium Grey - Meta text */
@@ -69,67 +70,11 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-card: 0 4px 12px rgba(15, 48, 98, 0.08); /* Colored shadow using brand blue */
 
+  /* Transitions */
+  --transition-base: 0.2s ease;
+
   /* Layout */
   --container-width: 1440px; /* Wide layout */
   --container-padding: 24px;
   --header-height: 80px;
-}
-
-body {
-  color: var(--c-text-main);
-  background-color: var(--c-background-main);
-  font-family: var(--font-body);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--c-text-main);
-  font-family: var(--font-heading);
-  font-weight: var(--fw-bold);
-  letter-spacing: -0.02em;
-}
-
-a {
-  color: var(--c-text-main);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--c-accent);
-}
-
-/* Button Reset & Base Style */
-.btn, button, input[type="submit"], input[type="button"], .elementor-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 28px;
-  background-color: var(--c-accent);
-  color: var(--c-text-inverse);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: var(--text-sm);
-  border-radius: var(--radius-full); /* Fully rounded buttons */
-  border: 1px solid var(--c-accent);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn:hover, button:hover, input[type="submit"]:hover, .elementor-button:hover {
-  background-color: var(--c-accent-hover);
-  border-color: var(--c-accent-hover);
-  color: var(--c-text-inverse);
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: var(--c-text-main);
-  border: 1px solid var(--c-text-main);
-}
-
-.btn-outline:hover {
-  background-color: var(--c-text-main);
-  color: var(--c-text-inverse);
 }

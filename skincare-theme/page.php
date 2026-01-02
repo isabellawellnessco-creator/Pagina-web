@@ -17,13 +17,7 @@ while ( have_posts() ) :
 	the_post();
 	?>
 
-	<main id="main" class="site-main" role="main">
-		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
-			<div class="page-content">
-				<?php the_content(); ?>
-			</div>
-		<?php endif; ?>
-	</main>
+	<?php get_template_part( 'template-parts/content/page' ); ?>
 
 <?php endwhile; // End of the loop. ?>
 

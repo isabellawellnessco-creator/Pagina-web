@@ -70,7 +70,7 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-card: 0 4px 12px rgba(15, 48, 98, 0.08); /* Colored shadow using brand blue */
 
-  /* Transitions */
+  /* Motion */
   --transition-base: 0.2s ease;
 
   /* Layout */

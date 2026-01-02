@@ -7,7 +7,7 @@ input[type="button"],
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3) var(--space-6);
+  padding: 12px 28px;
   border-radius: var(--radius-full);
   font-weight: var(--fw-bold);
   text-transform: uppercase;
@@ -18,22 +18,20 @@ input[type="button"],
   cursor: pointer;
   transition: all var(--transition-base);
   border: 1px solid var(--c-accent);
+  background-color: var(--c-accent);
+  color: var(--c-text-inverse);
 }
 
 .btn-primary {
   background-color: var(--c-accent);
   color: var(--c-text-inverse);
+  border-color: var(--c-accent);
 }
 
-.btn-primary:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover,
-.elementor-button:hover {
+.btn-primary:hover {
   background-color: var(--c-accent-hover);
   border-color: var(--c-accent-hover);
   color: var(--c-text-inverse);
-  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -47,24 +45,14 @@ input[type="button"]:hover,
   color: var(--c-text-inverse);
 }
 
-.btn-outline {
-  background-color: transparent;
-  color: var(--c-text-main);
-  border: 1px solid var(--c-text-main);
-}
-
-.btn-outline:hover {
-  background-color: var(--c-text-main);
-  color: var(--c-text-inverse);
-}
-
 /* Cards */
 .sk-card {
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--c-background-main);
   border: 1px solid var(--c-border);
-  transition: transform var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .sk-card:hover {
@@ -82,6 +70,7 @@ input[type="button"]:hover,
   margin-right: var(--space-2);
   margin-bottom: var(--space-2);
   border: 1px solid var(--c-border);
+  color: var(--c-text-main);
 }
 
 /* Drawers (Off-canvas) */
@@ -96,7 +85,7 @@ input[type="button"]:hover,
   z-index: 1000;
   transform: translateX(100%);
   transition: transform var(--transition-base);
-  box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+  box-shadow: -4px 0 16px rgba(15, 48, 98, 0.12);
   display: flex;
   flex-direction: column;
 }

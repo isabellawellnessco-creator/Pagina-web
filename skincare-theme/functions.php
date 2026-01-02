@@ -62,10 +62,5 @@ if ( file_exists( get_stylesheet_directory() . '/bundled-plugins/skincare-site-k
 
 /**
  * Auto-trigger Seeder for "Skin Cupid" setup
+ * Removed manual GET injection, relying on version check in Seeder::run_seeder
  */
-add_action( 'init', function() {
-    if ( ! get_option( 'sk_content_seeded' ) && current_user_can( 'manage_options' ) ) {
-        // Mock GET request to trigger the seeded in Skincare\SiteKit\Modules\Seeder::run_seeder
-        $_GET['sk_seed_content'] = 'true';
-    }
-} );

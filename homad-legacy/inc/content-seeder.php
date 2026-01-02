@@ -7,6 +7,11 @@
 
 function homad_seed_content() {
 
+    // Prevent re-seeding if already done
+    if ( get_option( 'homad_seeded' ) === 'yes' ) {
+        return;
+    }
+
     // --- 1. Pages (Home, Shop, Projects, Contact, Legal) ---
     $pages = [
         'Home' => [
@@ -212,6 +217,9 @@ function homad_seed_content() {
         $locations['primary'] = $menu_id; // Check functions.php if 'primary' is the key
         set_theme_mod('nav_menu_locations', $locations);
     }
+
+    // Mark as seeded
+    update_option( 'homad_seeded', 'yes' );
 
 }
 

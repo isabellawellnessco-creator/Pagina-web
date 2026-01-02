@@ -19,35 +19,37 @@ class Seeder {
 	}
 
 	public static function force_run() {
-		if ( get_option( 'sk_content_seeded' ) === 'yes' ) {
+		// Use a new version flag to force a re-run for users who had issues
+		if ( get_option( 'sk_content_seeded_v2' ) === 'yes' ) {
 			return;
 		}
 
 		self::create_pages();
 		self::create_categories();
-			self::create_products();
-			self::create_theme_parts();
-			self::create_menus();
+		self::create_products();
+		self::create_theme_parts();
+		self::create_menus();
 
-			// Set homepage
-			$home = get_page_by_path( 'inicio' );
-			if ( $home ) {
-				update_option( 'show_on_front', 'page' );
-				update_option( 'page_on_front', $home->ID );
-			}
-
-			// Force Site Title
-			update_option( 'blogname', 'Skin Cupid' );
-			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
-
-			// Mark as seeded
-			update_option( 'sk_content_seeded', 'yes' );
-
-			// Add admin notice
-			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Contenido semilla creado exitosamente. Título del sitio actualizado a "Skin Cupid".</p></div>';
-			} );
+		// Force Homepage - Ensure we take over even if another theme set it
+		$home = get_page_by_path( 'inicio' );
+		if ( $home ) {
+			update_option( 'show_on_front', 'page' );
+			update_option( 'page_on_front', $home->ID );
 		}
+
+		// Force Site Title
+		update_option( 'blogname', 'Skin Cupid' );
+		update_option( 'blogdescription', 'Korean Skincare & Beauty' );
+
+		// Mark as seeded (v2)
+		update_option( 'sk_content_seeded_v2', 'yes' );
+		// Also mark v1 to be safe
+		update_option( 'sk_content_seeded', 'yes' );
+
+		// Add admin notice
+		add_action( 'admin_notices', function() {
+			echo '<div class="notice notice-success is-dismissible"><p>Contenido semilla creado exitosamente. Título del sitio actualizado a "Skin Cupid".</p></div>';
+		} );
 	}
 
 	private static function create_pages() {

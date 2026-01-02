@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Skincare Site Kit
  * Description: Modular functionality plugin for Skincare Theme (Refactored).
- * Version: 2.0.0
- * Author: Homad
+ * Version: 2.1.0
+ * Author: Skin Cupid Dev
  * Text Domain: skincare
  */
 

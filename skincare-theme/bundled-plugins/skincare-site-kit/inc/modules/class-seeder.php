@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 2; // Increment this to force re-seeding logic
+	const SEED_VERSION = 3; // Increment this to force re-seeding logic
 	const OPTION_NAME  = 'sk_content_seeded_version';
 
 	public static function init() {
@@ -30,6 +30,10 @@ class Seeder {
 		}
 
 		if ( $should_run ) {
+			// Force Site Title and Tagline immediately
+			update_option( 'blogname', 'Skin Cupid' );
+			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
+
 			self::create_pages();
 			self::create_categories();
 			self::create_products();
@@ -43,10 +47,6 @@ class Seeder {
 				update_option( 'page_on_front', $home->ID );
 			}
 
-			// Force Site Title
-			update_option( 'blogname', 'Skin Cupid' );
-			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
-
 			// Mark as seeded with new version
 			update_option( self::OPTION_NAME, self::SEED_VERSION );
 			// Keep legacy option for compatibility if needed, or update it too
@@ -54,7 +54,7 @@ class Seeder {
 
 			// Add admin notice
 			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . ').</p></div>';
+				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . '). Identidad del sitio actualizada.</p></div>';
 			} );
 		}
 	}
@@ -139,9 +139,61 @@ class Seeder {
 		}
 	}
 
+	private static function upload_placeholder_image() {
+		// Check if placeholder already exists in media library by title/name
+		// We use a specific title to find it easily
+		$image_title = 'SkinCupid Placeholder';
+		$image_name  = 'skin-cupid-placeholder.png';
+
+		global $wpdb;
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'attachment'", $image_title ) );
+
+		if ( ! empty( $attachment ) ) {
+			return $attachment[0];
+		}
+
+		// URL of the placeholder image
+		$image_url = 'https://placehold.co/600x600/F8F5F1/0F3062.png?text=Skin+Cupid';
+
+		// Download logic
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+		// Download the image to temp dir
+		$tmp = download_url( $image_url );
+
+		if ( is_wp_error( $tmp ) ) {
+			return false;
+		}
+
+		$file_array = [
+			'name'     => $image_name,
+			'tmp_name' => $tmp,
+		];
+
+		// Upload to media library
+		$id = media_handle_sideload( $file_array, 0 );
+
+		if ( is_wp_error( $id ) ) {
+			@unlink( $file_array['tmp_name'] );
+			return false;
+		}
+
+		// Update title so we can find it next time
+		wp_update_post( [
+			'ID'         => $id,
+			'post_title' => $image_title,
+		] );
+
+		return $id;
+	}
+
 	private static function create_products() {
-		$existing = get_posts( [ 'post_type' => 'product', 'posts_per_page' => 1 ] );
-		if ( ! empty( $existing ) ) return;
+		// We want to ensure demo products exist and have images.
+		// If they already exist, we will try to attach the image if missing.
+
+		$placeholder_id = self::upload_placeholder_image();
 
 		$demo_products = [
 			[ 'name' => 'COSRX Advanced Snail 96 Mucin Power Essence', 'price' => '21.00', 'cat' => 'Esencias' ],
@@ -155,12 +207,19 @@ class Seeder {
 		];
 
 		foreach ( $demo_products as $p ) {
-			$post_id = wp_insert_post( [
-				'post_type'   => 'product',
-				'post_title'  => $p['name'],
-				'post_content' => 'Descripción del producto ' . $p['name'] . '. Ideal para todo tipo de piel.',
-				'post_status' => 'publish',
-			] );
+			$post_id = 0;
+			$existing = get_page_by_title( $p['name'], OBJECT, 'product' );
+
+			if ( ! $existing ) {
+				$post_id = wp_insert_post( [
+					'post_type'    => 'product',
+					'post_title'   => $p['name'],
+					'post_content' => 'Descripción del producto ' . $p['name'] . '. Ideal para todo tipo de piel.',
+					'post_status'  => 'publish',
+				] );
+			} else {
+				$post_id = $existing->ID;
+			}
 
 			if ( $post_id ) {
 				update_post_meta( $post_id, '_price', $p['price'] );
@@ -172,9 +231,15 @@ class Seeder {
 				update_post_meta( $post_id, 'ingredients', 'Water, Snail Secretion Filtrate, Betaine...' );
 				update_post_meta( $post_id, 'how_to_use', 'After cleansing and toning, apply a small amount...' );
 
+				// Assign Category
 				$term = get_term_by( 'name', $p['cat'], 'product_cat' );
 				if ( $term ) {
 					wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
+				}
+
+				// Assign Image if missing and we have a placeholder
+				if ( $placeholder_id && ! has_post_thumbnail( $post_id ) ) {
+					set_post_thumbnail( $post_id, $placeholder_id );
 				}
 			}
 		}
@@ -200,7 +265,8 @@ class Seeder {
 			</div>
 		</div>';
 
-		$footer_content = '<div class="sk-footer-content"><p>© 2023 Skin Cupid Replica. All rights reserved.</p></div>';
+		// UPDATED: Footer content with Skin Cupid text
+		$footer_content = '<div class="sk-footer-content"><p>© ' . date('Y') . ' Skin Cupid. All rights reserved.</p></div>';
 
 		// Archive Content
 		$archive_content = '
@@ -236,7 +302,14 @@ class Seeder {
 			} else {
 				$settings[ $key ] = $existing->ID;
 				// Update content if empty for existing parts or if we suspect it's wrong (optional, keep safe for now)
-				if ( empty( $existing->post_content ) ) {
+				// Or if it contains old "Replica" text in footer
+				$current_content = $existing->post_content;
+				$should_update = false;
+
+				if ( empty( $current_content ) ) $should_update = true;
+				if ( $key === 'global_footer' && strpos($current_content, 'Replica') !== false ) $should_update = true;
+
+				if ( $should_update ) {
 					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
 				}
 			}

@@ -31,10 +31,20 @@ class Account_Dashboard extends Widget_Base {
 		// Get Address
 		$address = wc_get_account_formatted_address( 'billing' );
 
+		// Get Rewards Data
+		$points = get_user_meta( $current_user->ID, '_sk_rewards_points', true );
+		$points = $points ? intval( $points ) : 0;
+		$rewards_history = get_user_meta( $current_user->ID, '_sk_rewards_history', true );
+
 		?>
 		<div class="sk-account-dashboard">
 			<div class="sk-account-header">
-				<h2><?php printf( __( 'Hola, %s', 'skincare' ), esc_html( $current_user->display_name ) ); ?></h2>
+				<div class="sk-user-info">
+					<h2><?php printf( __( 'Hola, %s', 'skincare' ), esc_html( $current_user->display_name ) ); ?></h2>
+					<div class="sk-user-points-badge">
+						<?php echo esc_html( $points ); ?> <?php _e( 'Puntos', 'skincare' ); ?>
+					</div>
+				</div>
 				<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="sk-logout-link"><?php _e( 'Cerrar Sesión', 'skincare' ); ?></a>
 			</div>
 
@@ -42,6 +52,7 @@ class Account_Dashboard extends Widget_Base {
 				<div class="sk-account-tabs">
 					<button class="sk-tab-btn active" data-target="#tab-orders"><?php _e( 'Mis Pedidos', 'skincare' ); ?></button>
 					<button class="sk-tab-btn" data-target="#tab-address"><?php _e( 'Direcciones', 'skincare' ); ?></button>
+					<button class="sk-tab-btn" data-target="#tab-rewards"><?php _e( 'Mis Puntos', 'skincare' ); ?></button>
 				</div>
 
 				<div id="tab-orders" class="sk-tab-pane active">
@@ -77,14 +88,50 @@ class Account_Dashboard extends Widget_Base {
 					<address><?php echo $address ? wp_kses_post( $address ) : __( 'No has configurado una dirección.', 'skincare' ); ?></address>
 					<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', 'billing' ) ); ?>" class="btn sk-btn-small"><?php _e( 'Editar', 'skincare' ); ?></a>
 				</div>
+
+				<div id="tab-rewards" class="sk-tab-pane">
+					<div class="sk-rewards-overview" style="background: #F8F5F1; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+						<h4><?php _e( 'Balance de Puntos', 'skincare' ); ?></h4>
+						<h2 style="color: #E5757E; font-size: 36px; margin: 10px 0;"><?php echo esc_html( $points ); ?></h2>
+						<p><?php _e( 'Gana puntos con cada compra y canjéalos por descuentos exclusivos.', 'skincare' ); ?></p>
+						<a href="/rewards/" class="btn sk-btn"><?php _e( 'Ver Catálogo de Premios', 'skincare' ); ?></a>
+					</div>
+
+					<h4><?php _e( 'Historial de Puntos', 'skincare' ); ?></h4>
+					<?php if ( ! empty( $rewards_history ) ) : ?>
+						<table class="sk-orders-table">
+							<thead>
+								<tr>
+									<th><?php _e( 'Fecha', 'skincare' ); ?></th>
+									<th><?php _e( 'Detalle', 'skincare' ); ?></th>
+									<th><?php _e( 'Puntos', 'skincare' ); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ( array_reverse( $rewards_history ) as $entry ) : ?>
+									<tr>
+										<td><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $entry['date'] ) ) ); ?></td>
+										<td><?php echo esc_html( $entry['reason'] ); ?></td>
+										<td style="color: <?php echo $entry['points'] > 0 ? 'green' : 'red'; ?>;">
+											<?php echo $entry['points'] > 0 ? '+' . $entry['points'] : $entry['points']; ?>
+										</td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					<?php else : ?>
+						<p><?php _e( 'No hay historial de puntos aún.', 'skincare' ); ?></p>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
 
 		<style>
 			.sk-account-dashboard { max-width: 800px; margin: 0 auto; }
-			.sk-account-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+			.sk-account-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
+			.sk-user-points-badge { background: #E5757E; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-top: 5px; }
 			.sk-account-tabs { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-			.sk-tab-btn { background: none; border: none; padding: 10px 0; font-weight: bold; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; }
+			.sk-tab-btn { background: none; border: none; padding: 10px 0; font-weight: bold; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; font-size: 16px; }
 			.sk-tab-btn.active { color: #0F3062; border-color: #0F3062; }
 			.sk-tab-pane { display: none; }
 			.sk-tab-pane.active { display: block; animation: fadeIn 0.3s; }

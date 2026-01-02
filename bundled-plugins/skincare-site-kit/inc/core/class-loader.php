@@ -66,6 +66,8 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Brand_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Instagram_Feed() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Catalog() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Actions() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() );

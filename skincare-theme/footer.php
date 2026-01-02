@@ -26,6 +26,20 @@ if ( class_exists( '\Skincare\SiteKit\Modules\Theme_Builder' ) ) {
 	</footer>
 <?php else : ?>
 	<footer id="site-footer" class="site-footer" role="contentinfo">
+		<?php if ( has_nav_menu( 'footer' ) ) : ?>
+			<nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'skincare' ); ?>">
+				<?php
+				wp_nav_menu( [
+					'theme_location' => 'footer',
+					'menu_class'     => 'footer-menu',
+					'container'      => false,
+					'depth'          => 1,
+					'fallback_cb'    => false,
+				] );
+				?>
+			</nav>
+		<?php endif; ?>
+
 		<div class="site-info">
 			<?php printf( __( '© %d %s. All rights reserved.', 'skincare' ), date( 'Y' ), get_bloginfo( 'name' ) ); ?>
 		</div>

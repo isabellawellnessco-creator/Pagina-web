@@ -1,0 +1,9 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Skin Cupid Placeholder</title>
+  <desc id="desc">Producto de ejemplo para la vista rápida.</desc>
+  <rect width="600" height="600" fill="#F8F5F1"/>
+  <rect x="120" y="120" width="360" height="360" rx="24" fill="#FFFFFF" stroke="#E6E0DA" stroke-width="4"/>
+  <path d="M210 390L270 320L330 380L390 300L450 390H210Z" fill="#E6E0DA"/>
+  <circle cx="270" cy="250" r="26" fill="#E6E0DA"/>
+  <text x="300" y="470" fill="#0F3062" font-family="Arial, Helvetica, sans-serif" font-size="28" text-anchor="middle">Skin Cupid</text>
+</svg>

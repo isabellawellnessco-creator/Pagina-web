@@ -24,7 +24,7 @@ function skincare_enqueue_scripts() {
 	}
 
 	// JS
-	wp_enqueue_script( 'skincare-theme', get_stylesheet_directory_uri() . '/assets/js/theme.js', ['jquery'], $ver, true );
+	wp_enqueue_script( 'skincare-theme', get_stylesheet_directory_uri() . '/assets/js/theme.js', [], $ver, true );
 }
 add_action( 'wp_enqueue_scripts', 'skincare_enqueue_scripts' );
 
@@ -46,6 +46,32 @@ register_nav_menus( [
 	'mobile'  => __( 'Mobile Menu', 'skincare' ),
 	'footer'  => __( 'Footer Menu', 'skincare' ),
 ] );
+
+// Shortcodes
+function skincare_shortcode_button( $atts, $content = null ) {
+	$atts = shortcode_atts(
+		[
+			'url'   => '#',
+			'class' => 'sk-button',
+			'text'  => '',
+		],
+		$atts,
+		'sk_button'
+	);
+
+	$label = $content ? $content : $atts['text'];
+	if ( '' === $label ) {
+		return '';
+	}
+
+	return sprintf(
+		'<a class="%s" href="%s">%s</a>',
+		esc_attr( $atts['class'] ),
+		esc_url( $atts['url'] ),
+		esc_html( $label )
+	);
+}
+add_shortcode( 'sk_button', 'skincare_shortcode_button' );
 
 // Helper to check if Woo is active
 function skincare_is_woo() {

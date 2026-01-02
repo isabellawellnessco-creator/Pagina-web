@@ -42,8 +42,9 @@ class Loader {
 
 		// Localize Script for AJAX
 		wp_localize_script( 'sk-site-kit', 'sk_vars', [
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( 'sk_ajax_nonce' )
+			'ajax_url'          => admin_url( 'admin-ajax.php' ),
+			'nonce'             => wp_create_nonce( 'sk_ajax_nonce' ),
+			'placeholder_image' => SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
 		] );
 	}
 

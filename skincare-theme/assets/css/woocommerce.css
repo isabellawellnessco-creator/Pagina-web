@@ -214,14 +214,11 @@
 }
 
 /* Notices */
-.woocommerce .sk-woo-page .woocommerce-message,
-.woocommerce .sk-woo-page .woocommerce-info,
-.woocommerce .sk-woo-page .woocommerce-error,
-.woocommerce-page .sk-woo-page .woocommerce-message,
-.woocommerce-page .sk-woo-page .woocommerce-info,
-.woocommerce-page .sk-woo-page .woocommerce-error {
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
   border-top: 3px solid var(--c-accent);
-  background-color: var(--c-background-alt);
+  background-color: var(--c-background-subtle);
   color: var(--c-text-main);
   padding: var(--space-4);
   margin-bottom: var(--space-6);
@@ -229,18 +226,12 @@
 }
 
 /* Buttons in Woo */
-.woocommerce .sk-woo-page button.button,
-.woocommerce .sk-woo-page button.button.alt,
-.woocommerce-page .sk-woo-page button.button,
-.woocommerce-page .sk-woo-page button.button.alt {
+.woocommerce button.button.alt {
   background-color: var(--c-accent);
   color: var(--c-text-inverse);
   border-radius: var(--radius-full);
 }
 
-.woocommerce .sk-woo-page button.button:hover,
-.woocommerce .sk-woo-page button.button.alt:hover,
-.woocommerce-page .sk-woo-page button.button:hover,
-.woocommerce-page .sk-woo-page button.button.alt:hover {
+.woocommerce button.button.alt:hover {
   background-color: var(--c-accent-hover);
 }

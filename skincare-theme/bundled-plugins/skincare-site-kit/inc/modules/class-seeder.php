@@ -143,7 +143,7 @@ class Seeder {
 		// Check if placeholder already exists in media library by title/name
 		// We use a specific title to find it easily
 		$image_title = 'SkinCupid Placeholder';
-		$image_name  = 'skin-cupid-placeholder.png';
+		$image_name  = 'skin-cupid-placeholder.svg';
 
 		global $wpdb;
 		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'attachment'", $image_title ) );
@@ -153,7 +153,7 @@ class Seeder {
 		}
 
 		// URL of the placeholder image
-		$image_url = 'https://placehold.co/600x600/F8F5F1/0F3062.png?text=Skin+Cupid';
+		$image_url = SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg';
 
 		// Download logic
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );

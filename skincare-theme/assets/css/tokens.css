@@ -11,6 +11,7 @@
   --c-background-main: #FFFFFF;
   --c-background-alt: #F8F5F1; /* Light Beige - Sections background */
   --c-background-subtle: #F3F3F3; /* Very Light Grey - Inputs/Cards */
+  --c-white: #FFFFFF;
 
   --c-text-secondary: #303030; /* Dark Grey - Secondary text */
   --c-text-light: #616161;     /* Medium Grey - Meta text */
@@ -68,6 +69,9 @@
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-card: 0 4px 12px rgba(15, 48, 98, 0.08); /* Colored shadow using brand blue */
+
+  /* Transitions */
+  --transition-base: 0.2s ease;
 
   /* Layout */
   --container-width: 1440px; /* Wide layout */

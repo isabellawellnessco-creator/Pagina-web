@@ -2,7 +2,7 @@
 /**
  * Theme Functions
  *
- * @package SkincareThemeChild
+ * @package SkincareTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

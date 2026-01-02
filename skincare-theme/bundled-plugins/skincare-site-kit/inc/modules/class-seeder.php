@@ -7,12 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 4; // Increment this to force re-seeding logic (Aggressive Mode)
+	const SEED_VERSION = 5; // Increment to force aggressive update on Frontend load
 	const OPTION_NAME  = 'sk_content_seeded_version';
 
 	public static function init() {
-		// Hook into admin init to run seeder if triggered
-		add_action( 'admin_init', [ __CLASS__, 'run_seeder' ] );
+		// UPDATED: Hook into 'init' instead of 'admin_init' to ensure it runs even if user only visits frontend.
+		add_action( 'init', [ __CLASS__, 'run_seeder' ] );
 	}
 
 	public static function run_seeder() {
@@ -24,16 +24,23 @@ class Seeder {
 		}
 
 		// Auto trigger based on version
+		// UPDATED: Removed current_user_can('manage_options') check for the version update.
+		// This ensures that if the code is deployed, the update happens on the first visit by ANYONE (admin or guest),
+		// fixing the "broken site" state immediately without waiting for an admin login.
 		$current_version = (int) get_option( self::OPTION_NAME, 0 );
-		if ( $current_version < self::SEED_VERSION && current_user_can( 'manage_options' ) ) {
+		if ( $current_version < self::SEED_VERSION ) {
 			$should_run = true;
 		}
 
 		if ( $should_run ) {
-			// Force Site Title and Tagline immediately
+			// 1. Force Site Identity
 			update_option( 'blogname', 'Skin Cupid' );
 			update_option( 'blogdescription', 'Korean Skincare & Beauty' );
 
+			// 2. Remove Custom Logo (often contains legacy Homad image)
+			remove_theme_mod( 'custom_logo' );
+
+			// 3. Rebuild Content
 			self::create_pages();
 			self::create_categories();
 			self::create_products();
@@ -49,20 +56,15 @@ class Seeder {
 
 			// Mark as seeded with new version
 			update_option( self::OPTION_NAME, self::SEED_VERSION );
-			// Keep legacy option for compatibility if needed, or update it too
+			// Keep legacy option for compatibility
 			update_option( 'sk_content_seeded', 'yes' );
-
-			// Add admin notice
-			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . '). Menús y Plantillas restablecidos.</p></div>';
-			} );
 		}
 	}
 
 	private static function create_pages() {
 		$pages = [
 			'Inicio' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
-			'Tienda' => '', // Managed by Archive Template
+			'Tienda' => '',
 			'Sobre Nosotros' => '<h2>Sobre Skin Cupid</h2><p>Tu destino para K-Beauty.</p>',
 			'Contacto' => '[sk_contact_section]',
 			'Ayuda / FAQs' => '[sk_faq_accordion]',
@@ -83,7 +85,6 @@ class Seeder {
 			$existing_page = get_page_by_path( $slug );
 
 			if ( ! $existing_page ) {
-				// Create new
 				wp_insert_post( [
 					'post_type'    => 'page',
 					'post_title'   => $title,
@@ -92,16 +93,12 @@ class Seeder {
 					'post_status'  => 'publish',
 				] );
 			} else {
-				// Bulletproof Check:
 				$current_content = $existing_page->post_content;
 				$needs_update = false;
 
-				// Check for Legacy Homad artifacts
 				if ( stripos( $current_content, 'homad' ) !== false ) {
 					$needs_update = true;
 				}
-
-				// Check for specific mismatch on critical pages
 				if ( $title === 'Inicio' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
 					$needs_update = true;
 				}
@@ -293,7 +290,6 @@ class Seeder {
 		$footer = 'Footer Menu';
 
 		// AGGRESSIVE MENU CLEANUP
-		// If menu exists, delete all its items first to remove legacy links
 		$existing_primary = wp_get_nav_menu_object( $primary );
 		if ( $existing_primary ) {
 			$items = wp_get_nav_menu_items( $existing_primary->term_id );
@@ -304,18 +300,15 @@ class Seeder {
 			}
 		}
 
-		// Ensure menus exist
 		$primary_id = wp_create_nav_menu( $primary );
 		$footer_id = wp_create_nav_menu( $footer );
 
-		// Set locations
 		$locations = get_theme_mod( 'nav_menu_locations' );
 		$locations['primary'] = $primary_id;
 		$locations['footer'] = $footer_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
 
 		if ( ! is_wp_error( $primary_id ) ) {
-			// Populate Primary Menu
 			wp_update_nav_menu_item( $primary_id, 0, [
 				'menu-item-title' => 'Inicio',
 				'menu-item-url' => home_url( '/' ),

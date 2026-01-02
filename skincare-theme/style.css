@@ -4,11 +4,17 @@ Theme URI: https://skincupid.co.uk/
 Description: Standalone theme for Skincare project using Elementor + WooCommerce. Based on Skin Cupid design.
 Author: Skin Cupid Dev
 Author URI: https://skincupid.co.uk/
-Version: 1.0.1
+Version: 1.0.2
 Text Domain: skincare
 */
 
 /*
-  Tokens & Base CSS are loaded via wp_enqueue_scripts in functions.php
-  to ensure correct loading order before this file.
+  Tokens & Base CSS are loaded via wp_enqueue_scripts in functions.php.
+  This file serves as a final override and fallback.
 */
+
+body {
+    min-height: 100vh;
+    background-color: #F8F5F1; /* Fallback beige color */
+    color: #0F3062; /* Fallback text color */
+}

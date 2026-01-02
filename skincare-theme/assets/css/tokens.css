@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
 :root {
   /*
    * SKIN CUPID DESIGN SYSTEM (SCDS)
@@ -20,20 +22,16 @@
   --c-star: #EAE594;         /* Yellow/Gold - Reviews */
 
   /* Typography */
-  /* Note: Haffer and Quincy are used in the reference, but might be premium.
-     Using close Google Font alternatives if files aren't provided.
-     Haffer (Sans) -> Plus Jakarta Sans or DM Sans
-     Quincy (Serif) -> Fraunces or DM Serif Display
-     For now, we stick to safe defaults or what's enqueued. */
-  --font-heading: 'Haffer', 'DM Sans', sans-serif;
-  --font-body: 'Haffer', 'DM Sans', sans-serif;
+  /* Using DM Sans as the robust fallback for Haffer */
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 
   /* Font Weights */
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
 
-  /* Typography Scale (Approximate from visual inspection) */
+  /* Typography Scale */
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 16px;
@@ -110,7 +108,7 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: var(--text-sm);
-  border-radius: var(--radius-full); /* Fully rounded buttons */
+  border-radius: var(--radius-full);
   border: 1px solid var(--c-accent);
   cursor: pointer;
   transition: all 0.3s ease;

@@ -17,17 +17,25 @@ if ( class_exists( '\Skincare\SiteKit\Modules\Theme_Builder' ) ) {
 	$custom_footer_id = \Skincare\SiteKit\Modules\Theme_Builder::get_location_id( 'global_footer' );
 }
 
+$footer_html = '';
+if ( $custom_footer_id ) {
+	ob_start();
+	\Skincare\SiteKit\Modules\Theme_Builder::render_elementor_content( $custom_footer_id );
+	$footer_html = ob_get_clean();
+}
+
 ?>
 </div><!-- #content -->
 
-<?php if ( $custom_footer_id ) : ?>
+<?php if ( ! empty( trim( $footer_html ) ) ) : ?>
 	<footer id="site-footer" class="sk-theme-footer">
-		<?php \Skincare\SiteKit\Modules\Theme_Builder::render_elementor_content( $custom_footer_id ); ?>
+		<?php echo $footer_html; ?>
 	</footer>
 <?php else : ?>
-	<footer id="site-footer" class="site-footer" role="contentinfo">
+	<!-- FALLBACK / SAFE MODE FOOTER -->
+	<footer id="site-footer" class="site-footer sk-fallback-footer" role="contentinfo" style="background: #F8F5F1; padding: 40px 0; margin-top: 40px; text-align: center;">
 		<div class="site-info">
-			<?php printf( __( '© %d %s. All rights reserved.', 'skincare' ), date( 'Y' ), get_bloginfo( 'name' ) ); ?>
+			<p style="color: #0F3062; margin: 0;">&copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.</p>
 		</div>
 	</footer>
 <?php endif; ?>

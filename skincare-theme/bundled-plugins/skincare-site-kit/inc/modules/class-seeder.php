@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 3; // Increment this to force re-seeding logic
+	const SEED_VERSION = 4; // Increment this to force re-seeding logic (Aggressive Mode)
 	const OPTION_NAME  = 'sk_content_seeded_version';
 
 	public static function init() {
@@ -38,7 +38,7 @@ class Seeder {
 			self::create_categories();
 			self::create_products();
 			self::create_theme_parts();
-			self::create_menus();
+			self::create_menus(); // Aggressive rebuild
 
 			// Set homepage
 			$home = get_page_by_path( 'inicio' );
@@ -54,7 +54,7 @@ class Seeder {
 
 			// Add admin notice
 			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . '). Identidad del sitio actualizada.</p></div>';
+				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . '). Menús y Plantillas restablecidos.</p></div>';
 			} );
 		}
 	}
@@ -93,9 +93,6 @@ class Seeder {
 				] );
 			} else {
 				// Bulletproof Check:
-				// If the page exists, check if it contains legacy "Homad" content or is missing critical Skincare shortcodes.
-				// This ensures we fix the "broken install" state seen by the user.
-
 				$current_content = $existing_page->post_content;
 				$needs_update = false;
 
@@ -105,12 +102,9 @@ class Seeder {
 				}
 
 				// Check for specific mismatch on critical pages
-				// e.g., if "Inicio" doesn't have the hero slider, it's likely wrong.
 				if ( $title === 'Inicio' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
 					$needs_update = true;
 				}
-
-				// If "Rewards" page lacks the castle, update it.
 				if ( $title === 'Rewards' && strpos( $current_content, 'sk_rewards_castle' ) === false ) {
 					$needs_update = true;
 				}
@@ -140,8 +134,6 @@ class Seeder {
 	}
 
 	private static function upload_placeholder_image() {
-		// Check if placeholder already exists in media library by title/name
-		// We use a specific title to find it easily
 		$image_title = 'SkinCupid Placeholder';
 		$image_name  = 'skin-cupid-placeholder.png';
 
@@ -152,15 +144,12 @@ class Seeder {
 			return $attachment[0];
 		}
 
-		// URL of the placeholder image
 		$image_url = 'https://placehold.co/600x600/F8F5F1/0F3062.png?text=Skin+Cupid';
 
-		// Download logic
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		require_once( ABSPATH . 'wp-admin/includes/file.php' );
 		require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
-		// Download the image to temp dir
 		$tmp = download_url( $image_url );
 
 		if ( is_wp_error( $tmp ) ) {
@@ -172,7 +161,6 @@ class Seeder {
 			'tmp_name' => $tmp,
 		];
 
-		// Upload to media library
 		$id = media_handle_sideload( $file_array, 0 );
 
 		if ( is_wp_error( $id ) ) {
@@ -180,7 +168,6 @@ class Seeder {
 			return false;
 		}
 
-		// Update title so we can find it next time
 		wp_update_post( [
 			'ID'         => $id,
 			'post_title' => $image_title,
@@ -190,9 +177,6 @@ class Seeder {
 	}
 
 	private static function create_products() {
-		// We want to ensure demo products exist and have images.
-		// If they already exist, we will try to attach the image if missing.
-
 		$placeholder_id = self::upload_placeholder_image();
 
 		$demo_products = [
@@ -227,17 +211,14 @@ class Seeder {
 				update_post_meta( $post_id, '_visibility', 'visible' );
 				update_post_meta( $post_id, '_stock_status', 'instock' );
 
-				// Add attributes for Product Tabs
 				update_post_meta( $post_id, 'ingredients', 'Water, Snail Secretion Filtrate, Betaine...' );
 				update_post_meta( $post_id, 'how_to_use', 'After cleansing and toning, apply a small amount...' );
 
-				// Assign Category
 				$term = get_term_by( 'name', $p['cat'], 'product_cat' );
 				if ( $term ) {
 					wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
 				}
 
-				// Assign Image if missing and we have a placeholder
 				if ( $placeholder_id && ! has_post_thumbnail( $post_id ) ) {
 					set_post_thumbnail( $post_id, $placeholder_id );
 				}
@@ -246,6 +227,8 @@ class Seeder {
 	}
 
 	private static function create_theme_parts() {
+		// AGGRESSIVE RESET: Force overwrite content to fix visual issues
+
 		$parts = [
 			'Header Principal' => 'global_header',
 			'Footer Principal' => 'global_footer',
@@ -253,7 +236,6 @@ class Seeder {
 			'Archivo de Tienda (Catálogo)' => 'shop_archive'
 		];
 
-		// Header Content
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
@@ -265,10 +247,8 @@ class Seeder {
 			</div>
 		</div>';
 
-		// UPDATED: Footer content with Skin Cupid text
 		$footer_content = '<div class="sk-footer-content"><p>© ' . date('Y') . ' Skin Cupid. All rights reserved.</p></div>';
 
-		// Archive Content
 		$archive_content = '
 		<div class="sk-archive-layout" style="display:flex; gap:30px;">
 			<aside class="sk-sidebar" style="width:250px;">
@@ -297,21 +277,11 @@ class Seeder {
 					'post_content' => $content,
 					'post_status' => 'publish',
 				] );
-
 				$settings[ $key ] = $post_id;
 			} else {
 				$settings[ $key ] = $existing->ID;
-				// Update content if empty for existing parts or if we suspect it's wrong (optional, keep safe for now)
-				// Or if it contains old "Replica" text in footer
-				$current_content = $existing->post_content;
-				$should_update = false;
-
-				if ( empty( $current_content ) ) $should_update = true;
-				if ( $key === 'global_footer' && strpos($current_content, 'Replica') !== false ) $should_update = true;
-
-				if ( $should_update ) {
-					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
-				}
+				// FORCE OVERWRITE to fix broken templates
+				wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
 			}
 		}
 
@@ -322,50 +292,56 @@ class Seeder {
 		$primary = 'Primary Menu';
 		$footer = 'Footer Menu';
 
+		// AGGRESSIVE MENU CLEANUP
+		// If menu exists, delete all its items first to remove legacy links
+		$existing_primary = wp_get_nav_menu_object( $primary );
+		if ( $existing_primary ) {
+			$items = wp_get_nav_menu_items( $existing_primary->term_id );
+			if ( ! empty( $items ) && is_array( $items ) ) {
+				foreach ( $items as $item ) {
+					wp_delete_post( $item->ID, true );
+				}
+			}
+		}
+
+		// Ensure menus exist
 		$primary_id = wp_create_nav_menu( $primary );
 		$footer_id = wp_create_nav_menu( $footer );
 
+		// Set locations
 		$locations = get_theme_mod( 'nav_menu_locations' );
 		$locations['primary'] = $primary_id;
 		$locations['footer'] = $footer_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
 
 		if ( ! is_wp_error( $primary_id ) ) {
-			// Check if menu is empty before adding items, or clearing it?
-			// For now, assume if we created it or it exists, we ensure items.
-			// WordPress doesn't easily let us check "is empty" without fetching items.
-			// We'll proceed with upserting logic if needed, but for simplicity:
+			// Populate Primary Menu
+			wp_update_nav_menu_item( $primary_id, 0, [
+				'menu-item-title' => 'Inicio',
+				'menu-item-url' => home_url( '/' ),
+				'menu-item-status' => 'publish'
+			] );
 
-			// Only add if no items exist to avoid duplicates on re-run
-			$items = wp_get_nav_menu_items( $primary_id );
-			if ( empty( $items ) ) {
+			$shop = get_page_by_path( 'tienda' );
+			if ( $shop ) {
 				wp_update_nav_menu_item( $primary_id, 0, [
-					'menu-item-title' => 'Inicio',
-					'menu-item-url' => home_url( '/' ),
+					'menu-item-title' => 'Tienda',
+					'menu-item-object-id' => $shop->ID,
+					'menu-item-object' => 'page',
+					'menu-item-type' => 'post_type',
 					'menu-item-status' => 'publish'
 				] );
+			}
 
-				$shop = get_page_by_path( 'tienda' );
-				if ( $shop ) {
-					wp_update_nav_menu_item( $primary_id, 0, [
-						'menu-item-title' => 'Tienda',
-						'menu-item-object-id' => $shop->ID,
-						'menu-item-object' => 'page',
-						'menu-item-type' => 'post_type',
-						'menu-item-status' => 'publish'
-					] );
-				}
-
-				$rewards = get_page_by_path( 'rewards' );
-				if ( $rewards ) {
-					wp_update_nav_menu_item( $primary_id, 0, [
-						'menu-item-title' => 'Rewards',
-						'menu-item-object-id' => $rewards->ID,
-						'menu-item-object' => 'page',
-						'menu-item-type' => 'post_type',
-						'menu-item-status' => 'publish'
-					] );
-				}
+			$rewards = get_page_by_path( 'rewards' );
+			if ( $rewards ) {
+				wp_update_nav_menu_item( $primary_id, 0, [
+					'menu-item-title' => 'Rewards',
+					'menu-item-object-id' => $rewards->ID,
+					'menu-item-object' => 'page',
+					'menu-item-type' => 'post_type',
+					'menu-item-status' => 'publish'
+				] );
 			}
 		}
 	}

@@ -125,7 +125,9 @@ jQuery(document).ready(function($) {
 
         // Simulate AJAX fetch
         setTimeout(function() {
-            $('.sk-qv-content').html('<div class="qv-inner"><img src="https://via.placeholder.com/300"><div><h3>Product Title</h3><span class="price">£25.00</span><button class="btn">Add to Cart</button></div><button class="close">&times;</button></div>');
+            var placeholderImage = sk_vars && sk_vars.placeholder_image ? sk_vars.placeholder_image : '';
+            var imageMarkup = placeholderImage ? '<img src="' + placeholderImage + '" alt="Producto">' : '';
+            $('.sk-qv-content').html('<div class="qv-inner">' + imageMarkup + '<div><h3>Product Title</h3><span class="price">£25.00</span><button class="btn">Add to Cart</button></div><button class="close">&times;</button></div>');
         }, 500);
     });
 

@@ -1,5 +1,9 @@
 /* Buttons */
-.btn {
+.btn,
+button,
+input[type="submit"],
+input[type="button"],
+.elementor-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -9,6 +13,8 @@
   text-transform: uppercase;
   font-size: var(--text-sm);
   letter-spacing: 0.05em;
+  background-color: var(--c-accent);
+  color: var(--c-text-inverse);
   cursor: pointer;
   transition: all var(--transition-base);
   border: 1px solid var(--c-accent);
@@ -105,7 +111,7 @@
 
 /* Elementor Widget Overrides for Consistency */
 .elementor-widget-heading .elementor-heading-title {
-  font-family: var(--font-family-heading);
+  font-family: var(--font-heading);
 }
 
 .elementor-button {

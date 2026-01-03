@@ -12,46 +12,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Contáctanos',
-		'subtitle' => 'Contact',
-		'text' => 'Estamos listos para ayudarte con pedidos, productos y recomendaciones.',
-		'cta' => [
-			'label' => 'Abrir chat',
-			'url' => '/contact/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
+	$faqs_url = skincare_get_page_url( 'faqs' );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Canales de soporte',
-		'intro' => 'Información inspirada en nuestro formulario de contacto.',
-		'cards' => [
-			[
-				'title' => 'Email',
-				'text' => 'help@skincupid.co.uk',
-				'link_label' => 'Escribir',
-				'link_url' => 'mailto:help@skincupid.co.uk',
-			],
-			[
-				'title' => 'Pedidos',
-				'text' => 'Seguimiento, cambios y devoluciones.',
-				'link_label' => 'Ver pedidos',
-				'link_url' => '/account/',
-			],
-			[
-				'title' => 'FAQs',
-				'text' => 'Respuestas rápidas a dudas frecuentes.',
-				'link_label' => 'Ir a FAQs',
-				'link_url' => '/faqs/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} else {
+						echo do_shortcode( '[sk_contact_section]' );
+						?>
+						<div class="sk-contact-details sk-section">
+							<div>
+								<h2><?php esc_html_e( 'Información', 'skincare' ); ?></h2>
+								<p><strong><?php esc_html_e( 'Email:', 'skincare' ); ?></strong> hello@skincupid.co.uk</p>
+								<p><strong><?php esc_html_e( 'Horario:', 'skincare' ); ?></strong> Lunes - Viernes, 9am - 5pm</p>
+							</div>
+							<div>
+								<h2><?php esc_html_e( '¿Tienes preguntas?', 'skincare' ); ?></h2>
+								<p><?php esc_html_e( 'Revisa nuestra sección de preguntas frecuentes antes de contactarnos.', 'skincare' ); ?></p>
+								<a class="btn" href="<?php echo esc_url( $faqs_url ); ?>">
+									<?php esc_html_e( 'Ver FAQs', 'skincare' ); ?>
+								</a>
+							</div>
+						</div>
+						<?php
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

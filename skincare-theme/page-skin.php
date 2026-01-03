@@ -1,6 +1,6 @@
 <?php
 /**
- * Skin template.
+ * Press template.
  *
  * @package SkincareThemeChild
  */
@@ -12,46 +12,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Skin Cupid en prensa',
-		'subtitle' => 'Press',
-		'text' => 'Explora nuestras menciones, reseñas y editoriales destacadas.',
-		'cta' => [
-			'label' => 'Ver artículos',
-			'url' => '/blogs/press/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Destacados en medios',
-		'intro' => 'Contenido clave inspirado en nuestros artículos y colaboraciones.',
-		'cards' => [
-			[
-				'title' => 'K-Beauty en 2026',
-				'text' => 'Tendencias y lanzamientos que están dando que hablar.',
-				'link_label' => 'Leer más',
-				'link_url' => '/blogs/press/',
-			],
-			[
-				'title' => 'Ingredientes hero',
-				'text' => 'Activos coreanos explicados por expertos en skincare.',
-				'link_label' => 'Descubrir',
-				'link_url' => '/blogs/press/',
-			],
-			[
-				'title' => 'Rutinas de culto',
-				'text' => 'Cómo las editoriales recomiendan cuidar tu piel.',
-				'link_label' => 'Explorar',
-				'link_url' => '/blogs/press/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php if ( $content ) : ?>
+						<?php the_content(); ?>
+					<?php endif; ?>
+					<?php
+					get_template_part( 'template-parts/sections/post-grid', null, [
+						'title' => __( 'Skin Cupid Press Features', 'skincare' ),
+						'description' => __( 'Noticias, editoriales y menciones destacadas.', 'skincare' ),
+						'category' => 'press',
+						'limit' => 6,
+					] );
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

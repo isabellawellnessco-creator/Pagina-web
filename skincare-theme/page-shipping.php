@@ -12,46 +12,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Envíos y devoluciones',
-		'subtitle' => 'Shipping',
-		'text' => 'Detalles de entrega, costos y política de devoluciones.',
-		'cta' => [
-			'label' => 'Contactar soporte',
-			'url' => '/contact/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Opciones de envío',
-		'intro' => 'Basado en nuestra tabla de servicios.',
-		'cards' => [
-			[
-				'title' => 'Estándar',
-				'text' => 'Entrega en 2-4 días laborables.',
-				'link_label' => 'Ver detalles',
-				'link_url' => '/shipping/',
-			],
-			[
-				'title' => 'Express',
-				'text' => 'Entrega en 1-2 días laborables.',
-				'link_label' => 'Ver detalles',
-				'link_url' => '/shipping/',
-			],
-			[
-				'title' => 'Internacional',
-				'text' => 'Entrega en 5-10 días laborables.',
-				'link_label' => 'Ver detalles',
-				'link_url' => '/shipping/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} else {
+						echo do_shortcode( '[sk_shipping_table]' );
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

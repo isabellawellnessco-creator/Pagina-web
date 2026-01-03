@@ -41,7 +41,7 @@ class Seeder {
 			self::create_menus();
 
 			// Set homepage
-			$home = get_page_by_path( 'inicio' );
+			$home = get_page_by_path( 'home' );
 			if ( $home ) {
 				update_option( 'show_on_front', 'page' );
 				update_option( 'page_on_front', $home->ID );
@@ -61,66 +61,190 @@ class Seeder {
 
 	private static function create_pages() {
 		$pages = [
-			'Inicio' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
-			'Tienda' => '', // Managed by Archive Template
-			'Sobre Nosotros' => '<h2>Sobre Skin Cupid</h2><p>Tu destino para K-Beauty.</p>',
-			'Contacto' => '[sk_contact_section]',
-			'Ayuda / FAQs' => '[sk_faq_accordion]',
-			'Envíos' => '[sk_shipping_table]',
-			'Política de Privacidad' => '<h2>Política de Privacidad</h2><p>Lorem ipsum...</p>',
-			'Términos y Condiciones' => '<h2>Términos</h2><p>Lorem ipsum...</p>',
-			'Wishlist' => '[sk_wishlist_grid]',
-			'Rewards' => '[sk_rewards_castle][sk_rewards_earn_redeem][sk_rewards_dashboard]',
-			'Mi Cuenta' => '[sk_account_dashboard]',
-			'Localizador de Tiendas' => '[sk_store_locator]',
-			'Skincare' => '',
-			'Maquillaje' => '',
-			'Korean Skincare' => ''
+			[
+				'title' => 'Home',
+				'slug' => 'home',
+				'content' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
+				'template' => 'template-landing.php',
+			],
+			[
+				'title' => 'Shop',
+				'slug' => 'shop',
+				'content' => '',
+			],
+			[
+				'title' => 'About Us',
+				'slug' => 'about-us',
+				'content' => '<h2>About Skin Cupid</h2><p>Your destination for K-Beauty.</p>',
+			],
+			[
+				'title' => 'Contact',
+				'slug' => 'contact',
+				'content' => '[sk_contact_section]',
+				'template' => 'page-contact.php',
+			],
+			[
+				'title' => 'Help & FAQs',
+				'slug' => 'faqs',
+				'content' => '[sk_faq_accordion]',
+				'template' => 'page-faqs.php',
+			],
+			[
+				'title' => 'Shipping & Returns',
+				'slug' => 'shipping-returns',
+				'content' => '[sk_shipping_table]',
+				'template' => 'page-shipping.php',
+			],
+			[
+				'title' => 'Privacy Policy',
+				'slug' => 'privacy-policy',
+				'content' => '<h2>Privacy Policy</h2><p>Lorem ipsum...</p>',
+				'template' => 'page-privacy.php',
+			],
+			[
+				'title' => 'Terms & Conditions',
+				'slug' => 'terms-and-conditions',
+				'content' => '<h2>Terms</h2><p>Lorem ipsum...</p>',
+				'template' => 'page-terms.php',
+			],
+			[
+				'title' => 'Wishlist',
+				'slug' => 'wishlist',
+				'content' => '[sk_wishlist_grid]',
+				'template' => 'page-wishlist.php',
+			],
+			[
+				'title' => 'Rewards',
+				'slug' => 'rewards',
+				'content' => '[sk_rewards_castle][sk_rewards_earn_redeem][sk_rewards_dashboard]',
+				'template' => 'page-rewards.php',
+			],
+			[
+				'title' => 'My Account',
+				'slug' => 'account',
+				'content' => '[woocommerce_my_account]',
+				'template' => 'page-account.php',
+			],
+			[
+				'title' => 'Login',
+				'slug' => 'login',
+				'content' => '[woocommerce_my_account]',
+				'template' => 'page-login.php',
+				'parent' => 'account',
+			],
+			[
+				'title' => 'Store Locator',
+				'slug' => 'store-locator',
+				'content' => '[sk_store_locator]',
+				'template' => 'page-store-locator.php',
+			],
+			[
+				'title' => 'Learn',
+				'slug' => 'learn',
+				'content' => '',
+				'template' => 'page-learn.php',
+			],
+			[
+				'title' => 'Makeup',
+				'slug' => 'makeup',
+				'content' => '',
+				'template' => 'page-makeup.php',
+			],
+			[
+				'title' => 'Korean Skincare',
+				'slug' => 'korean-skincare',
+				'content' => '',
+				'template' => 'page-korean.php',
+			],
+			[
+				'title' => 'Vegan',
+				'slug' => 'vegan',
+				'content' => '',
+				'template' => 'page-vegan.php',
+			],
+			[
+				'title' => 'Careers',
+				'slug' => 'careers',
+				'content' => '',
+				'template' => 'page-care.php',
+			],
+			[
+				'title' => 'Press',
+				'slug' => 'press',
+				'content' => '',
+				'template' => 'page-skin.php',
+			],
 		];
 
-		foreach ( $pages as $title => $content ) {
-			$slug = sanitize_title( $title );
+		$page_ids = [];
+
+		foreach ( $pages as $page ) {
+			$slug = $page['slug'];
 			$existing_page = get_page_by_path( $slug );
 
 			if ( ! $existing_page ) {
-				// Create new
-				wp_insert_post( [
+				$existing_page = get_page_by_title( $page['title'] );
+			}
+
+			if ( ! $existing_page ) {
+				$page_id = wp_insert_post( [
 					'post_type'    => 'page',
-					'post_title'   => $title,
+					'post_title'   => $page['title'],
 					'post_name'    => $slug,
-					'post_content' => $content,
+					'post_content' => $page['content'],
 					'post_status'  => 'publish',
 				] );
 			} else {
-				// Bulletproof Check:
-				// If the page exists, check if it contains legacy "Homad" content or is missing critical Skincare shortcodes.
-				// This ensures we fix the "broken install" state seen by the user.
-
 				$current_content = $existing_page->post_content;
 				$needs_update = false;
 
-				// Check for Legacy Homad artifacts
 				if ( stripos( $current_content, 'homad' ) !== false ) {
 					$needs_update = true;
 				}
 
-				// Check for specific mismatch on critical pages
-				// e.g., if "Inicio" doesn't have the hero slider, it's likely wrong.
-				if ( $title === 'Inicio' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
+				if ( $slug === 'home' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
 					$needs_update = true;
 				}
 
-				// If "Rewards" page lacks the castle, update it.
-				if ( $title === 'Rewards' && strpos( $current_content, 'sk_rewards_castle' ) === false ) {
+				if ( $slug === 'rewards' && strpos( $current_content, 'sk_rewards_castle' ) === false ) {
 					$needs_update = true;
 				}
 
-				if ( $needs_update ) {
+				$page_id = $existing_page->ID;
+				$should_sync_meta = $existing_page->post_name !== $slug || $existing_page->post_title !== $page['title'];
+
+				if ( $needs_update || $should_sync_meta ) {
 					wp_update_post( [
-						'ID'           => $existing_page->ID,
-						'post_content' => $content,
+						'ID'           => $page_id,
+						'post_content' => $page['content'],
+						'post_name'    => $slug,
+						'post_title'   => $page['title'],
 					] );
 				}
+			}
+
+			if ( ! empty( $page['template'] ) && ! is_wp_error( $page_id ) ) {
+				update_post_meta( $page_id, '_wp_page_template', $page['template'] );
+			}
+
+			if ( ! is_wp_error( $page_id ) ) {
+				$page_ids[ $slug ] = $page_id;
+			}
+		}
+
+		foreach ( $pages as $page ) {
+			if ( empty( $page['parent'] ) ) {
+				continue;
+			}
+
+			$child_id  = $page_ids[ $page['slug'] ] ?? 0;
+			$parent_id = $page_ids[ $page['parent'] ] ?? 0;
+
+			if ( $child_id && $parent_id ) {
+				wp_update_post( [
+					'ID'          => $child_id,
+					'post_parent' => $parent_id,
+				] );
 			}
 		}
 	}
@@ -340,15 +464,15 @@ class Seeder {
 			$items = wp_get_nav_menu_items( $primary_id );
 			if ( empty( $items ) ) {
 				wp_update_nav_menu_item( $primary_id, 0, [
-					'menu-item-title' => 'Inicio',
+					'menu-item-title' => 'Home',
 					'menu-item-url' => home_url( '/' ),
 					'menu-item-status' => 'publish'
 				] );
 
-				$shop = get_page_by_path( 'tienda' );
+				$shop = get_page_by_path( 'shop' );
 				if ( $shop ) {
 					wp_update_nav_menu_item( $primary_id, 0, [
-						'menu-item-title' => 'Tienda',
+						'menu-item-title' => 'Shop',
 						'menu-item-object-id' => $shop->ID,
 						'menu-item-object' => 'page',
 						'menu-item-type' => 'post_type',

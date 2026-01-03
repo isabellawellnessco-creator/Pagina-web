@@ -1,6 +1,6 @@
 <?php
 /**
- * Store Locator template.
+ * Store locator template.
  *
  * @package SkincareThemeChild
  */
@@ -12,46 +12,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Store Locator',
-		'subtitle' => 'Locations',
-		'text' => 'Encuentra nuestras tiendas y puntos de retiro.',
-		'cta' => [
-			'label' => 'Ver mapa',
-			'url' => '/store-locator/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Tiendas destacadas',
-		'intro' => 'Basado en nuestra sección de ubicaciones.',
-		'cards' => [
-			[
-				'title' => 'Londres',
-				'text' => 'Pop-up y eventos exclusivos.',
-				'link_label' => 'Ver horarios',
-				'link_url' => '/store-locator/',
-			],
-			[
-				'title' => 'Manchester',
-				'text' => 'Punto de pickup y asesoría.',
-				'link_label' => 'Ver horarios',
-				'link_url' => '/store-locator/',
-			],
-			[
-				'title' => 'Online',
-				'text' => 'Compra 24/7 con envíos rápidos.',
-				'link_label' => 'Ir a la tienda',
-				'link_url' => '/tienda/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} else {
+						echo do_shortcode( '[sk_store_locator]' );
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

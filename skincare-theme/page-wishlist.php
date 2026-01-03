@@ -12,46 +12,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Wishlist',
-		'subtitle' => 'Wishlist',
-		'text' => 'Guarda tus productos favoritos para comprarlos después.',
-		'cta' => [
-			'label' => 'Ir a tienda',
-			'url' => '/tienda/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Cómo funciona',
-		'intro' => 'Inspirado en tu lista de deseos.',
-		'cards' => [
-			[
-				'title' => 'Guardar',
-				'text' => 'Añade productos con un clic.',
-				'link_label' => 'Explorar productos',
-				'link_url' => '/tienda/',
-			],
-			[
-				'title' => 'Comparte',
-				'text' => 'Comparte tu wishlist con amigos.',
-				'link_label' => 'Compartir',
-				'link_url' => '/wishlist/',
-			],
-			[
-				'title' => 'Alertas',
-				'text' => 'Recibe notificaciones de stock.',
-				'link_label' => 'Configurar',
-				'link_url' => '/wishlist/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} else {
+						echo do_shortcode( '[sk_wishlist_grid]' );
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

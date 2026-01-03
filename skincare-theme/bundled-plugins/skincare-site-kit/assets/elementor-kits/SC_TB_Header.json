@@ -1,6 +1,6 @@
 {
     "version": "0.4",
-    "title": "SC Header Main",
+    "title": "Header principal",
     "type": "header",
     "content": [
         {
@@ -23,8 +23,8 @@
                             "elType": "widget",
                             "widgetType": "button",
                             "settings": {
-                                "text": "Beauty Subscription Box",
-                                "link": { "url": "/subscription-box/" },
+                                "text": "Caja de suscripción de belleza",
+                                "link": { "url": "/shop/" },
                                 "size": "xs",
                                 "background_color": "#f877a0"
                             }
@@ -42,8 +42,8 @@
                             "widgetType": "icon-list",
                             "settings": {
                                 "icon_list": [
-                                    { "text": "Store Locator", "link": { "url": "/store-locator/" } },
-                                    { "text": "Sign In", "link": { "url": "/mi-cuenta/" } }
+                                    { "text": "Localizador de tiendas", "link": { "url": "/store-locator/" } },
+                                    { "text": "Iniciar sesión", "link": { "url": "/login/" } }
                                 ],
                                 "view": "inline",
                                 "align": "right"
@@ -87,7 +87,7 @@
                             "widgetType": "nav-menu",
                             "settings": {
                                 "layout": "horizontal",
-                                "menu": "Menú Principal",
+                                "menu": "Primary Menu",
                                 "pointer": "underline",
                                 "indicator": "angle",
                                 "dropdown_border_width": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }

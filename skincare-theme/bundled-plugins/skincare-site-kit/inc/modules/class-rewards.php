@@ -66,7 +66,7 @@ class Rewards {
 		$history[] = [
 			'date' => current_time( 'mysql' ),
 			'points' => $points,
-			'reason' => 'Order #' . $order_id
+			'reason' => 'Pedido #' . $order_id
 		];
 
 		update_user_meta( $user_id, '_sk_rewards_history', $history );
@@ -106,7 +106,7 @@ class Rewards {
 		$history[] = [
 			'date' => current_time( 'mysql' ),
 			'points' => -$awarded,
-			'reason' => 'Reversal Order #' . $order_id,
+			'reason' => 'Reverso del pedido #' . $order_id,
 		];
 
 		update_user_meta( $user_id, '_sk_rewards_history', $history );
@@ -118,7 +118,7 @@ class Rewards {
 		check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
 
 		if ( ! is_user_logged_in() ) {
-			wp_send_json_error( [ 'message' => 'Login required' ] );
+			wp_send_json_error( [ 'message' => 'Inicio de sesión requerido' ] );
 		}
 
 		$points_to_redeem = 500; // Fixed for demo
@@ -128,7 +128,7 @@ class Rewards {
 		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
 
 		if ( $current_points < $points_to_redeem ) {
-			wp_send_json_error( [ 'message' => 'Not enough points' ] );
+			wp_send_json_error( [ 'message' => 'No tienes suficientes puntos' ] );
 		}
 
 		// Deduct
@@ -154,12 +154,12 @@ class Rewards {
 		$history[] = [
 			'date' => current_time( 'mysql' ),
 			'points' => -$points_to_redeem,
-			'reason' => 'Redeemed for £' . $discount_amount . ' Coupon'
+			'reason' => 'Canjeado por cupón de £' . $discount_amount
 		];
 		update_user_meta( $user_id, '_sk_rewards_history', $history );
 
 		wp_send_json_success( [
-			'message' => 'Redeemed successfully!',
+			'message' => 'Canje exitoso.',
 			'code' => $coupon_code,
 			'new_balance' => $current_points - $points_to_redeem
 		] );

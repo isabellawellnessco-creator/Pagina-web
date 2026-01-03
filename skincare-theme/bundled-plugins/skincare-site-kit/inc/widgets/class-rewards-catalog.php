@@ -17,7 +17,7 @@ class Rewards_Catalog extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'SK Rewards Catalog', 'skincare-site-kit' );
+		return __( 'Catálogo de recompensas', 'skincare-site-kit' );
 	}
 
 	public function get_icon() {
@@ -32,7 +32,7 @@ class Rewards_Catalog extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Rewards Items', 'skincare-site-kit' ),
+				'label' => __( 'Elementos de recompensa', 'skincare-site-kit' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -42,7 +42,7 @@ class Rewards_Catalog extends Widget_Base {
 		$repeater->add_control(
 			'image',
 			[
-				'label' => __( 'Image', 'skincare-site-kit' ),
+				'label' => __( 'Imagen', 'skincare-site-kit' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -53,16 +53,16 @@ class Rewards_Catalog extends Widget_Base {
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'skincare-site-kit' ),
+				'label' => __( 'Título', 'skincare-site-kit' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Reward Item', 'skincare-site-kit' ),
+				'default' => __( 'Recompensa', 'skincare-site-kit' ),
 			]
 		);
 
 		$repeater->add_control(
 			'points_cost',
 			[
-				'label' => __( 'Points Cost', 'skincare-site-kit' ),
+				'label' => __( 'Costo en puntos', 'skincare-site-kit' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 500,
 			]
@@ -71,25 +71,25 @@ class Rewards_Catalog extends Widget_Base {
 		$repeater->add_control(
 			'button_text',
 			[
-				'label' => __( 'Button Text', 'skincare-site-kit' ),
+				'label' => __( 'Texto del botón', 'skincare-site-kit' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Redeem', 'skincare-site-kit' ),
+				'default' => __( 'Canjear', 'skincare-site-kit' ),
 			]
 		);
 
 		$this->add_control(
 			'rewards',
 			[
-				'label' => __( 'Rewards List', 'skincare-site-kit' ),
+				'label' => __( 'Lista de recompensas', 'skincare-site-kit' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'title' => __( '£5 Off Coupon', 'skincare-site-kit' ),
+						'title' => __( 'Cupón de £5 de descuento', 'skincare-site-kit' ),
 						'points_cost' => 500,
 					],
 					[
-						'title' => __( '£10 Off Coupon', 'skincare-site-kit' ),
+						'title' => __( 'Cupón de £10 de descuento', 'skincare-site-kit' ),
 						'points_cost' => 1000,
 					],
 				],
@@ -100,7 +100,7 @@ class Rewards_Catalog extends Widget_Base {
 		$this->add_control(
 			'columns',
 			[
-				'label' => __( 'Columns', 'skincare-site-kit' ),
+				'label' => __( 'Columnas', 'skincare-site-kit' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '3',
 				'options' => [
@@ -118,7 +118,7 @@ class Rewards_Catalog extends Widget_Base {
 		$this->start_controls_section(
 			'style_section',
 			[
-				'label' => __( 'Style', 'skincare-site-kit' ),
+				'label' => __( 'Estilo', 'skincare-site-kit' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -126,7 +126,7 @@ class Rewards_Catalog extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Title Color', 'skincare-site-kit' ),
+				'label' => __( 'Color del título', 'skincare-site-kit' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .sk-reward-title' => 'color: {{VALUE}}',
@@ -137,7 +137,7 @@ class Rewards_Catalog extends Widget_Base {
 		$this->add_control(
 			'points_color',
 			[
-				'label' => __( 'Points Color', 'skincare-site-kit' ),
+				'label' => __( 'Color de puntos', 'skincare-site-kit' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .sk-reward-points' => 'color: {{VALUE}}',
@@ -167,7 +167,7 @@ class Rewards_Catalog extends Widget_Base {
 				<h4 class="sk-reward-title" style="margin: 10px 0; color: #0F3062;"><?php echo esc_html( $item['title'] ); ?></h4>
 
 				<div class="sk-reward-points" style="font-weight: bold; color: #E5757E; margin-bottom: 15px;">
-					<?php echo esc_html( $item['points_cost'] ); ?> <?php _e( 'Points', 'skincare-site-kit' ); ?>
+					<?php echo esc_html( $item['points_cost'] ); ?> <?php _e( 'Puntos', 'skincare-site-kit' ); ?>
 				</div>
 
 				<button class="sk-reward-redeem-btn button" style="background-color: #0F3062; color: #fff; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">

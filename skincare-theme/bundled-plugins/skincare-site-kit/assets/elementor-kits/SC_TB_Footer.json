@@ -1,6 +1,6 @@
 {
     "version": "0.4",
-    "title": "SC Footer Main",
+    "title": "Footer principal",
     "type": "footer",
     "content": [
         {
@@ -21,7 +21,7 @@
                             "elType": "widget",
                             "widgetType": "heading",
                             "settings": {
-                                "title": "Sign up to receive 10% off your first order",
+                                "title": "Regístrate y recibe 10% de descuento en tu primera compra",
                                 "align": "center"
                             }
                         },
@@ -31,7 +31,7 @@
                             "widgetType": "form",
                             "settings": {
                                 "form_name": "Newsletter Footer",
-                                "submit_text": "Subscribe",
+                                "submit_text": "Suscribirme",
                                 "button_width": "20",
                                 "align": "center"
                             }
@@ -73,7 +73,7 @@
                             "id": "heading_info",
                             "elType": "widget",
                             "widgetType": "heading",
-                            "settings": { "title": "Information", "header_size": "h4" }
+                            "settings": { "title": "Información", "header_size": "h4" }
                         },
                         {
                             "id": "list_info",
@@ -81,9 +81,9 @@
                             "widgetType": "icon-list",
                             "settings": {
                                 "icon_list": [
-                                    { "text": "Loyalty Program", "link": { "url": "/loyalty/" } },
-                                    { "text": "Terms and Conditions", "link": { "url": "/terminos-y-condiciones/" } },
-                                    { "text": "Privacy Policy", "link": { "url": "/politica-de-privacidad/" } }
+                                    { "text": "Programa de recompensas", "link": { "url": "/rewards/" } },
+                                    { "text": "Términos y condiciones", "link": { "url": "/terms/" } },
+                                    { "text": "Política de privacidad", "link": { "url": "/privacy-policy/" } }
                                 ]
                             }
                         }
@@ -98,7 +98,7 @@
                             "id": "heading_help",
                             "elType": "widget",
                             "widgetType": "heading",
-                            "settings": { "title": "Helpful Links", "header_size": "h4" }
+                            "settings": { "title": "Enlaces útiles", "header_size": "h4" }
                         },
                         {
                             "id": "list_help",
@@ -106,9 +106,9 @@
                             "widgetType": "icon-list",
                             "settings": {
                                 "icon_list": [
-                                    { "text": "Careers", "link": { "url": "/careers/" } },
-                                    { "text": "Press", "link": { "url": "/press/" } },
-                                    { "text": "Korean Skincare Routine", "link": { "url": "/routine/" } }
+                                    { "text": "Trabaja con nosotros", "link": { "url": "/care/" } },
+                                    { "text": "Prensa", "link": { "url": "/skin/" } },
+                                    { "text": "Skincare coreano", "link": { "url": "/korean/" } }
                                 ]
                             }
                         }
@@ -125,10 +125,10 @@
                             "widgetType": "icon-list",
                             "settings": {
                                 "icon_list": [
-                                    { "text": "Contact Us", "link": { "url": "/contacto/" } },
-                                    { "text": "Help & FAQs", "link": { "url": "/faq/" } },
-                                    { "text": "Shipping & Returns", "link": { "url": "/envios-y-devoluciones/" } },
-                                    { "text": "Store Locator", "link": { "url": "/store-locator/" } }
+                                    { "text": "Contáctanos", "link": { "url": "/contact/" } },
+                                    { "text": "Ayuda y FAQs", "link": { "url": "/faqs/" } },
+                                    { "text": "Envíos y devoluciones", "link": { "url": "/shipping/" } },
+                                    { "text": "Localizador de tiendas", "link": { "url": "/store-locator/" } }
                                 ]
                             }
                         }
@@ -149,7 +149,7 @@
                             "id": "trustpilot",
                             "elType": "widget",
                             "widgetType": "heading",
-                            "settings": { "title": "Excellent on Trustpilot", "align": "center", "header_size": "h5" }
+                            "settings": { "title": "Excelente en Trustpilot", "align": "center", "header_size": "h5" }
                         }
                     ]
                 }

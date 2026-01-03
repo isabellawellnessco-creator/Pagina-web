@@ -72,12 +72,12 @@ class Shortcodes {
 			// Let's ensure our widgets are robust enough or mock the data.
 
 			// MOCK DATA for specific widgets to ensure they render something visuals
-			if ( strpos( $class_name, 'Marquee' ) !== false ) $settings['text'] = 'Free Delivery on UK orders over £25 🚚 • 10% OFF first order with code: HELLO10 ✨';
+			if ( strpos( $class_name, 'Marquee' ) !== false ) $settings['text'] = 'Envío gratis en pedidos del Reino Unido superiores a £25 🚚 • 10% de descuento en tu primera compra con el código: HELLO10 ✨';
 			if ( strpos( $class_name, 'Rewards_Castle' ) !== false ) {
 				$settings['tiers'] = [
-					[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 Point per £1' ],
-					[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 Points per £1' ],
-					[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 Points per £1' ],
+					[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 punto por £1' ],
+					[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 puntos por £1' ],
+					[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 puntos por £1' ],
 				];
 			}
 			// Add more mocks as needed for visual fidelity without DB

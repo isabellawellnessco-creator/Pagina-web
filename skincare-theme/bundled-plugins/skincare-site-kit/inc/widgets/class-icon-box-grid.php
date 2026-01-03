@@ -15,12 +15,12 @@ class Icon_Box_Grid extends Widget_Base {
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
-		$this->start_controls_section( 'content', [ 'label' => 'Items' ] );
+		$this->start_controls_section( 'content', [ 'label' => 'Elementos' ] );
 		$repeater = new \Elementor\Repeater();
-		$repeater->add_control( 'icon', [ 'label' => 'Icon', 'type' => Controls_Manager::ICONS ] );
-		$repeater->add_control( 'title', [ 'label' => 'Title', 'type' => Controls_Manager::TEXT ] );
-		$repeater->add_control( 'desc', [ 'label' => 'Description', 'type' => Controls_Manager::TEXTAREA ] );
-		$this->add_control( 'items', [ 'label' => 'Items', 'type' => Controls_Manager::REPEATER, 'fields' => $repeater->get_controls() ] );
+		$repeater->add_control( 'icon', [ 'label' => 'Icono', 'type' => Controls_Manager::ICONS ] );
+		$repeater->add_control( 'title', [ 'label' => 'Título', 'type' => Controls_Manager::TEXT ] );
+		$repeater->add_control( 'desc', [ 'label' => 'Descripción', 'type' => Controls_Manager::TEXTAREA ] );
+		$this->add_control( 'items', [ 'label' => 'Elementos', 'type' => Controls_Manager::REPEATER, 'fields' => $repeater->get_controls() ] );
 		$this->end_controls_section();
 	}
 

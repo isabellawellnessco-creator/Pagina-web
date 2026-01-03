@@ -25,13 +25,13 @@ class Instagram_Feed extends Widget_Base {
 			$theme_assets . 'placeholder-instagram.svg',
 		];
 
-		$this->start_controls_section( 'content', [ 'label' => 'Images' ] );
+		$this->start_controls_section( 'content', [ 'label' => 'Imágenes' ] );
 		$this->add_control(
 			'gallery',
 			[
-				'label' => 'Add Images',
+				'label' => 'Añadir imágenes',
 				'type' => Controls_Manager::GALLERY,
-				'description' => __( 'Recommended: square 800x800 images.', 'skincare' ),
+				'description' => __( 'Recomendado: imágenes cuadradas 800x800.', 'skincare' ),
 				'default' => [
 					[ 'url' => $default_images[0] ],
 					[ 'url' => $default_images[1] ],
@@ -49,7 +49,7 @@ class Instagram_Feed extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-instagram.svg';
 		echo '<div class="sk-insta-feed">';
-		echo '<h3>' . __( 'Follow us @skincupid', 'skincare' ) . '</h3>';
+		echo '<h3>' . __( 'Síguenos en @skincupid', 'skincare' ) . '</h3>';
 		echo '<div class="sk-insta-grid">';
 		foreach ( $settings['gallery'] as $image ) {
 			$image_url = ! empty( $image['url'] ) ? $image['url'] : $fallback_image;

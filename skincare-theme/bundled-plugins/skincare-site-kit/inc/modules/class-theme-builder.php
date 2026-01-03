@@ -19,13 +19,13 @@ class Theme_Builder {
 
 	public static function register_cpt() {
 		$args = [
-			'label'               => __( 'Theme Parts', 'skincare' ),
-			'description'         => __( 'Elementor Templates for Header/Footer/Single/Archive', 'skincare' ),
+			'label'               => __( 'Partes del tema', 'skincare' ),
+			'description'         => __( 'Plantillas de Elementor para header/footer/producto/archivo', 'skincare' ),
 			'labels'              => [
-				'name'          => __( 'Theme Parts', 'skincare' ),
-				'singular_name' => __( 'Theme Part', 'skincare' ),
-				'add_new_item'  => __( 'Add New Theme Part', 'skincare' ),
-				'edit_item'     => __( 'Edit Theme Part', 'skincare' ),
+				'name'          => __( 'Partes del tema', 'skincare' ),
+				'singular_name' => __( 'Parte del tema', 'skincare' ),
+				'add_new_item'  => __( 'Añadir nueva parte del tema', 'skincare' ),
+				'edit_item'     => __( 'Editar parte del tema', 'skincare' ),
 			],
 			'supports'            => [ 'title', 'editor', 'elementor' ],
 			'public'              => true,

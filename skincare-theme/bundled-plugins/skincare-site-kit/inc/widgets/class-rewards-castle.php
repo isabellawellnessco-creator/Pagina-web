@@ -15,7 +15,7 @@ class Rewards_Castle extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'SK Rewards Castle', 'skincare' );
+		return __( 'Castillo de recompensas', 'skincare' );
 	}
 
 	public function get_icon() {
@@ -30,7 +30,7 @@ class Rewards_Castle extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Tiers', 'skincare' ),
+				'label' => __( 'Niveles', 'skincare' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -40,16 +40,16 @@ class Rewards_Castle extends Widget_Base {
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __( 'Tier Name', 'skincare' ),
+				'label' => __( 'Nombre del nivel', 'skincare' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Tier Name', 'skincare' ),
+				'default' => __( 'Nombre del nivel', 'skincare' ),
 			]
 		);
 
 		$repeater->add_control(
 			'points',
 			[
-				'label' => __( 'Points Required', 'skincare' ),
+				'label' => __( 'Puntos requeridos', 'skincare' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 0,
 			]
@@ -58,22 +58,22 @@ class Rewards_Castle extends Widget_Base {
 		$repeater->add_control(
 			'benefits',
 			[
-				'label' => __( 'Benefits', 'skincare' ),
+				'label' => __( 'Beneficios', 'skincare' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Benefit 1, Benefit 2', 'skincare' ),
+				'default' => __( 'Beneficio 1, Beneficio 2', 'skincare' ),
 			]
 		);
 
 		$this->add_control(
 			'tiers',
 			[
-				'label' => __( 'Tiers', 'skincare' ),
+				'label' => __( 'Niveles', 'skincare' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-					[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 Point per £1' ],
-					[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 Points per £1, Birthday Gift' ],
-					[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 Points per £1, Free Shipping' ],
+					[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 punto por £1' ],
+					[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 puntos por £1, regalo de cumpleaños' ],
+					[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 puntos por £1, envío gratis' ],
 				],
 			]
 		);

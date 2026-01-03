@@ -9,7 +9,7 @@ use \Elementor\Widget_Base;
 
 class Account_Dashboard extends Widget_Base {
 	public function get_name() { return 'sk_account_dashboard'; }
-	public function get_title() { return __( 'SK Account Dashboard', 'skincare' ); }
+	public function get_title() { return __( 'Panel de cuenta', 'skincare' ); }
 	public function get_icon() { return 'eicon-person'; }
 	public function get_categories() { return [ 'general' ]; }
 
@@ -58,7 +58,7 @@ class Account_Dashboard extends Widget_Base {
 				<div id="tab-orders" class="sk-tab-pane active">
 					<?php if ( empty( $orders ) ) : ?>
 						<p><?php _e( 'No has realizado pedidos aún.', 'skincare' ); ?></p>
-						<a href="/tienda/" class="btn sk-btn"><?php _e( 'Ir a la Tienda', 'skincare' ); ?></a>
+						<a href="/shop/" class="btn sk-btn"><?php _e( 'Ir a la Tienda', 'skincare' ); ?></a>
 					<?php else : ?>
 						<table class="sk-orders-table">
 							<thead>

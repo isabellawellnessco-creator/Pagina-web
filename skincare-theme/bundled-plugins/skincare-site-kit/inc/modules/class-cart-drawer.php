@@ -57,7 +57,7 @@ class Cart_Drawer {
 			<div class="sk-upsell-info">
 				<h5><?php echo $product->get_name(); ?></h5>
 				<span class="price"><?php echo $product->get_price_html(); ?></span>
-				<a href="?add-to-cart=<?php echo $product->get_id(); ?>" class="btn sk-btn-small ajax_add_to_cart" data-product_id="<?php echo $product->get_id(); ?>"><?php _e( 'Add', 'skincare' ); ?></a>
+				<a href="?add-to-cart=<?php echo $product->get_id(); ?>" class="btn sk-btn-small ajax_add_to_cart" data-product_id="<?php echo $product->get_id(); ?>"><?php _e( 'Agregar', 'skincare' ); ?></a>
 			</div>
 		</div>
 		<?php

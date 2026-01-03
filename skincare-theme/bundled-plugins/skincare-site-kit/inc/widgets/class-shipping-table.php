@@ -9,7 +9,7 @@ use \Elementor\Widget_Base;
 
 class Shipping_Table extends Widget_Base {
 	public function get_name() { return 'sk_shipping_table'; }
-	public function get_title() { return __( 'SK Shipping Table', 'skincare' ); }
+	public function get_title() { return __( 'Tabla de envíos', 'skincare' ); }
 	public function get_icon() { return 'eicon-table'; }
 	public function get_categories() { return [ 'general' ]; }
 

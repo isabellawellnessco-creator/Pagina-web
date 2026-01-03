@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 
 class Theme_Part_Add_To_Cart extends Widget_Base {
 	public function get_name() { return 'sk_theme_part_add_to_cart'; }
-	public function get_title() { return __( 'SK Part Add to Cart', 'skincare' ); }
+	public function get_title() { return __( 'Botón añadir al carrito', 'skincare' ); }
 	public function get_icon() { return 'eicon-product-add-to-cart'; }
 	public function get_categories() { return [ 'theme-elements' ]; }
 
@@ -19,7 +19,7 @@ class Theme_Part_Add_To_Cart extends Widget_Base {
 		if ( $product ) {
 			woocommerce_template_single_add_to_cart();
 		} else {
-			echo '<button class="single_add_to_cart_button button alt">' . __( 'Add to cart', 'woocommerce' ) . '</button>';
+			echo '<button class="single_add_to_cart_button button alt">' . __( 'Añadir al carrito', 'skincare' ) . '</button>';
 		}
 	}
 }

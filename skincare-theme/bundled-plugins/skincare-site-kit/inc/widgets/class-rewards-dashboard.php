@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 
 class Rewards_Dashboard extends Widget_Base {
 	public function get_name() { return 'sk_rewards_dashboard'; }
-	public function get_title() { return __( 'SK Rewards Dashboard', 'skincare' ); }
+	public function get_title() { return __( 'Panel de recompensas', 'skincare' ); }
 	public function get_icon() { return 'eicon-star'; }
 	public function get_categories() { return [ 'general' ]; }
 

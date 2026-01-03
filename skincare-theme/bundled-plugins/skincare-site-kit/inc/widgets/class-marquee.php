@@ -15,11 +15,11 @@ class Marquee extends Widget_Base {
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
-		$this->start_controls_section( 'content', [ 'label' => 'Content' ] );
+		$this->start_controls_section( 'content', [ 'label' => 'Contenido' ] );
 		$this->add_control( 'text', [
-			'label' => 'Text',
+			'label' => 'Texto',
 			'type' => Controls_Manager::TEXT,
-			'default' => 'Free Delivery on UK orders over £25 🚚 • 10% OFF first order with code: HELLO10 ✨',
+			'default' => 'Envío gratis en pedidos del Reino Unido superiores a £25 🚚 • 10% de descuento en tu primera compra con el código: HELLO10 ✨',
 		] );
 		$this->end_controls_section();
 	}

@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 
 class Wishlist_Grid extends Widget_Base {
 	public function get_name() { return 'sk_wishlist_grid'; }
-	public function get_title() { return __( 'SK Wishlist Grid', 'skincare' ); }
+	public function get_title() { return __( 'Lista de deseos', 'skincare' ); }
 	public function get_icon() { return 'eicon-heart'; }
 	public function get_categories() { return [ 'general' ]; }
 

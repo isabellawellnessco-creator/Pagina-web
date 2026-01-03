@@ -22,12 +22,12 @@ class Product_Tabs extends Widget_Base {
 		// In a real scenario, we'd use Custom Fields for Ingredients/How to Use
 		// For now, we simulate this data or use attributes
 		$ingredients = $product->get_attribute('ingredients') ?: 'Aqua, Glycerin...';
-		$how_to_use = $product->get_attribute('how_to_use') ?: 'Apply to clean skin...';
+		$how_to_use = $product->get_attribute('how_to_use') ?: 'Aplicar sobre la piel limpia...';
 
 		$tabs = [
-			'description' => [ 'title' => __( 'Description', 'skincare' ), 'content' => $description ],
-			'ingredients' => [ 'title' => __( 'Ingredients', 'skincare' ), 'content' => $ingredients ],
-			'how_to_use'  => [ 'title' => __( 'How to Use', 'skincare' ), 'content' => $how_to_use ],
+			'description' => [ 'title' => __( 'Descripción', 'skincare' ), 'content' => $description ],
+			'ingredients' => [ 'title' => __( 'Ingredientes', 'skincare' ), 'content' => $ingredients ],
+			'how_to_use'  => [ 'title' => __( 'Modo de uso', 'skincare' ), 'content' => $how_to_use ],
 		];
 
 		echo '<div class="sk-product-tabs">';

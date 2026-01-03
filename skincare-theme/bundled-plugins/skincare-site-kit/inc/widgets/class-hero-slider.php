@@ -15,7 +15,7 @@ class Hero_Slider extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'SK Hero Slider', 'skincare' );
+		return __( 'Slider principal', 'skincare' );
 	}
 
 	public function get_icon() {
@@ -37,7 +37,7 @@ class Hero_Slider extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Slides', 'skincare' ),
+				'label' => __( 'Diapositivas', 'skincare' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -47,9 +47,9 @@ class Hero_Slider extends Widget_Base {
 		$repeater->add_control(
 			'image',
 			[
-				'label' => __( 'Image', 'skincare' ),
+				'label' => __( 'Imagen', 'skincare' ),
 				'type' => Controls_Manager::MEDIA,
-				'description' => __( 'Recommended: 1600x700 (desktop), 900x1200 (mobile).', 'skincare' ),
+				'description' => __( 'Recomendado: 1600x700 (desktop), 900x1200 (mobile).', 'skincare' ),
 				'default' => [
 					'url' => $default_images[0],
 				],
@@ -59,16 +59,16 @@ class Hero_Slider extends Widget_Base {
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'skincare' ),
+				'label' => __( 'Título', 'skincare' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Slide Title', 'skincare' ),
+				'default' => __( 'Título del slide', 'skincare' ),
 			]
 		);
 
 		$repeater->add_control(
 			'subtitle',
 			[
-				'label' => __( 'Subtitle', 'skincare' ),
+				'label' => __( 'Subtítulo', 'skincare' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
@@ -76,16 +76,16 @@ class Hero_Slider extends Widget_Base {
 		$repeater->add_control(
 			'button_text',
 			[
-				'label' => __( 'Button Text', 'skincare' ),
+				'label' => __( 'Texto del botón', 'skincare' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Shop Now', 'skincare' ),
+				'default' => __( 'Comprar ahora', 'skincare' ),
 			]
 		);
 
 		$repeater->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'skincare' ),
+				'label' => __( 'Enlace', 'skincare' ),
 				'type' => Controls_Manager::URL,
 			]
 		);
@@ -93,7 +93,7 @@ class Hero_Slider extends Widget_Base {
 		$this->add_control(
 			'slides',
 			[
-				'label' => __( 'Slides', 'skincare' ),
+				'label' => __( 'Diapositivas', 'skincare' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
@@ -102,21 +102,21 @@ class Hero_Slider extends Widget_Base {
 						'title' => __( 'Rutina esencial', 'skincare' ),
 						'subtitle' => __( 'Piel radiante en 3 pasos', 'skincare' ),
 						'button_text' => __( 'Comprar ahora', 'skincare' ),
-						'link' => [ 'url' => '/tienda/' ],
+						'link' => [ 'url' => '/shop/' ],
 					],
 					[
 						'image' => [ 'url' => $default_images[1] ],
 						'title' => __( 'Favoritos del mes', 'skincare' ),
 						'subtitle' => __( 'Top ventas seleccionadas', 'skincare' ),
 						'button_text' => __( 'Ver productos', 'skincare' ),
-						'link' => [ 'url' => '/tienda/' ],
+						'link' => [ 'url' => '/shop/' ],
 					],
 					[
 						'image' => [ 'url' => $default_images[2] ],
 						'title' => __( 'Nuevas marcas', 'skincare' ),
 						'subtitle' => __( 'Descubre lo último en cuidado', 'skincare' ),
 						'button_text' => __( 'Explorar', 'skincare' ),
-						'link' => [ 'url' => '/tienda/' ],
+						'link' => [ 'url' => '/shop/' ],
 					],
 				],
 			]

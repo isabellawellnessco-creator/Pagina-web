@@ -71,10 +71,10 @@
                             "widgetType": "toggle",
                             "settings": {
                                 "tabs": [
-                                    { "tab_title": "Description", "tab_content": "[product_description]" },
-                                    { "tab_title": "Ingredients", "tab_content": "Full ingredients list here..." },
-                                    { "tab_title": "How to Use", "tab_content": "Usage instructions..." },
-                                    { "tab_title": "Shipping & Returns", "tab_content": "Free shipping over £30..." }
+                                    { "tab_title": "Descripción", "tab_content": "[product_description]" },
+                                    { "tab_title": "Ingredientes", "tab_content": "Lista completa de ingredientes aquí..." },
+                                    { "tab_title": "Modo de uso", "tab_content": "Instrucciones de uso..." },
+                                    { "tab_title": "Envío y devoluciones", "tab_content": "Envío gratis en pedidos superiores a £30..." }
                                 ]
                             }
                         }
@@ -98,7 +98,7 @@
                             "id": "related_heading",
                             "elType": "widget",
                             "widgetType": "heading",
-                            "settings": { "title": "You May Also Like", "align": "center" }
+                            "settings": { "title": "También te puede gustar", "align": "center" }
                         },
                         {
                             "id": "related_products",

@@ -56,7 +56,7 @@ class Rewards_Dashboard extends Widget_Base {
 		jQuery(document).ready(function($){
 			$('#sk-redeem-btn').click(function(){
 				if(!confirm('¿Canjear 500 puntos?')) return;
-				$.post(sk_vars.ajax_url, { action: 'sk_redeem_points' }, function(res){
+				$.post(sk_vars.ajax_url, { action: 'sk_redeem_points', nonce: sk_vars.nonce }, function(res){
 					if(res.success) {
 						alert('Cupón: ' + res.data.code);
 						location.reload();

@@ -127,7 +127,7 @@ jQuery(document).ready(function($) {
         setTimeout(function() {
             var placeholderImage = sk_vars && sk_vars.placeholder_image ? sk_vars.placeholder_image : '';
             var imageMarkup = placeholderImage ? '<img src="' + placeholderImage + '" alt="Producto">' : '';
-            $('.sk-qv-content').html('<div class="qv-inner">' + imageMarkup + '<div><h3>Product Title</h3><span class="price">£25.00</span><button class="btn">Add to Cart</button></div><button class="close">&times;</button></div>');
+            $('.sk-qv-content').html('<div class="qv-inner">' + imageMarkup + '<div><h3>Título del producto</h3><span class="price">£25.00</span><button class="btn">Agregar al carrito</button></div><button class="close">&times;</button></div>');
         }, 500);
     });
 

@@ -15,7 +15,7 @@ class Rewards_Actions extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'SK Rewards Actions (Earn)', 'skincare-site-kit' );
+		return __( 'Acciones de recompensas (ganar)', 'skincare-site-kit' );
 	}
 
 	public function get_icon() {
@@ -30,7 +30,7 @@ class Rewards_Actions extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Earning Actions', 'skincare-site-kit' ),
+				'label' => __( 'Acciones para ganar', 'skincare-site-kit' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -40,7 +40,7 @@ class Rewards_Actions extends Widget_Base {
 		$repeater->add_control(
 			'icon',
 			[
-				'label' => __( 'Icon', 'skincare-site-kit' ),
+				'label' => __( 'Icono', 'skincare-site-kit' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'fas fa-star',
@@ -52,25 +52,25 @@ class Rewards_Actions extends Widget_Base {
 		$repeater->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'skincare-site-kit' ),
+				'label' => __( 'Título', 'skincare-site-kit' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Action Title', 'skincare-site-kit' ),
+				'default' => __( 'Título de acción', 'skincare-site-kit' ),
 			]
 		);
 
 		$repeater->add_control(
 			'points',
 			[
-				'label' => __( 'Points Value', 'skincare-site-kit' ),
+				'label' => __( 'Valor en puntos', 'skincare-site-kit' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( '50 Points', 'skincare-site-kit' ),
+				'default' => __( '50 puntos', 'skincare-site-kit' ),
 			]
 		);
 
 		$repeater->add_control(
 			'link',
 			[
-				'label' => __( 'Action Link', 'skincare-site-kit' ),
+				'label' => __( 'Enlace de acción', 'skincare-site-kit' ),
 				'type' => Controls_Manager::URL,
 				'placeholder' => __( 'https://your-link.com', 'skincare-site-kit' ),
 				'default' => [
@@ -82,28 +82,28 @@ class Rewards_Actions extends Widget_Base {
 		$repeater->add_control(
 			'button_text',
 			[
-				'label' => __( 'Button Text', 'skincare-site-kit' ),
+				'label' => __( 'Texto del botón', 'skincare-site-kit' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Go', 'skincare-site-kit' ),
+				'default' => __( 'Ir', 'skincare-site-kit' ),
 			]
 		);
 
 		$this->add_control(
 			'actions',
 			[
-				'label' => __( 'Actions List', 'skincare-site-kit' ),
+				'label' => __( 'Lista de acciones', 'skincare-site-kit' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'title' => __( 'Follow on Instagram', 'skincare-site-kit' ),
-						'points' => '50 Points',
-						'button_text' => 'Follow',
+						'title' => __( 'Seguir en Instagram', 'skincare-site-kit' ),
+						'points' => '50 puntos',
+						'button_text' => 'Seguir',
 					],
 					[
-						'title' => __( 'Refer a Friend', 'skincare-site-kit' ),
-						'points' => '500 Points',
-						'button_text' => 'Refer',
+						'title' => __( 'Recomienda a un amigo', 'skincare-site-kit' ),
+						'points' => '500 puntos',
+						'button_text' => 'Referir',
 					],
 				],
 				'title_field' => '{{{ title }}}',
@@ -113,7 +113,7 @@ class Rewards_Actions extends Widget_Base {
 		$this->add_control(
 			'columns',
 			[
-				'label' => __( 'Columns', 'skincare-site-kit' ),
+				'label' => __( 'Columnas', 'skincare-site-kit' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '3',
 				'options' => [

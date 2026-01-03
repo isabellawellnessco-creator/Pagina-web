@@ -3,11 +3,11 @@
 
     <!-- Hero Section -->
     <div class="sk-hero-section" style="text-align: center; padding: 60px 0; background-color: #F8F5F1; border-radius: 12px; margin-bottom: 40px;">
-        <h1 style="color: #0F3062; font-size: 3rem; margin-bottom: 10px;">Skin Cupid Rewards</h1>
+        <h1 style="color: #0F3062; font-size: 3rem; margin-bottom: 10px;">Recompensas Skin Cupid</h1>
         <p style="color: #E5757E; font-size: 1.2rem; font-weight: bold;">Gana puntos y canjea descuentos exclusivos</p>
         <?php if ( ! is_user_logged_in() ) : ?>
-            <a href="/account/login/" class="button" style="background-color: #0F3062; color: #fff; padding: 10px 25px; border-radius: 25px; text-decoration: none; margin-top: 20px; display: inline-block;">Únete Ahora</a>
-            <p style="font-size: 0.9rem; margin-top: 10px;">¿Ya tienes cuenta? <a href="/account/login/">Inicia sesión</a></p>
+            <a href="/login/" class="button" style="background-color: #0F3062; color: #fff; padding: 10px 25px; border-radius: 25px; text-decoration: none; margin-top: 20px; display: inline-block;">Únete Ahora</a>
+            <p style="font-size: 0.9rem; margin-top: 10px;">¿Ya tienes cuenta? <a href="/login/">Inicia sesión</a></p>
         <?php else : ?>
             <p style="font-size: 1rem; margin-top: 20px;">Bienvenido de nuevo. Tienes <strong style="color: #E5757E;">[sk_user_points]</strong> puntos.</p>
         <?php endif; ?>

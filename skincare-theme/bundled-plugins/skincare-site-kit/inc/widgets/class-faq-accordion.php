@@ -10,16 +10,34 @@ use \Elementor\Controls_Manager;
 
 class FAQ_Accordion extends Widget_Base {
 	public function get_name() { return 'sk_faq_accordion'; }
-	public function get_title() { return __( 'SK FAQ Accordion', 'skincare' ); }
+	public function get_title() { return __( 'Acordeón de preguntas', 'skincare' ); }
 	public function get_icon() { return 'eicon-accordion'; }
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
-		$this->start_controls_section( 'content', [ 'label' => 'FAQs' ] );
+		$this->start_controls_section( 'content', [ 'label' => 'Preguntas frecuentes' ] );
 		$repeater = new \Elementor\Repeater();
-		$repeater->add_control( 'question', [ 'label' => 'Question', 'type' => Controls_Manager::TEXT ] );
-		$repeater->add_control( 'answer', [ 'label' => 'Answer', 'type' => Controls_Manager::WYSIWYG ] );
-		$this->add_control( 'faqs', [ 'label' => 'FAQs', 'type' => Controls_Manager::REPEATER, 'fields' => $repeater->get_controls() ] );
+		$repeater->add_control( 'question', [ 'label' => 'Pregunta', 'type' => Controls_Manager::TEXT ] );
+		$repeater->add_control( 'answer', [ 'label' => 'Respuesta', 'type' => Controls_Manager::WYSIWYG ] );
+		$this->add_control( 'faqs', [
+			'label' => 'Preguntas frecuentes',
+			'type' => Controls_Manager::REPEATER,
+			'fields' => $repeater->get_controls(),
+			'default' => [
+				[
+					'question' => '¿Cuánto tarda el envío?',
+					'answer' => 'Los envíos estándar suelen tardar entre 2 y 4 días laborables.',
+				],
+				[
+					'question' => '¿Puedo devolver un producto?',
+					'answer' => 'Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra.',
+				],
+				[
+					'question' => '¿Cómo gano puntos?',
+					'answer' => 'Ganas puntos por cada compra y acciones especiales dentro de tu cuenta.',
+				],
+			],
+		] );
 		$this->end_controls_section();
 	}
 

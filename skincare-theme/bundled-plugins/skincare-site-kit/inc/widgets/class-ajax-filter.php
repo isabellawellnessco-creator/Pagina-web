@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 
 class Ajax_Filter extends Widget_Base {
 	public function get_name() { return 'sk_ajax_filter'; }
-	public function get_title() { return __( 'SK Ajax Filter', 'skincare' ); }
+	public function get_title() { return __( 'Filtro AJAX', 'skincare' ); }
 	public function get_icon() { return 'eicon-filter'; }
 	public function get_categories() { return [ 'general' ]; }
 
@@ -18,7 +18,7 @@ class Ajax_Filter extends Widget_Base {
 		?>
 		<div class="sk-sidebar-filters">
 			<div class="sk-filter-group">
-				<h4><?php _e( 'Brand', 'skincare' ); ?></h4>
+				<h4><?php _e( 'Marca', 'skincare' ); ?></h4>
 				<!-- Filter Form -->
 				<form id="sk-filter-form">
 					<label><input type="checkbox" name="brand[]" value="cosrx"> COSRX</label>
@@ -26,7 +26,7 @@ class Ajax_Filter extends Widget_Base {
 					<label><input type="checkbox" name="brand[]" value="beauty-of-joseon"> Beauty of Joseon</label>
 
 					<div class="sk-price-filter">
-						<h4><?php _e( 'Price', 'skincare' ); ?></h4>
+						<h4><?php _e( 'Precio', 'skincare' ); ?></h4>
 						<input type="range" name="max_price" min="0" max="100" value="100" oninput="this.nextElementSibling.value = '£' + this.value">
 						<output>£100</output>
 					</div>

@@ -10,7 +10,7 @@ use \Elementor\Controls_Manager;
 
 class Theme_Part_Price extends Widget_Base {
 	public function get_name() { return 'sk_theme_part_price'; }
-	public function get_title() { return __( 'SK Part Price', 'skincare' ); }
+	public function get_title() { return __( 'Precio de plantilla', 'skincare' ); }
 	public function get_icon() { return 'eicon-product-price'; }
 	public function get_categories() { return [ 'theme-elements' ]; }
 

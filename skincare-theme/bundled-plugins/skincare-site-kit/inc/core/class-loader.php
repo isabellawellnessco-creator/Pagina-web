@@ -26,6 +26,8 @@ class Loader {
 		// Admin
 		if ( is_admin() ) {
 			\Skincare\SiteKit\Admin\Settings::init();
+			\Skincare\SiteKit\Admin\Order_Management::init();
+			\Skincare\SiteKit\Admin\Rewards_Admin::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
 		}
 

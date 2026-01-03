@@ -19,6 +19,8 @@ class Loader {
 		\Skincare\SiteKit\Modules\Swatches::init();
 		\Skincare\SiteKit\Modules\Forms::init();
 		\Skincare\SiteKit\Modules\Filter_Handler::init(); // Added
+		\Skincare\SiteKit\Modules\Press::init();
+		\Skincare\SiteKit\Modules\Purchase_Orders::init();
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -26,7 +28,9 @@ class Loader {
 		// Admin
 		if ( is_admin() ) {
 			\Skincare\SiteKit\Admin\Settings::init();
+			\Skincare\SiteKit\Admin\Fulfillment::init();
 			\Skincare\SiteKit\Admin\Order_Management::init();
+			\Skincare\SiteKit\Admin\Rewards_Master::init();
 			\Skincare\SiteKit\Admin\Rewards_Admin::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
 		}

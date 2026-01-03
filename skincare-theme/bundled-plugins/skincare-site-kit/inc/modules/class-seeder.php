@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 3; // Increment this to force re-seeding logic
+	const SEED_VERSION = 4; // Increment this to force re-seeding logic
 	const OPTION_NAME  = 'sk_content_seeded_version';
 
 	public static function init() {
@@ -60,141 +60,87 @@ class Seeder {
 	}
 
 	private static function create_pages() {
+		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
+		$about_content = '
+		<section class="sk-about-hero">
+			<img src="' . esc_url( $theme_assets . 'placeholder-hero-2.svg' ) . '" alt="Skin Cupid hero placeholder">
+			<div class="sk-about-copy">
+				<h2>About Skin Cupid</h2>
+				<p>We curate Korean skincare, K-Beauty essentials, and new launches so your routine always feels inspired.</p>
+			</div>
+		</section>
+		<section class="sk-about-grid">
+			<div class="sk-about-card">
+				<img src="' . esc_url( $theme_assets . 'placeholder-card.svg' ) . '" alt="K-Beauty ritual">
+				<h3>Curated routines</h3>
+				<p>Follow the 10-step ritual with trusted textures and soothing formulas.</p>
+			</div>
+			<div class="sk-about-card">
+				<img src="' . esc_url( $theme_assets . 'placeholder-card.svg' ) . '" alt="Ingredient focus">
+				<h3>Ingredient stories</h3>
+				<p>Discover hero ingredients like Centella, Rice, and Snail mucin.</p>
+			</div>
+			<div class="sk-about-card">
+				<img src="' . esc_url( $theme_assets . 'placeholder-card.svg' ) . '" alt="Community love">
+				<h3>Community-approved</h3>
+				<p>Shop best sellers loved by the Skin Cupid community.</p>
+			</div>
+		</section>
+		';
+
 		$pages = [
 			[
 				'title' => 'Home',
 				'slug' => 'home',
 				'content' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
 				'template' => 'template-landing.php',
+				'shortcode_check' => 'sk_hero_slider',
 			],
 			[
 				'title' => 'Shop',
 				'slug' => 'shop',
-				'content' => '',
+				'content' => '[sk_product_grid posts_per_page="12"]',
+				'template' => 'template-full-width.php',
 			],
 			[
-				'title' => 'About Us',
-				'slug' => 'about-us',
-				'content' => '<h2>About Skin Cupid</h2><p>Your destination for K-Beauty.</p>',
+				'title' => 'About Skin Cupid',
+				'slug' => 'about',
+				'content' => $about_content,
+				'template' => 'template-full-width.php',
 			],
-			[
-				'title' => 'Contact',
-				'slug' => 'contact',
-				'content' => '[sk_contact_section]',
-				'template' => 'page-contact.php',
-			],
-			[
-				'title' => 'Help & FAQs',
-				'slug' => 'faqs',
-				'content' => '[sk_faq_accordion]',
-				'template' => 'page-faqs.php',
-			],
-			[
-				'title' => 'Shipping & Returns',
-				'slug' => 'shipping-returns',
-				'content' => '[sk_shipping_table]',
-				'template' => 'page-shipping.php',
-			],
-			[
-				'title' => 'Privacy Policy',
-				'slug' => 'privacy-policy',
-				'content' => '<h2>Privacy Policy</h2><p>Lorem ipsum...</p>',
-				'template' => 'page-privacy.php',
-			],
-			[
-				'title' => 'Terms & Conditions',
-				'slug' => 'terms-and-conditions',
-				'content' => '<h2>Terms</h2><p>Lorem ipsum...</p>',
-				'template' => 'page-terms.php',
-			],
-			[
-				'title' => 'Wishlist',
-				'slug' => 'wishlist',
-				'content' => '[sk_wishlist_grid]',
-				'template' => 'page-wishlist.php',
-			],
-			[
-				'title' => 'Rewards',
-				'slug' => 'rewards',
-				'content' => '[sk_rewards_castle][sk_rewards_earn_redeem][sk_rewards_dashboard]',
-				'template' => 'page-rewards.php',
-			],
-			[
-				'title' => 'My Account',
-				'slug' => 'account',
-				'content' => '[woocommerce_my_account]',
-				'template' => 'page-account.php',
-			],
-			[
-				'title' => 'Login',
-				'slug' => 'login',
-				'content' => '[woocommerce_my_account]',
-				'template' => 'page-login.php',
-				'parent' => 'account',
-			],
-			[
-				'title' => 'Store Locator',
-				'slug' => 'store-locator',
-				'content' => '[sk_store_locator]',
-				'template' => 'page-store-locator.php',
-			],
-			[
-				'title' => 'Learn',
-				'slug' => 'learn',
-				'content' => '',
-				'template' => 'page-learn.php',
-			],
-			[
-				'title' => 'Makeup',
-				'slug' => 'makeup',
-				'content' => '',
-				'template' => 'page-makeup.php',
-			],
-			[
-				'title' => 'Korean Skincare',
-				'slug' => 'korean-skincare',
-				'content' => '',
-				'template' => 'page-korean.php',
-			],
-			[
-				'title' => 'Vegan',
-				'slug' => 'vegan',
-				'content' => '',
-				'template' => 'page-vegan.php',
-			],
-			[
-				'title' => 'Careers',
-				'slug' => 'careers',
-				'content' => '',
-				'template' => 'page-care.php',
-			],
-			[
-				'title' => 'Press',
-				'slug' => 'press',
-				'content' => '',
-				'template' => 'page-skin.php',
-			],
+			[ 'title' => 'Contact', 'slug' => 'contact', 'content' => '' ],
+			[ 'title' => 'FAQs', 'slug' => 'faqs', 'content' => '' ],
+			[ 'title' => 'Shipping', 'slug' => 'shipping', 'content' => '' ],
+			[ 'title' => 'Privacy Policy', 'slug' => 'privacy', 'content' => '' ],
+			[ 'title' => 'Terms & Conditions', 'slug' => 'terms', 'content' => '' ],
+			[ 'title' => 'Wishlist', 'slug' => 'wishlist', 'content' => '' ],
+			[ 'title' => 'Rewards', 'slug' => 'rewards', 'content' => '' ],
+			[ 'title' => 'My Account', 'slug' => 'account', 'content' => '' ],
+			[ 'title' => 'Login', 'slug' => 'login', 'content' => '' ],
+			[ 'title' => 'Store Locator', 'slug' => 'store-locator', 'content' => '' ],
+			[ 'title' => 'Careers', 'slug' => 'care', 'content' => '' ],
+			[ 'title' => 'Press', 'slug' => 'skin', 'content' => '' ],
+			[ 'title' => 'Korean Skincare', 'slug' => 'korean', 'content' => '' ],
+			[ 'title' => 'Make Up', 'slug' => 'makeup', 'content' => '' ],
+			[ 'title' => 'Vegan Beauty', 'slug' => 'vegan', 'content' => '' ],
+			[ 'title' => 'Learn', 'slug' => 'learn', 'content' => '' ],
 		];
 
-		$page_ids = [];
-
 		foreach ( $pages as $page ) {
-			$slug = $page['slug'];
-			$existing_page = get_page_by_path( $slug );
+			$existing_page = get_page_by_path( $page['slug'] );
+
+			$post_data = [
+				'post_type'    => 'page',
+				'post_title'   => $page['title'],
+				'post_name'    => $page['slug'],
+				'post_content' => $page['content'],
+				'post_status'  => 'publish',
+			];
 
 			if ( ! $existing_page ) {
-				$existing_page = get_page_by_title( $page['title'] );
-			}
-
-			if ( ! $existing_page ) {
-				$page_id = wp_insert_post( [
-					'post_type'    => 'page',
-					'post_title'   => $page['title'],
-					'post_name'    => $slug,
-					'post_content' => $page['content'],
-					'post_status'  => 'publish',
-				] );
+				$post_id = wp_insert_post( $post_data );
 			} else {
+				$post_id = $existing_page->ID;
 				$current_content = $existing_page->post_content;
 				$needs_update = false;
 
@@ -202,24 +148,23 @@ class Seeder {
 					$needs_update = true;
 				}
 
-				if ( $slug === 'home' && strpos( $current_content, 'sk_hero_slider' ) === false ) {
+				if ( ! empty( $page['shortcode_check'] ) && strpos( $current_content, $page['shortcode_check'] ) === false ) {
 					$needs_update = true;
 				}
 
-				if ( $slug === 'rewards' && strpos( $current_content, 'sk_rewards_castle' ) === false ) {
+				if ( empty( $current_content ) && ! empty( $page['content'] ) ) {
 					$needs_update = true;
 				}
 
-				$page_id = $existing_page->ID;
-				$should_sync_meta = $existing_page->post_name !== $slug || $existing_page->post_title !== $page['title'];
+				if ( $needs_update || $existing_page->post_title !== $page['title'] ) {
+					wp_update_post( array_merge( $post_data, [ 'ID' => $post_id ] ) );
+				}
+			}
 
-				if ( $needs_update || $should_sync_meta ) {
-					wp_update_post( [
-						'ID'           => $page_id,
-						'post_content' => $page['content'],
-						'post_name'    => $slug,
-						'post_title'   => $page['title'],
-					] );
+			if ( ! empty( $page['template'] ) && $post_id ) {
+				$current_template = get_post_meta( $post_id, '_wp_page_template', true );
+				if ( $current_template !== $page['template'] ) {
+					update_post_meta( $post_id, '_wp_page_template', $page['template'] );
 				}
 			}
 
@@ -251,9 +196,26 @@ class Seeder {
 
 	private static function create_categories() {
 		$cats = [
-			'Limpiadores', 'Exfoliantes', 'Tónicos', 'Esencias',
-			'Serums', 'Mascarillas', 'Cremas Solares', 'Maquillaje', 'Sets',
-			'K-Beauty', 'J-Beauty'
+			'Oil Cleanser',
+			'Water-Based Cleanser',
+			'Exfoliator',
+			'Toner',
+			'Essence',
+			'Serum/Ampoule',
+			'Mask',
+			'Eye care',
+			'Moisturiser',
+			'Suncream',
+			'Sheet Masks',
+			'Sets & Gifts',
+			'Devices',
+			'Minis',
+			'Vegan & Cruelty-Free',
+			'Face',
+			'Eyes',
+			'Lips',
+			'Make Up Tools',
+			'Make Up Remover',
 		];
 
 		foreach ( $cats as $cat ) {
@@ -320,14 +282,15 @@ class Seeder {
 		$placeholder_id = self::upload_placeholder_image();
 
 		$demo_products = [
-			[ 'name' => 'COSRX Advanced Snail 96 Mucin Power Essence', 'price' => '21.00', 'cat' => 'Esencias' ],
-			[ 'name' => 'Beauty of Joseon Relief Sun: Rice + Probiotics', 'price' => '16.00', 'cat' => 'Cremas Solares' ],
-			[ 'name' => 'Anua Heartleaf 77% Soothing Toner', 'price' => '24.00', 'cat' => 'Tónicos' ],
-			[ 'name' => 'Laneige Lip Sleeping Mask Berry', 'price' => '19.00', 'cat' => 'Mascarillas' ],
-			[ 'name' => 'Round Lab 1025 Dokdo Cleanser', 'price' => '14.00', 'cat' => 'Limpiadores' ],
-			[ 'name' => 'Skin1004 Madagascar Centella Ampoule', 'price' => '18.00', 'cat' => 'Serums' ],
-			[ 'name' => 'Etude House SoonJung 2x Barrier Cream', 'price' => '22.00', 'cat' => 'Cremas' ],
-			[ 'name' => 'Rom&nd Juicy Lasting Tint', 'price' => '11.00', 'cat' => 'Maquillaje' ],
+			[ 'name' => 'HaruHaru Wonder Black Rice Oil Cleanser', 'price' => '19.00', 'cat' => 'Oil Cleanser' ],
+			[ 'name' => 'Round Lab 1025 Dokdo Cleanser', 'price' => '14.00', 'cat' => 'Water-Based Cleanser' ],
+			[ 'name' => 'Some By Mi AHA BHA PHA 30 Days Toner', 'price' => '18.00', 'cat' => 'Toner' ],
+			[ 'name' => 'COSRX Advanced Snail 96 Mucin Power Essence', 'price' => '21.00', 'cat' => 'Essence' ],
+			[ 'name' => 'Anua Heartleaf 80% Soothing Ampoule', 'price' => '24.00', 'cat' => 'Serum/Ampoule' ],
+			[ 'name' => 'Beauty of Joseon Red Bean Refreshing Mask', 'price' => '18.00', 'cat' => 'Mask' ],
+			[ 'name' => 'Klairs Fundamental Eye Butter', 'price' => '23.00', 'cat' => 'Eye care' ],
+			[ 'name' => 'Isntree Hyaluronic Acid Moist Cream', 'price' => '20.00', 'cat' => 'Moisturiser' ],
+			[ 'name' => 'Beauty of Joseon Relief Sun: Rice + Probiotics', 'price' => '16.00', 'cat' => 'Suncream' ],
 		];
 
 		foreach ( $demo_products as $p ) {

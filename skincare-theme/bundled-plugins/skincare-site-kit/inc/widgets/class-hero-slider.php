@@ -27,10 +27,11 @@ class Hero_Slider extends Widget_Base {
 	}
 
 	protected function _register_controls() {
+		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		$default_images = [
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
+			$theme_assets . 'placeholder-hero-1.svg',
+			$theme_assets . 'placeholder-hero-2.svg',
+			$theme_assets . 'placeholder-hero-3.svg',
 		];
 
 		$this->start_controls_section(
@@ -126,11 +127,12 @@ class Hero_Slider extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-hero-1.svg';
 
 		// Simple HTML structure for a slider (would need JS init in assets/js/site-kit.js)
 		echo '<div class="sk-hero-slider">';
 		foreach ( $settings['slides'] as $slide ) {
-			$image_url = ! empty( $slide['image']['url'] ) ? $slide['image']['url'] : $default_images[0];
+			$image_url = ! empty( $slide['image']['url'] ) ? $slide['image']['url'] : $fallback_image;
 			$link_url = ! empty( $slide['link']['url'] ) ? $slide['link']['url'] : '#';
 			echo '<div class="sk-slide" style="background-image: url(' . esc_url( $image_url ) . ')">';
 			echo '<div class="sk-slide-content">';

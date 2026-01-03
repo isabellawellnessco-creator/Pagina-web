@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180">
+  <rect width="320" height="180" fill="#eef2fb" rx="24"/>
+  <rect x="40" y="60" width="240" height="60" rx="30" fill="#c8d6f4"/>
+  <text x="70" y="105" font-family="Arial, sans-serif" font-size="24" fill="#0f3062">Brand Logo</text>
+</svg>

@@ -12,46 +12,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Iniciar sesión',
-		'subtitle' => 'Login',
-		'text' => 'Accede a tu cuenta para ver pedidos y recompensas.',
-		'cta' => [
-			'label' => 'Crear cuenta',
-			'url' => '/account/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
+	$default_shortcode = class_exists( 'WooCommerce' ) ? '[woocommerce_my_account]' : '';
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Beneficios de tu cuenta',
-		'intro' => 'Inspirado en el área de acceso.',
-		'cards' => [
-			[
-				'title' => 'Seguimiento',
-				'text' => 'Controla cada entrega desde tu panel.',
-				'link_label' => 'Ver pedidos',
-				'link_url' => '/account/',
-			],
-			[
-				'title' => 'Puntos',
-				'text' => 'Acumula puntos y desbloquea beneficios.',
-				'link_label' => 'Ver rewards',
-				'link_url' => '/rewards/',
-			],
-			[
-				'title' => 'Wishlist',
-				'text' => 'Guarda tus favoritos para futuras compras.',
-				'link_label' => 'Ver wishlist',
-				'link_url' => '/wishlist/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} elseif ( $default_shortcode ) {
+						echo do_shortcode( $default_shortcode );
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

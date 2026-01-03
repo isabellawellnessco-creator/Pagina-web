@@ -78,6 +78,15 @@ function skincare_is_woo() {
 	return class_exists( 'WooCommerce' );
 }
 
+function skincare_get_page_url( $slug ) {
+	$page = get_page_by_path( $slug );
+	if ( $page ) {
+		return get_permalink( $page );
+	}
+
+	return home_url( '/' . trim( $slug, '/' ) . '/' );
+}
+
 /**
  * Load Bundled Plugin if it exists (Simulation of a plugin in a theme repo)
  * In a real scenario, this would be a separate plugin.

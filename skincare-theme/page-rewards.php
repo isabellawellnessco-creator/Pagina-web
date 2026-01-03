@@ -12,65 +12,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Programa de Rewards',
-		'subtitle' => 'Rewards',
-		'text' => 'Gana puntos con cada compra y canjéalos por premios exclusivos.',
-		'cta' => [
-			'label' => 'Ver mi saldo',
-			'url' => '/account/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Cómo funciona',
-		'intro' => 'Inspirado en el catálogo de recompensas.',
-		'cards' => [
-			[
-				'title' => 'Gana puntos',
-				'text' => 'Acumula puntos por compras, reseñas y referidos.',
-				'link_label' => 'Ver acciones',
-				'link_url' => '/rewards/',
-			],
-			[
-				'title' => 'Canjea premios',
-				'text' => 'Descuentos, regalos y acceso anticipado.',
-				'link_label' => 'Ver catálogo',
-				'link_url' => '/rewards/',
-			],
-			[
-				'title' => 'Niveles',
-				'text' => 'Sube de nivel y desbloquea beneficios adicionales.',
-				'link_label' => 'Conocer niveles',
-				'link_url' => '/rewards/',
-			],
-		],
-	] );
-	?>
-	<?php
-	get_template_part( 'template-parts/sections/faq', null, [
-		'title' => 'FAQs de Rewards',
-		'faqs' => [
-			[
-				'question' => '¿Cómo acumulo puntos?',
-				'answer' => 'Ganas puntos por cada compra y acciones adicionales.',
-			],
-			[
-				'question' => '¿Los puntos caducan?',
-				'answer' => 'Los puntos tienen una validez de 12 meses desde su obtención.',
-			],
-			[
-				'question' => '¿Puedo combinar recompensas?',
-				'answer' => 'Puedes canjear una recompensa por pedido.',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php
+					if ( $content ) {
+						the_content();
+					} else {
+						echo do_shortcode( '[sk_rewards_castle]' );
+						echo do_shortcode( '[sk_rewards_earn_redeem]' );
+						echo do_shortcode( '[sk_rewards_dashboard]' );
+					}
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

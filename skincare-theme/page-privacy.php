@@ -12,42 +12,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Política de privacidad',
-		'subtitle' => 'Privacy',
-		'text' => 'Conoce cómo protegemos y gestionamos tus datos.',
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Resumen de privacidad',
-		'intro' => 'Basado en nuestra política oficial.',
-		'cards' => [
-			[
-				'title' => 'Datos recopilados',
-				'text' => 'Información necesaria para procesar pedidos.',
-				'link_label' => 'Ver detalle',
-				'link_url' => '/privacy/',
-			],
-			[
-				'title' => 'Cookies',
-				'text' => 'Uso de cookies para mejorar la experiencia.',
-				'link_label' => 'Ver detalle',
-				'link_url' => '/privacy/',
-			],
-			[
-				'title' => 'Tus derechos',
-				'text' => 'Acceso, rectificación y eliminación de datos.',
-				'link_label' => 'Ver detalle',
-				'link_url' => '/privacy/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php the_content(); ?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

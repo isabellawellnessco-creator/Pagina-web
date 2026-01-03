@@ -1,6 +1,6 @@
 <?php
 /**
- * Care template.
+ * Careers template.
  *
  * @package SkincareThemeChild
  */
@@ -12,46 +12,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Careers en Skin Cupid',
-		'subtitle' => 'Care',
-		'text' => 'Únete a nuestro equipo y construye el futuro del K-Beauty.',
-		'cta' => [
-			'label' => 'Ver vacantes',
-			'url' => '/careers/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Áreas abiertas',
-		'intro' => 'Oportunidades inspiradas en nuestro portal de carreras.',
-		'cards' => [
-			[
-				'title' => 'Customer Care',
-				'text' => 'Acompaña a nuestra comunidad con soporte premium.',
-				'link_label' => 'Aplicar',
-				'link_url' => '/careers/',
-			],
-			[
-				'title' => 'Marketing & Brand',
-				'text' => 'Cuenta historias que conectan con amantes del skincare.',
-				'link_label' => 'Aplicar',
-				'link_url' => '/careers/',
-			],
-			[
-				'title' => 'Operaciones',
-				'text' => 'Optimiza pedidos, logística y experiencia postventa.',
-				'link_label' => 'Aplicar',
-				'link_url' => '/careers/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php the_content(); ?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

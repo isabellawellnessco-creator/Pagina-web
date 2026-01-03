@@ -167,6 +167,30 @@ class Seeder {
 					update_post_meta( $post_id, '_wp_page_template', $page['template'] );
 				}
 			}
+
+			if ( ! empty( $page['template'] ) && ! is_wp_error( $page_id ) ) {
+				update_post_meta( $page_id, '_wp_page_template', $page['template'] );
+			}
+
+			if ( ! is_wp_error( $page_id ) ) {
+				$page_ids[ $slug ] = $page_id;
+			}
+		}
+
+		foreach ( $pages as $page ) {
+			if ( empty( $page['parent'] ) ) {
+				continue;
+			}
+
+			$child_id  = $page_ids[ $page['slug'] ] ?? 0;
+			$parent_id = $page_ids[ $page['parent'] ] ?? 0;
+
+			if ( $child_id && $parent_id ) {
+				wp_update_post( [
+					'ID'          => $child_id,
+					'post_parent' => $parent_id,
+				] );
+			}
 		}
 	}
 

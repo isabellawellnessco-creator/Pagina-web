@@ -12,46 +12,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Makeup',
-		'subtitle' => 'Makeup',
-		'text' => 'Explora maquillaje coreano con acabado natural.',
-		'cta' => [
-			'label' => 'Ver colección',
-			'url' => '/makeup/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Categorías',
-		'intro' => 'Inspirado en la sección de maquillaje.',
-		'cards' => [
-			[
-				'title' => 'Labios',
-				'text' => 'Tintes y bálsamos con efecto glossy.',
-				'link_label' => 'Ver labios',
-				'link_url' => '/makeup/',
-			],
-			[
-				'title' => 'Tez',
-				'text' => 'Cushions y bases ligeras.',
-				'link_label' => 'Ver tez',
-				'link_url' => '/makeup/',
-			],
-			[
-				'title' => 'Ojos',
-				'text' => 'Paletas suaves y delineados precisos.',
-				'link_label' => 'Ver ojos',
-				'link_url' => '/makeup/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php if ( $content ) : ?>
+						<?php the_content(); ?>
+					<?php endif; ?>
+					<?php
+					get_template_part( 'template-parts/sections/product-grid', null, [
+						'title' => __( 'Makeup picks', 'skincare' ),
+						'description' => __( 'Explora los esenciales de maquillaje coreano.', 'skincare' ),
+						'category' => 'maquillaje',
+						'limit' => 12,
+					] );
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

@@ -12,42 +12,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Términos y condiciones',
-		'subtitle' => 'Terms',
-		'text' => 'Condiciones de uso, compras y servicios de Skin Cupid.',
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Puntos clave',
-		'intro' => 'Resumen basado en nuestra página legal.',
-		'cards' => [
-			[
-				'title' => 'Pedidos y pagos',
-				'text' => 'Detalles de compra y confirmación de pedidos.',
-				'link_label' => 'Leer sección',
-				'link_url' => '/terms/',
-			],
-			[
-				'title' => 'Uso del sitio',
-				'text' => 'Buenas prácticas y políticas de uso.',
-				'link_label' => 'Leer sección',
-				'link_url' => '/terms/',
-			],
-			[
-				'title' => 'Responsabilidad',
-				'text' => 'Información sobre limitaciones y garantías.',
-				'link_label' => 'Leer sección',
-				'link_url' => '/terms/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php the_content(); ?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

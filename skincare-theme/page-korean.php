@@ -12,46 +12,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<main id="main" class="site-main">
-	<?php
-	get_template_part( 'template-parts/sections/hero', null, [
-		'title' => 'Korean Skincare',
-		'subtitle' => 'K-Beauty',
-		'text' => 'Explora nuestras colecciones y favoritos coreanos.',
-		'cta' => [
-			'label' => 'Explorar colecciones',
-			'url' => '/korean/',
-		],
-	] );
+<?php
+while ( have_posts() ) :
+	the_post();
+	$content = trim( get_the_content() );
 	?>
-	<?php
-	get_template_part( 'template-parts/sections/card-grid', null, [
-		'title' => 'Descubre',
-		'intro' => 'Inspirado en la página de Korean skincare.',
-		'cards' => [
-			[
-				'title' => 'Rutinas esenciales',
-				'text' => 'Productos para cada paso de tu rutina.',
-				'link_label' => 'Ver rutina',
-				'link_url' => '/korean/',
-			],
-			[
-				'title' => 'Marcas top',
-				'text' => 'Selección curada de marcas coreanas.',
-				'link_label' => 'Ver marcas',
-				'link_url' => '/korean/',
-			],
-			[
-				'title' => 'Sets',
-				'text' => 'Kits listos para regalar o empezar.',
-				'link_label' => 'Ver sets',
-				'link_url' => '/korean/',
-			],
-		],
-	] );
-	?>
-
-</main>
+	<main id="main" class="site-main" role="main">
+		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
+			<article <?php post_class( 'sk-page' ); ?>>
+				<header class="sk-page-header">
+					<h1 class="sk-page-title"><?php the_title(); ?></h1>
+					<?php if ( has_excerpt() ) : ?>
+						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
+					<?php endif; ?>
+				</header>
+				<div class="page-content sk-page-content">
+					<?php if ( $content ) : ?>
+						<?php the_content(); ?>
+					<?php endif; ?>
+					<?php
+					get_template_part( 'template-parts/sections/product-grid', null, [
+						'title' => __( 'Korean skincare favorites', 'skincare' ),
+						'description' => __( 'Rutinas, tratamientos y lanzamientos de K-Beauty.', 'skincare' ),
+						'category' => 'k-beauty',
+						'limit' => 12,
+					] );
+					?>
+				</div>
+			</article>
+		<?php endif; ?>
+	</main>
+<?php endwhile; ?>
 
 <?php
 get_footer();

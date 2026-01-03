@@ -15,12 +15,13 @@ class Brand_Slider extends Widget_Base {
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
+		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		$default_logos = [
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
+			$theme_assets . 'placeholder-brand.svg',
+			$theme_assets . 'placeholder-brand.svg',
+			$theme_assets . 'placeholder-brand.svg',
+			$theme_assets . 'placeholder-brand.svg',
+			$theme_assets . 'placeholder-brand.svg',
 		];
 
 		$this->start_controls_section( 'content', [ 'label' => 'Brands' ] );
@@ -57,9 +58,10 @@ class Brand_Slider extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$fallback_logo = get_stylesheet_directory_uri() . '/assets/images/placeholder-brand.svg';
 		echo '<div class="sk-brand-slider">';
 		foreach ( $settings['brands'] as $brand ) {
-			$logo_url = ! empty( $brand['logo']['url'] ) ? $brand['logo']['url'] : $default_logos[0];
+			$logo_url = ! empty( $brand['logo']['url'] ) ? $brand['logo']['url'] : $fallback_logo;
 			$link_url = ! empty( $brand['link']['url'] ) ? $brand['link']['url'] : '#';
 			echo '<div class="sk-brand-item">';
 			echo '<a href="' . esc_url( $link_url ) . '">';

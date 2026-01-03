@@ -15,11 +15,12 @@ class Concern_Grid extends Widget_Base {
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
+		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		$default_images = [
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
+			$theme_assets . 'placeholder-concern.svg',
+			$theme_assets . 'placeholder-concern.svg',
+			$theme_assets . 'placeholder-concern.svg',
+			$theme_assets . 'placeholder-concern.svg',
 		];
 
 		$this->start_controls_section( 'content', [ 'label' => 'Concerns' ] );
@@ -72,9 +73,10 @@ class Concern_Grid extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-concern.svg';
 		echo '<div class="sk-concern-grid">';
 		foreach ( $settings['items'] as $item ) {
-			$image_url = ! empty( $item['image']['url'] ) ? $item['image']['url'] : $default_images[0];
+			$image_url = ! empty( $item['image']['url'] ) ? $item['image']['url'] : $fallback_image;
 			$link_url = ! empty( $item['link']['url'] ) ? $item['link']['url'] : '#';
 			echo '<a href="' . esc_url( $link_url ) . '" class="sk-concern-item">';
 			echo '<div class="sk-concern-image" style="background-image: url(' . esc_url( $image_url ) . ')"></div>';

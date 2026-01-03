@@ -15,13 +15,14 @@ class Instagram_Feed extends Widget_Base {
 	public function get_categories() { return [ 'general' ]; }
 
 	protected function _register_controls() {
+		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		$default_images = [
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
-			SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
+			$theme_assets . 'placeholder-instagram.svg',
+			$theme_assets . 'placeholder-instagram.svg',
+			$theme_assets . 'placeholder-instagram.svg',
+			$theme_assets . 'placeholder-instagram.svg',
+			$theme_assets . 'placeholder-instagram.svg',
+			$theme_assets . 'placeholder-instagram.svg',
 		];
 
 		$this->start_controls_section( 'content', [ 'label' => 'Images' ] );
@@ -46,11 +47,12 @@ class Instagram_Feed extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-instagram.svg';
 		echo '<div class="sk-insta-feed">';
 		echo '<h3>' . __( 'Follow us @skincupid', 'skincare' ) . '</h3>';
 		echo '<div class="sk-insta-grid">';
 		foreach ( $settings['gallery'] as $image ) {
-			$image_url = ! empty( $image['url'] ) ? $image['url'] : $default_images[0];
+			$image_url = ! empty( $image['url'] ) ? $image['url'] : $fallback_image;
 			echo '<div class="sk-insta-item" style="background-image: url(' . esc_url( $image_url ) . ')"></div>';
 		}
 		echo '</div></div>';

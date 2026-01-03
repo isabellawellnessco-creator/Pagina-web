@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700">
+  <rect width="1600" height="700" fill="#eef2fb"/>
+  <circle cx="420" cy="320" r="220" fill="#c8d6f4"/>
+  <rect x="740" y="180" width="540" height="48" rx="24" fill="#0f3062"/>
+  <rect x="740" y="250" width="420" height="28" rx="14" fill="#8aa0d6"/>
+  <rect x="740" y="300" width="360" height="24" rx="12" fill="#8aa0d6"/>
+  <rect x="740" y="360" width="200" height="52" rx="26" fill="#0f3062"/>
+  <text x="740" y="470" font-family="Arial, sans-serif" font-size="42" fill="#0f3062">Hero Slide 2</text>
+</svg>

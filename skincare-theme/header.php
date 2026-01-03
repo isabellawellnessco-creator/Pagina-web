@@ -37,7 +37,14 @@ if ( class_exists( '\Skincare\SiteKit\Modules\Theme_Builder' ) ) {
 	<header id="site-header" class="site-header" role="banner">
 		<div class="site-branding">
 			<?php
-			if ( has_custom_logo() ) {
+			$branding = get_option( 'sk_theme_branding_settings', [] );
+			$logo_id = isset( $branding['logo_id'] ) ? absint( $branding['logo_id'] ) : 0;
+			if ( $logo_id ) {
+				$logo = wp_get_attachment_image( $logo_id, 'full', false, [ 'class' => 'custom-logo' ] );
+				if ( $logo ) {
+					echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="custom-logo-link" rel="home">' . $logo . '</a>';
+				}
+			} elseif ( has_custom_logo() ) {
 				the_custom_logo();
 			} elseif ( is_front_page() && is_home() ) {
 				?>

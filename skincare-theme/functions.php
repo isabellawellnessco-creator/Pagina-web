@@ -225,14 +225,6 @@ function skincare_get_page_url( $slug ) {
 }
 
 /**
- * Load Bundled Plugin if it exists (Simulation of a plugin in a theme repo)
- * In a real scenario, this would be a separate plugin.
- */
-if ( file_exists( get_stylesheet_directory() . '/bundled-plugins/skincare-site-kit/skincare-site-kit.php' ) ) {
-    require_once get_stylesheet_directory() . '/bundled-plugins/skincare-site-kit/skincare-site-kit.php';
-}
-
-/**
  * Auto-trigger Seeder for "Skin Cupid" setup
  * Removed manual GET injection, relying on version check in Seeder::run_seeder
  */

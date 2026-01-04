@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once get_stylesheet_directory() . '/inc/plugin-setup.php';
+
 // Enqueue Assets
 function skincare_enqueue_scripts() {
 	$ver = '1.0.0';

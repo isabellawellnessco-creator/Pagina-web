@@ -18,6 +18,11 @@ class Seeder {
 	public static function run_seeder() {
 		$should_run = false;
 
+		$settings = get_option( 'sk_theme_builder_settings', [] );
+		$header_id = isset( $settings['global_header'] ) ? (int) $settings['global_header'] : 0;
+		$footer_id = isset( $settings['global_footer'] ) ? (int) $settings['global_footer'] : 0;
+		$missing_theme_parts = ! $header_id || ! get_post( $header_id ) || ! $footer_id || ! get_post( $footer_id );
+
 		// Manual trigger
 		if ( isset( $_GET['sk_seed_content'] ) && $_GET['sk_seed_content'] == 'true' && current_user_can( 'manage_options' ) ) {
 			$should_run = true;
@@ -26,6 +31,10 @@ class Seeder {
 		// Auto trigger based on version
 		$current_version = (int) get_option( self::OPTION_NAME, 0 );
 		if ( $current_version < self::SEED_VERSION && current_user_can( 'manage_options' ) ) {
+			$should_run = true;
+		}
+
+		if ( $missing_theme_parts && current_user_can( 'manage_options' ) ) {
 			$should_run = true;
 		}
 

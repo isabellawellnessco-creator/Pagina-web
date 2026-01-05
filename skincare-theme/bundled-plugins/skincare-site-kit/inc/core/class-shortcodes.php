@@ -43,6 +43,10 @@ class Shortcodes {
 			return '';
 		}
 
+		if ( ! class_exists( '\\Elementor\\Widget_Base' ) ) {
+			return self::render_missing_elementor_notice();
+		}
+
 		ob_start();
 
 		// Instantiate the widget
@@ -91,5 +95,13 @@ class Shortcodes {
 		}
 
 		return ob_get_clean();
+	}
+
+	private static function render_missing_elementor_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return '';
+		}
+
+		return '<div class="sk-widget-missing"><strong>Skincare Site Kit:</strong> Activa Elementor para mostrar estos widgets.</div>';
 	}
 }

@@ -333,7 +333,23 @@ class Settings {
 	}
 
 	public static function enqueue_assets( $hook ) {
-		if ( ! in_array( $hook, [ 'toplevel_page_skincare-site-kit', 'skincare-site-kit_page_sk-branding-settings', 'post.php', 'post-new.php' ], true ) ) {
+			$admin_pages = [
+				'toplevel_page_skincare-site-kit',
+				'skincare-site-kit_page_sk-branding-settings',
+				'skincare-site-kit_page_sk-theme-builder',
+				'skincare-site-kit_page_sk-operations-dashboard',
+				'skincare-site-kit_page_sk-rewards-control',
+			'skincare-site-kit_page_sk-fulfillment-center',
+			'skincare-site-kit_page_sk-sla-monitor',
+			'skincare-site-kit_page_sk-batch-picking',
+			'skincare-site-kit_page_sk-packing-slips',
+			'skincare-site-kit_page_sk-shipping-labels',
+			'skincare-site-kit_page_sk-invoices',
+			'post.php',
+			'post-new.php',
+		];
+
+		if ( ! in_array( $hook, $admin_pages, true ) ) {
 			return;
 		}
 
@@ -346,6 +362,28 @@ class Settings {
 			true
 		);
 		wp_enqueue_style( 'wp-color-picker' );
+
+		wp_enqueue_style(
+			'sk-site-kit-admin-dashboard',
+			SKINCARE_KIT_URL . 'assets/css/admin-dashboard.css',
+			[],
+			'1.0.0'
+		);
+
+		wp_enqueue_script(
+			'sk-site-kit-admin-dashboard',
+			SKINCARE_KIT_URL . 'assets/js/admin-dashboard.js',
+			[],
+			'1.0.0',
+			true
+		);
+
+		if ( class_exists( '\\Skincare\\SiteKit\\Admin\\Operations_Dashboard' ) ) {
+			wp_localize_script( 'sk-site-kit-admin-dashboard', 'skAdminDashboard', [
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( Operations_Dashboard::UPDATE_NONCE_ACTION ),
+			] );
+		}
 	}
 
 	public static function render_page() {

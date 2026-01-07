@@ -77,15 +77,19 @@ class Fulfillment {
 			'order' => 'ASC',
 		] );
 		?>
-		<div class="wrap">
+		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'SLA Monitor', 'skincare' ); ?></h1>
-			<form method="get">
-				<input type="hidden" name="page" value="sk-sla-monitor">
-				<label for="threshold"><?php esc_html_e( 'Hours threshold', 'skincare' ); ?></label>
-				<input type="number" name="threshold" id="threshold" value="<?php echo esc_attr( $threshold_hours ); ?>" min="1" step="1">
-				<?php submit_button( __( 'Filter', 'skincare' ), 'secondary', 'submit', false ); ?>
-			</form>
-			<table class="widefat striped">
+			<div class="sk-admin-hero">
+				<form method="get" class="sk-admin-filter-bar">
+					<input type="hidden" name="page" value="sk-sla-monitor">
+					<label for="threshold">
+						<?php esc_html_e( 'Hours threshold', 'skincare' ); ?>
+						<input type="number" name="threshold" id="threshold" value="<?php echo esc_attr( $threshold_hours ); ?>" min="1" step="1">
+					</label>
+					<?php submit_button( __( 'Filter', 'skincare' ), 'secondary', 'submit', false ); ?>
+				</form>
+			</div>
+			<table class="widefat striped sk-admin-table">
 				<thead>
 					<tr>
 						<th><?php esc_html_e( 'Order', 'skincare' ); ?></th>
@@ -126,24 +130,24 @@ class Fulfillment {
 			$updated = true;
 		}
 		?>
-		<div class="wrap">
+		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Batch Picking', 'skincare' ); ?></h1>
 			<?php if ( $updated ) : ?>
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Batch updated.', 'skincare' ); ?></p></div>
 			<?php endif; ?>
-			<form method="post">
-				<table class="form-table">
-					<tr>
-						<th><label for="batch_id"><?php esc_html_e( 'Batch ID', 'skincare' ); ?></label></th>
-						<td><input type="text" name="batch_id" id="batch_id" class="regular-text" placeholder="BATCH-2025-001"></td>
-					</tr>
-					<tr>
-						<th><label for="order_ids"><?php esc_html_e( 'Order IDs', 'skincare' ); ?></label></th>
-						<td><input type="text" name="order_ids" id="order_ids" class="large-text" placeholder="1234,1235,1236"></td>
-					</tr>
-				</table>
-				<?php submit_button( __( 'Assign batch', 'skincare' ) ); ?>
-			</form>
+			<div class="sk-admin-hero">
+				<form method="post" class="sk-admin-filter-bar">
+					<label for="batch_id">
+						<?php esc_html_e( 'Batch ID', 'skincare' ); ?>
+						<input type="text" name="batch_id" id="batch_id" class="regular-text" placeholder="BATCH-2025-001">
+					</label>
+					<label for="order_ids">
+						<?php esc_html_e( 'Order IDs', 'skincare' ); ?>
+						<input type="text" name="order_ids" id="order_ids" class="large-text" placeholder="1234,1235,1236">
+					</label>
+					<?php submit_button( __( 'Assign batch', 'skincare' ) ); ?>
+				</form>
+			</div>
 		</div>
 		<?php
 	}
@@ -152,28 +156,28 @@ class Fulfillment {
 		$order_ids = self::parse_order_ids();
 		$orders = self::get_orders_from_ids( $order_ids );
 		?>
-		<div class="wrap">
+		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Fulfillment Center', 'skincare' ); ?></h1>
 			<p><?php esc_html_e( 'Gestiona packing, etiquetas y facturación en una sola vista.', 'skincare' ); ?></p>
 
-			<nav class="sk-fulfillment-tabs" aria-label="<?php esc_attr_e( 'Fulfillment sections', 'skincare' ); ?>">
-				<button class="sk-tab is-active" data-target="sk-fulfillment-overview"><?php esc_html_e( 'Overview', 'skincare' ); ?></button>
-				<button class="sk-tab" data-target="sk-fulfillment-packing"><?php esc_html_e( 'Packing Slips', 'skincare' ); ?></button>
-				<button class="sk-tab" data-target="sk-fulfillment-labels"><?php esc_html_e( 'Shipping Labels', 'skincare' ); ?></button>
-				<button class="sk-tab" data-target="sk-fulfillment-invoices"><?php esc_html_e( 'Invoices', 'skincare' ); ?></button>
+			<nav class="sk-admin-tabs" aria-label="<?php esc_attr_e( 'Fulfillment sections', 'skincare' ); ?>">
+				<button class="sk-admin-tab is-active" data-target="sk-fulfillment-overview"><?php esc_html_e( 'Overview', 'skincare' ); ?></button>
+				<button class="sk-admin-tab" data-target="sk-fulfillment-packing"><?php esc_html_e( 'Packing Slips', 'skincare' ); ?></button>
+				<button class="sk-admin-tab" data-target="sk-fulfillment-labels"><?php esc_html_e( 'Shipping Labels', 'skincare' ); ?></button>
+				<button class="sk-admin-tab" data-target="sk-fulfillment-invoices"><?php esc_html_e( 'Invoices', 'skincare' ); ?></button>
 			</nav>
 
-			<section id="sk-fulfillment-overview" class="sk-fulfillment-panel is-active">
-				<div class="sk-panel-grid">
-					<div class="sk-panel-card">
+			<section id="sk-fulfillment-overview" class="sk-admin-panel is-active">
+				<div class="sk-admin-panel-grid">
+					<div class="sk-admin-card">
 						<h2><?php esc_html_e( 'Pedidos recientes', 'skincare' ); ?></h2>
 						<p><?php esc_html_e( 'Accede rápido a los pedidos que necesitan despacho.', 'skincare' ); ?></p>
 						<?php self::render_recent_orders_table(); ?>
 					</div>
-					<div class="sk-panel-card">
+					<div class="sk-admin-card">
 						<h2><?php esc_html_e( 'Atajos', 'skincare' ); ?></h2>
 						<p><?php esc_html_e( 'Genera documentos sin salir de esta pantalla.', 'skincare' ); ?></p>
-						<ul class="sk-quick-links">
+						<ul class="sk-admin-quick-links">
 							<li><a href="#sk-fulfillment-packing"><?php esc_html_e( 'Packing Slips', 'skincare' ); ?></a></li>
 							<li><a href="#sk-fulfillment-labels"><?php esc_html_e( 'Shipping Labels', 'skincare' ); ?></a></li>
 							<li><a href="#sk-fulfillment-invoices"><?php esc_html_e( 'Invoices', 'skincare' ); ?></a></li>
@@ -182,100 +186,24 @@ class Fulfillment {
 				</div>
 			</section>
 
-			<section id="sk-fulfillment-packing" class="sk-fulfillment-panel">
+			<section id="sk-fulfillment-packing" class="sk-admin-panel">
 				<h2><?php esc_html_e( 'Packing Slips', 'skincare' ); ?></h2>
 				<?php self::render_order_form( __( 'Packing slips generator', 'skincare' ), 'sk-fulfillment-center' ); ?>
 				<?php self::render_packing_cards( $orders ); ?>
 			</section>
 
-			<section id="sk-fulfillment-labels" class="sk-fulfillment-panel">
+			<section id="sk-fulfillment-labels" class="sk-admin-panel">
 				<h2><?php esc_html_e( 'Shipping Labels', 'skincare' ); ?></h2>
 				<?php self::render_order_form( __( 'Shipping labels generator', 'skincare' ), 'sk-fulfillment-center' ); ?>
 				<?php self::render_shipping_cards( $orders ); ?>
 			</section>
 
-			<section id="sk-fulfillment-invoices" class="sk-fulfillment-panel">
+			<section id="sk-fulfillment-invoices" class="sk-admin-panel">
 				<h2><?php esc_html_e( 'Invoices & Boletas', 'skincare' ); ?></h2>
 				<?php self::render_order_form( __( 'Invoice generator', 'skincare' ), 'sk-fulfillment-center' ); ?>
 				<?php self::render_invoice_cards( $orders ); ?>
 			</section>
 		</div>
-		<style>
-			.sk-fulfillment-tabs {
-				display: flex;
-				gap: 12px;
-				margin: 20px 0;
-			}
-			.sk-fulfillment-tabs .sk-tab {
-				background: #fff;
-				border: 1px solid #d0d7de;
-				border-radius: 999px;
-				padding: 8px 16px;
-				cursor: pointer;
-				font-weight: 600;
-			}
-			.sk-fulfillment-tabs .sk-tab.is-active {
-				background: #2271b1;
-				border-color: #2271b1;
-				color: #fff;
-			}
-			.sk-fulfillment-panel {
-				display: none;
-				background: #fff;
-				border: 1px solid #e2e8f0;
-				border-radius: 12px;
-				padding: 20px;
-				margin-bottom: 20px;
-			}
-			.sk-fulfillment-panel.is-active {
-				display: block;
-			}
-			.sk-panel-grid {
-				display: grid;
-				grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-				gap: 20px;
-			}
-			.sk-panel-card {
-				background: #f8fafc;
-				border: 1px solid #e2e8f0;
-				border-radius: 12px;
-				padding: 16px;
-			}
-			.sk-quick-links {
-				margin: 12px 0 0;
-				padding-left: 16px;
-			}
-			.sk-print-area {
-				display: grid;
-				gap: 16px;
-			}
-			.sk-print-card {
-				background: #fff;
-				border: 1px solid #e2e8f0;
-				border-radius: 10px;
-				padding: 16px;
-			}
-		</style>
-		<script>
-			(function() {
-				const tabs = document.querySelectorAll('.sk-fulfillment-tabs .sk-tab');
-				const panels = document.querySelectorAll('.sk-fulfillment-panel');
-				if (!tabs.length) {
-					return;
-				}
-				tabs.forEach((tab) => {
-					tab.addEventListener('click', () => {
-						tabs.forEach((item) => item.classList.remove('is-active'));
-						panels.forEach((panel) => panel.classList.remove('is-active'));
-						tab.classList.add('is-active');
-						const panel = document.getElementById(tab.dataset.target);
-						if (panel) {
-							panel.classList.add('is-active');
-						}
-					});
-				});
-			})();
-		</script>
 		<?php
 	}
 
@@ -310,7 +238,7 @@ class Fulfillment {
 	private static function render_order_form( $title, $page_slug ) {
 		?>
 		<h2><?php echo esc_html( $title ); ?></h2>
-		<form method="get" action="">
+		<form method="get" action="" class="sk-admin-filter-bar">
 			<input type="hidden" name="page" value="<?php echo esc_attr( $page_slug ); ?>">
 			<p>
 				<label for="order-ids"><strong><?php esc_html_e( 'Order IDs (comma separated)', 'skincare' ); ?></strong></label>
@@ -329,7 +257,7 @@ class Fulfillment {
 			'order' => 'DESC',
 		] );
 		?>
-		<table class="widefat striped">
+		<table class="widefat striped sk-admin-table">
 			<thead>
 				<tr>
 					<th><?php esc_html_e( 'Pedido', 'skincare' ); ?></th>

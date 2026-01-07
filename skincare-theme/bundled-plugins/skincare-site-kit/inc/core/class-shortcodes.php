@@ -79,6 +79,10 @@ class Shortcodes {
 			}
 			// Add more mocks as needed for visual fidelity without DB
 
+			if ( method_exists( $widget, 'set_settings' ) ) {
+				$widget->set_settings( $settings );
+			}
+
 			$widget_base = new \ReflectionClass( \Elementor\Widget_Base::class );
 			if ( $widget_base->hasProperty( 'data' ) ) {
 				$reflection_data = $widget_base->getProperty( 'data' );
@@ -86,6 +90,9 @@ class Shortcodes {
 				$data = $reflection_data->getValue( $widget );
 				if ( ! is_array( $data ) ) {
 					$data = [];
+				}
+				if ( ! isset( $data['settings'] ) || ! is_array( $data['settings'] ) ) {
+					$data['settings'] = [];
 				}
 				$data['settings'] = $settings;
 				$reflection_data->setValue( $widget, $data );

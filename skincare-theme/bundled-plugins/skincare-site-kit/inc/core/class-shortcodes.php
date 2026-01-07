@@ -84,6 +84,8 @@ class Shortcodes {
 				$reflection_settings = $widget_base->getProperty( 'settings' );
 				$reflection_settings->setAccessible( true );
 				$reflection_settings->setValue( $widget, $settings );
+			} elseif ( method_exists( $widget, 'set_settings' ) ) {
+				$widget->set_settings( $settings );
 			}
 
 			$reflection->invoke( $widget );

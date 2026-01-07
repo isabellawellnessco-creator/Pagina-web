@@ -33,17 +33,6 @@ class Operations_Dashboard {
 			<p><?php esc_html_e( 'Pedidos, almacén y puntos en una sola vista.', 'skincare' ); ?></p>
 
 			<div class="sk-admin-hero">
-				<div class="sk-admin-actions">
-					<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-fulfillment-center' ) ); ?>">
-						<?php esc_html_e( 'Abrir Fulfillment', 'skincare' ); ?>
-					</a>
-					<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-rewards-control' ) ); ?>">
-						<?php esc_html_e( 'Control de Puntos', 'skincare' ); ?>
-					</a>
-					<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-sla-monitor' ) ); ?>">
-						<?php esc_html_e( 'SLA Monitor', 'skincare' ); ?>
-					</a>
-				</div>
 				<div class="sk-admin-grid">
 					<div class="sk-admin-card">
 						<strong><?php esc_html_e( 'Pedidos pendientes', 'skincare' ); ?></strong>
@@ -181,9 +170,6 @@ class Operations_Dashboard {
 								<a class="button button-small" href="<?php echo esc_url( get_edit_post_link( $order->get_id() ) ); ?>">
 									<?php esc_html_e( 'Ver', 'skincare' ); ?>
 								</a>
-								<a class="button button-small" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-fulfillment-center&order_ids=' . $order->get_id() ) ); ?>">
-									<?php esc_html_e( 'Packing', 'skincare' ); ?>
-								</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>
@@ -202,7 +188,6 @@ class Operations_Dashboard {
 					<th><?php esc_html_e( 'Almacén', 'skincare' ); ?></th>
 					<th><?php esc_html_e( 'Estado', 'skincare' ); ?></th>
 					<th><?php esc_html_e( 'Creado', 'skincare' ); ?></th>
-					<th><?php esc_html_e( 'Acciones', 'skincare' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -210,18 +195,13 @@ class Operations_Dashboard {
 					<tr><td colspan="4">—</td></tr>
 				<?php else : ?>
 					<?php foreach ( $orders as $order ) : ?>
-							<tr>
-								<td>#<?php echo esc_html( $order->get_order_number() ); ?></td>
-								<td><?php echo esc_html( get_post_meta( $order->get_id(), '_sk_warehouse_location', true ) ?: '—' ); ?></td>
-								<td><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></td>
-								<td><?php echo esc_html( $order->get_date_created()->date_i18n( 'Y-m-d H:i' ) ); ?></td>
-								<td>
-									<a class="button button-small" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-fulfillment-center&order_ids=' . $order->get_id() ) ); ?>">
-										<?php esc_html_e( 'Generar', 'skincare' ); ?>
-									</a>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+						<tr>
+							<td>#<?php echo esc_html( $order->get_order_number() ); ?></td>
+							<td><?php echo esc_html( get_post_meta( $order->get_id(), '_sk_warehouse_location', true ) ?: '—' ); ?></td>
+							<td><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></td>
+							<td><?php echo esc_html( $order->get_date_created()->date_i18n( 'Y-m-d H:i' ) ); ?></td>
+						</tr>
+					<?php endforeach; ?>
 				<?php endif; ?>
 			</tbody>
 		</table>
@@ -262,9 +242,6 @@ class Operations_Dashboard {
 								<a class="button button-small" href="<?php echo esc_url( get_edit_post_link( $order->get_id() ) ); ?>">
 									<?php esc_html_e( 'Ver', 'skincare' ); ?>
 								</a>
-								<a class="button button-small" href="<?php echo esc_url( self::recalc_points_url( $order->get_id() ) ); ?>">
-									<?php esc_html_e( 'Recalcular', 'skincare' ); ?>
-								</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>
@@ -272,19 +249,5 @@ class Operations_Dashboard {
 			</tbody>
 		</table>
 		<?php
-	}
-
-	private static function recalc_points_url( $order_id ) {
-		return wp_nonce_url(
-			add_query_arg(
-				[
-					'page' => 'sk-rewards-control',
-					'sk_action' => 'recalculate_points',
-					'order_id' => $order_id,
-				],
-				admin_url( 'admin.php' )
-			),
-			Rewards_Admin::NONCE_ACTION
-		);
 	}
 }

@@ -31,7 +31,7 @@ function skincare_required_plugins() {
 			'file'         => 'elementor-pro/elementor-pro.php',
 			'source'       => 'external',
 			'external_url' => 'https://elementor.com/pro/',
-			'required'     => true,
+			'required'     => false,
 		],
 		[
 			'name'       => 'Skincare Site Kit',

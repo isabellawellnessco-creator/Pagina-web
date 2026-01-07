@@ -62,13 +62,6 @@ class Shortcodes {
 			$reflection = new \ReflectionMethod( $class_name, 'render' );
 			$reflection->setAccessible( true );
 
-			// Mock settings if needed. Most of our widgets pull from get_settings_for_display()
-			// which pulls from $this->get_settings(). We need to inject settings.
-
-			// Inject settings into the widget instance
-			$reflection_settings = new \ReflectionProperty( \Elementor\Widget_Base::class, 'settings' );
-			$reflection_settings->setAccessible( true );
-
 			// Default settings or passed attributes
 			$settings = [];
 			// This part is tricky without Elementor's full stack.
@@ -86,7 +79,12 @@ class Shortcodes {
 			}
 			// Add more mocks as needed for visual fidelity without DB
 
-			$reflection_settings->setValue( $widget, $settings );
+			$widget_base = new \ReflectionClass( \Elementor\Widget_Base::class );
+			if ( $widget_base->hasProperty( 'settings' ) ) {
+				$reflection_settings = $widget_base->getProperty( 'settings' );
+				$reflection_settings->setAccessible( true );
+				$reflection_settings->setValue( $widget, $settings );
+			}
 
 			$reflection->invoke( $widget );
 

@@ -78,6 +78,11 @@ class Order_Management {
 		$tracking_number = get_post_meta( $post->ID, '_sk_tracking_number', true );
 		$carrier = get_post_meta( $post->ID, '_sk_carrier', true );
 		$tracking_url = get_post_meta( $post->ID, '_sk_tracking_url', true );
+		$province_shipping = get_post_meta( $post->ID, '_sk_province_shipping', true );
+		$deposit_paid = get_post_meta( $post->ID, '_sk_deposit_paid', true );
+		$deposit_amount = get_post_meta( $post->ID, '_sk_deposit_amount', true );
+		$delivery_agent = get_post_meta( $post->ID, '_sk_delivery_agent', true );
+		$delivery_phone = get_post_meta( $post->ID, '_sk_delivery_phone', true );
 		$internal_notes = get_post_meta( $post->ID, '_sk_internal_notes', true );
 		$picker_id = get_post_meta( $post->ID, '_sk_picker_id', true );
 		$picking_batch_id = get_post_meta( $post->ID, '_sk_picking_batch_id', true );
@@ -159,6 +164,29 @@ class Order_Management {
 		<p>
 			<label for="sk-tracking-url"><strong><?php _e( 'URL de tracking', 'skincare' ); ?></strong></label>
 			<input type="url" class="widefat" name="sk_tracking_url" id="sk-tracking-url" value="<?php echo esc_attr( $tracking_url ); ?>" placeholder="https://">
+		</p>
+		<p>
+			<label><strong><?php _e( 'Envío a provincia', 'skincare' ); ?></strong></label><br>
+			<label>
+				<input type="checkbox" name="sk_province_shipping" value="yes" <?php checked( $province_shipping, 'yes' ); ?>>
+				<?php esc_html_e( 'Este pedido requiere envío a provincia.', 'skincare' ); ?>
+			</label>
+		</p>
+		<p>
+			<label><strong><?php _e( 'Depósito de adelanto', 'skincare' ); ?></strong></label><br>
+			<label>
+				<input type="checkbox" name="sk_deposit_paid" value="yes" <?php checked( $deposit_paid, 'yes' ); ?>>
+				<?php esc_html_e( 'Depósito recibido', 'skincare' ); ?>
+			</label>
+			<input type="text" class="widefat" name="sk_deposit_amount" id="sk-deposit-amount" value="<?php echo esc_attr( $deposit_amount ); ?>" placeholder="<?php esc_attr_e( 'Monto adelanto (Ej: S/ 50.00)', 'skincare' ); ?>">
+		</p>
+		<p>
+			<label for="sk-delivery-agent"><strong><?php _e( 'Envío personal asignado', 'skincare' ); ?></strong></label>
+			<input type="text" class="widefat" name="sk_delivery_agent" id="sk-delivery-agent" value="<?php echo esc_attr( $delivery_agent ); ?>" placeholder="<?php esc_attr_e( 'Nombre del repartidor', 'skincare' ); ?>">
+		</p>
+		<p>
+			<label for="sk-delivery-phone"><strong><?php _e( 'Contacto del repartidor', 'skincare' ); ?></strong></label>
+			<input type="text" class="widefat" name="sk_delivery_phone" id="sk-delivery-phone" value="<?php echo esc_attr( $delivery_phone ); ?>" placeholder="<?php esc_attr_e( 'Celular o WhatsApp', 'skincare' ); ?>">
 		</p>
 		<p>
 			<label for="sk-internal-notes"><strong><?php _e( 'Notas internas', 'skincare' ); ?></strong></label>
@@ -249,6 +277,9 @@ class Order_Management {
 			'_sk_tracking_number' => [ 'key' => 'sk_tracking_number', 'sanitize' => 'sanitize_text_field' ],
 			'_sk_carrier' => [ 'key' => 'sk_carrier', 'sanitize' => 'sanitize_text_field' ],
 			'_sk_tracking_url' => [ 'key' => 'sk_tracking_url', 'sanitize' => 'esc_url_raw' ],
+			'_sk_deposit_amount' => [ 'key' => 'sk_deposit_amount', 'sanitize' => 'sanitize_text_field' ],
+			'_sk_delivery_agent' => [ 'key' => 'sk_delivery_agent', 'sanitize' => 'sanitize_text_field' ],
+			'_sk_delivery_phone' => [ 'key' => 'sk_delivery_phone', 'sanitize' => 'sanitize_text_field' ],
 			'_sk_internal_notes' => [ 'key' => 'sk_internal_notes', 'sanitize' => 'sanitize_textarea_field' ],
 			'_sk_picker_id' => [ 'key' => 'sk_picker_id', 'sanitize' => 'absint' ],
 			'_sk_picking_batch_id' => [ 'key' => 'sk_picking_batch_id', 'sanitize' => 'sanitize_text_field' ],
@@ -263,6 +294,18 @@ class Order_Management {
 				$sanitized = call_user_func( $field['sanitize'], $value );
 				update_post_meta( $post_id, $meta_key, $sanitized );
 			}
+		}
+
+		if ( isset( $_POST['sk_province_shipping'] ) ) {
+			update_post_meta( $post_id, '_sk_province_shipping', 'yes' );
+		} else {
+			delete_post_meta( $post_id, '_sk_province_shipping' );
+		}
+
+		if ( isset( $_POST['sk_deposit_paid'] ) ) {
+			update_post_meta( $post_id, '_sk_deposit_paid', 'yes' );
+		} else {
+			delete_post_meta( $post_id, '_sk_deposit_paid' );
 		}
 
 		if ( isset( $_POST['sk_packing_checklist'] ) && is_array( $_POST['sk_packing_checklist'] ) ) {

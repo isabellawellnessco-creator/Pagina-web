@@ -63,7 +63,7 @@ class Shortcodes {
 			$reflection->setAccessible( true );
 
 			// Default settings or passed attributes
-			$settings = [];
+			$settings = is_array( $atts ) ? $atts : [];
 			// This part is tricky without Elementor's full stack.
 			// For simplicity in this "Replica" phase, our widgets might fail if they rely strictly on `get_settings_for_display`.
 			// Let's ensure our widgets are robust enough or mock the data.
@@ -80,12 +80,21 @@ class Shortcodes {
 			// Add more mocks as needed for visual fidelity without DB
 
 			$widget_base = new \ReflectionClass( \Elementor\Widget_Base::class );
+			if ( $widget_base->hasProperty( 'data' ) ) {
+				$reflection_data = $widget_base->getProperty( 'data' );
+				$reflection_data->setAccessible( true );
+				$data = $reflection_data->getValue( $widget );
+				if ( ! is_array( $data ) ) {
+					$data = [];
+				}
+				$data['settings'] = $settings;
+				$reflection_data->setValue( $widget, $data );
+			}
+
 			if ( $widget_base->hasProperty( 'settings' ) ) {
 				$reflection_settings = $widget_base->getProperty( 'settings' );
 				$reflection_settings->setAccessible( true );
 				$reflection_settings->setValue( $widget, $settings );
-			} elseif ( method_exists( $widget, 'set_settings' ) ) {
-				$widget->set_settings( $settings );
 			}
 
 			$reflection->invoke( $widget );

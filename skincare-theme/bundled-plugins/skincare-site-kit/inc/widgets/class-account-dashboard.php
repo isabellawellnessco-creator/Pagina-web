@@ -60,26 +60,114 @@ class Account_Dashboard extends Widget_Base {
 						<p><?php _e( 'No has realizado pedidos aún.', 'skincare' ); ?></p>
 						<a href="/shop/" class="btn sk-btn"><?php _e( 'Ir a la Tienda', 'skincare' ); ?></a>
 					<?php else : ?>
-						<table class="sk-orders-table">
-							<thead>
-								<tr>
-									<th><?php _e( 'Pedido', 'skincare' ); ?></th>
-									<th><?php _e( 'Fecha', 'skincare' ); ?></th>
-									<th><?php _e( 'Estado', 'skincare' ); ?></th>
-									<th><?php _e( 'Total', 'skincare' ); ?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ( $orders as $order ) : ?>
-									<tr>
-										<td>#<?php echo $order->get_order_number(); ?></td>
-										<td><?php echo wc_format_datetime( $order->get_date_created() ); ?></td>
-										<td><?php echo wc_get_order_status_name( $order->get_status() ); ?></td>
-										<td><?php echo $order->get_formatted_order_total(); ?></td>
-									</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
+						<div class="sk-orders-grid">
+							<?php foreach ( $orders as $order ) : ?>
+								<?php
+								$order_id = $order->get_id();
+								$warehouse = get_post_meta( $order_id, '_sk_warehouse_location', true );
+								$packing_status = get_post_meta( $order_id, '_sk_packing_status', true );
+								$carrier = get_post_meta( $order_id, '_sk_carrier', true );
+								$tracking_number = get_post_meta( $order_id, '_sk_tracking_number', true );
+								$tracking_url = get_post_meta( $order_id, '_sk_tracking_url', true );
+								$province_shipping = get_post_meta( $order_id, '_sk_province_shipping', true );
+								$deposit_paid = get_post_meta( $order_id, '_sk_deposit_paid', true );
+								$deposit_amount = get_post_meta( $order_id, '_sk_deposit_amount', true );
+								$delivery_agent = get_post_meta( $order_id, '_sk_delivery_agent', true );
+								$delivery_phone = get_post_meta( $order_id, '_sk_delivery_phone', true );
+								$awarded_points = get_post_meta( $order_id, '_sk_rewards_awarded', true );
+								$shipping_method = $order->get_shipping_method();
+								$shipping_address = $order->get_formatted_shipping_address();
+								$payment_method = $order->get_payment_method_title();
+								$is_paid = $order->is_paid();
+								?>
+								<article class="sk-order-card">
+									<header class="sk-order-card__header">
+										<div>
+											<h4><?php printf( __( 'Pedido #%s', 'skincare' ), esc_html( $order->get_order_number() ) ); ?></h4>
+											<p class="sk-order-card__meta">
+												<?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?>
+												<span class="sk-divider">•</span>
+												<?php echo esc_html( $order->get_formatted_order_total() ); ?>
+											</p>
+										</div>
+										<div class="sk-order-card__status">
+											<span class="sk-badge sk-badge--status"><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></span>
+											<?php if ( $packing_status ) : ?>
+												<span class="sk-badge sk-badge--neutral"><?php echo esc_html( $packing_status ); ?></span>
+											<?php endif; ?>
+										</div>
+									</header>
+
+									<div class="sk-order-card__sections">
+										<section>
+											<h5><?php _e( 'Pago', 'skincare' ); ?></h5>
+											<ul>
+												<li>
+													<strong><?php _e( 'Estado:', 'skincare' ); ?></strong>
+													<span class="<?php echo $is_paid ? 'sk-text-success' : 'sk-text-warning'; ?>">
+														<?php echo $is_paid ? esc_html__( 'Pagado', 'skincare' ) : esc_html__( 'Pendiente', 'skincare' ); ?>
+													</span>
+												</li>
+												<li><strong><?php _e( 'Método:', 'skincare' ); ?></strong> <?php echo esc_html( $payment_method ? $payment_method : __( 'No definido', 'skincare' ) ); ?></li>
+												<li>
+													<strong><?php _e( 'Depósito adelanto:', 'skincare' ); ?></strong>
+													<?php if ( $province_shipping ) : ?>
+														<?php echo $deposit_paid ? esc_html__( 'Recibido', 'skincare' ) : esc_html__( 'Pendiente', 'skincare' ); ?>
+														<?php if ( $deposit_amount ) : ?>
+															(<?php echo esc_html( $deposit_amount ); ?>)
+														<?php endif; ?>
+													<?php else : ?>
+														<?php esc_html_e( 'No aplica', 'skincare' ); ?>
+													<?php endif; ?>
+												</li>
+											</ul>
+										</section>
+
+										<section>
+											<h5><?php _e( 'Envío', 'skincare' ); ?></h5>
+											<ul>
+												<li><strong><?php _e( 'Método:', 'skincare' ); ?></strong> <?php echo esc_html( $shipping_method ? $shipping_method : __( 'Sin método', 'skincare' ) ); ?></li>
+												<li><strong><?php _e( 'Provincia:', 'skincare' ); ?></strong> <?php echo $province_shipping ? esc_html__( 'Sí', 'skincare' ) : esc_html__( 'No', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Lugar:', 'skincare' ); ?></strong> <?php echo $shipping_address ? wp_kses_post( $shipping_address ) : esc_html__( 'Sin dirección', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Enviado desde:', 'skincare' ); ?></strong> <?php echo $warehouse ? esc_html( $warehouse ) : esc_html__( 'Por confirmar', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Envío personal:', 'skincare' ); ?></strong> <?php echo $delivery_agent ? esc_html( $delivery_agent ) : esc_html__( 'No asignado', 'skincare' ); ?></li>
+												<?php if ( $delivery_phone ) : ?>
+													<li><strong><?php _e( 'Contacto:', 'skincare' ); ?></strong> <?php echo esc_html( $delivery_phone ); ?></li>
+												<?php endif; ?>
+											</ul>
+										</section>
+
+										<section>
+											<h5><?php _e( 'Tracking', 'skincare' ); ?></h5>
+											<ul>
+												<li><strong><?php _e( 'Transportista:', 'skincare' ); ?></strong> <?php echo $carrier ? esc_html( $carrier ) : esc_html__( 'Por asignar', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Código de envío:', 'skincare' ); ?></strong> <?php echo $tracking_number ? esc_html( $tracking_number ) : esc_html__( 'Sin código', 'skincare' ); ?></li>
+												<li>
+													<strong><?php _e( 'Seguimiento:', 'skincare' ); ?></strong>
+													<?php if ( $tracking_url ) : ?>
+														<a href="<?php echo esc_url( $tracking_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Ver tracking', 'skincare' ); ?></a>
+													<?php else : ?>
+														<?php esc_html_e( 'No disponible', 'skincare' ); ?>
+													<?php endif; ?>
+												</li>
+											</ul>
+										</section>
+
+										<section>
+											<h5><?php _e( 'Puntos', 'skincare' ); ?></h5>
+											<ul>
+												<li><strong><?php _e( 'Ganados en este pedido:', 'skincare' ); ?></strong> <?php echo $awarded_points ? esc_html( $awarded_points ) : '—'; ?></li>
+												<li><strong><?php _e( 'Saldo actual:', 'skincare' ); ?></strong> <?php echo esc_html( $points ); ?></li>
+											</ul>
+										</section>
+									</div>
+
+									<footer class="sk-order-card__footer">
+										<a class="btn sk-btn-small" href="<?php echo esc_url( $order->get_view_order_url() ); ?>"><?php _e( 'Ver detalle', 'skincare' ); ?></a>
+									</footer>
+								</article>
+							<?php endforeach; ?>
+						</div>
 					<?php endif; ?>
 				</div>
 
@@ -127,7 +215,7 @@ class Account_Dashboard extends Widget_Base {
 		</div>
 
 		<style>
-			.sk-account-dashboard { max-width: 800px; margin: 0 auto; }
+			.sk-account-dashboard { max-width: 980px; margin: 0 auto; }
 			.sk-account-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
 			.sk-user-points-badge { background: #E5757E; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-top: 5px; }
 			.sk-account-tabs { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
@@ -135,8 +223,22 @@ class Account_Dashboard extends Widget_Base {
 			.sk-tab-btn.active { color: #0F3062; border-color: #0F3062; }
 			.sk-tab-pane { display: none; }
 			.sk-tab-pane.active { display: block; animation: fadeIn 0.3s; }
-			.sk-orders-table { width: 100%; border-collapse: collapse; }
-			.sk-orders-table th, .sk-orders-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+			.sk-orders-grid { display: grid; gap: 20px; }
+			.sk-order-card { border: 1px solid #eee; border-radius: 14px; padding: 20px; background: #fff; box-shadow: 0 10px 30px rgba(15, 48, 98, 0.08); }
+			.sk-order-card__header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
+			.sk-order-card__meta { color: #7f8a9b; font-size: 14px; margin-top: 4px; }
+			.sk-order-card__status { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+			.sk-order-card__sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 16px; }
+			.sk-order-card__sections h5 { margin: 0 0 8px; font-size: 15px; color: #0F3062; }
+			.sk-order-card__sections ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; color: #35455f; font-size: 14px; }
+			.sk-order-card__sections li strong { color: #0F3062; }
+			.sk-order-card__footer { display: flex; justify-content: flex-end; }
+			.sk-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+			.sk-badge--status { background: rgba(15, 48, 98, 0.12); color: #0F3062; }
+			.sk-badge--neutral { background: rgba(229, 117, 126, 0.15); color: #E5757E; }
+			.sk-divider { padding: 0 8px; color: #c2c7d0; }
+			.sk-text-success { color: #1f8f4a; font-weight: 600; }
+			.sk-text-warning { color: #cc7a00; font-weight: 600; }
 		</style>
 
 		<script>

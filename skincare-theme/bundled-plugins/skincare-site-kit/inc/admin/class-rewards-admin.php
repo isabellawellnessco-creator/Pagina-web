@@ -118,32 +118,34 @@ class Rewards_Admin {
 		$sort = self::get_sorting();
 
 		?>
-		<div class="wrap">
+		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Rewards Control Center', 'skincare' ); ?></h1>
 			<p><?php esc_html_e( 'Revisa puntos por pedido, valida compras reales y ajusta rápidamente cualquier inconsistencia.', 'skincare' ); ?></p>
 
-			<div class="sk-rewards-summary" style="display:flex; gap:20px; margin:20px 0;">
-				<div class="card" style="padding:16px; min-width:180px;">
-					<strong><?php esc_html_e( 'Puntos otorgados', 'skincare' ); ?></strong>
-					<p style="font-size:24px; margin:6px 0;"><?php echo esc_html( $totals['awarded'] ); ?></p>
-				</div>
-				<div class="card" style="padding:16px; min-width:180px;">
-					<strong><?php esc_html_e( 'Puntos revertidos', 'skincare' ); ?></strong>
-					<p style="font-size:24px; margin:6px 0;"><?php echo esc_html( $totals['reversed'] ); ?></p>
-				</div>
-				<div class="card" style="padding:16px; min-width:180px;">
-					<strong><?php esc_html_e( 'Pedidos revisados', 'skincare' ); ?></strong>
-					<p style="font-size:24px; margin:6px 0;"><?php echo esc_html( $totals['count'] ); ?></p>
+			<div class="sk-admin-hero">
+				<div class="sk-admin-grid">
+					<div class="sk-admin-card">
+						<strong><?php esc_html_e( 'Puntos otorgados', 'skincare' ); ?></strong>
+						<p class="sk-admin-metric"><?php echo esc_html( $totals['awarded'] ); ?></p>
+					</div>
+					<div class="sk-admin-card">
+						<strong><?php esc_html_e( 'Puntos revertidos', 'skincare' ); ?></strong>
+						<p class="sk-admin-metric"><?php echo esc_html( $totals['reversed'] ); ?></p>
+					</div>
+					<div class="sk-admin-card">
+						<strong><?php esc_html_e( 'Pedidos revisados', 'skincare' ); ?></strong>
+						<p class="sk-admin-metric"><?php echo esc_html( $totals['count'] ); ?></p>
+					</div>
 				</div>
 			</div>
 
-			<form method="get" style="margin-bottom:20px;">
+			<form method="get" class="sk-admin-filter-bar">
 				<input type="hidden" name="page" value="sk-rewards-control">
 				<label>
 					<?php esc_html_e( 'Email cliente', 'skincare' ); ?>
 					<input type="email" name="customer_email" value="<?php echo esc_attr( $filters['customer_email'] ); ?>">
 				</label>
-				<label style="margin-left:10px;">
+				<label>
 					<?php esc_html_e( 'Estado', 'skincare' ); ?>
 					<select name="status">
 						<option value=""><?php esc_html_e( 'Todos', 'skincare' ); ?></option>
@@ -154,15 +156,15 @@ class Rewards_Admin {
 						<?php endforeach; ?>
 					</select>
 				</label>
-				<label style="margin-left:10px;">
+				<label>
 					<?php esc_html_e( 'Desde', 'skincare' ); ?>
 					<input type="date" name="date_from" value="<?php echo esc_attr( $filters['date_from'] ); ?>">
 				</label>
-				<label style="margin-left:10px;">
+				<label>
 					<?php esc_html_e( 'Hasta', 'skincare' ); ?>
 					<input type="date" name="date_to" value="<?php echo esc_attr( $filters['date_to'] ); ?>">
 				</label>
-				<label style="margin-left:10px;">
+				<label>
 					<?php esc_html_e( 'Ordenar por', 'skincare' ); ?>
 					<select name="orderby">
 						<option value="date" <?php selected( $sort['orderby'], 'date' ); ?>><?php esc_html_e( 'Fecha', 'skincare' ); ?></option>
@@ -171,17 +173,17 @@ class Rewards_Admin {
 						<option value="points" <?php selected( $sort['orderby'], 'points' ); ?>><?php esc_html_e( 'Puntos', 'skincare' ); ?></option>
 					</select>
 				</label>
-				<label style="margin-left:10px;">
+				<label>
 					<?php esc_html_e( 'Dirección', 'skincare' ); ?>
 					<select name="order">
 						<option value="DESC" <?php selected( $sort['order'], 'DESC' ); ?>><?php esc_html_e( 'Desc', 'skincare' ); ?></option>
 						<option value="ASC" <?php selected( $sort['order'], 'ASC' ); ?>><?php esc_html_e( 'Asc', 'skincare' ); ?></option>
 					</select>
 				</label>
-				<button class="button button-primary" style="margin-left:10px;"><?php esc_html_e( 'Filtrar', 'skincare' ); ?></button>
+				<button class="button button-primary"><?php esc_html_e( 'Filtrar', 'skincare' ); ?></button>
 			</form>
 
-			<table class="widefat fixed striped">
+			<table class="widefat fixed striped sk-admin-table">
 				<thead>
 					<tr>
 						<th><?php echo wp_kses_post( self::sortable_header( __( 'Pedido', 'skincare' ), 'date' ) ); ?></th>

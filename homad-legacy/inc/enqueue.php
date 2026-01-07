@@ -49,6 +49,11 @@ function homad_scripts() {
         wp_enqueue_script('homad-projects-core', $uri . '/assets/js/homad-projects.js', array('homad-app'), $version, true);
     }
 
+    if (is_page_template('page-logistics-platform.php')) {
+        wp_enqueue_style('homad-logistics-platform', $uri . '/assets/css/logistics-platform.css', array('homad-components'), $version);
+        wp_enqueue_script('homad-logistics-platform', $uri . '/assets/js/logistics-platform.js', array('homad-app'), $version, true);
+    }
+
     if (is_page('quote') || is_page('cotizar')) { // Example check for quote wizard
         wp_enqueue_script('homad-quote-wizard', $uri . '/assets/js/quote-wizard.js', array('homad-app'), $version, true);
     }

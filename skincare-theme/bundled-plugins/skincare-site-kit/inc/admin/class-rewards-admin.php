@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Skincare\SiteKit\Modules\Rewards;
-
 class Rewards_Admin {
 	const NONCE_ACTION = 'sk_rewards_admin_action';
 
@@ -68,7 +66,10 @@ class Rewards_Admin {
 			return false;
 		}
 
-		$new_points = Rewards::calculate_points( $order );
+		$rules = get_option( 'sk_rewards_rules', [] );
+		$points_per_currency = isset( $rules['points_per_currency'] ) ? absint( $rules['points_per_currency'] ) : 5;
+		$total = (float) $order->get_total();
+		$new_points = (int) round( $total * $points_per_currency );
 		$old_points = (int) $order->get_meta( '_sk_rewards_awarded', true );
 		$delta = $new_points - $old_points;
 

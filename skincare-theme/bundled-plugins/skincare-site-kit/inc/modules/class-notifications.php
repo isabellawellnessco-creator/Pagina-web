@@ -16,9 +16,8 @@ class Notifications {
 
 	public static function handle_order_status_change( $order_id, $old_status, $new_status, $order ) {
 		$settings = get_option( self::SETTINGS_OPTION, [] );
-		if ( empty( $settings['enable_auto_emails'] ) ) {
-			return;
-		}
+		$send_email = ! empty( $settings['enable_auto_emails'] );
+		$send_whatsapp = ! empty( $settings['enable_auto_whatsapp'] );
 
 		$template_key = null;
 		if ( in_array( $new_status, [ 'processing', 'on-hold' ], true ) ) {
@@ -33,7 +32,13 @@ class Notifications {
 			return;
 		}
 
-		self::send_order_email( $order, $template_key );
+		if ( $send_email ) {
+			self::send_order_email( $order, $template_key );
+		}
+
+		if ( $send_whatsapp ) {
+			self::send_order_whatsapp( $order, $template_key );
+		}
 	}
 
 	public static function send_order_email( $order, $type ) {
@@ -125,6 +130,58 @@ class Notifications {
 		return $legacy_key && ! empty( $press[ $legacy_key ] ) ? $press[ $legacy_key ] : '';
 	}
 
+	public static function send_order_whatsapp( $order, $type ) {
+		$settings = get_option( self::SETTINGS_OPTION, [] );
+		if ( empty( $settings['whatsapp_access_token'] ) || empty( $settings['whatsapp_phone_id'] ) ) {
+			return false;
+		}
+
+		$phone = self::sanitize_phone( $order ? $order->get_billing_phone() : '' );
+		if ( ! $phone ) {
+			return false;
+		}
+
+		$templates = get_option( self::TEMPLATES_OPTION, [] );
+		$map = [
+			'confirm' => 'whatsapp_confirm',
+			'delivery' => 'whatsapp_delivery',
+			'onway' => 'whatsapp_onway',
+			'delivered' => 'whatsapp_delivered',
+		];
+		$template_key = $map[ $type ] ?? '';
+		$message = $template_key && ! empty( $templates[ $template_key ] ) ? $templates[ $template_key ] : '';
+		if ( ! $message ) {
+			return false;
+		}
+
+		$placeholders = self::build_placeholders( $order );
+		$message = strtr( $message, $placeholders );
+
+		$endpoint = sprintf( 'https://graph.facebook.com/v19.0/%s/messages', $settings['whatsapp_phone_id'] );
+		$response = wp_remote_post( $endpoint, [
+			'headers' => [
+				'Authorization' => 'Bearer ' . $settings['whatsapp_access_token'],
+				'Content-Type' => 'application/json',
+			],
+			'body' => wp_json_encode( [
+				'messaging_product' => 'whatsapp',
+				'to' => $phone,
+				'type' => 'text',
+				'text' => [
+					'body' => $message,
+				],
+			] ),
+			'timeout' => 20,
+		] );
+
+		if ( is_wp_error( $response ) ) {
+			return false;
+		}
+
+		$code = wp_remote_retrieve_response_code( $response );
+		return $code >= 200 && $code < 300;
+	}
+
 	private static function send_email( $to, $subject, $body ) {
 		if ( empty( $to ) ) {
 			return false;
@@ -155,6 +212,10 @@ class Notifications {
 			'{carrier}' => $carrier_label,
 			'{tracking_url}' => $tracking_label,
 		];
+	}
+
+	private static function sanitize_phone( $phone ) {
+		return preg_replace( '/\D+/', '', (string) $phone );
 	}
 
 	private static function build_mock_order( $email ) {

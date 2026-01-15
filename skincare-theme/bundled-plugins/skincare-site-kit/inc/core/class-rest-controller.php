@@ -50,6 +50,16 @@ class Rest_Controller {
 				'permission_callback' => [ __CLASS__, 'require_nonce' ],
 			]
 		);
+
+		register_rest_route(
+			'skincare/v1',
+			'/cart/coupon',
+			[
+				'methods' => \WP_REST_Server::CREATABLE,
+				'callback' => [ __CLASS__, 'apply_coupon' ],
+				'permission_callback' => [ __CLASS__, 'require_nonce' ],
+			]
+		);
 	}
 
 	public static function require_nonce( $request ) {
@@ -94,6 +104,25 @@ class Rest_Controller {
 		}
 
 		return rest_ensure_response( $result );
+	}
+
+	public static function apply_coupon( $request ) {
+		$params = self::get_request_params( $request );
+		$code = isset( $params['coupon_code'] ) ? sanitize_text_field( $params['coupon_code'] ) : '';
+
+		if ( ! $code ) {
+			return new \WP_Error( 'sk_invalid_coupon', __( 'Código de cupón vacío.', 'skincare' ), [ 'status' => 400 ] );
+		}
+
+		if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+			return new \WP_Error( 'sk_wc_missing', __( 'WooCommerce cart not available.', 'skincare' ), [ 'status' => 500 ] );
+		}
+
+		if ( WC()->cart->apply_coupon( $code ) ) {
+			return rest_ensure_response( [ 'success' => true, 'message' => __( 'Cupón aplicado.', 'skincare' ) ] );
+		} else {
+			return new \WP_Error( 'sk_invalid_coupon', __( 'Cupón inválido.', 'skincare' ), [ 'status' => 400 ] );
+		}
 	}
 
 	public static function submit_contact( $request ) {

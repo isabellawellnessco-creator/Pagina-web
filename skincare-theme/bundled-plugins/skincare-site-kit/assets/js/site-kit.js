@@ -65,20 +65,6 @@ jQuery(document).ready(function($) {
         });
     }
 
-    if (typeof window !== 'undefined') {
-        window.alert = function(message) {
-            showToast(message || '', 'info');
-        };
-        window.confirm = function(message) {
-            showConfirmModal({
-                title: 'Confirmación',
-                message: message || '',
-                confirmText: 'OK',
-                cancelText: 'Cerrar'
-            });
-            return false;
-        };
-    }
 
     function skRestFetch(endpoint, options) {
         var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
@@ -116,18 +102,23 @@ jQuery(document).ready(function($) {
         var $btn = $(this);
         var pid = $btn.data('product-id');
 
-        $.post(sk_vars.ajax_url, {
-            action: 'sk_add_to_wishlist',
-            nonce: sk_vars.nonce,
-            product_id: pid
-        }, function(res) {
-            if (res.success) {
+        skRestFetch('wishlist/add', {
+            body: JSON.stringify({ product_id: pid })
+        })
+        .then(function(response) {
+            return response.json().then(function(data) {
+                return { ok: response.ok, data: data };
+            });
+        })
+        .then(function(result) {
+            if (result.ok && result.data.success) {
                 $btn.addClass('added');
                 showToast('Añadido a favoritos', 'success');
             } else {
                 showToast('No se pudo agregar a favoritos.', 'error');
             }
-        }).fail(function() {
+        })
+        .catch(function() {
             showToast('No se pudo conectar. Intenta de nuevo.', 'error');
         });
     });
@@ -138,16 +129,22 @@ jQuery(document).ready(function($) {
         var $form = $(this);
         var $msg = $form.find('.message');
 
-        $.post(sk_vars.ajax_url, {
-            action: 'sk_stock_notify',
-            nonce: sk_vars.nonce,
-            email: $form.find('input[name="email"]').val(),
-            product_id: $form.find('input[name="product_id"]').val()
-        }, function(res) {
-            if (res.success) {
-                $msg.html(res.data.message).css('color', 'green');
+        skRestFetch('stock-notify', {
+            body: JSON.stringify({
+                email: $form.find('input[name="email"]').val(),
+                product_id: $form.find('input[name="product_id"]').val()
+            })
+        })
+        .then(function(response) {
+            return response.json().then(function(data) {
+                return { ok: response.ok, data: data };
+            });
+        })
+        .then(function(result) {
+            if (result.ok && result.data.success) {
+                $msg.html(result.data.message).css('color', 'green');
             } else {
-                $msg.html(res.data.message).css('color', 'red');
+                $msg.html(result.data.message || 'Error').css('color', 'red');
             }
         });
     });
@@ -166,26 +163,28 @@ jQuery(document).ready(function($) {
         }
 
         searchTimeout = setTimeout(function() {
-            $.get(sk_vars.ajax_url, {
-                action: 'sk_ajax_search',
-                term: term
-            }, function(res) {
-                if (res.success && res.data.length > 0) {
-                    var html = '<ul>';
-                    $.each(res.data, function(i, item) {
-                        html += '<li>';
-                        html += '<a href="' + item.url + '">';
-                        if(item.image) html += '<img src="' + item.image + '">';
-                        html += '<div class="info"><span>' + item.title + '</span><span class="price">' + item.price + '</span></div>';
-                        html += '</a>';
-                        html += '</li>';
-                    });
-                    html += '</ul>';
-                    $results.html(html).show();
-                } else {
-                    $results.html('<p>No se encontraron resultados.</p>').show();
-                }
-            });
+            var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
+            if(!restUrl) return;
+
+            fetch(restUrl + 'search?term=' + encodeURIComponent(term))
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data && data.length > 0) {
+                        var html = '<ul>';
+                        $.each(data, function(i, item) {
+                            html += '<li>';
+                            html += '<a href="' + item.url + '">';
+                            if(item.image) html += '<img src="' + item.image + '">';
+                            html += '<div class="info"><span>' + item.title + '</span><span class="price">' + item.price + '</span></div>';
+                            html += '</a>';
+                            html += '</li>';
+                        });
+                        html += '</ul>';
+                        $results.html(html).show();
+                    } else {
+                        $results.html('<p>No se encontraron resultados.</p>').show();
+                    }
+                });
         }, 500);
     });
 

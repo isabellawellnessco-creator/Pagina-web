@@ -37,16 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.homadToast = showToast;
 
-    if (typeof window !== 'undefined') {
-        window.alert = function(message) {
-            showToast(message || '', 'info');
-        };
-        window.confirm = function(message) {
-            showToast(message || '', 'info');
-            return false;
-        };
-    }
-
     // --- Mobile Splash Screen Logic ---
     const splash = document.getElementById('homad-splash');
     if (splash) {
@@ -88,28 +78,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(leadForm);
             const payload = Object.fromEntries(formData.entries());
 
-            const useRest = homad_vars && homad_vars.rest_url && homad_vars.rest_nonce;
-            const endpoint = useRest ? `${homad_vars.rest_url}skincare/v1/quote` : homad_vars.ajax_url;
-            const fetchOptions = useRest
-                ? {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-WP-Nonce': homad_vars.rest_nonce
-                    },
-                    credentials: 'same-origin',
-                    body: JSON.stringify(payload)
-                }
-                : {
-                    method: 'POST',
-                    body: formData
-                };
+            // Enforce REST
+            const endpoint = `${homad_vars.rest_url}skincare/v1/quote`;
+            const fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': homad_vars.rest_nonce
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify(payload)
+            };
 
             fetch(endpoint, fetchOptions)
-                .then(response => response.json())
-                .then(data => {
-                    const success = useRest ? data.success : data.success;
-                    const message = useRest ? data.message : (data.data && data.data.message);
+                .then(response => response.json().then(data => ({ ok: response.ok, data })))
+                .then(result => {
+                    // Normalize result
+                    const success = result.ok && result.data && result.data.success;
+                    const message = result.data && result.data.message;
+
                     if (success) {
                         showToast(message || 'Solicitud enviada.', 'success');
                         leadForm.reset();
@@ -141,9 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const formData = new FormData(contactForm);
             const payload = Object.fromEntries(formData.entries());
-            const useRest = homad_vars && homad_vars.rest_url && homad_vars.rest_nonce;
-            if (!useRest) {
-                showToast('No se pudo enviar el mensaje.', 'error');
+            // REST is mandatory now
+            if (!homad_vars || !homad_vars.rest_url || !homad_vars.rest_nonce) {
+                showToast('Error de configuración REST.', 'error');
                 btn.innerText = originalText;
                 btn.disabled = false;
                 return;

@@ -86,8 +86,9 @@ class Rewards_Castle extends Shortcode_Renderer {
 		// Get User Points
 		$user_points = 0;
 		if ( is_user_logged_in() ) {
-			$user_points = get_user_meta( get_current_user_id(), '_sk_rewards_points', true );
-			$user_points = intval( $user_points );
+			if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+				$user_points = \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( get_current_user_id() );
+			}
 		}
 
 		echo '<div class="sk-rewards-castle-container">';

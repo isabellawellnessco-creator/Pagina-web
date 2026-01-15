@@ -24,6 +24,7 @@ class Loader {
 		\Skincare\SiteKit\Modules\Notifications::init();
 		\Skincare\SiteKit\Modules\Coupons_Automation::init();
 		\Skincare\SiteKit\Admin\Rewards_Master::init();
+		\Skincare\SiteKit\Core\Rest_Controller::init();
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -61,6 +62,8 @@ class Loader {
 		wp_localize_script( 'sk-site-kit', 'sk_vars', [
 			'ajax_url'          => admin_url( 'admin-ajax.php' ),
 			'nonce'             => wp_create_nonce( 'sk_ajax_nonce' ),
+			'rest_url'          => esc_url_raw( rest_url( 'skincare/v1/' ) ),
+			'rest_nonce'        => wp_create_nonce( 'wp_rest' ),
 			'placeholder_image' => SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
 			'redeem_points'     => $redeem_points,
 			'redeem_amount'     => $redeem_amount,

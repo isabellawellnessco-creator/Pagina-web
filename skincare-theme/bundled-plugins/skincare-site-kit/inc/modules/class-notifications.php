@@ -175,11 +175,19 @@ class Notifications {
 		] );
 
 		if ( is_wp_error( $response ) ) {
+			self::log_whatsapp_event( 'error', $order, $type, $response->get_error_message() );
 			return false;
 		}
 
 		$code = wp_remote_retrieve_response_code( $response );
-		return $code >= 200 && $code < 300;
+		if ( $code >= 200 && $code < 300 ) {
+			self::log_whatsapp_event( 'success', $order, $type, 'HTTP ' . $code );
+			return true;
+		}
+
+		$status = $code >= 500 || 429 === $code ? 'retry' : 'error';
+		self::log_whatsapp_event( $status, $order, $type, 'HTTP ' . $code );
+		return false;
 	}
 
 	private static function send_email( $to, $subject, $body ) {
@@ -227,5 +235,17 @@ class Notifications {
 		$order->update_meta_data( '_sk_tracking_url', 'https://tracking.demo' );
 		$order->update_meta_data( '_sk_carrier', 'Demo Carrier' );
 		return $order;
+	}
+
+	private static function log_whatsapp_event( $status, $order, $type, $details ) {
+		if ( ! function_exists( 'wc_get_logger' ) ) {
+			return;
+		}
+		$logger = wc_get_logger();
+		$order_id = $order ? $order->get_id() : 0;
+		$logger->info(
+			sprintf( 'WhatsApp %s (%s) order:%s %s', $status, $type, $order_id, $details ),
+			[ 'source' => 'skincare-whatsapp' ]
+		);
 	}
 }

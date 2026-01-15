@@ -57,8 +57,12 @@ class Rewards {
 	}
 
 	public static function shortcode_user_points() {
-		if ( ! is_user_logged_in() ) return '';
-		$points = get_user_meta( get_current_user_id(), '_sk_rewards_points', true );
-		return intval( $points );
+		if ( ! is_user_logged_in() ) {
+			return '';
+		}
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			return \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( get_current_user_id() );
+		}
+		return 0;
 	}
 }

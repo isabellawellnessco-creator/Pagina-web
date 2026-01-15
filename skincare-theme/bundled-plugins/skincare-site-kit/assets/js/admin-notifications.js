@@ -64,12 +64,11 @@
 				message = message.split(key).join(placeholders[key]);
 			});
 
-			const link = `https://wa.me/${encodeURIComponent(phoneInput.value)}?text=${encodeURIComponent(message)}`;
 			whatsappPreview.innerHTML = `
 				<div class="sk-admin-report__card">
 					<p><strong>Vista previa</strong></p>
 					<p>${message}</p>
-					<p><a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp</a></p>
+					<p><em>Debug only: vista previa sin envío manual.</em></p>
 				</div>
 			`;
 		});

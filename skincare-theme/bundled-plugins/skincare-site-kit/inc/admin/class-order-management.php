@@ -92,7 +92,10 @@ class Order_Management {
 		$packing_checklist = get_post_meta( $post->ID, '_sk_packing_checklist', true );
 		$awarded_points = get_post_meta( $post->ID, '_sk_rewards_awarded', true );
 		$user_id = $order ? $order->get_user_id() : 0;
-		$user_points = $user_id ? (int) get_user_meta( $user_id, '_sk_rewards_points', true ) : 0;
+		$user_points = 0;
+		if ( $user_id && class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			$user_points = (int) \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( $user_id );
+		}
 
 		$rating_options = [ '', '1', '2', '3', '4', '5' ];
 		$priority_options = [ '', __( 'Baja', 'skincare' ), __( 'Media', 'skincare' ), __( 'Alta', 'skincare' ) ];

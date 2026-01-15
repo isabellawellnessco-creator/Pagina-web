@@ -7,6 +7,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Rewards_Master {
 	const LEDGER_TABLE = 'sk_points_ledger';
+	/**
+	 * @deprecated Legacy meta cache. Use ledger as source of truth.
+	 */
+	const LEGACY_POINTS_META = '_sk_rewards_points';
+	/**
+	 * @deprecated Legacy meta cache. Use ledger as source of truth.
+	 */
+	const LEGACY_HISTORY_META = '_sk_rewards_history';
 
 	public static function init() {
 		add_action( 'admin_menu', [ __CLASS__, 'register_menu' ] );
@@ -16,6 +24,7 @@ class Rewards_Master {
 		add_action( 'woocommerce_order_status_changed', [ __CLASS__, 'handle_order_status' ], 10, 4 );
 		add_action( 'sk_rewards_expire_points', [ __CLASS__, 'expire_points' ] );
 		self::schedule_expiration();
+		self::register_cli();
 	}
 
 	public static function register_menu() {
@@ -95,7 +104,7 @@ class Rewards_Master {
 		];
 	}
 
-	private static function get_rules() {
+	public static function get_rules() {
 		$rules = get_option( 'sk_rewards_rules', [] );
 		return [
 			'points_per_currency' => isset( $rules['points_per_currency'] ) ? absint( $rules['points_per_currency'] ) : 5,
@@ -330,7 +339,7 @@ class Rewards_Master {
 			return new \WP_Error( 'sk_rewards_invalid', __( 'Configuración de canje inválida', 'skincare' ) );
 		}
 
-		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
+		$current_points = (int) self::get_user_balance( $user_id );
 		if ( $current_points < $points_to_redeem ) {
 			return new \WP_Error( 'sk_rewards_insufficient', __( 'No tienes suficientes puntos', 'skincare' ) );
 		}
@@ -409,6 +418,10 @@ class Rewards_Master {
 	}
 
 	public static function record_ledger_entry( $user_id, $order_id, $points, $note ) {
+		self::record_ledger_entry_at( $user_id, $order_id, $points, $note, current_time( 'mysql' ) );
+	}
+
+	public static function record_ledger_entry_at( $user_id, $order_id, $points, $note, $created_at ) {
 		global $wpdb;
 		$table = $wpdb->prefix . self::LEDGER_TABLE;
 		$wpdb->insert(
@@ -418,7 +431,7 @@ class Rewards_Master {
 				'order_id' => $order_id,
 				'points' => $points,
 				'note' => $note,
-				'created_at' => current_time( 'mysql' ),
+				'created_at' => $created_at,
 				'is_expired' => 0,
 			],
 			[ '%d', '%d', '%d', '%s', '%s', '%d' ]
@@ -426,16 +439,14 @@ class Rewards_Master {
 	}
 
 	public static function adjust_user_points( $user_id, $points, $note, $order_id = 0, $history_reason = '' ) {
-		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
+		$current_points = (int) self::get_user_balance( $user_id );
 		$applied_points = (int) $points;
 		if ( $current_points + $applied_points < 0 ) {
 			$applied_points = -$current_points;
 		}
 
-		$new_points = max( 0, $current_points + $applied_points );
-		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
 		self::record_ledger_entry( $user_id, $order_id, $applied_points, $note );
-		self::append_history( $user_id, $applied_points, $history_reason ? $history_reason : $note );
+		self::append_history_ledger_cache( $user_id, $applied_points, $history_reason ? $history_reason : $note );
 	}
 
 	public static function maybe_create_ledger_table() {
@@ -462,8 +473,12 @@ class Rewards_Master {
 		dbDelta( $sql );
 	}
 
-	private static function append_history( $user_id, $points, $reason ) {
-		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
+	private static function append_history_ledger_cache( $user_id, $points, $reason ) {
+		if ( ! apply_filters( 'sk_rewards_enable_legacy_cache', false ) ) {
+			return;
+		}
+
+		$history = get_user_meta( $user_id, self::LEGACY_HISTORY_META, true );
 		if ( ! is_array( $history ) ) {
 			$history = [];
 		}
@@ -474,7 +489,8 @@ class Rewards_Master {
 			'reason' => $reason,
 		];
 
-		update_user_meta( $user_id, '_sk_rewards_history', $history );
+		update_user_meta( $user_id, self::LEGACY_HISTORY_META, $history );
+		update_user_meta( $user_id, self::LEGACY_POINTS_META, self::get_user_balance( $user_id ) );
 	}
 
 	private static function revoke_awarded_points( $order ) {
@@ -516,11 +532,157 @@ class Rewards_Master {
 		foreach ( $entries as $entry ) {
 			$user_id = (int) $entry->user_id;
 			$points = (int) $entry->points;
-			$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
-			$new_points = max( 0, $current_points - $points );
-			update_user_meta( $user_id, '_sk_rewards_points', $new_points );
+			self::record_ledger_entry( $user_id, 0, -$points, __( 'Puntos expirados', 'skincare' ) );
 			$wpdb->update( $table, [ 'is_expired' => 1 ], [ 'id' => (int) $entry->id ], [ '%d' ], [ '%d' ] );
-			self::append_history( $user_id, -$points, __( 'Puntos expirados', 'skincare' ) );
+			self::append_history_ledger_cache( $user_id, -$points, __( 'Puntos expirados', 'skincare' ) );
+		}
+	}
+
+	public static function get_user_balance( $user_id ) {
+		global $wpdb;
+		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
+			/**
+			 * @deprecated Ledger is the source of truth; legacy meta is a fallback.
+			 */
+			return (int) get_user_meta( $user_id, self::LEGACY_POINTS_META, true );
+		}
+
+		$total = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COALESCE(SUM(points), 0) FROM {$table} WHERE user_id = %d",
+				$user_id
+			)
+		);
+
+		return (int) $total;
+	}
+
+	public static function get_user_history( $user_id, $limit = 20 ) {
+		global $wpdb;
+		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
+			/**
+			 * @deprecated Ledger is the source of truth; legacy meta is a fallback.
+			 */
+			$history = get_user_meta( $user_id, self::LEGACY_HISTORY_META, true );
+			return is_array( $history ) ? $history : [];
+		}
+
+		$limit = absint( $limit );
+		if ( $limit <= 0 ) {
+			$limit = 20;
+		}
+
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT created_at, points, note FROM {$table} WHERE user_id = %d ORDER BY id DESC LIMIT %d",
+				$user_id,
+				$limit
+			)
+		);
+
+		$history = [];
+		foreach ( $rows as $row ) {
+			$history[] = [
+				'date' => $row->created_at,
+				'points' => (int) $row->points,
+				'reason' => $row->note,
+			];
+		}
+
+		return $history;
+	}
+
+	public static function migrate_legacy_meta_to_ledger( $force = false ) {
+		if ( ! $force && get_option( 'sk_rewards_ledger_migrated' ) ) {
+			return [
+				'skipped' => true,
+				'message' => __( 'La migración ya se ejecutó.', 'skincare' ),
+			];
+		}
+
+		global $wpdb;
+		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
+			self::maybe_create_ledger_table();
+		}
+
+		$users = get_users(
+			[
+				'fields' => [ 'ID' ],
+				'meta_query' => [
+					'relation' => 'OR',
+					[
+						'key' => self::LEGACY_POINTS_META,
+						'compare' => 'EXISTS',
+					],
+					[
+						'key' => self::LEGACY_HISTORY_META,
+						'compare' => 'EXISTS',
+					],
+				],
+			]
+		);
+
+		$migrated = 0;
+		foreach ( $users as $user ) {
+			$user_id = (int) $user->ID;
+			$existing = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT COUNT(1) FROM {$table} WHERE user_id = %d",
+					$user_id
+				)
+			);
+			if ( $existing ) {
+				continue;
+			}
+
+			$history = get_user_meta( $user_id, self::LEGACY_HISTORY_META, true );
+			$history = is_array( $history ) ? $history : [];
+			$history_points = 0;
+
+			foreach ( $history as $entry ) {
+				$points = isset( $entry['points'] ) ? (int) $entry['points'] : 0;
+				$note = isset( $entry['reason'] ) ? $entry['reason'] : __( 'Legacy history', 'skincare' );
+				$created_at = isset( $entry['date'] ) ? $entry['date'] : current_time( 'mysql' );
+				self::record_ledger_entry_at( $user_id, 0, $points, $note, $created_at );
+				$history_points += $points;
+			}
+
+			$legacy_balance = (int) get_user_meta( $user_id, self::LEGACY_POINTS_META, true );
+			if ( $legacy_balance && $legacy_balance !== $history_points ) {
+				$delta = $legacy_balance - $history_points;
+				self::record_ledger_entry( $user_id, 0, $delta, __( 'Legacy balance adjustment', 'skincare' ) );
+			} elseif ( ! $history && $legacy_balance ) {
+				self::record_ledger_entry( $user_id, 0, $legacy_balance, __( 'Legacy balance migration', 'skincare' ) );
+			}
+
+			$migrated++;
+		}
+
+		update_option( 'sk_rewards_ledger_migrated', current_time( 'mysql' ) );
+
+		return [
+			'skipped' => false,
+			'migrated' => $migrated,
+		];
+	}
+
+	public static function register_cli() {
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			\WP_CLI::add_command(
+				'sk-rewards migrate-ledger',
+				function( $args, $assoc_args ) {
+					$force = ! empty( $assoc_args['force'] );
+					$result = self::migrate_legacy_meta_to_ledger( $force );
+					if ( ! empty( $result['skipped'] ) ) {
+						\WP_CLI::success( $result['message'] );
+						return;
+					}
+					\WP_CLI::success( sprintf( 'Migrated %d users to ledger.', (int) ( $result['migrated'] ?? 0 ) ) );
+				}
+			);
 		}
 	}
 }

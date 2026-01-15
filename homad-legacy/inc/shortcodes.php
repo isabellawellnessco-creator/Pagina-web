@@ -229,8 +229,8 @@ function homad_shortcode_quote_wizard() {
     // Enqueue script if not already (safeguard)
     wp_enqueue_script('homad-quote-wizard', get_stylesheet_directory_uri() . '/assets/js/quote-wizard.js', array('jquery'), '1.0', true);
     wp_localize_script('homad-quote-wizard', 'homadWizardVars', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('homad_quote_nonce')
+        'rest_url'  => esc_url_raw(rest_url()),
+        'rest_nonce'=> wp_create_nonce('wp_rest')
     ));
 
     ob_start();

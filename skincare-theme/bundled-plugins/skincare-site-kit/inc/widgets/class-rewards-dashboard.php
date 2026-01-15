@@ -25,9 +25,17 @@ class Rewards_Dashboard extends Shortcode_Renderer {
 			return;
 		}
 
-		$points = get_user_meta( get_current_user_id(), '_sk_rewards_points', true );
-		$history = get_user_meta( get_current_user_id(), '_sk_rewards_history', true );
-		$points = $points ? intval( $points ) : 0;
+		$points = 0;
+		$history = [];
+		$redeem_points = 500;
+		$redeem_amount = 5;
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			$points = \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( get_current_user_id() );
+			$history = \Skincare\SiteKit\Admin\Rewards_Master::get_user_history( get_current_user_id(), 20 );
+			$rules = \Skincare\SiteKit\Admin\Rewards_Master::get_rules();
+			$redeem_points = $rules['redeem_points'];
+			$redeem_amount = $rules['redeem_amount'];
+		}
 
 		echo '<div class="sk-rewards-dashboard">';
 		echo '<div class="sk-card sk-points-balance">';
@@ -36,8 +44,10 @@ class Rewards_Dashboard extends Shortcode_Renderer {
 		echo '<p class="sk-rewards-subtitle">' . __( 'Cada compra suma. Canjea cuando alcances el mínimo.', 'skincare' ) . '</p>';
 
 		echo '<div class="sk-rewards-actions">';
-		if ( intval( $points ) >= 500 ) {
-			echo '<button id="sk-redeem-btn" class="btn sk-btn sk-btn--loading" data-loading-text="' . esc_attr__( 'Canjeando...', 'skincare' ) . '">' . __( 'Canjear 500 pts por £5', 'skincare' ) . '</button>';
+		if ( intval( $points ) >= $redeem_points ) {
+			$amount_label = function_exists( 'wc_price' ) ? wc_price( $redeem_amount ) : $redeem_amount;
+			$label = sprintf( __( 'Canjear %1$s pts por %2$s', 'skincare' ), $redeem_points, $amount_label );
+			echo '<button id="sk-redeem-btn" class="btn sk-btn sk-btn--loading" data-loading-text="' . esc_attr__( 'Canjeando...', 'skincare' ) . '">' . esc_html( $label ) . '</button>';
 			echo '<span class="sk-helper-text">' . __( 'El cupón se mostrará aquí al confirmar.', 'skincare' ) . '</span>';
 		} else {
 			echo '<div class="sk-alert sk-alert--info">';
@@ -54,7 +64,7 @@ class Rewards_Dashboard extends Shortcode_Renderer {
 			echo '<div class="sk-points-history">';
 			echo '<h4>' . __( 'Historial', 'skincare' ) . '</h4>';
 			echo '<ul>';
-			foreach ( array_reverse( $history ) as $item ) {
+			foreach ( $history as $item ) {
 				echo '<li>';
 				echo '<span class="date">' . esc_html( $item['date'] ) . '</span>';
 				echo '<span class="reason">' . esc_html( $item['reason'] ) . '</span>';

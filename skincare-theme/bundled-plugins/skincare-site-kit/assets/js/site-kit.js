@@ -65,6 +65,35 @@ jQuery(document).ready(function($) {
         });
     }
 
+    if (typeof window !== 'undefined') {
+        window.alert = function(message) {
+            showToast(message || '', 'info');
+        };
+        window.confirm = function(message) {
+            showConfirmModal({
+                title: 'Confirmación',
+                message: message || '',
+                confirmText: 'OK',
+                cancelText: 'Cerrar'
+            });
+            return false;
+        };
+    }
+
+    function skRestFetch(endpoint, options) {
+        var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
+        var restNonce = sk_vars && sk_vars.rest_nonce ? sk_vars.rest_nonce : '';
+        var url = restUrl ? restUrl + endpoint : '';
+        return fetch(url, $.extend(true, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': restNonce
+            },
+            credentials: 'same-origin'
+        }, options || {}));
+    }
+
     // Slider Logic (Simple Fade)
     $('.sk-hero-slider').each(function() {
         var $slider = $(this);
@@ -232,22 +261,30 @@ jQuery(document).ready(function($) {
                 $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
                 $message.removeClass('is-success is-error').text('Procesando tu canje...');
 
-                $.post(sk_vars.ajax_url, { action: 'sk_redeem_points', nonce: sk_vars.nonce }, function(res) {
-                    if (res.success) {
-                        $message.addClass('is-success').text('¡Listo! Tu cupón es ' + res.data.code + '.');
-                        $('.points-value, .sk-points-total').text(res.data.new_balance);
-                        showToast('Canje exitoso. Cupón generado.', 'success');
-                        $btn.remove();
-                    } else {
-                        $message.addClass('is-error').text(res.data.message || 'No se pudo canjear en este momento.');
-                        showToast(res.data.message || 'No se pudo canjear en este momento.', 'error');
+                skRestFetch('rewards/redeem')
+                    .then(function(response) {
+                        return response.json().then(function(data) {
+                            return { ok: response.ok, data: data };
+                        });
+                    })
+                    .then(function(result) {
+                        if (result.ok) {
+                            $message.addClass('is-success').text('¡Listo! Tu cupón es ' + result.data.code + '.');
+                            $('.points-value, .sk-points-total').text(result.data.new_balance);
+                            showToast('Canje exitoso. Cupón generado.', 'success');
+                            $btn.remove();
+                        } else {
+                            var errorMessage = result.data && result.data.message ? result.data.message : 'No se pudo canjear en este momento.';
+                            $message.addClass('is-error').text(errorMessage);
+                            showToast(errorMessage, 'error');
+                            $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+                        }
+                    })
+                    .catch(function() {
+                        $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
+                        showToast('No se pudo conectar. Intenta de nuevo.', 'error');
                         $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
-                    }
-                }).fail(function() {
-                    $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
-                    showToast('No se pudo conectar. Intenta de nuevo.', 'error');
-                    $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
-                });
+                    });
             }
         });
     });
@@ -291,24 +328,32 @@ jQuery(document).ready(function($) {
 
         $btn.prop('disabled', true).text('Enviando...');
 
-        $.post(sk_vars.ajax_url, {
-            action: 'sk_contact_submit',
-            nonce: sk_vars.nonce,
-            name: $form.find('input[type="text"]').val(),
-            email: $form.find('input[type="email"]').val(),
-            message: $form.find('textarea').val()
-        }, function(res) {
-            $btn.prop('disabled', false).text('Enviar Mensaje');
-            if (res.success) {
-                showToast(res.data.message, 'success');
-                $form[0].reset();
-            } else {
-                showToast(res.data.message, 'error');
-            }
-        }).fail(function() {
-            $btn.prop('disabled', false).text('Enviar Mensaje');
-            showToast('No se pudo conectar. Intenta de nuevo.', 'error');
-        });
+        skRestFetch('forms/contact', {
+            body: JSON.stringify({
+                name: $form.find('input[type="text"]').val(),
+                email: $form.find('input[type="email"]').val(),
+                message: $form.find('textarea').val()
+            })
+        })
+            .then(function(response) {
+                return response.json().then(function(data) {
+                    return { ok: response.ok, data: data };
+                });
+            })
+            .then(function(result) {
+                $btn.prop('disabled', false).text('Enviar Mensaje');
+                if (result.ok && result.data && result.data.success) {
+                    showToast(result.data.message, 'success');
+                    $form[0].reset();
+                } else {
+                    var message = result.data && result.data.message ? result.data.message : 'No se pudo enviar el mensaje.';
+                    showToast(message, 'error');
+                }
+            })
+            .catch(function() {
+                $btn.prop('disabled', false).text('Enviar Mensaje');
+                showToast('No se pudo conectar. Intenta de nuevo.', 'error');
+            });
     });
 
     // Mobile Menu Toggle (Basic)

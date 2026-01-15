@@ -35,7 +35,7 @@
         <p class="nfc-role">CEO & Founder | Arquitecto</p>
 
         <a href="<?php echo home_url('/portfolio'); ?>" class="nfc-btn primary">Ver Portafolio Rápido 📂</a>
-        <a href="https://wa.me/51999999999" class="nfc-btn">Hablar por WhatsApp 💬</a>
+        <a href="/contact/" class="nfc-btn">Solicitar contacto 💬</a>
         <a href="<?php echo home_url('/shop'); ?>" class="nfc-btn">Visitar Tienda Online 🛒</a>
         <a href="#" class="nfc-btn">Guardar Contacto (vCard) 📲</a>
 

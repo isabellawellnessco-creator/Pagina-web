@@ -140,7 +140,16 @@
 
             // Policy Check
             $(document).on('change', '#sk-accept-policy', function() {
-                if($(this).is(':checked')) {
+                var checked = $(this).is(':checked');
+
+                // AJAX Sync to Session
+                $.post(sk_vars.ajax_url, {
+                    action: 'sk_set_policy_status',
+                    status: checked,
+                    nonce: sk_cart_vars.nonce
+                });
+
+                if(checked) {
                     $('#sk-checkout-btn').removeClass('disabled');
                 } else {
                     $('#sk-checkout-btn').addClass('disabled');
@@ -208,6 +217,11 @@
         },
 
         updateCart: function() {
+            // Re-fetch global vars just in case localized script updated (rare, but good practice if page reloaded)
+            if(typeof sk_cart_vars !== 'undefined') {
+                 this.threshold = parseFloat(sk_cart_vars.free_shipping_threshold);
+            }
+
             $.ajax({
                 url: wc_cart_fragments_params.wc_ajax_url.toString().replace('%%endpoint%%', 'get_refreshed_fragments'),
                 type: 'POST',
@@ -228,19 +242,35 @@
                             let subtotalText = $miniCart.find('.total .amount').text();
 
                             // Advanced Parsing for Currency
-                            let raw = subtotalText.replace(this.currencySymbol, '').trim();
-                            let clean = raw.replace(/[^0-9.,]/g, '');
-                            let dotPos = clean.lastIndexOf('.');
-                            let commaPos = clean.lastIndexOf(',');
-                            let sep = Math.max(dotPos, commaPos);
+                            // We need to be careful about currencies that use comma as decimal separator
+                            // Ideally, we trust the clean float parse logic, or better, we ask server for raw subtotal
+                            // But keeping JS parsing for now to match requirement "Don't reinvent everything"
 
+                            let raw = subtotalText;
+                            // Remove symbol if possible
+                            if(this.currencySymbol) {
+                                raw = raw.replace(this.currencySymbol, '');
+                            }
+                            raw = raw.trim();
+
+                            // Heuristic: if last punctuation is comma, it's likely decimal in EUR/Spanish
+                            // but this is fragile.
+                            // Robust approach: remove all non-digits except last punctuation
+                            // 1,234.56 -> 1234.56
+                            // 1.234,56 -> 1234.56
+
+                            // Strategy: Identify separator
+                            // Regex match last [.,]
+                            let match = raw.match(/[.,](?=[0-9]+$)/);
                             let val = 0;
-                            if (sep === -1) {
+
+                            if (match) {
+                                let sep = match[0];
+                                let clean = raw.replace(new RegExp('[^0-9' + (sep === '.' ? '\\.' : sep) + ']', 'g'), '');
+                                if (sep === ',') clean = clean.replace(',', '.');
                                 val = parseFloat(clean);
                             } else {
-                                let whole = clean.substring(0, sep).replace(/[^0-9]/g, '');
-                                let dec = clean.substring(sep+1);
-                                val = parseFloat(whole + '.' + dec);
+                                val = parseFloat(raw.replace(/[^0-9]/g, ''));
                             }
 
                             if (isNaN(val)) val = 0;

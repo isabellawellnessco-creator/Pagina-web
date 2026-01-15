@@ -40,6 +40,120 @@ class Localization {
 
 		add_action( 'wp_ajax_sk_switch_language', [ __CLASS__, 'ajax_switch_language' ] );
 		add_action( 'wp_ajax_nopriv_sk_switch_language', [ __CLASS__, 'ajax_switch_language' ] );
+
+		// Admin Settings
+		add_action( 'admin_menu', [ __CLASS__, 'add_admin_menu' ] );
+		add_action( 'admin_init', [ __CLASS__, 'register_settings' ] );
+	}
+
+	public static function add_admin_menu() {
+		add_submenu_page(
+			'woocommerce',
+			'Skin Cupid Localization',
+			'SC Localization',
+			'manage_options',
+			'sk-localization',
+			[ __CLASS__, 'render_settings_page' ]
+		);
+	}
+
+	public static function register_settings() {
+		register_setting( 'sk_localization_group', 'sk_currencies' );
+		register_setting( 'sk_localization_group', 'sk_currency_thresholds' );
+	}
+
+	public static function render_settings_page() {
+		if ( ! current_user_can( 'manage_options' ) ) return;
+
+		// Handle Form Submission Manually to support array structures easily if needed
+		// or rely on standard options.
+		// For simplicity, we use standard settings fields but might need custom logic for the array.
+		// Actually, let's use a simple POST handler within this render for array saving if standard settings API is too clunky for multidimensional arrays without callbacks.
+		if ( isset( $_POST['sk_loc_submit'] ) && check_admin_referer( 'sk_loc_save' ) ) {
+			$rates = isset( $_POST['rates'] ) ? $_POST['rates'] : [];
+			$thresholds = isset( $_POST['thresholds'] ) ? $_POST['thresholds'] : [];
+
+			// Updates rates in sk_currencies
+			$currencies = self::get_currencies(); // Get defaults/existing
+			foreach ( $rates as $code => $rate ) {
+				if ( isset( $currencies[$code] ) ) {
+					$currencies[$code]['rate'] = floatval( $rate );
+				}
+			}
+			update_option( 'sk_currencies', $currencies );
+
+			// Update thresholds
+			$clean_thresholds = [];
+			foreach ( $thresholds as $code => $val ) {
+				if ( $val !== '' ) {
+					$clean_thresholds[$code] = floatval( $val );
+				}
+			}
+			update_option( 'sk_currency_thresholds', $clean_thresholds );
+
+			echo '<div class="notice notice-success"><p>Settings Saved.</p></div>';
+		}
+
+		$currencies = self::get_currencies();
+		$thresholds = get_option( 'sk_currency_thresholds', [] );
+		?>
+		<div class="wrap">
+			<h1>Skin Cupid Localization</h1>
+			<form method="post" action="">
+				<?php wp_nonce_field( 'sk_loc_save' ); ?>
+				<table class="widefat fixed" style="max-width: 800px; margin-top: 20px;">
+					<thead>
+						<tr>
+							<th>Currency</th>
+							<th>Exchange Rate (vs PEN)</th>
+							<th>Free Shipping Threshold (Fixed)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( $currencies as $code => $data ) :
+							$rate = isset( $data['rate'] ) ? $data['rate'] : 1;
+							$thresh = isset( $thresholds[$code] ) ? $thresholds[$code] : '';
+						?>
+						<tr>
+							<td><strong><?php echo esc_html( $code ); ?></strong> (<?php echo esc_html( $data['name'] ); ?>)</td>
+							<td>
+								<input type="number" step="0.0001" name="rates[<?php echo esc_attr( $code ); ?>]" value="<?php echo esc_attr( $rate ); ?>" class="regular-text">
+							</td>
+							<td>
+								<input type="number" step="0.01" name="thresholds[<?php echo esc_attr( $code ); ?>]" value="<?php echo esc_attr( $thresh ); ?>" class="regular-text" placeholder="Auto (Conversion)">
+								<p class="description">Leave empty to calculate from Base (200 PEN).</p>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+				<p class="submit">
+					<input type="submit" name="sk_loc_submit" id="submit" class="button button-primary" value="Save Changes">
+				</p>
+			</form>
+		</div>
+		<?php
+	}
+
+	public static function get_free_shipping_threshold( $currency = null ) {
+		if ( ! $currency ) $currency = self::get_active_currency();
+
+		$thresholds = get_option( 'sk_currency_thresholds', [] );
+
+		// 1. Look for manual override
+		if ( isset( $thresholds[ $currency ] ) && is_numeric( $thresholds[ $currency ] ) ) {
+			return (float) $thresholds[ $currency ];
+		}
+
+		// 2. Fallback to conversion
+		$base_threshold = get_option( 'sk_free_shipping_fallback', 200 );
+
+		$currencies = self::get_currencies();
+		if ( isset( $currencies[ $currency ]['rate'] ) ) {
+			return $base_threshold * (float) $currencies[ $currency ]['rate'];
+		}
+
+		return $base_threshold;
 	}
 
 	public static function get_currencies() {

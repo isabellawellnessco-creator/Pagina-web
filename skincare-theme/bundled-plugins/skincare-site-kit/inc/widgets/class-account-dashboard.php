@@ -38,6 +38,14 @@ class Account_Dashboard extends Widget_Base {
 		$points = get_user_meta( $current_user->ID, '_sk_rewards_points', true );
 		$points = $points ? intval( $points ) : 0;
 		$rewards_history = get_user_meta( $current_user->ID, '_sk_rewards_history', true );
+		$rewards_history = is_array( $rewards_history ) ? $rewards_history : [];
+		$tracking_settings = get_option( 'sk_tracking_settings', [] );
+		$tracking_steps = isset( $tracking_settings['steps'] ) && is_array( $tracking_settings['steps'] )
+			? array_values( $tracking_settings['steps'] )
+			: [];
+		if ( count( $tracking_steps ) < 4 ) {
+			$tracking_steps = self::default_tracking_steps();
+		}
 
 		?>
 		<div class="sk-account-dashboard">
@@ -89,22 +97,10 @@ class Account_Dashboard extends Widget_Base {
 								$payment_method = $order->get_payment_method_title();
 								$is_paid = $order->is_paid();
 								$order_status = $order->get_status();
-								$step_index = 0;
-								if ( 'completed' === $order_status ) {
-									$step_index = 3;
-								} elseif ( $tracking_number || $tracking_url ) {
-									$step_index = 2;
-								} elseif ( $packing_status ) {
-									$step_index = 1;
-								}
-								$steps = [
-									[ 'label' => __( 'Pedido confirmado', 'skincare' ), 'desc' => __( 'Estamos preparando tu pedido.', 'skincare' ) ],
-									[ 'label' => __( 'Empaque', 'skincare' ), 'desc' => $packing_status ? $packing_status : __( 'Empaque en progreso.', 'skincare' ) ],
-									[ 'label' => __( 'En camino', 'skincare' ), 'desc' => $tracking_number ? __( 'Tu pedido va en camino.', 'skincare' ) : __( 'Esperando guía de envío.', 'skincare' ) ],
-									[ 'label' => __( 'Entregado', 'skincare' ), 'desc' => __( 'Pedido entregado.', 'skincare' ) ],
-								];
-								?>
-								<article class="sk-card sk-order-card">
+									$step_index = self::resolve_tracking_step( $order_status, $packing_status, $tracking_number, $tracking_url, $tracking_steps );
+									$steps = self::hydrate_tracking_steps( $tracking_steps, $packing_status, $tracking_number );
+									?>
+									<article class="sk-card sk-order-card">
 									<header class="sk-order-card__header">
 										<div>
 											<h4><?php printf( __( 'Pedido #%s', 'skincare' ), esc_html( $order->get_order_number() ) ); ?></h4>
@@ -119,6 +115,7 @@ class Account_Dashboard extends Widget_Base {
 											<?php if ( $packing_status ) : ?>
 												<span class="sk-badge sk-badge--neutral"><?php echo esc_html( $packing_status ); ?></span>
 											<?php endif; ?>
+											<span class="sk-badge sk-badge--accent"><?php echo esc_html( $steps[ $step_index ]['label'] ); ?></span>
 										</div>
 									</header>
 
@@ -220,17 +217,17 @@ class Account_Dashboard extends Widget_Base {
 					<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', 'billing' ) ); ?>" class="btn sk-btn-small"><?php _e( 'Editar', 'skincare' ); ?></a>
 				</div>
 
-				<div id="tab-rewards" class="sk-tab-pane" role="tabpanel">
-					<div class="sk-card sk-rewards-overview">
-						<h4><?php _e( 'Balance de Puntos', 'skincare' ); ?></h4>
-						<h2 class="sk-points-total"><?php echo esc_html( $points ); ?></h2>
-						<p><?php _e( 'Gana puntos con cada compra y canjéalos por descuentos exclusivos.', 'skincare' ); ?></p>
-						<a href="/rewards/" class="btn sk-btn"><?php _e( 'Ver Catálogo de Premios', 'skincare' ); ?></a>
-					</div>
+					<div id="tab-rewards" class="sk-tab-pane" role="tabpanel">
+						<div class="sk-card sk-rewards-overview">
+							<h4><?php _e( 'Balance de Puntos', 'skincare' ); ?></h4>
+							<h2 class="sk-points-total" data-target="<?php echo esc_attr( $points ); ?>">0</h2>
+							<p><?php _e( 'Gana puntos con cada compra y canjéalos por descuentos exclusivos.', 'skincare' ); ?></p>
+							<a href="/rewards/" class="btn sk-btn"><?php _e( 'Ver Catálogo de Premios', 'skincare' ); ?></a>
+						</div>
 
-					<h4><?php _e( 'Historial de Puntos', 'skincare' ); ?></h4>
-					<?php if ( ! empty( $rewards_history ) ) : ?>
-						<table class="sk-orders-table">
+						<h4><?php _e( 'Historial de Puntos', 'skincare' ); ?></h4>
+						<?php if ( ! empty( $rewards_history ) ) : ?>
+							<table class="sk-orders-table sk-rewards-history">
 							<thead>
 								<tr>
 									<th><?php _e( 'Fecha', 'skincare' ); ?></th>
@@ -250,18 +247,77 @@ class Account_Dashboard extends Widget_Base {
 								<?php endforeach; ?>
 							</tbody>
 						</table>
-					<?php else : ?>
-						<div class="sk-empty-state sk-empty-state--compact">
-							<span class="sk-empty-state__icon">✨</span>
-							<div>
-								<h4><?php _e( 'Aún no tienes movimientos', 'skincare' ); ?></h4>
-								<p><?php _e( 'Compra tus favoritos y verás aquí cada punto ganado.', 'skincare' ); ?></p>
+						<?php else : ?>
+							<div class="sk-empty-state sk-empty-state--compact">
+								<span class="sk-empty-state__icon">✨</span>
+								<div>
+									<h4><?php _e( 'Aún no tienes movimientos', 'skincare' ); ?></h4>
+									<p><?php _e( 'Compra tus favoritos y verás aquí cada punto ganado.', 'skincare' ); ?></p>
+								</div>
 							</div>
-						</div>
-					<?php endif; ?>
-				</div>
+						<?php endif; ?>
+					</div>
 			</div>
 		</div>
 		<?php
+	}
+
+	private static function default_tracking_steps() {
+		return [
+			[
+				'label' => __( 'Pedido confirmado', 'skincare' ),
+				'desc' => __( 'Estamos preparando tu pedido.', 'skincare' ),
+				'statuses' => 'wc-processing,wc-on-hold,wc-pending',
+			],
+			[
+				'label' => __( 'Empaque', 'skincare' ),
+				'desc' => __( 'Empaque en progreso.', 'skincare' ),
+				'statuses' => 'wc-processing',
+			],
+			[
+				'label' => __( 'En camino', 'skincare' ),
+				'desc' => __( 'Tu pedido va en camino.', 'skincare' ),
+				'statuses' => 'wc-sk-on-the-way',
+			],
+			[
+				'label' => __( 'Entregado', 'skincare' ),
+				'desc' => __( 'Pedido entregado.', 'skincare' ),
+				'statuses' => 'wc-completed,wc-sk-delivered',
+			],
+		];
+	}
+
+	private static function resolve_tracking_step( $order_status, $packing_status, $tracking_number, $tracking_url, $steps ) {
+		$step_index = 0;
+		$normalized_status = 'wc-' . $order_status;
+		$statuses = self::parse_step_statuses( $steps );
+
+		if ( in_array( $normalized_status, $statuses[3], true ) || 'completed' === $order_status ) {
+			return 3;
+		}
+		if ( $tracking_number || $tracking_url || in_array( $normalized_status, $statuses[2], true ) ) {
+			return 2;
+		}
+		if ( $packing_status || in_array( $normalized_status, $statuses[1], true ) ) {
+			return 1;
+		}
+
+		return $step_index;
+	}
+
+	private static function hydrate_tracking_steps( $steps, $packing_status, $tracking_number ) {
+		$steps[1]['desc'] = $packing_status ? $packing_status : $steps[1]['desc'];
+		$steps[2]['desc'] = $tracking_number ? __( 'Tu pedido va en camino.', 'skincare' ) : $steps[2]['desc'];
+		return $steps;
+	}
+
+	private static function parse_step_statuses( $steps ) {
+		$statuses = [];
+		foreach ( $steps as $step ) {
+			$raw = isset( $step['statuses'] ) ? $step['statuses'] : '';
+			$list = array_filter( array_map( 'trim', explode( ',', $raw ) ) );
+			$statuses[] = $list;
+		}
+		return array_pad( $statuses, 4, [] );
 	}
 }

@@ -37,6 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.homadToast = showToast;
 
+    if (typeof window !== 'undefined') {
+        window.alert = function(message) {
+            showToast(message || '', 'info');
+        };
+        window.confirm = function(message) {
+            showToast(message || '', 'info');
+            return false;
+        };
+    }
+
     // --- Mobile Splash Screen Logic ---
     const splash = document.getElementById('homad-splash');
     if (splash) {
@@ -78,15 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(leadForm);
             const payload = Object.fromEntries(formData.entries());
 
-            const useRest = homad_vars && homad_vars.rest_url && homad_vars.lead_nonce;
-            const endpoint = useRest ? `${homad_vars.rest_url}homad/v1/lead` : homad_vars.ajax_url;
+            const useRest = homad_vars && homad_vars.rest_url && homad_vars.rest_nonce;
+            const endpoint = useRest ? `${homad_vars.rest_url}skincare/v1/quote` : homad_vars.ajax_url;
             const fetchOptions = useRest
                 ? {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Homad-Nonce': homad_vars.lead_nonce
+                        'X-WP-Nonce': homad_vars.rest_nonce
                     },
+                    credentials: 'same-origin',
                     body: JSON.stringify(payload)
                 }
                 : {
@@ -109,6 +120,65 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(err => {
                     console.error(err);
                     showToast('Something went wrong. Please try again.', 'error');
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+        });
+    }
+
+    // --- Contact Form ---
+    const contactForm = document.querySelector('.homad-contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const formData = new FormData(contactForm);
+            const payload = Object.fromEntries(formData.entries());
+            const useRest = homad_vars && homad_vars.rest_url && homad_vars.rest_nonce;
+            if (!useRest) {
+                showToast('No se pudo enviar el mensaje.', 'error');
+                btn.innerText = originalText;
+                btn.disabled = false;
+                return;
+            }
+
+            const contact = payload.contact || '';
+            const email = contact.includes('@') ? contact : '';
+            const reason = payload.reason ? `Motivo: ${payload.reason}\n` : '';
+
+            fetch(`${homad_vars.rest_url}skincare/v1/forms/contact`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': homad_vars.rest_nonce
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                    name: contact || 'Contacto',
+                    email: email,
+                    contact: contact,
+                    message: reason + (payload.message || '')
+                })
+            })
+                .then(response => response.json().then(data => ({ ok: response.ok, data })))
+                .then(result => {
+                    if (result.ok && result.data && result.data.success) {
+                        showToast(result.data.message || 'Mensaje enviado.', 'success');
+                        contactForm.reset();
+                    } else {
+                        const message = result.data && result.data.message ? result.data.message : 'No se pudo enviar el mensaje.';
+                        showToast(message, 'error');
+                    }
+                })
+                .catch(() => {
+                    showToast('No se pudo enviar el mensaje.', 'error');
                 })
                 .finally(() => {
                     btn.innerText = originalText;

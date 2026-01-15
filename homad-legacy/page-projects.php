@@ -114,9 +114,7 @@ get_header(); ?>
                                 <div class="homad-wizard-wrapper">
                                     <h2 class="wizard-title">Hablemos de tu Proyecto</h2>
 
-                                    <form id="homad-lead-form" class="homad-form" action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST">
-                                        <?php wp_nonce_field('homad_lead_action', 'homad_form_nonce'); ?>
-                                        <input type="hidden" name="action" value="homad_submit_lead">
+                                    <form id="homad-lead-form" class="homad-form" action="" method="POST">
 
                                         <!-- Pregunta Filtro 1 -->
                                         <div class="form-group">

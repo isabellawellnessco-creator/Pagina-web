@@ -24,7 +24,7 @@ function homad_run_seeder() {
 
     <hr>
     <h3>Canales Directos</h3>
-    <p>Prioridad a WhatsApp: <a href="https://wa.me/51999999999">+51 999 999 999</a></p>
+    <p>Prioridad a WhatsApp: Canal automático configurado.</p>
     ';
 
     $claims_content = '
@@ -70,7 +70,7 @@ function homad_run_seeder() {
         <h1>Homad Bio</h1>
         <p>CEO & Founder | Arquitecto</p>
         <p><a href="/portfolio">Ver Portafolio Rápido 📂</a></p>
-        <p><a href="https://wa.me/51999999999">Hablar por WhatsApp 💬</a></p>
+        <p><span>Hablar por WhatsApp 💬 (Automático)</span></p>
         <p><a href="/shop">Visitar Tienda Online 🛒</a></p>
     </div>
     ';

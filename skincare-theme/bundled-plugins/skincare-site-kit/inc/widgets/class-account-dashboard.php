@@ -34,10 +34,12 @@ class Account_Dashboard extends Shortcode_Renderer {
 		$address = wc_get_account_formatted_address( 'billing' );
 
 		// Get Rewards Data
-		$points = get_user_meta( $current_user->ID, '_sk_rewards_points', true );
-		$points = $points ? intval( $points ) : 0;
-		$rewards_history = get_user_meta( $current_user->ID, '_sk_rewards_history', true );
-		$rewards_history = is_array( $rewards_history ) ? $rewards_history : [];
+		$points = 0;
+		$rewards_history = [];
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			$points = \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( $current_user->ID );
+			$rewards_history = \Skincare\SiteKit\Admin\Rewards_Master::get_user_history( $current_user->ID, 20 );
+		}
 		$tracking_settings = get_option( 'sk_tracking_settings', [] );
 		$tracking_steps = isset( $tracking_settings['steps'] ) && is_array( $tracking_settings['steps'] )
 			? array_values( $tracking_settings['steps'] )
@@ -235,7 +237,7 @@ class Account_Dashboard extends Shortcode_Renderer {
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ( array_reverse( $rewards_history ) as $entry ) : ?>
+								<?php foreach ( $rewards_history as $entry ) : ?>
 									<tr>
 										<td><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $entry['date'] ) ) ); ?></td>
 										<td><?php echo esc_html( $entry['reason'] ); ?></td>

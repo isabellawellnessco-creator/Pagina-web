@@ -99,28 +99,34 @@ var homadWizard = (function($) {
         var origText = $btn.text();
         $btn.text('Sending...').prop('disabled', true);
 
-        $.ajax({
-            url: homadWizardVars.ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'homad_submit_quote_wizard',
-                nonce: homadWizardVars.nonce,
-                fields: JSON.stringify(dataObj)
+        fetch(homadWizardVars.rest_url + 'skincare/v1/quote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': homadWizardVars.rest_nonce
             },
-            success: function(response) {
-                if (response.success) {
+            credentials: 'same-origin',
+            body: JSON.stringify(dataObj)
+        })
+            .then(function(response) {
+                return response.json().then(function(data) {
+                    return { ok: response.ok, data: data };
+                });
+            })
+            .then(function(result) {
+                if (result.ok && result.data && result.data.success) {
                     showStep('success');
-                    showWizardNotice('Solicitud enviada correctamente.', 'success');
+                    showWizardNotice(result.data.message || 'Solicitud enviada correctamente.', 'success');
                 } else {
-                    showWizardNotice('Error: ' + response.data.message, 'error');
+                    var message = result.data && result.data.message ? result.data.message : 'No se pudo enviar la solicitud.';
+                    showWizardNotice('Error: ' + message, 'error');
                     $btn.text(origText).prop('disabled', false);
                 }
-            },
-            error: function() {
+            })
+            .catch(function() {
                 showWizardNotice('Server error. Please try again.', 'error');
                 $btn.text(origText).prop('disabled', false);
-            }
-        });
+            });
     }
 
     $(document).ready(init);

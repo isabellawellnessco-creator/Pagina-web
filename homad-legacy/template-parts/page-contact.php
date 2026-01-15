@@ -7,8 +7,7 @@ get_header();
     <section class="homad-section" id="contact">
       <h1 class="homad-title">Contacto</h1>
       <p class="homad-subtitle">Cuéntanos cómo podemos ayudarte</p>
-      <form class="homad-contact-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-        <input type="hidden" name="action" value="homad_contact_form">
+      <form class="homad-contact-form" method="post" action="">
         <div class="homad-form-row">
           <label for="reason">Motivo:</label>
           <select id="reason" name="reason">
@@ -30,7 +29,7 @@ get_header();
 
       <!-- Canales rápidos -->
       <div class="homad-section homad-section--tight" id="contact-channels">
-        <a href="https://wa.me/123456789" class="homad-btn homad-btn--secondary">WhatsApp</a>
+        <span class="homad-btn homad-btn--secondary" aria-disabled="true">WhatsApp (Automático)</span>
         <a href="mailto:info@homad.com" class="homad-btn homad-btn--secondary">Email</a>
       </div>
     </section>

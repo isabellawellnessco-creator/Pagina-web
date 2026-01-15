@@ -60,7 +60,7 @@ class Seeder {
 		}
 
 		// Check critical pages
-		$critical_pages = [ 'home', 'shop', 'rewards', 'account' ];
+		$critical_pages = [ 'home', 'shop', 'rewards', 'account', 'politicas' ];
 		foreach ( $critical_pages as $slug ) {
 			if ( ! get_page_by_path( $slug ) ) {
 				$issues[] = "Página faltante: $slug";
@@ -263,6 +263,25 @@ class Seeder {
 					<p>Aceptamos métodos de pago seguros disponibles al finalizar la compra.</p>
 					<h3>Disponibilidad</h3>
 					<p>Los productos están sujetos a disponibilidad y pueden variar según inventario.</p>
+				</section>
+				',
+			],
+			[
+				'title' => 'Políticas',
+				'slug' => 'politicas',
+				'content' => '
+				<section class="sk-page-intro">
+					<h2>Políticas de Compra y Devoluciones</h2>
+					<p>Información esencial para tu experiencia de compra.</p>
+				</section>
+				<section class="sk-page-details">
+					<h3>Aceptación de Políticas</h3>
+					<p>Al comprar en Skin Cupid, aceptas nuestros términos de servicio y política de privacidad.</p>
+					<ul>
+						<li><a href="/terms/">Términos y Condiciones</a></li>
+						<li><a href="/privacy-policy/">Política de Privacidad</a></li>
+						<li><a href="/shipping/">Envíos y Devoluciones</a></li>
+					</ul>
 				</section>
 				',
 			],

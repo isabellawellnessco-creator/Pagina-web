@@ -61,6 +61,41 @@ if ( class_exists( '\Skincare\SiteKit\Modules\Theme_Builder' ) ) {
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav>
+
+		<?php
+		// Fallback Switcher for Language/Currency if needed
+		if ( class_exists( '\Skincare\SiteKit\Widgets\Sk_Switcher' ) && class_exists( '\Elementor\Widget_Base' ) ) {
+			// Manually render a simplified version or instantiate
+			// Since instantiating Elementor widgets manually is complex, we render direct HTML
+			// reusing the logic we know exists in Localization.
+			if ( class_exists( '\Skincare\SiteKit\Modules\Localization' ) ) {
+				$currencies = \Skincare\SiteKit\Modules\Localization::get_currencies();
+				$active = \Skincare\SiteKit\Modules\Localization::get_active_currency();
+				if ( count( $currencies ) > 1 ) {
+					echo '<div class="sk-header-fallback-switcher" style="position:absolute; top:10px; right:10px; z-index:999;">';
+					echo '<select onchange="window.skSwitchCurrency(this.value)" style="padding:5px; font-size:12px;">';
+					foreach ( $currencies as $code => $data ) {
+						echo '<option value="' . esc_attr( $code ) . '" ' . selected( $active, $code, false ) . '>' . esc_html( $code ) . '</option>';
+					}
+					echo '</select>';
+					// Ensure JS helper exists
+					echo '<script>
+					if (!window.skSwitchCurrency) {
+						window.skSwitchCurrency = function(val) {
+							jQuery.post("' . admin_url('admin-ajax.php') . '", {
+								action: "sk_switch_currency",
+								currency: val
+							}, function(res) {
+								if(res.success) location.reload();
+							});
+						};
+					}
+					</script>';
+					echo '</div>';
+				}
+			}
+		}
+		?>
 	</header>
 <?php endif; ?>
 

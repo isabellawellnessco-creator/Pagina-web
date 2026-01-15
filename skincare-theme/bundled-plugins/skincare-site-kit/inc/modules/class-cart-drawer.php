@@ -20,6 +20,12 @@ class Cart_Drawer {
 		add_action( 'wp_ajax_sk_update_cart_item', [ __CLASS__, 'ajax_update_cart_item' ] );
 		add_action( 'wp_ajax_nopriv_sk_update_cart_item', [ __CLASS__, 'ajax_update_cart_item' ] );
 
+		// Policy Checkbox Logic
+		add_action( 'wp_ajax_sk_set_policy_status', [ __CLASS__, 'ajax_set_policy_status' ] );
+		add_action( 'wp_ajax_nopriv_sk_set_policy_status', [ __CLASS__, 'ajax_set_policy_status' ] );
+		add_action( 'woocommerce_checkout_process', [ __CLASS__, 'check_policy_on_checkout' ] );
+		add_action( 'woocommerce_review_order_before_submit', [ __CLASS__, 'add_policy_checkbox_to_checkout' ] );
+
 		// Custom Item Render to include +/- buttons
 		add_filter( 'woocommerce_widget_cart_item_quantity', [ __CLASS__, 'custom_item_quantity_input' ], 10, 3 );
 	}
@@ -28,18 +34,9 @@ class Cart_Drawer {
 		wp_enqueue_style( 'sk-cart-drawer', SKINCARE_KIT_URL . 'assets/css/cart-drawer.css', [], '1.0.0' );
 		wp_enqueue_script( 'sk-cart-drawer', SKINCARE_KIT_URL . 'assets/js/cart-drawer.js', ['jquery', 'sk-site-kit'], '1.0.0', true );
 
-		$threshold = self::get_free_shipping_threshold();
-
-		// Convert Threshold using Localization
+		$threshold = 200;
 		if ( class_exists( '\Skincare\SiteKit\Modules\Localization' ) ) {
-			// Threshold is usually in base currency
-			$currency = Localization::get_active_currency();
-			if ( $currency !== 'PEN' ) { // Assuming base is PEN, should verify but usually base is stored as 1
-				$currencies = Localization::get_currencies();
-				if ( isset( $currencies[$currency] ) ) {
-					$threshold = $threshold * (float) $currencies[$currency]['rate'];
-				}
-			}
+			$threshold = Localization::get_free_shipping_threshold();
 		}
 
 		wp_localize_script( 'sk-site-kit', 'sk_cart_vars', [
@@ -51,35 +48,6 @@ class Cart_Drawer {
 			'currency_symbol'         => get_woocommerce_currency_symbol(), // Filtered by Localization
 			'currency_code'           => get_woocommerce_currency(), // Filtered by Localization
 		] );
-	}
-
-	public static function get_free_shipping_threshold() {
-		$threshold = 200; // Fallback default
-
-		// 1. Try to find Shipping Zone "Free Shipping" method min_amount
-		if ( class_exists( 'WC_Shipping_Zones' ) ) {
-			$zones = \WC_Shipping_Zones::get_zones();
-			if ( ! empty( $zones ) ) {
-				// We iterate zones to find the first matching one for current user?
-				// Or just take the first configured zone (Main).
-				// Best practice: Use current customer location.
-				// But initially, maybe just Main Zone (Peru?)
-				foreach ( $zones as $zone_id => $zone_data ) {
-					$zone = new \WC_Shipping_Zone( $zone_id );
-					$methods = $zone->get_shipping_methods();
-					foreach ( $methods as $method ) {
-						if ( $method->id === 'free_shipping' && $method->enabled === 'yes' ) {
-							if ( ! empty( $method->min_amount ) ) {
-								return $method->min_amount;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		// 2. Global Option Fallback
-		return get_option( 'sk_free_shipping_fallback', 200 );
 	}
 
 	public static function get_recommendations_html() {
@@ -136,6 +104,9 @@ class Cart_Drawer {
 				$cross_sells[] = $f->get_id();
 			}
 		}
+
+		// Filter for future manual rules
+		$cross_sells = apply_filters( 'sk_drawer_upsells', $cross_sells, WC()->cart );
 
 		if ( empty( $cross_sells ) ) return '';
 
@@ -216,7 +187,8 @@ class Cart_Drawer {
 			$stock = $product->get_stock_quantity();
 			if ( $qty > $stock ) {
 				$qty = $stock; // Cap at max stock
-				// Ideally return a message too
+				// Add notice for UI
+				wc_add_notice( sprintf( __( 'Lo sentimos, solo tenemos %s unidades de %s en stock.', 'skincare' ), $stock, $product->get_name() ), 'error' );
 			}
 		}
 
@@ -230,6 +202,54 @@ class Cart_Drawer {
 
 		// Return standard fragments for UI update
 		\WC_AJAX::get_refreshed_fragments();
+	}
+
+	public static function ajax_set_policy_status() {
+		check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
+
+		$status = isset( $_POST['status'] ) && $_POST['status'] === 'true';
+
+		if ( WC()->session ) {
+			WC()->session->set( 'sk_policy_accepted', $status );
+			wp_send_json_success( [ 'status' => $status ] );
+		}
+		wp_send_json_error();
+	}
+
+	public static function check_policy_on_checkout() {
+		$accepted = WC()->session ? WC()->session->get( 'sk_policy_accepted' ) : false;
+
+		// Also check POST if JS failed (fallback)
+		if ( isset( $_POST['sk_policy_accepted_field'] ) ) {
+			$accepted = true;
+		}
+
+		if ( ! $accepted ) {
+			wc_add_notice( __( 'Debes aceptar las políticas de privacidad y términos para continuar.', 'skincare' ), 'error' );
+		}
+	}
+
+	public static function add_policy_checkbox_to_checkout() {
+		$checked = WC()->session && WC()->session->get( 'sk_policy_accepted' ) ? 'checked' : '';
+		$url = home_url( '/politicas/' );
+		?>
+		<div class="sk-policy-checkout-wrapper">
+			<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+				<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="sk_policy_accepted_field" id="sk_policy_accepted_field" <?php echo $checked; ?> />
+				<span class="woocommerce-terms-and-conditions-checkbox-text">Acepto las <a href="<?php echo esc_url( $url ); ?>" target="_blank">políticas de compra y devoluciones</a>.</span>
+			</label>
+			<script>
+			jQuery(document).on('change', '#sk_policy_accepted_field', function() {
+				var status = jQuery(this).is(':checked');
+				jQuery.post(sk_vars.ajax_url, {
+					action: 'sk_set_policy_status',
+					nonce: sk_cart_vars.nonce,
+					status: status
+				});
+			});
+			</script>
+		</div>
+		<?php
 	}
 
 	// Override for widget mini cart quantity

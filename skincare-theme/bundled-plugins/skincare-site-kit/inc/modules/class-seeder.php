@@ -7,69 +7,99 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Seeder {
 
-	const SEED_VERSION = 5; // Increment this to force re-seeding logic
+	const SEED_VERSION = 5;
 	const OPTION_NAME  = 'sk_content_seeded_version';
+	const LOG_OPTION   = 'sk_seeder_logs';
 
 	public static function init() {
-		// Hook into admin init to run seeder if triggered
-		add_action( 'admin_init', [ __CLASS__, 'run_seeder' ] );
+		// Removed auto-trigger from admin_init to avoid invisible execution.
+		// Use Smart Checks to notify admin instead.
+		add_action( 'admin_init', [ __CLASS__, 'check_status' ] );
 	}
 
-	public static function run_seeder() {
-		$should_run = false;
-
-		$settings = get_option( 'sk_theme_builder_settings', [] );
-		$header_id = isset( $settings['global_header'] ) ? (int) $settings['global_header'] : 0;
-		$footer_id = isset( $settings['global_footer'] ) ? (int) $settings['global_footer'] : 0;
-		$missing_theme_parts = ! $header_id || ! get_post( $header_id ) || ! $footer_id || ! get_post( $footer_id );
-
-		// Manual trigger
-		if ( isset( $_GET['sk_seed_content'] ) && $_GET['sk_seed_content'] == 'true' && current_user_can( 'manage_options' ) ) {
-			$should_run = true;
+	public static function check_status() {
+		// Only run checks for admins
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
 		}
 
-		// Auto trigger based on version
-		$current_version = (int) get_option( self::OPTION_NAME, 0 );
-		if ( $current_version < self::SEED_VERSION && current_user_can( 'manage_options' ) ) {
-			$should_run = true;
+		// Don't run on AJAX or during the wizard itself
+		if ( wp_doing_ajax() || ( isset( $_GET['page'] ) && $_GET['page'] === 'sk-onboarding' ) ) {
+			return;
 		}
 
-		if ( $missing_theme_parts && current_user_can( 'manage_options' ) ) {
-			$should_run = true;
-		}
+		$results = self::run_smart_check();
 
-		if ( $should_run ) {
-			// Force Site Title and Tagline immediately
-			update_option( 'blogname', 'Skin Cupid' );
-			update_option( 'blogdescription', 'Skincare coreana y belleza' );
-
-			self::create_pages();
-			self::create_categories();
-			self::create_products();
-			self::create_theme_parts();
-			self::create_menus();
-
-			// Set homepage
-			$home = get_page_by_path( 'home' );
-			if ( $home ) {
-				update_option( 'show_on_front', 'page' );
-				update_option( 'page_on_front', $home->ID );
-			}
-
-			// Mark as seeded with new version
-			update_option( self::OPTION_NAME, self::SEED_VERSION );
-			// Keep legacy option for compatibility if needed, or update it too
-			update_option( 'sk_content_seeded', 'yes' );
-
-			// Add admin notice
-			add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-success is-dismissible"><p>Skin Cupid Kit: Contenido semilla actualizado correctamente (v' . self::SEED_VERSION . '). Identidad del sitio actualizada.</p></div>';
+		if ( $results['status'] === 'issue' ) {
+			add_action( 'admin_notices', function() use ( $results ) {
+				$msg = __( 'Skin Cupid Kit: Se detectaron componentes faltantes o desactualizados.', 'skincare' );
+				$action_url = wp_nonce_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ), 'sk_repair_link' );
+				echo '<div class="notice notice-warning is-dismissible"><p>' . esc_html( $msg ) . ' <a href="' . esc_url( $action_url ) . '" class="button button-small">' . __( 'Reparar ahora', 'skincare' ) . '</a></p></div>';
 			} );
 		}
 	}
 
+	public static function run_smart_check( $force = false ) {
+		if ( ! $force ) {
+			$cached = get_transient( 'sk_smart_check_results' );
+			if ( $cached ) {
+				return $cached;
+			}
+		}
+
+		$issues = [];
+		$seeded_version = (int) get_option( self::OPTION_NAME, 0 );
+
+		if ( $seeded_version < self::SEED_VERSION ) {
+			$issues[] = 'Versión de contenido desactualizada.';
+		}
+
+		$settings = get_option( 'sk_theme_builder_settings', [] );
+		if ( empty( $settings['global_header'] ) || empty( $settings['global_footer'] ) ) {
+			$issues[] = 'Theme Builder (Header/Footer) no configurado.';
+		}
+
+		// Check critical pages
+		$critical_pages = [ 'home', 'shop', 'rewards', 'account' ];
+		foreach ( $critical_pages as $slug ) {
+			if ( ! get_page_by_path( $slug ) ) {
+				$issues[] = "Página faltante: $slug";
+			}
+		}
+
+		$result = [
+			'status' => empty( $issues ) ? 'ok' : 'issue',
+			'issues' => $issues,
+			'timestamp' => time()
+		];
+
+		set_transient( 'sk_smart_check_results', $result, 15 * MINUTE_IN_SECONDS );
+		return $result;
+	}
+
+	public static function log_event( $action, $step, $status, $message ) {
+		$log_entry = [
+			'timestamp' => time(),
+			'user_id' => get_current_user_id(),
+			'action' => $action,
+			'step' => $step,
+			'status' => $status,
+			'message' => substr( $message, 0, 200 ), // Truncate
+			'version' => self::SEED_VERSION
+		];
+
+		$logs = get_option( self::LOG_OPTION, [] );
+		if ( ! is_array( $logs ) ) $logs = [];
+
+		array_unshift( $logs, $log_entry );
+		$logs = array_slice( $logs, 0, 5 ); // Keep last 5
+
+		update_option( self::LOG_OPTION, $logs );
+	}
+
 	public static function create_pages() {
 		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
+		// Content definitions (kept from original)
 		$about_content = '
 		<section class="sk-about-hero">
 			<img src="' . esc_url( $theme_assets . 'placeholder-hero-2.svg' ) . '" alt="Skin Cupid hero placeholder">
@@ -265,6 +295,7 @@ class Seeder {
 				$post_id = wp_insert_post( $post_data );
 			} else {
 				$post_id = $existing_page->ID;
+				// Smart update: only if placeholder or empty
 				$current_content = $existing_page->post_content;
 				$needs_update = false;
 
@@ -272,16 +303,13 @@ class Seeder {
 					$needs_update = true;
 				}
 
-				if ( ! empty( $page['shortcode_check'] ) && strpos( $current_content, $page['shortcode_check'] ) === false ) {
-					$needs_update = true;
-				}
-
 				if ( empty( $current_content ) && ! empty( $page['content'] ) ) {
 					$needs_update = true;
 				}
 
-				if ( $needs_update || $existing_page->post_title !== $page['title'] ) {
-					wp_update_post( array_merge( $post_data, [ 'ID' => $post_id ] ) );
+				// Only update content if absolutely necessary to avoid overwriting user edits
+				if ( $needs_update ) {
+					wp_update_post( [ 'ID' => $post_id, 'post_content' => $page['content'] ] );
 				}
 			}
 
@@ -301,15 +329,10 @@ class Seeder {
 			if ( empty( $page['parent'] ) ) {
 				continue;
 			}
-
 			$child_id  = $page_ids[ $page['slug'] ] ?? 0;
 			$parent_id = $page_ids[ $page['parent'] ] ?? 0;
-
 			if ( $child_id && $parent_id ) {
-				wp_update_post( [
-					'ID'          => $child_id,
-					'post_parent' => $parent_id,
-				] );
+				wp_update_post( [ 'ID' => $child_id, 'post_parent' => $parent_id ] );
 			}
 		}
 	}
@@ -318,48 +341,23 @@ class Seeder {
 		$groups = [
 			[
 				'name' => 'Limpieza',
-				'children' => [
-					'Limpiador de aceite',
-					'Limpiador a base de agua',
-				],
+				'children' => [ 'Limpiador de aceite', 'Limpiador a base de agua' ],
 			],
 			[
 				'name' => 'Tratamiento',
-				'children' => [
-					'Exfoliante',
-					'Tónico',
-					'Esencia',
-					'Sérum/Ampolla',
-					'Mascarilla',
-					'Mascarillas de tela',
-				],
+				'children' => [ 'Exfoliante', 'Tónico', 'Esencia', 'Sérum/Ampolla', 'Mascarilla', 'Mascarillas de tela' ],
 			],
 			[
 				'name' => 'Hidratación y cuidado',
-				'children' => [
-					'Cuidado de ojos',
-					'Hidratante',
-					'Protector solar',
-				],
+				'children' => [ 'Cuidado de ojos', 'Hidratante', 'Protector solar' ],
 			],
 			[
 				'name' => 'Maquillaje',
-				'children' => [
-					'Rostro',
-					'Ojos',
-					'Labios',
-					'Herramientas de maquillaje',
-					'Desmaquillante',
-				],
+				'children' => [ 'Rostro', 'Ojos', 'Labios', 'Herramientas de maquillaje', 'Desmaquillante' ],
 			],
 			[
 				'name' => 'Colecciones',
-				'children' => [
-					'Sets y regalos',
-					'Dispositivos',
-					'Mini tallas',
-					'Vegano y cruelty-free',
-				],
+				'children' => [ 'Sets y regalos', 'Dispositivos', 'Mini tallas', 'Vegano y cruelty-free' ],
 			],
 		];
 
@@ -380,16 +378,18 @@ class Seeder {
 				if ( ! $child_term ) {
 					wp_insert_term( $child_name, 'product_cat', [ 'parent' => $parent_id ] );
 				} elseif ( $parent_id ) {
+					// Ensure hierarchy
 					$child_id = is_array( $child_term ) ? $child_term['term_id'] : $child_term;
-					wp_update_term( $child_id, 'product_cat', [ 'parent' => $parent_id ] );
+					$child_obj = get_term( $child_id, 'product_cat' );
+					if ( $child_obj && $child_obj->parent == 0 ) {
+						wp_update_term( $child_id, 'product_cat', [ 'parent' => $parent_id ] );
+					}
 				}
 			}
 		}
 	}
 
 	public static function upload_placeholder_image() {
-		// Check if placeholder already exists in media library by title/name
-		// We use a specific title to find it easily
 		$image_title = 'SkinCupid Placeholder';
 		$image_name  = 'skin-cupid-placeholder.svg';
 
@@ -400,27 +400,19 @@ class Seeder {
 			return $attachment[0];
 		}
 
-		// URL of the placeholder image
 		$image_url = SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg';
 
-		// Download logic
-		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-		require_once( ABSPATH . 'wp-admin/includes/file.php' );
-		require_once( ABSPATH . 'wp-admin/includes/media.php' );
-
-		// Download the image to temp dir
-		$tmp = download_url( $image_url );
-
-		if ( is_wp_error( $tmp ) ) {
-			return false;
+		// Load WP libs
+		if ( ! function_exists( 'media_handle_sideload' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/image.php' );
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+			require_once( ABSPATH . 'wp-admin/includes/media.php' );
 		}
 
-		$file_array = [
-			'name'     => $image_name,
-			'tmp_name' => $tmp,
-		];
+		$tmp = download_url( $image_url );
+		if ( is_wp_error( $tmp ) ) return false;
 
-		// Upload to media library
+		$file_array = [ 'name' => $image_name, 'tmp_name' => $tmp ];
 		$id = media_handle_sideload( $file_array, 0 );
 
 		if ( is_wp_error( $id ) ) {
@@ -428,21 +420,12 @@ class Seeder {
 			return false;
 		}
 
-		// Update title so we can find it next time
-		wp_update_post( [
-			'ID'         => $id,
-			'post_title' => $image_title,
-		] );
-
+		wp_update_post( [ 'ID' => $id, 'post_title' => $image_title ] );
 		return $id;
 	}
 
 	public static function create_products() {
-		// We want to ensure demo products exist and have images.
-		// If they already exist, we will try to attach the image if missing.
-
 		$placeholder_id = self::upload_placeholder_image();
-
 		$demo_products = [
 			[ 'name' => 'HaruHaru Wonder - Aceite limpiador Black Rice', 'price' => '19.00', 'cat' => 'Limpiador de aceite' ],
 			[ 'name' => 'Round Lab - Limpiador 1025 Dokdo', 'price' => '14.00', 'cat' => 'Limpiador a base de agua' ],
@@ -465,9 +448,7 @@ class Seeder {
 		];
 
 		foreach ( $demo_products as $p ) {
-			$post_id = 0;
 			$existing = get_page_by_title( $p['name'], OBJECT, 'product' );
-
 			if ( ! $existing ) {
 				$post_id = wp_insert_post( [
 					'post_type'    => 'product',
@@ -475,29 +456,19 @@ class Seeder {
 					'post_content' => 'Descripción del producto ' . $p['name'] . '. Ideal para todo tipo de piel, con textura ligera y resultados visibles.',
 					'post_status'  => 'publish',
 				] );
-			} else {
-				$post_id = $existing->ID;
-			}
 
-			if ( $post_id ) {
-				update_post_meta( $post_id, '_price', $p['price'] );
-				update_post_meta( $post_id, '_regular_price', $p['price'] );
-				update_post_meta( $post_id, '_visibility', 'visible' );
-				update_post_meta( $post_id, '_stock_status', 'instock' );
+				if ( $post_id ) {
+					update_post_meta( $post_id, '_price', $p['price'] );
+					update_post_meta( $post_id, '_regular_price', $p['price'] );
+					update_post_meta( $post_id, '_visibility', 'visible' );
+					update_post_meta( $post_id, '_stock_status', 'instock' );
+					update_post_meta( $post_id, 'ingredients', 'Agua, glicerina, extractos botánicos y activos calmantes.' );
+					update_post_meta( $post_id, 'how_to_use', 'Después de limpiar y tonificar, aplica una pequeña cantidad en rostro y cuello.' );
 
-				// Add attributes for Product Tabs
-				update_post_meta( $post_id, 'ingredients', 'Agua, glicerina, extractos botánicos y activos calmantes.' );
-				update_post_meta( $post_id, 'how_to_use', 'Después de limpiar y tonificar, aplica una pequeña cantidad en rostro y cuello.' );
+					$term = get_term_by( 'name', $p['cat'], 'product_cat' );
+					if ( $term ) wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
 
-				// Assign Category
-				$term = get_term_by( 'name', $p['cat'], 'product_cat' );
-				if ( $term ) {
-					wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
-				}
-
-				// Assign Image if missing and we have a placeholder
-				if ( $placeholder_id && ! has_post_thumbnail( $post_id ) ) {
-					set_post_thumbnail( $post_id, $placeholder_id );
+					if ( $placeholder_id ) set_post_thumbnail( $post_id, $placeholder_id );
 				}
 			}
 		}
@@ -511,7 +482,6 @@ class Seeder {
 			'Archivo de Tienda (Catálogo)' => 'shop_archive'
 		];
 
-		// Header Content
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
@@ -522,11 +492,7 @@ class Seeder {
 				<a href="#cart-drawer" class="sk-cart-trigger"><i class="eicon-bag-medium"></i></a>
 			</div>
 		</div>';
-
-		// UPDATED: Footer content with Skin Cupid text
 		$footer_content = '<div class="sk-footer-content"><p>© ' . date('Y') . ' Skin Cupid. Todos los derechos reservados.</p></div>';
-
-		// Archive Content
 		$archive_content = '
 		<div class="sk-archive-layout" style="display:flex; gap:30px;">
 			<aside class="sk-sidebar" style="width:250px;">
@@ -535,41 +501,36 @@ class Seeder {
 			<main class="sk-main-loop" style="flex:1;">
 				[sk_product_grid posts_per_page="12"]
 			</main>
-		</div>
-		';
+		</div>';
 
 		$settings = get_option( 'sk_theme_builder_settings', [] );
 
 		foreach ( $parts as $title => $key ) {
-			$existing = get_page_by_title( $title, OBJECT, 'sk_template' );
-			$content = '';
+			// Check if setting points to a valid post
+			$has_valid_setting = false;
+			if ( ! empty( $settings[ $key ] ) ) {
+				$post = get_post( $settings[ $key ] );
+				if ( $post && $post->post_status === 'publish' ) {
+					$has_valid_setting = true;
+				}
+			}
 
+			if ( $has_valid_setting ) continue;
+
+			$content = '';
 			if ( $key === 'global_header' ) $content = $header_content;
 			if ( $key === 'global_footer' ) $content = $footer_content;
 			if ( $key === 'shop_archive' ) $content = $archive_content;
 
-			if ( ! $existing ) {
-				$post_id = wp_insert_post( [
-					'post_type'   => 'sk_template',
-					'post_title'  => $title,
-					'post_content' => $content,
-					'post_status' => 'publish',
-				] );
+			$post_id = wp_insert_post( [
+				'post_type'   => 'sk_template',
+				'post_title'  => $title,
+				'post_content' => $content,
+				'post_status' => 'publish',
+			] );
 
+			if ( ! is_wp_error( $post_id ) ) {
 				$settings[ $key ] = $post_id;
-			} else {
-				$settings[ $key ] = $existing->ID;
-				// Update content if empty for existing parts or if we suspect it's wrong (optional, keep safe for now)
-				// Or if it contains old "Replica" text in footer
-				$current_content = $existing->post_content;
-				$should_update = false;
-
-				if ( empty( $current_content ) ) $should_update = true;
-				if ( $key === 'global_footer' && strpos($current_content, 'Replica') !== false ) $should_update = true;
-
-				if ( $should_update ) {
-					wp_update_post( [ 'ID' => $existing->ID, 'post_content' => $content ] );
-				}
 			}
 		}
 
@@ -580,21 +541,48 @@ class Seeder {
 		$primary = 'Primary Menu';
 		$footer = 'Footer Menu';
 
-		$primary_id = wp_create_nav_menu( $primary );
-		$footer_id = wp_create_nav_menu( $footer );
+		$primary_id = 0;
+		$footer_id = 0;
 
+		// Handle Primary
+		$existing_primary = wp_get_nav_menu_object( $primary );
+		if ( ! $existing_primary ) {
+			// Try to recover from term_exists error if any
+			$term = get_term_by( 'name', $primary, 'nav_menu' );
+			if ( $term ) {
+				$primary_id = $term->term_id;
+			} else {
+				$primary_id = wp_create_nav_menu( $primary );
+			}
+		} else {
+			$primary_id = $existing_primary->term_id;
+		}
+
+		// Handle Footer
+		$existing_footer = wp_get_nav_menu_object( $footer );
+		if ( ! $existing_footer ) {
+			$term = get_term_by( 'name', $footer, 'nav_menu' );
+			if ( $term ) {
+				$footer_id = $term->term_id;
+			} else {
+				$footer_id = wp_create_nav_menu( $footer );
+			}
+		} else {
+			$footer_id = $existing_footer->term_id;
+		}
+
+		// Clean up errors if still present
+		if ( is_wp_error( $primary_id ) ) $primary_id = 0;
+		if ( is_wp_error( $footer_id ) ) $footer_id = 0;
+
+		// Assign Locations (Always)
 		$locations = get_theme_mod( 'nav_menu_locations' );
-		$locations['primary'] = $primary_id;
-		$locations['footer'] = $footer_id;
+		if ( $primary_id ) $locations['primary'] = $primary_id;
+		if ( $footer_id ) $locations['footer'] = $footer_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
 
-		if ( ! is_wp_error( $primary_id ) ) {
-			// Check if menu is empty before adding items, or clearing it?
-			// For now, assume if we created it or it exists, we ensure items.
-			// WordPress doesn't easily let us check "is empty" without fetching items.
-			// We'll proceed with upserting logic if needed, but for simplicity:
-
-			// Only add if no items exist to avoid duplicates on re-run
+		// Populate items ONLY if empty
+		if ( $primary_id ) {
 			$items = wp_get_nav_menu_items( $primary_id );
 			if ( empty( $items ) ) {
 				wp_update_nav_menu_item( $primary_id, 0, [
@@ -616,22 +604,20 @@ class Seeder {
 
 				foreach ( $primary_pages as $page ) {
 					$page_obj = get_page_by_path( $page['slug'] );
-					if ( ! $page_obj ) {
-						continue;
+					if ( $page_obj ) {
+						wp_update_nav_menu_item( $primary_id, 0, [
+							'menu-item-title' => $page['title'],
+							'menu-item-object-id' => $page_obj->ID,
+							'menu-item-object' => 'page',
+							'menu-item-type' => 'post_type',
+							'menu-item-status' => 'publish'
+						] );
 					}
-
-					wp_update_nav_menu_item( $primary_id, 0, [
-						'menu-item-title' => $page['title'],
-						'menu-item-object-id' => $page_obj->ID,
-						'menu-item-object' => 'page',
-						'menu-item-type' => 'post_type',
-						'menu-item-status' => 'publish'
-					] );
 				}
 			}
 		}
 
-		if ( ! is_wp_error( $footer_id ) ) {
+		if ( $footer_id ) {
 			$items = wp_get_nav_menu_items( $footer_id );
 			if ( empty( $items ) ) {
 				$footer_pages = [
@@ -646,17 +632,15 @@ class Seeder {
 
 				foreach ( $footer_pages as $page ) {
 					$page_obj = get_page_by_path( $page['slug'] );
-					if ( ! $page_obj ) {
-						continue;
+					if ( $page_obj ) {
+						wp_update_nav_menu_item( $footer_id, 0, [
+							'menu-item-title' => $page['title'],
+							'menu-item-object-id' => $page_obj->ID,
+							'menu-item-object' => 'page',
+							'menu-item-type' => 'post_type',
+							'menu-item-status' => 'publish'
+						] );
 					}
-
-					wp_update_nav_menu_item( $footer_id, 0, [
-						'menu-item-title' => $page['title'],
-						'menu-item-object-id' => $page_obj->ID,
-						'menu-item-object' => 'page',
-						'menu-item-type' => 'post_type',
-						'menu-item-status' => 'publish'
-					] );
 				}
 			}
 		}

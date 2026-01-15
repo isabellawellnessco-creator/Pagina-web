@@ -163,15 +163,25 @@ jQuery(document).ready(function($) {
         }
 
         searchTimeout = setTimeout(function() {
-            var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
-            if(!restUrl) return;
+            var actionUrl = sk_vars && sk_vars.ajax_url ? sk_vars.ajax_url : '';
+            var nonce = sk_vars && sk_vars.nonce ? sk_vars.nonce : '';
 
-            fetch(restUrl + 'search?term=' + encodeURIComponent(term))
-                .then(function(res) { return res.json(); })
-                .then(function(data) {
-                    if (data && data.length > 0) {
+            if(!actionUrl) return;
+
+            // Updated to use admin-ajax.php with nonce as per hardening requirements
+            // Using jQuery.ajax to support legacy admin-ajax endpoint as defined in class-ajax-search.php
+            $.ajax({
+                url: actionUrl,
+                type: 'GET',
+                data: {
+                    action: 'sk_ajax_search',
+                    term: term,
+                    nonce: nonce
+                },
+                success: function(response) {
+                    if (response.success && response.data && response.data.length > 0) {
                         var html = '<ul>';
-                        $.each(data, function(i, item) {
+                        $.each(response.data, function(i, item) {
                             html += '<li>';
                             html += '<a href="' + item.url + '">';
                             if(item.image) html += '<img src="' + item.image + '">';
@@ -184,7 +194,8 @@ jQuery(document).ready(function($) {
                     } else {
                         $results.html('<p>No se encontraron resultados.</p>').show();
                     }
-                });
+                }
+            });
         }, 500);
     });
 
@@ -294,7 +305,32 @@ jQuery(document).ready(function($) {
         $('.sk-filter-group input[name="brand"]:checked').each(function() {
             activeBrands.push($(this).val());
         });
-        console.log('Filtering by:', activeBrands);
+
+        var maxPrice = $('input[name="max_price"]').val();
+
+        var actionUrl = sk_vars && sk_vars.ajax_url ? sk_vars.ajax_url : '';
+        var nonce = sk_vars && sk_vars.nonce ? sk_vars.nonce : '';
+
+        if (!actionUrl) return;
+
+        // AJAX Request for Filtering
+        $.ajax({
+            url: actionUrl,
+            type: 'POST',
+            data: {
+                action: 'sk_filter_products',
+                nonce: nonce,
+                brand: activeBrands,
+                max_price: maxPrice
+            },
+            success: function(response) {
+                if (response.success && response.data.html) {
+                    $('.sk-product-grid').replaceWith(response.data.html);
+                } else {
+                    // Fallback or empty state
+                }
+            }
+        });
     });
 
     // Quick View (Static Demo)

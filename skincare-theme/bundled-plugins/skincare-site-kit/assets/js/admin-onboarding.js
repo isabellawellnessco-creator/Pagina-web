@@ -7,8 +7,16 @@ jQuery(document).ready(function($) {
     const $statusText = $('.sk-progress-status');
     const $logList = $('.sk-log-list');
 
+    // Steps defined in PHP
     const steps = ['pages', 'categories', 'products', 'theme_parts', 'menus', 'finalize'];
     let currentStepIndex = 0;
+
+    // Auto-start if mode is 'repair'
+    if (sk_onboarding.mode === 'repair') {
+         $intro.hide();
+         $progress.show();
+         runStep();
+    }
 
     $startBtn.on('click', function() {
         $intro.hide();
@@ -36,23 +44,21 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'sk_onboarding_run_step',
                 nonce: sk_onboarding.nonce,
-                step: stepKey
+                step: stepKey,
+                mode: sk_onboarding.mode || 'install' // Send mode context
             },
             success: function(response) {
                 if (response.success) {
                     addLog(stepLabel + ' - OK');
-                    currentStepIndex++;
-                    runStep();
                 } else {
-                    addLog(stepLabel + ' - Error: ' + (response.data.message || 'Unknown'), true);
-                    // Stop or continue? Let's continue for resilience, but show error
-                     currentStepIndex++;
-                     runStep();
+                    addLog(stepLabel + ' - ' + (response.data.message || 'Error'), true);
                 }
+                // Always continue to next step to ensure partial fixes
+                currentStepIndex++;
+                runStep();
             },
             error: function() {
-                addLog(stepLabel + ' - Server Error', true);
-                 // Retry or skip? Skip.
+                addLog(stepLabel + ' - Server/Network Error', true);
                  currentStepIndex++;
                  runStep();
             }
@@ -61,7 +67,7 @@ jQuery(document).ready(function($) {
 
     function addLog(message, isError = false) {
         const $li = $('<li>').text(message);
-        if (isError) $li.addClass('error');
+        if (isError) $li.addClass('sk-error');
         $logList.append($li);
         $logList.scrollTop($logList[0].scrollHeight);
     }

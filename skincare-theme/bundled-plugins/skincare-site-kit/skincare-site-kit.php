@@ -25,3 +25,9 @@ function skincare_kit_init() {
 	$loader->run();
 }
 add_action( 'plugins_loaded', 'skincare_kit_init' );
+
+// Activation Hook
+register_activation_hook( __FILE__, 'skincare_kit_activate' );
+function skincare_kit_activate() {
+	set_transient( 'sk_site_kit_activated', 1, 60 );
+}

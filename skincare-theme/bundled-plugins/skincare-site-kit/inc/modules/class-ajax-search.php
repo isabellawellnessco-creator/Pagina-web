@@ -13,9 +13,8 @@ class Ajax_Search {
 	}
 
 	public static function handle_search() {
-		// Nonce check usually skipped for public read-only search for performance/caching issues,
-		// but good practice to include if possible.
-		// check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
+		// Enabled Nonce Check
+		check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
 
 		$term = isset( $_GET['term'] ) ? sanitize_text_field( $_GET['term'] ) : '';
 
@@ -36,7 +35,12 @@ class Ajax_Search {
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
+
+				// Fix Global Product Issue
 				global $product;
+				if ( ! $product ) {
+					$product = wc_get_product( get_the_ID() );
+				}
 
 				$results[] = [
 					'id'    => get_the_ID(),

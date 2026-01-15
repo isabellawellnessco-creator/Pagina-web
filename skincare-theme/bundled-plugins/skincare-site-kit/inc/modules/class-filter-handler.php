@@ -13,8 +13,8 @@ class Filter_Handler {
 	}
 
 	public static function handle_filter() {
-		// Basic check
-		// check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
+		// Enabled Nonce Check (Mandatory)
+		check_ajax_referer( 'sk_ajax_nonce', 'nonce' );
 
 		$args = [
 			'post_type'      => 'product',
@@ -24,16 +24,17 @@ class Filter_Handler {
 			'meta_query'     => [ 'relation' => 'AND' ],
 		];
 
-		// Brands
+		// Brands - Safe Fallback
 		if ( ! empty( $_POST['brand'] ) ) {
-			// Assuming 'brand' is a taxonomy, if not (e.g. standard attributes), use 'pa_brand'
-			// For this demo we use 'product_tag' or similar as brands aren't a default tax.
-			// Let's assume standard 'pa_brand' attribute taxonomy.
-			$args['tax_query'][] = [
-				'taxonomy' => 'pa_brand',
-				'field'    => 'slug',
-				'terms'    => array_map( 'sanitize_text_field', $_POST['brand'] ),
-			];
+			if ( taxonomy_exists( 'pa_brand' ) ) {
+				$args['tax_query'][] = [
+					'taxonomy' => 'pa_brand',
+					'field'    => 'slug',
+					'terms'    => array_map( 'sanitize_text_field', $_POST['brand'] ),
+				];
+			}
+			// If taxonomy doesn't exist, we silently ignore the filter to show all products
+			// instead of crashing. Admin notice handles the warning.
 		}
 
 		// Price

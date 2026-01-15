@@ -74,9 +74,12 @@ function skincare_welcome_redirect() {
 		return;
 	}
 
-	// If everything is already active, go to dashboard
-	if ( skincare_are_all_required_active() ) {
-		wp_safe_redirect( admin_url( 'admin.php?page=skincare-site-kit' ) );
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$site_kit_active = is_plugin_active( 'skincare-site-kit/skincare-site-kit.php' );
+
+	// If site kit is active, go straight to its onboarding wizard.
+	if ( $site_kit_active ) {
+		wp_safe_redirect( admin_url( 'admin.php?page=sk-onboarding' ) );
 		exit;
 	}
 
@@ -150,8 +153,8 @@ function skincare_render_setup_page() {
 			<?php endforeach; ?>
 		</div>
 
-		<button id="sk-start-setup" class="button button-primary button-hero"><?php _e( 'Iniciar Instalación', 'skincare' ); ?></button>
-		<p id="sk-setup-message" style="margin-top: 15px; color: #666;"></p>
+	<button id="sk-start-setup" class="button button-primary button-hero"><?php _e( 'Iniciar Instalación', 'skincare' ); ?></button>
+	<p id="sk-setup-message" style="margin-top: 15px; color: #666;"></p>
 	</div>
 
 	<script>
@@ -167,7 +170,7 @@ function skincare_render_setup_page() {
 		function processNextPlugin() {
 			if ( currentIndex >= plugins.length ) {
 				$('#sk-setup-message').text('<?php _e( "¡Todo listo! Redirigiendo...", "skincare" ); ?>');
-				window.location.href = '<?php echo admin_url( "admin.php?page=skincare-site-kit" ); ?>';
+				window.location.href = '<?php echo admin_url( "admin.php?page=sk-onboarding" ); ?>';
 				return;
 			}
 
@@ -287,3 +290,30 @@ function skincare_ajax_install_plugin() {
 	wp_send_json_success( [ 'message' => 'Instalado y activado.' ] );
 }
 add_action( 'wp_ajax_sk_theme_install_plugin', 'skincare_ajax_install_plugin' );
+
+/**
+ * Admin notice if setup is incomplete and redirect was skipped.
+ */
+function skincare_setup_admin_notice() {
+	if ( ! current_user_can( 'manage_options' ) || is_network_admin() ) {
+		return;
+	}
+
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( $screen && in_array( $screen->id, [ 'appearance_page_sk-theme-setup', 'toplevel_page_skincare-site-kit', 'skincare-site-kit_page_sk-onboarding' ], true ) ) {
+		return;
+	}
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$all_required_active = skincare_are_all_required_active();
+
+	if ( ! $all_required_active ) {
+		$link = admin_url( 'admin.php?page=sk-theme-setup' );
+		echo '<div class="notice notice-warning is-dismissible"><p>' .
+			esc_html__( 'La configuración de Skin Cupid no está completa.', 'skincare' ) .
+			' <a class="button button-primary" href="' . esc_url( $link ) . '">' .
+			esc_html__( 'Continuar configuración', 'skincare' ) .
+			'</a></p></div>';
+	}
+}
+add_action( 'admin_notices', 'skincare_setup_admin_notice' );

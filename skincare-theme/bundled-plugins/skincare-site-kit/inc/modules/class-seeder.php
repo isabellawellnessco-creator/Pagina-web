@@ -10,6 +10,11 @@ class Seeder {
 	const SEED_VERSION = 5;
 	const OPTION_NAME  = 'sk_content_seeded_version';
 	const LOG_OPTION   = 'sk_seeder_logs';
+	const OPTION_VERSION = 'sk_seed_version';
+	const OPTION_COMPLETED = 'sk_seed_completed';
+	const OPTION_LAST_RUN = 'sk_seed_last_run_at';
+	const OPTION_LAST_ERROR = 'sk_seed_last_error';
+	const META_SEED_ID = '_sk_seed_id';
 
 	public static function init() {
 		// Removed auto-trigger from admin_init to avoid invisible execution.
@@ -48,9 +53,11 @@ class Seeder {
 		}
 
 		$issues = [];
-		$seeded_version = (int) get_option( self::OPTION_NAME, 0 );
+		$legacy_version = (int) get_option( self::OPTION_NAME, 0 );
+		$seeded_version = (int) get_option( self::OPTION_VERSION, $legacy_version );
+		$seed_completed = (bool) get_option( self::OPTION_COMPLETED, $legacy_version ? true : false );
 
-		if ( $seeded_version < self::SEED_VERSION ) {
+		if ( ! $seed_completed || $seeded_version < self::SEED_VERSION ) {
 			$issues[] = 'Versión de contenido desactualizada.';
 		}
 
@@ -100,6 +107,46 @@ class Seeder {
 		$logs = array_slice( $logs, 0, 5 ); // Keep last 5
 
 		update_option( self::LOG_OPTION, $logs );
+	}
+
+	private static function get_seeded_post( $post_type, $seed_id, $fallback = [] ) {
+		$existing = get_posts( [
+			'post_type' => $post_type,
+			'posts_per_page' => 1,
+			'post_status' => 'any',
+			'meta_query' => [
+				[
+					'key' => self::META_SEED_ID,
+					'value' => $seed_id,
+				],
+			],
+		] );
+
+		if ( ! empty( $existing ) ) {
+			return $existing[0];
+		}
+
+		if ( ! empty( $fallback['slug'] ) ) {
+			return get_page_by_path( $fallback['slug'] );
+		}
+
+		if ( ! empty( $fallback['title'] ) ) {
+			return get_page_by_title( $fallback['title'], OBJECT, $post_type );
+		}
+
+		return null;
+	}
+
+	private static function mark_seeded_post( $post_id, $seed_id ) {
+		if ( $post_id && $seed_id ) {
+			update_post_meta( $post_id, self::META_SEED_ID, $seed_id );
+		}
+	}
+
+	private static function mark_seeded_term( $term_id, $seed_id ) {
+		if ( $term_id && $seed_id ) {
+			update_term_meta( $term_id, self::META_SEED_ID, $seed_id );
+		}
 	}
 
 	public static function create_pages() {
@@ -217,22 +264,25 @@ class Seeder {
 				'slug' => 'home',
 				'content' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
 				'template' => 'template-landing.php',
+				'seed_id' => 'page_home',
 			],
 			[
 				'title' => 'Tienda',
 				'slug' => 'shop',
 				'content' => '[sk_product_grid posts_per_page="12"]',
 				'template' => 'template-full-width.php',
+				'seed_id' => 'page_shop',
 			],
 			[
 				'title' => 'Sobre Skin Cupid',
 				'slug' => 'about',
 				'content' => $about_content,
 				'template' => 'template-full-width.php',
+				'seed_id' => 'page_about',
 			],
-			[ 'title' => 'Contacto', 'slug' => 'contact', 'content' => $contact_content ],
-			[ 'title' => 'Preguntas frecuentes', 'slug' => 'faqs', 'content' => $faqs_content ],
-			[ 'title' => 'Envíos', 'slug' => 'shipping', 'content' => $shipping_content ],
+			[ 'title' => 'Contacto', 'slug' => 'contact', 'content' => $contact_content, 'seed_id' => 'page_contact' ],
+			[ 'title' => 'Preguntas frecuentes', 'slug' => 'faqs', 'content' => $faqs_content, 'seed_id' => 'page_faqs' ],
+			[ 'title' => 'Envíos', 'slug' => 'shipping', 'content' => $shipping_content, 'seed_id' => 'page_shipping' ],
 			[
 				'title' => 'Política de privacidad',
 				'slug' => 'privacy-policy',
@@ -253,6 +303,7 @@ class Seeder {
 				</section>
 				',
 				'template' => 'page-privacy.php',
+				'seed_id' => 'page_privacy',
 			],
 			[
 				'title' => 'Términos y condiciones',
@@ -269,6 +320,7 @@ class Seeder {
 					<p>Los productos están sujetos a disponibilidad y pueden variar según inventario.</p>
 				</section>
 				',
+				'seed_id' => 'page_terms',
 			],
 			[
 				'title' => 'Políticas',
@@ -288,23 +340,24 @@ class Seeder {
 					</ul>
 				</section>
 				',
+				'seed_id' => 'page_politicas',
 			],
-			[ 'title' => 'Lista de deseos', 'slug' => 'wishlist', 'content' => $wishlist_content ],
-			[ 'title' => 'Recompensas', 'slug' => 'rewards', 'content' => $rewards_content ],
-			[ 'title' => 'Mi cuenta', 'slug' => 'account', 'content' => $account_content ],
-			[ 'title' => 'Iniciar sesión', 'slug' => 'login', 'content' => '[woocommerce_my_account]' ],
-			[ 'title' => 'Localizador de tiendas', 'slug' => 'store-locator', 'content' => $store_locator_content ],
-			[ 'title' => 'Trabaja con nosotros', 'slug' => 'care', 'content' => $care_content ],
-			[ 'title' => 'Prensa', 'slug' => 'skin', 'content' => $press_content ],
-			[ 'title' => 'Skincare coreano', 'slug' => 'korean', 'content' => $korean_content ],
-			[ 'title' => 'Maquillaje', 'slug' => 'makeup', 'content' => $makeup_content ],
-			[ 'title' => 'Belleza vegana', 'slug' => 'vegan', 'content' => $vegan_content ],
-			[ 'title' => 'Aprender', 'slug' => 'learn', 'content' => $learn_content ],
+			[ 'title' => 'Lista de deseos', 'slug' => 'wishlist', 'content' => $wishlist_content, 'seed_id' => 'page_wishlist' ],
+			[ 'title' => 'Recompensas', 'slug' => 'rewards', 'content' => $rewards_content, 'seed_id' => 'page_rewards' ],
+			[ 'title' => 'Mi cuenta', 'slug' => 'account', 'content' => $account_content, 'seed_id' => 'page_account' ],
+			[ 'title' => 'Iniciar sesión', 'slug' => 'login', 'content' => '[woocommerce_my_account]', 'seed_id' => 'page_login' ],
+			[ 'title' => 'Localizador de tiendas', 'slug' => 'store-locator', 'content' => $store_locator_content, 'seed_id' => 'page_store_locator' ],
+			[ 'title' => 'Trabaja con nosotros', 'slug' => 'care', 'content' => $care_content, 'seed_id' => 'page_care' ],
+			[ 'title' => 'Prensa', 'slug' => 'skin', 'content' => $press_content, 'seed_id' => 'page_press' ],
+			[ 'title' => 'Skincare coreano', 'slug' => 'korean', 'content' => $korean_content, 'seed_id' => 'page_korean' ],
+			[ 'title' => 'Maquillaje', 'slug' => 'makeup', 'content' => $makeup_content, 'seed_id' => 'page_makeup' ],
+			[ 'title' => 'Belleza vegana', 'slug' => 'vegan', 'content' => $vegan_content, 'seed_id' => 'page_vegan' ],
+			[ 'title' => 'Aprender', 'slug' => 'learn', 'content' => $learn_content, 'seed_id' => 'page_learn' ],
 		];
 
 		$page_ids = [];
 		foreach ( $pages as $page ) {
-			$existing_page = get_page_by_path( $page['slug'] );
+			$existing_page = self::get_seeded_post( 'page', $page['seed_id'], [ 'slug' => $page['slug'] ] );
 
 			$post_data = [
 				'post_type'    => 'page',
@@ -337,6 +390,7 @@ class Seeder {
 			}
 
 			if ( $post_id && ! is_wp_error( $post_id ) ) {
+				self::mark_seeded_post( $post_id, $page['seed_id'] );
 				$page_ids[ $page['slug'] ] = $post_id;
 			}
 		}
@@ -379,20 +433,27 @@ class Seeder {
 
 		foreach ( $groups as $group ) {
 			$parent_id = 0;
+			$parent_seed_id = 'product_cat_' . sanitize_title( $group['name'] );
 			$parent_term = term_exists( $group['name'], 'product_cat' );
 			if ( ! $parent_term ) {
 				$created_parent = wp_insert_term( $group['name'], 'product_cat' );
 				if ( ! is_wp_error( $created_parent ) ) {
 					$parent_id = $created_parent['term_id'];
+					self::mark_seeded_term( $parent_id, $parent_seed_id );
 				}
 			} else {
 				$parent_id = is_array( $parent_term ) ? $parent_term['term_id'] : $parent_term;
+				self::mark_seeded_term( $parent_id, $parent_seed_id );
 			}
 
 			foreach ( $group['children'] as $child_name ) {
+				$child_seed_id = 'product_cat_' . sanitize_title( $child_name );
 				$child_term = term_exists( $child_name, 'product_cat' );
 				if ( ! $child_term ) {
-					wp_insert_term( $child_name, 'product_cat', [ 'parent' => $parent_id ] );
+					$created_child = wp_insert_term( $child_name, 'product_cat', [ 'parent' => $parent_id ] );
+					if ( ! is_wp_error( $created_child ) ) {
+						self::mark_seeded_term( $created_child['term_id'], $child_seed_id );
+					}
 				} elseif ( $parent_id ) {
 					// Ensure hierarchy
 					$child_id = is_array( $child_term ) ? $child_term['term_id'] : $child_term;
@@ -400,6 +461,7 @@ class Seeder {
 					if ( $child_obj && $child_obj->parent == 0 ) {
 						wp_update_term( $child_id, 'product_cat', [ 'parent' => $parent_id ] );
 					}
+					self::mark_seeded_term( $child_id, $child_seed_id );
 				}
 			}
 		}
@@ -443,28 +505,28 @@ class Seeder {
 	public static function create_products() {
 		$placeholder_id = self::upload_placeholder_image();
 		$demo_products = [
-			[ 'name' => 'HaruHaru Wonder - Aceite limpiador Black Rice', 'price' => '19.00', 'cat' => 'Limpiador de aceite' ],
-			[ 'name' => 'Round Lab - Limpiador 1025 Dokdo', 'price' => '14.00', 'cat' => 'Limpiador a base de agua' ],
-			[ 'name' => 'Heimish - Bálsamo limpiador All Clean', 'price' => '16.00', 'cat' => 'Limpiador de aceite' ],
-			[ 'name' => 'Some By Mi - Tónico AHA BHA PHA 30 Days', 'price' => '18.00', 'cat' => 'Tónico' ],
-			[ 'name' => 'COSRX - Esencia Advanced Snail 96 Mucin', 'price' => '21.00', 'cat' => 'Esencia' ],
-			[ 'name' => 'Anua - Ampolla calmante Heartleaf 80%', 'price' => '24.00', 'cat' => 'Sérum/Ampolla' ],
-			[ 'name' => 'Beauty of Joseon - Sérum Glow Deep Rice + Arbutin', 'price' => '17.00', 'cat' => 'Sérum/Ampolla' ],
-			[ 'name' => 'Beauty of Joseon - Mascarilla Red Bean Refreshing', 'price' => '18.00', 'cat' => 'Mascarilla' ],
-			[ 'name' => 'Mediheal - Mascarillas de tela Tea Tree', 'price' => '12.00', 'cat' => 'Mascarillas de tela' ],
-			[ 'name' => 'Klairs - Crema de ojos Fundamental Eye Butter', 'price' => '23.00', 'cat' => 'Cuidado de ojos' ],
-			[ 'name' => 'Isntree - Crema hidratante Hyaluronic Acid', 'price' => '20.00', 'cat' => 'Hidratante' ],
-			[ 'name' => 'Laneige - Lip Sleeping Mask Berry', 'price' => '19.00', 'cat' => 'Labios' ],
-			[ 'name' => 'Rom&nd - Juicy Lasting Tint', 'price' => '13.00', 'cat' => 'Labios' ],
-			[ 'name' => 'Etude - Double Lasting Foundation', 'price' => '22.00', 'cat' => 'Rostro' ],
-			[ 'name' => 'Dear Dahlia - Sombra de ojos Blooming', 'price' => '25.00', 'cat' => 'Ojos' ],
-			[ 'name' => 'Beauty of Joseon - Protector solar Relief Sun: Rice + Probiotics', 'price' => '16.00', 'cat' => 'Protector solar' ],
-			[ 'name' => 'Mixsoon - Esencia Bean', 'price' => '28.00', 'cat' => 'Esencia' ],
-			[ 'name' => 'Beauty of Joseon - Set de viaje Glow', 'price' => '30.00', 'cat' => 'Sets y regalos' ],
+			[ 'name' => 'HaruHaru Wonder - Aceite limpiador Black Rice', 'price' => '19.00', 'cat' => 'Limpiador de aceite', 'seed_id' => 'product_haruharu_black_rice' ],
+			[ 'name' => 'Round Lab - Limpiador 1025 Dokdo', 'price' => '14.00', 'cat' => 'Limpiador a base de agua', 'seed_id' => 'product_roundlab_dokdo' ],
+			[ 'name' => 'Heimish - Bálsamo limpiador All Clean', 'price' => '16.00', 'cat' => 'Limpiador de aceite', 'seed_id' => 'product_heimish_all_clean' ],
+			[ 'name' => 'Some By Mi - Tónico AHA BHA PHA 30 Days', 'price' => '18.00', 'cat' => 'Tónico', 'seed_id' => 'product_somebymi_aha_bha_pha' ],
+			[ 'name' => 'COSRX - Esencia Advanced Snail 96 Mucin', 'price' => '21.00', 'cat' => 'Esencia', 'seed_id' => 'product_cosrx_snail' ],
+			[ 'name' => 'Anua - Ampolla calmante Heartleaf 80%', 'price' => '24.00', 'cat' => 'Sérum/Ampolla', 'seed_id' => 'product_anua_heartleaf' ],
+			[ 'name' => 'Beauty of Joseon - Sérum Glow Deep Rice + Arbutin', 'price' => '17.00', 'cat' => 'Sérum/Ampolla', 'seed_id' => 'product_boj_glow_rice' ],
+			[ 'name' => 'Beauty of Joseon - Mascarilla Red Bean Refreshing', 'price' => '18.00', 'cat' => 'Mascarilla', 'seed_id' => 'product_boj_red_bean' ],
+			[ 'name' => 'Mediheal - Mascarillas de tela Tea Tree', 'price' => '12.00', 'cat' => 'Mascarillas de tela', 'seed_id' => 'product_mediheal_teatree' ],
+			[ 'name' => 'Klairs - Crema de ojos Fundamental Eye Butter', 'price' => '23.00', 'cat' => 'Cuidado de ojos', 'seed_id' => 'product_klairs_eye_butter' ],
+			[ 'name' => 'Isntree - Crema hidratante Hyaluronic Acid', 'price' => '20.00', 'cat' => 'Hidratante', 'seed_id' => 'product_isntree_hyaluronic' ],
+			[ 'name' => 'Laneige - Lip Sleeping Mask Berry', 'price' => '19.00', 'cat' => 'Labios', 'seed_id' => 'product_laneige_lip_sleeping' ],
+			[ 'name' => 'Rom&nd - Juicy Lasting Tint', 'price' => '13.00', 'cat' => 'Labios', 'seed_id' => 'product_romand_juicy_tint' ],
+			[ 'name' => 'Etude - Double Lasting Foundation', 'price' => '22.00', 'cat' => 'Rostro', 'seed_id' => 'product_etude_double_lasting' ],
+			[ 'name' => 'Dear Dahlia - Sombra de ojos Blooming', 'price' => '25.00', 'cat' => 'Ojos', 'seed_id' => 'product_dear_dahlia_blooming' ],
+			[ 'name' => 'Beauty of Joseon - Protector solar Relief Sun: Rice + Probiotics', 'price' => '16.00', 'cat' => 'Protector solar', 'seed_id' => 'product_boj_relief_sun' ],
+			[ 'name' => 'Mixsoon - Esencia Bean', 'price' => '28.00', 'cat' => 'Esencia', 'seed_id' => 'product_mixsoon_bean' ],
+			[ 'name' => 'Beauty of Joseon - Set de viaje Glow', 'price' => '30.00', 'cat' => 'Sets y regalos', 'seed_id' => 'product_boj_travel_glow' ],
 		];
 
 		foreach ( $demo_products as $p ) {
-			$existing = get_page_by_title( $p['name'], OBJECT, 'product' );
+			$existing = self::get_seeded_post( 'product', $p['seed_id'], [ 'title' => $p['name'] ] );
 			if ( ! $existing ) {
 				$post_id = wp_insert_post( [
 					'post_type'    => 'product',
@@ -485,7 +547,11 @@ class Seeder {
 					if ( $term ) wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
 
 					if ( $placeholder_id ) set_post_thumbnail( $post_id, $placeholder_id );
+
+					self::mark_seeded_post( $post_id, $p['seed_id'] );
 				}
+			} else {
+				self::mark_seeded_post( $existing->ID, $p['seed_id'] );
 			}
 		}
 	}
@@ -538,14 +604,20 @@ class Seeder {
 			if ( $key === 'global_footer' ) $content = $footer_content;
 			if ( $key === 'shop_archive' ) $content = $archive_content;
 
-			$post_id = wp_insert_post( [
+			$existing = self::get_seeded_post( 'sk_template', 'sk_template_' . $key, [ 'title' => $title ] );
+			if ( $existing ) {
+				$post_id = $existing->ID;
+			} else {
+				$post_id = wp_insert_post( [
 				'post_type'   => 'sk_template',
 				'post_title'  => $title,
 				'post_content' => $content,
 				'post_status' => 'publish',
-			] );
+				] );
+			}
 
 			if ( ! is_wp_error( $post_id ) ) {
+				self::mark_seeded_post( $post_id, 'sk_template_' . $key );
 				$settings[ $key ] = $post_id;
 			}
 		}
@@ -590,6 +662,13 @@ class Seeder {
 		// Clean up errors if still present
 		if ( is_wp_error( $primary_id ) ) $primary_id = 0;
 		if ( is_wp_error( $footer_id ) ) $footer_id = 0;
+
+		if ( $primary_id ) {
+			self::mark_seeded_term( $primary_id, 'menu_primary' );
+		}
+		if ( $footer_id ) {
+			self::mark_seeded_term( $footer_id, 'menu_footer' );
+		}
 
 		// Assign Locations (Always)
 		$locations = get_theme_mod( 'nav_menu_locations' );

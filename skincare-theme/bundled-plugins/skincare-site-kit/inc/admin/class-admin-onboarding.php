@@ -18,6 +18,7 @@ class Admin_Onboarding {
 
 		// Redirect on activation (using a transient to check)
 		add_action( 'admin_init', [ __CLASS__, 'redirect_on_activation' ] );
+		add_action( 'admin_notices', [ __CLASS__, 'render_continue_notice' ] );
 	}
 
 	public static function register_page() {
@@ -37,6 +38,9 @@ class Admin_Onboarding {
 		}
 
 		wp_enqueue_style( 'sk-admin-onboarding', SKINCARE_KIT_URL . 'assets/css/admin-onboarding.css', [], '1.0.0' );
+		if ( function_exists( 'get_stylesheet_directory_uri' ) ) {
+			wp_enqueue_style( 'sk-admin-components', get_stylesheet_directory_uri() . '/assets/css/components.css', [], '1.0.0' );
+		}
 		wp_enqueue_script( 'sk-admin-onboarding', SKINCARE_KIT_URL . 'assets/js/admin-onboarding.js', ['jquery'], '1.0.0', true );
 
 		$mode = isset( $_GET['mode'] ) && $_GET['mode'] === 'repair' ? 'repair' : 'install';
@@ -79,6 +83,11 @@ class Admin_Onboarding {
 		$mode = isset( $_POST['mode'] ) ? sanitize_text_field( $_POST['mode'] ) : 'install';
 
 		try {
+			update_option( Seeder::OPTION_LAST_RUN, current_time( 'timestamp' ) );
+			if ( $step === 'pages' ) {
+				update_option( Seeder::OPTION_LAST_ERROR, '' );
+				update_option( Seeder::OPTION_COMPLETED, false );
+			}
 			// Log start of step
 			Seeder::log_event( $mode, $step, 'pending', 'Iniciando paso...' );
 
@@ -117,6 +126,10 @@ class Admin_Onboarding {
 
 					// Mark seeded
 					update_option( Seeder::OPTION_NAME, Seeder::SEED_VERSION );
+					update_option( Seeder::OPTION_VERSION, Seeder::SEED_VERSION );
+					update_option( Seeder::OPTION_COMPLETED, true );
+					update_option( Seeder::OPTION_LAST_ERROR, '' );
+					update_option( Seeder::OPTION_LAST_RUN, current_time( 'timestamp' ) );
 					// Recalculate smart check immediately
 					delete_transient( 'sk_smart_check_results' );
 					Seeder::run_smart_check();
@@ -131,13 +144,62 @@ class Admin_Onboarding {
 			wp_send_json_success();
 
 		} catch ( \Exception $e ) {
+			update_option( Seeder::OPTION_LAST_ERROR, $e->getMessage() );
+			update_option( Seeder::OPTION_COMPLETED, false );
 			Seeder::log_event( $mode, $step, 'error', $e->getMessage() );
 			wp_send_json_error( [ 'message' => $e->getMessage() ] );
 		}
 	}
 
+	public static function render_continue_notice() {
+		if ( ! current_user_can( 'manage_options' ) || wp_doing_ajax() ) {
+			return;
+		}
+
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( $screen && strpos( $screen->id, 'sk-onboarding' ) !== false ) {
+			return;
+		}
+
+		$legacy_seed_version = (int) get_option( Seeder::OPTION_NAME, 0 );
+		$seed_completed = (bool) get_option( Seeder::OPTION_COMPLETED, $legacy_seed_version ? true : false );
+		$seed_version = (int) get_option( Seeder::OPTION_VERSION, $legacy_seed_version );
+
+		if ( $seed_completed && $seed_version >= Seeder::SEED_VERSION ) {
+			return;
+		}
+
+		echo '<div class="notice notice-warning is-dismissible"><p>' .
+			esc_html__( 'La configuración inicial de Skin Cupid está incompleta.', 'skincare' ) .
+			' <a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=sk-onboarding' ) ) . '">' .
+			esc_html__( 'Continuar configuración', 'skincare' ) .
+			'</a></p></div>';
+	}
+
 	public static function render_page() {
 		$mode = isset( $_GET['mode'] ) && $_GET['mode'] === 'repair' ? 'repair' : 'install';
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$dependencies = [
+			[
+				'label' => __( 'WooCommerce', 'skincare' ),
+				'active' => is_plugin_active( 'woocommerce/woocommerce.php' ),
+				'required' => true,
+				'help' => __( 'Necesario para tienda y checkout.', 'skincare' ),
+			],
+			[
+				'label' => __( 'Elementor', 'skincare' ),
+				'active' => is_plugin_active( 'elementor/elementor.php' ),
+				'required' => true,
+				'help' => __( 'Necesario para editar plantillas y secciones visuales.', 'skincare' ),
+			],
+			[
+				'label' => __( 'Elementor Pro', 'skincare' ),
+				'active' => is_plugin_active( 'elementor-pro/elementor-pro.php' ),
+				'required' => false,
+				'help' => __( 'Opcional. Habilita Theme Builder avanzado y widgets WooCommerce extra.', 'skincare' ),
+				'action' => 'https://elementor.com/pro/',
+			],
+		];
 		?>
 		<div class="sk-onboarding-wrapper">
 			<div class="sk-onboarding-card">
@@ -150,6 +212,32 @@ class Admin_Onboarding {
 						<h1><?php _e( 'Bienvenido a Skin Cupid', 'skincare' ); ?></h1>
 						<p><?php _e( 'Vamos a configurar tu tienda en unos segundos.', 'skincare' ); ?></p>
 					<?php endif; ?>
+				</div>
+
+				<div class="sk-onboarding-content">
+					<div class="sk-msg sk-msg--info">
+						<div>
+							<strong><?php _e( 'Estado de dependencias', 'skincare' ); ?></strong>
+							<p><?php _e( 'Verifica que WooCommerce y Elementor estén activos. Elementor Pro es opcional.', 'skincare' ); ?></p>
+							<ul>
+								<?php foreach ( $dependencies as $dependency ) : ?>
+									<li>
+										<strong><?php echo esc_html( $dependency['label'] ); ?>:</strong>
+										<?php echo $dependency['active'] ? esc_html__( 'OK', 'skincare' ) : esc_html__( 'Faltante', 'skincare' ); ?>
+										<?php if ( ! $dependency['required'] ) : ?>
+											(<?php echo esc_html__( 'Opcional', 'skincare' ); ?>)
+										<?php endif; ?>
+										- <?php echo esc_html( $dependency['help'] ); ?>
+										<?php if ( ! $dependency['active'] && ! empty( $dependency['action'] ) ) : ?>
+											<a href="<?php echo esc_url( $dependency['action'] ); ?>" target="_blank" rel="noopener noreferrer">
+												<?php _e( 'Instalar Pro', 'skincare' ); ?>
+											</a>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					</div>
 				</div>
 
 				<div class="sk-onboarding-content" id="sk-wizard-intro">

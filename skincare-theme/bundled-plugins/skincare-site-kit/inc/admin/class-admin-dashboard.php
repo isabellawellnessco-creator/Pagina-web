@@ -48,6 +48,14 @@ class Admin_Dashboard {
 		$theme_builder_active = ! empty( get_option( 'sk_theme_builder_settings', [] ) );
 		$demo_products = wp_count_posts( 'product' )->publish > 0;
 		$menus_assigned = has_nav_menu( 'primary' );
+		$legacy_seed_version = (int) get_option( Seeder::OPTION_NAME, 0 );
+		$seed_completed = (bool) get_option( Seeder::OPTION_COMPLETED, $legacy_seed_version ? true : false );
+		$seed_version = (int) get_option( Seeder::OPTION_VERSION, $legacy_seed_version );
+		$seed_last_run = get_option( Seeder::OPTION_LAST_RUN, 0 );
+		$seed_last_error = get_option( Seeder::OPTION_LAST_ERROR, '' );
+
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$elementor_pro_active = is_plugin_active( 'elementor-pro/elementor-pro.php' );
 
 		// Overall Status
 		$system_status = 'pending';
@@ -109,6 +117,25 @@ class Admin_Dashboard {
 							</div>
 							<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="btn btn-secondary btn-sm">
 								<?php _e( 'Ejecutar Wizard', 'skincare' ); ?>
+							</a>
+						</div>
+
+						<div class="sk-action-item">
+							<div class="sk-action-icon"><span class="dashicons dashicons-update"></span></div>
+							<div class="sk-action-text">
+								<h3><?php _e( 'Re-ejecutar Seed', 'skincare' ); ?></h3>
+								<p>
+									<?php _e( 'Acción segura para volver a validar el contenido demo.', 'skincare' ); ?>
+									<?php if ( $seed_last_run ) : ?>
+										<br><?php printf( __( 'Última ejecución: %s', 'skincare' ), date_i18n( 'd/m/Y H:i', $seed_last_run ) ); ?>
+									<?php endif; ?>
+								</p>
+								<?php if ( $seed_last_error ) : ?>
+									<div class="sk-msg sk-msg--error"><?php echo esc_html( $seed_last_error ); ?></div>
+								<?php endif; ?>
+							</div>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="btn btn-primary btn-sm">
+								<?php _e( 'Re-ejecutar', 'skincare' ); ?>
 							</a>
 						</div>
 
@@ -181,7 +208,13 @@ class Admin_Dashboard {
 								],
 								'seeder' => [
 									'label' => __( 'Integridad de Datos', 'skincare' ),
-									'ok' => $is_setup_ok
+									'ok' => $is_setup_ok && $seed_completed && $seed_version >= Seeder::SEED_VERSION
+								],
+								'elementor_pro' => [
+									'label' => __( 'Elementor Pro (opcional)', 'skincare' ),
+									'ok' => $elementor_pro_active,
+									'help' => __( 'Habilita Theme Builder avanzado y widgets WooCommerce extra.', 'skincare' ),
+									'action' => 'https://elementor.com/pro/',
 								]
 							];
 
@@ -190,7 +223,14 @@ class Admin_Dashboard {
 									<span class="sk-indicator <?php echo $check['ok'] ? 'ok' : 'issue'; ?>"></span>
 									<span><?php echo esc_html( $check['label'] ); ?></span>
 									<?php if ( ! $check['ok'] ) : ?>
-										<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="sk-fix-link"><?php _e( 'Corregir', 'skincare' ); ?></a>
+										<?php if ( ! empty( $check['action'] ) ) : ?>
+											<a href="<?php echo esc_url( $check['action'] ); ?>" class="sk-fix-link" target="_blank" rel="noopener noreferrer"><?php _e( 'Ver', 'skincare' ); ?></a>
+										<?php else : ?>
+											<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="sk-fix-link"><?php _e( 'Corregir', 'skincare' ); ?></a>
+										<?php endif; ?>
+									<?php endif; ?>
+									<?php if ( ! empty( $check['help'] ) ) : ?>
+										<span class="description"><?php echo esc_html( $check['help'] ); ?></span>
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>

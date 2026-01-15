@@ -446,7 +446,6 @@ class Rewards_Master {
 		}
 
 		self::record_ledger_entry( $user_id, $order_id, $applied_points, $note );
-		self::append_history_ledger_cache( $user_id, $applied_points, $history_reason ? $history_reason : $note );
 	}
 
 	public static function maybe_create_ledger_table() {
@@ -471,26 +470,6 @@ class Rewards_Master {
 			KEY order_id (order_id)
 		) {$charset_collate};";
 		dbDelta( $sql );
-	}
-
-	private static function append_history_ledger_cache( $user_id, $points, $reason ) {
-		if ( ! apply_filters( 'sk_rewards_enable_legacy_cache', false ) ) {
-			return;
-		}
-
-		$history = get_user_meta( $user_id, self::LEGACY_HISTORY_META, true );
-		if ( ! is_array( $history ) ) {
-			$history = [];
-		}
-
-		$history[] = [
-			'date' => current_time( 'mysql' ),
-			'points' => (int) $points,
-			'reason' => $reason,
-		];
-
-		update_user_meta( $user_id, self::LEGACY_HISTORY_META, $history );
-		update_user_meta( $user_id, self::LEGACY_POINTS_META, self::get_user_balance( $user_id ) );
 	}
 
 	private static function revoke_awarded_points( $order ) {
@@ -534,18 +513,15 @@ class Rewards_Master {
 			$points = (int) $entry->points;
 			self::record_ledger_entry( $user_id, 0, -$points, __( 'Puntos expirados', 'skincare' ) );
 			$wpdb->update( $table, [ 'is_expired' => 1 ], [ 'id' => (int) $entry->id ], [ '%d' ], [ '%d' ] );
-			self::append_history_ledger_cache( $user_id, -$points, __( 'Puntos expirados', 'skincare' ) );
 		}
 	}
 
 	public static function get_user_balance( $user_id ) {
 		global $wpdb;
 		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		// Removed legacy fallback. Ledger is the only source of truth.
 		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
-			/**
-			 * @deprecated Ledger is the source of truth; legacy meta is a fallback.
-			 */
-			return (int) get_user_meta( $user_id, self::LEGACY_POINTS_META, true );
+			return 0;
 		}
 
 		$total = $wpdb->get_var(
@@ -561,12 +537,9 @@ class Rewards_Master {
 	public static function get_user_history( $user_id, $limit = 20 ) {
 		global $wpdb;
 		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		// Removed legacy fallback. Ledger is the only source of truth.
 		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
-			/**
-			 * @deprecated Ledger is the source of truth; legacy meta is a fallback.
-			 */
-			$history = get_user_meta( $user_id, self::LEGACY_HISTORY_META, true );
-			return is_array( $history ) ? $history : [];
+			return [];
 		}
 
 		$limit = absint( $limit );

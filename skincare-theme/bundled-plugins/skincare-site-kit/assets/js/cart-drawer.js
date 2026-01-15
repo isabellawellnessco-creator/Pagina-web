@@ -98,17 +98,44 @@
             $(document).on('click', '#sk-apply-coupon', function(e) {
                 e.preventDefault();
                 var code = $('#sk-drawer-coupon').val();
-                $.post(sk_vars.ajax_url, {
-                    action: 'sk_apply_coupon',
-                    coupon_code: code
-                }, function(res) {
-                    var message = res && res.data && res.data.message ? res.data.message : 'No se pudo aplicar el cupón.';
-                    SkincareCart.showDrawerMessage(message, res && res.success ? 'success' : 'error');
+
+                // Helper for REST if available, otherwise manual fetch
+                // Assuming skRestFetch is globally available from site-kit.js or we replicate logic
+                var restFetch = window.skRestFetch || function(endpoint, options) {
+                    var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
+                    var restNonce = sk_vars && sk_vars.rest_nonce ? sk_vars.rest_nonce : '';
+                    var url = restUrl ? restUrl + endpoint : '';
+                    return fetch(url, $.extend(true, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-WP-Nonce': restNonce
+                        },
+                        credentials: 'same-origin'
+                    }, options || {}));
+                };
+
+                restFetch('cart/coupon', {
+                    body: JSON.stringify({ coupon_code: code })
+                })
+                .then(function(response) {
+                    return response.json().then(function(data) {
+                        return { ok: response.ok, data: data };
+                    });
+                })
+                .then(function(result) {
+                    var message = result.data && result.data.message ? result.data.message : 'No se pudo aplicar el cupón.';
+                    var success = result.ok && result.data && result.data.success;
+
+                    SkincareCart.showDrawerMessage(message, success ? 'success' : 'error');
                     if (window.skShowToast) {
-                        window.skShowToast(message, res && res.success ? 'success' : 'error');
+                        window.skShowToast(message, success ? 'success' : 'error');
                     }
-                    $(document.body).trigger('wc_update_cart');
-                }).fail(function() {
+                    if (success) {
+                        $(document.body).trigger('wc_update_cart');
+                    }
+                })
+                .catch(function() {
                     var message = 'No se pudo conectar. Intenta de nuevo.';
                     SkincareCart.showDrawerMessage(message, 'error');
                     if (window.skShowToast) {

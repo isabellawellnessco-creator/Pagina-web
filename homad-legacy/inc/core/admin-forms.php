@@ -6,18 +6,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-function homad_add_form_builder_page() {
-    add_submenu_page(
-        'homad_settings',
-        'Form Builder',
-        'Form Builder',
-        'manage_options',
-        'homad_form_builder',
-        'homad_form_builder_page_html'
-    );
-}
-add_action('admin_menu', 'homad_add_form_builder_page', 20);
-
 function homad_register_form_settings() {
     register_setting('homad_form_options', 'homad_form_fields', [
         'type' => 'array',
@@ -47,48 +35,43 @@ function homad_sanitize_form_fields($input) {
     return $sanitized;
 }
 
-function homad_form_builder_page_html() {
-    if (!current_user_can('manage_options')) return;
-
+function homad_form_builder_contents() {
     // Get existing fields
     $fields = get_option('homad_form_fields', []);
     $api_key = get_option('homad_google_maps_api_key', '');
     ?>
-    <div class="wrap">
-        <h1>Homad Form Builder</h1>
-        <form action="options.php" method="post">
-            <?php settings_fields('homad_form_options'); ?>
+    <form action="options.php" method="post">
+        <?php settings_fields('homad_form_options'); ?>
 
-            <table class="form-table">
-                <tr>
-                    <th scope="row"><label for="homad_google_maps_api_key">Google Maps API Key</label></th>
-                    <td>
-                        <input name="homad_google_maps_api_key" type="text" id="homad_google_maps_api_key" value="<?php echo esc_attr($api_key); ?>" class="regular-text">
-                        <p class="description">Required for "Address/Map" field type.</p>
-                    </td>
-                </tr>
-            </table>
+        <table class="form-table">
+            <tr>
+                <th scope="row"><label for="homad_google_maps_api_key">Google Maps API Key</label></th>
+                <td>
+                    <input name="homad_google_maps_api_key" type="text" id="homad_google_maps_api_key" value="<?php echo esc_attr($api_key); ?>" class="regular-text">
+                    <p class="description">Required for "Address/Map" field type.</p>
+                </td>
+            </tr>
+        </table>
 
-            <h2>Form Questions / Fields</h2>
-            <div id="homad-form-fields-container">
-                <?php
-                if (!empty($fields)) {
-                    foreach ($fields as $index => $field) {
-                        homad_render_field_row($index, $field);
-                    }
+        <h4>Form Questions / Fields</h4>
+        <div id="homad-form-fields-container">
+            <?php
+            if (!empty($fields)) {
+                foreach ($fields as $index => $field) {
+                    homad_render_field_row($index, $field);
                 }
-                ?>
-            </div>
+            }
+            ?>
+        </div>
 
-            <button class="button" id="homad-add-field">Add New Question</button>
+        <button class="button" id="homad-add-field">Add New Question</button>
 
-            <script type="text/template" id="homad-field-template">
-                <?php homad_render_field_row('{{index}}', []); ?>
-            </script>
+        <script type="text/template" id="homad-field-template">
+            <?php homad_render_field_row('{{index}}', []); ?>
+        </script>
 
-            <?php submit_button('Save Form Structure'); ?>
-        </form>
-    </div>
+        <?php submit_button('Save Form Structure'); ?>
+    </form>
 
     <style>
         .homad-field-row { background: #fff; border: 1px solid #ccd0d4; padding: 15px; margin-bottom: 10px; border-radius: 4px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -96,6 +79,16 @@ function homad_form_builder_page_html() {
         .homad-field-col { flex: 1; min-width: 150px; }
         .homad-field-handle { cursor: move; color: #aaa; margin-right: 10px; }
     </style>
+    <?php
+}
+
+function homad_form_builder_page_html() {
+    if (!current_user_can('manage_options')) return;
+    ?>
+    <div class="wrap">
+        <h1>Homad Form Builder</h1>
+        <?php homad_form_builder_contents(); ?>
+    </div>
     <?php
 }
 
@@ -169,7 +162,7 @@ function homad_render_field_row($index, $field) {
 }
 
 function homad_enqueue_admin_scripts($hook) {
-    if ('homad-settings_page_homad_form_builder' !== $hook) {
+    if ('toplevel_page_homad_settings' !== $hook) {
         return;
     }
     wp_enqueue_script('homad-admin-forms', get_stylesheet_directory_uri() . '/assets/core/js/homad-admin-forms.js', ['jquery', 'jquery-ui-sortable'], '1.0', true);

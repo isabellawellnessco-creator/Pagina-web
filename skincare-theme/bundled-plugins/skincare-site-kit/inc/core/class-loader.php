@@ -21,6 +21,8 @@ class Loader {
 		\Skincare\SiteKit\Modules\Filter_Handler::init(); // Added
 		\Skincare\SiteKit\Modules\Press::init();
 		\Skincare\SiteKit\Modules\Purchase_Orders::init();
+		\Skincare\SiteKit\Modules\Notifications::init();
+		\Skincare\SiteKit\Modules\Coupons_Automation::init();
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -33,6 +35,10 @@ class Loader {
 			\Skincare\SiteKit\Admin\Order_Management::init();
 			\Skincare\SiteKit\Admin\Rewards_Master::init();
 			\Skincare\SiteKit\Admin\Rewards_Admin::init();
+			\Skincare\SiteKit\Admin\Migration_Center::init();
+			\Skincare\SiteKit\Admin\Notifications_Center::init();
+			\Skincare\SiteKit\Admin\Coupons_Automation::init();
+			\Skincare\SiteKit\Admin\Tracking_Settings::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
 		}
 

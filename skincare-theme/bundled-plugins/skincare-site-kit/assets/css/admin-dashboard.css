@@ -177,3 +177,89 @@
 	font-size: 12px;
 	font-weight: 600;
 }
+
+.sk-admin-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.sk-admin-status--ok {
+	background: rgba(34, 197, 94, 0.12);
+	color: #15803d;
+}
+
+.sk-admin-status--warn {
+	background: rgba(245, 158, 11, 0.12);
+	color: #b45309;
+}
+
+.sk-admin-status--error {
+	background: rgba(239, 68, 68, 0.12);
+	color: #b91c1c;
+}
+
+.sk-admin-form-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+	margin-bottom: 16px;
+}
+
+.sk-admin-template-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 18px;
+}
+
+.sk-admin-template-grid input,
+.sk-admin-template-grid textarea {
+	width: 100%;
+}
+
+.sk-admin-checkbox {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	font-weight: 600;
+}
+
+.sk-admin-actions {
+	display: flex;
+	gap: 12px;
+	margin-top: 12px;
+}
+
+.sk-admin-report {
+	margin-top: 16px;
+}
+
+.sk-admin-report__card {
+	background: #f8fafc;
+	border: 1px solid var(--sk-admin-border);
+	border-radius: 12px;
+	padding: 14px;
+}
+
+.sk-admin-report__card--error {
+	border-color: rgba(239, 68, 68, 0.4);
+	background: rgba(239, 68, 68, 0.08);
+}
+
+.sk-admin-report__section h4 {
+	margin-bottom: 8px;
+}
+
+.sk-admin-report__section ul {
+	margin: 0;
+	padding-left: 20px;
+}
+
+.sk-admin-muted {
+	color: var(--sk-admin-muted);
+	font-size: 13px;
+}

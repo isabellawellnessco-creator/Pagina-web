@@ -112,8 +112,32 @@ jQuery(document).ready(function($) {
         $wrapper.find('.sk-tab-btn').removeClass('active').attr('aria-selected', 'false');
         $wrapper.find('.sk-tab-pane').removeClass('active');
         $btn.addClass('active').attr('aria-selected', 'true');
-        $($btn.data('target')).addClass('active');
+        var $target = $($btn.data('target'));
+        $target.addClass('active');
+        if ($target.is('#tab-rewards')) {
+            animatePoints($target.find('.sk-points-total'));
+        }
     });
+
+    function animatePoints($el) {
+        if (!$el.length || $el.data('animated')) {
+            return;
+        }
+        var target = parseInt($el.data('target'), 10) || 0;
+        var current = 0;
+        var step = Math.max(1, Math.floor(target / 30));
+        var interval = setInterval(function() {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(interval);
+            }
+            $el.text(current);
+        }, 30);
+        $el.data('animated', true).addClass('is-animated');
+    }
+
+    animatePoints($('.sk-points-total'));
 
     // Rewards Redeem
     $(document).on('click', '#sk-redeem-btn', function(e) {

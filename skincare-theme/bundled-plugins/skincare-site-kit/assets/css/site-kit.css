@@ -145,6 +145,11 @@
     color: #E5757E;
 }
 
+.sk-badge--accent {
+    background: rgba(37, 99, 235, 0.12);
+    color: #2563eb;
+}
+
 .sk-alert {
     background: rgba(15, 48, 98, 0.06);
     border: 1px solid rgba(15, 48, 98, 0.15);
@@ -183,6 +188,19 @@
 .sk-empty-state__icon {
     font-size: 28px;
     line-height: 1;
+}
+
+.sk-points-total.is-animated {
+    animation: sk-points-pop 0.6s ease;
+}
+
+.sk-rewards-history td {
+    vertical-align: middle;
+}
+
+@keyframes sk-points-pop {
+    0% { transform: scale(0.96); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 .sk-loader {

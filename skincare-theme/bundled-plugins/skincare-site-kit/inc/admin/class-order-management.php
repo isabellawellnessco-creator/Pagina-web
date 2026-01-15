@@ -367,7 +367,6 @@ class Order_Management {
 			return [];
 		}
 
-		$press_settings = get_option( 'sk_press_page_settings', [] );
 		$order_number = $order->get_order_number();
 		$total = $order->get_formatted_order_total();
 		$carrier = get_post_meta( $order->get_id(), '_sk_carrier', true );
@@ -387,21 +386,26 @@ class Order_Management {
 			'delivered' => __( 'Pedido #{order_number} entregado. ¡Gracias por tu compra!', 'skincare' ),
 		];
 
+		$confirm_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'confirm' );
+		$delivery_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'delivery' );
+		$onway_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'onway' );
+		$delivered_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'delivered' );
+
 		$messages = [
 			__( 'Confirmar pedido', 'skincare' ) => strtr(
-				isset( $press_settings['whatsapp_template_confirm'] ) && $press_settings['whatsapp_template_confirm'] ? $press_settings['whatsapp_template_confirm'] : $defaults['confirm'],
+				$confirm_template ? $confirm_template : $defaults['confirm'],
 				$placeholders
 			),
 			__( 'Registrar delivery', 'skincare' ) => strtr(
-				isset( $press_settings['whatsapp_template_delivery'] ) && $press_settings['whatsapp_template_delivery'] ? $press_settings['whatsapp_template_delivery'] : $defaults['delivery'],
+				$delivery_template ? $delivery_template : $defaults['delivery'],
 				$placeholders
 			),
 			__( 'Pedido en camino', 'skincare' ) => strtr(
-				isset( $press_settings['whatsapp_template_onway'] ) && $press_settings['whatsapp_template_onway'] ? $press_settings['whatsapp_template_onway'] : $defaults['onway'],
+				$onway_template ? $onway_template : $defaults['onway'],
 				$placeholders
 			),
 			__( 'Pedido entregado', 'skincare' ) => strtr(
-				isset( $press_settings['whatsapp_template_delivered'] ) && $press_settings['whatsapp_template_delivered'] ? $press_settings['whatsapp_template_delivered'] : $defaults['delivered'],
+				$delivered_template ? $delivered_template : $defaults['delivered'],
 				$placeholders
 			),
 		];

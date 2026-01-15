@@ -339,15 +339,19 @@ class Settings {
 				'skincare-site-kit_page_sk-theme-builder',
 				'skincare-site-kit_page_sk-operations-dashboard',
 				'skincare-site-kit_page_sk-rewards-control',
-			'skincare-site-kit_page_sk-fulfillment-center',
-			'skincare-site-kit_page_sk-sla-monitor',
-			'skincare-site-kit_page_sk-batch-picking',
-			'skincare-site-kit_page_sk-packing-slips',
-			'skincare-site-kit_page_sk-shipping-labels',
-			'skincare-site-kit_page_sk-invoices',
-			'post.php',
-			'post-new.php',
-		];
+				'skincare-site-kit_page_sk-fulfillment-center',
+				'skincare-site-kit_page_sk-sla-monitor',
+				'skincare-site-kit_page_sk-batch-picking',
+				'skincare-site-kit_page_sk-packing-slips',
+				'skincare-site-kit_page_sk-shipping-labels',
+				'skincare-site-kit_page_sk-invoices',
+				'skincare-site-kit_page_sk-migration-center',
+				'skincare-site-kit_page_sk-notifications-center',
+				'skincare-site-kit_page_sk-coupons-automation',
+				'skincare-site-kit_page_sk-tracking-settings',
+				'post.php',
+				'post-new.php',
+			];
 
 		if ( ! in_array( $hook, $admin_pages, true ) ) {
 			return;
@@ -370,14 +374,37 @@ class Settings {
 			'1.0.0'
 		);
 
-		wp_enqueue_script(
-			'sk-site-kit-admin-dashboard',
-			SKINCARE_KIT_URL . 'assets/js/admin-dashboard.js',
-			[],
-			'1.0.0',
-			true
-		);
-	}
+			wp_enqueue_script(
+				'sk-site-kit-admin-dashboard',
+				SKINCARE_KIT_URL . 'assets/js/admin-dashboard.js',
+				[],
+				'1.0.0',
+				true
+			);
+
+			wp_enqueue_script(
+				'sk-site-kit-admin-migration',
+				SKINCARE_KIT_URL . 'assets/js/admin-migration.js',
+				[],
+				'1.0.0',
+				true
+			);
+
+			wp_enqueue_script(
+				'sk-site-kit-admin-notifications',
+				SKINCARE_KIT_URL . 'assets/js/admin-notifications.js',
+				[],
+				'1.0.0',
+				true
+			);
+
+			$admin_vars = [
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'sk_ajax_nonce' ),
+			];
+			wp_localize_script( 'sk-site-kit-admin-migration', 'sk_admin_vars', $admin_vars );
+			wp_localize_script( 'sk-site-kit-admin-notifications', 'sk_admin_vars', $admin_vars );
+		}
 
 	public static function render_page() {
 		echo '<div class="wrap"><h1>Skincare Site Kit</h1><p>Welcome to the main configuration panel.</p></div>';

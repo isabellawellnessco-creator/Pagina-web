@@ -40,6 +40,7 @@ class Loader {
 			\Skincare\SiteKit\Admin\Notifications_Center::init();
 			\Skincare\SiteKit\Admin\Coupons_Automation::init();
 			\Skincare\SiteKit\Admin\Tracking_Settings::init();
+		\Skincare\SiteKit\Admin\Whatsapp_Templates::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
 		}
 

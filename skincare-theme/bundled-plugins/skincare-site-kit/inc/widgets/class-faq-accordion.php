@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class FAQ_Accordion extends Widget_Base {
+class FAQ_Accordion extends Shortcode_Renderer {
 	public function get_name() { return 'sk_faq_accordion'; }
 	public function get_title() { return __( 'Acordeón de preguntas', 'skincare' ); }
 	public function get_icon() { return 'eicon-accordion'; }

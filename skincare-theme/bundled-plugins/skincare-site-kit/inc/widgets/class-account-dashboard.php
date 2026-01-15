@@ -5,9 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 
-class Account_Dashboard extends Widget_Base {
+class Account_Dashboard extends Shortcode_Renderer {
 	public function get_name() { return 'sk_account_dashboard'; }
 	public function get_title() { return __( 'Panel de cuenta', 'skincare' ); }
 	public function get_icon() { return 'eicon-person'; }

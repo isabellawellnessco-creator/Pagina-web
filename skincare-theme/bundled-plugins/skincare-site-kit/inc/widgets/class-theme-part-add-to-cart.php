@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Theme_Part_Add_To_Cart extends Widget_Base {
+class Theme_Part_Add_To_Cart extends Shortcode_Renderer {
 	public function get_name() { return 'sk_theme_part_add_to_cart'; }
 	public function get_title() { return __( 'Botón añadir al carrito', 'skincare' ); }
 	public function get_icon() { return 'eicon-product-add-to-cart'; }

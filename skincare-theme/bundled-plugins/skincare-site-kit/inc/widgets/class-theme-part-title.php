@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Theme_Part_Title extends Widget_Base {
+class Theme_Part_Title extends Shortcode_Renderer {
 	public function get_name() { return 'sk_theme_part_title'; }
 	public function get_title() { return __( 'Título de plantilla', 'skincare' ); }
 	public function get_icon() { return 'eicon-post-title'; }

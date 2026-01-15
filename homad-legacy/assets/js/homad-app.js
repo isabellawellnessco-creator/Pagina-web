@@ -4,6 +4,38 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const toastContainerId = 'homad-toast-container';
+    const createToastContainer = () => {
+        let container = document.getElementById(toastContainerId);
+        if (!container) {
+            container = document.createElement('div');
+            container.id = toastContainerId;
+            container.className = 'homad-toast-container';
+            document.body.appendChild(container);
+        }
+        return container;
+    };
+
+    const showToast = (message, type = 'info') => {
+        if (!message) return;
+        const container = createToastContainer();
+        const toast = document.createElement('div');
+        toast.className = `homad-toast homad-toast--${type}`;
+        toast.setAttribute('role', 'status');
+        toast.textContent = message;
+        container.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            toast.classList.add('is-visible');
+        });
+
+        setTimeout(() => {
+            toast.classList.remove('is-visible');
+            setTimeout(() => toast.remove(), 300);
+        }, 4000);
+    };
+
+    window.homadToast = showToast;
 
     // --- Mobile Splash Screen Logic ---
     const splash = document.getElementById('homad-splash');
@@ -44,29 +76,44 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = true;
 
             const formData = new FormData(leadForm);
+            const payload = Object.fromEntries(formData.entries());
 
-            // Native Fetch API
-            fetch(homad_vars.ajax_url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(data.data.message);
-                    leadForm.reset();
-                } else {
-                    alert('Error: ' + data.data.message);
+            const useRest = homad_vars && homad_vars.rest_url && homad_vars.lead_nonce;
+            const endpoint = useRest ? `${homad_vars.rest_url}homad/v1/lead` : homad_vars.ajax_url;
+            const fetchOptions = useRest
+                ? {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Homad-Nonce': homad_vars.lead_nonce
+                    },
+                    body: JSON.stringify(payload)
                 }
-            })
-            .catch(err => {
-                console.error(err);
-                alert('Something went wrong. Please try again.');
-            })
-            .finally(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
-            });
+                : {
+                    method: 'POST',
+                    body: formData
+                };
+
+            fetch(endpoint, fetchOptions)
+                .then(response => response.json())
+                .then(data => {
+                    const success = useRest ? data.success : data.success;
+                    const message = useRest ? data.message : (data.data && data.data.message);
+                    if (success) {
+                        showToast(message || 'Solicitud enviada.', 'success');
+                        leadForm.reset();
+                    } else {
+                        showToast(message || 'No se pudo enviar la solicitud.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast('Something went wrong. Please try again.', 'error');
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
         });
     }
 

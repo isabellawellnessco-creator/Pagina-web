@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Theme_Part_Price extends Widget_Base {
+class Theme_Part_Price extends Shortcode_Renderer {
 	public function get_name() { return 'sk_theme_part_price'; }
 	public function get_title() { return __( 'Precio de plantilla', 'skincare' ); }
 	public function get_icon() { return 'eicon-product-price'; }

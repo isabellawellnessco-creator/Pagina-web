@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Ajax_Filter extends Widget_Base {
+class Ajax_Filter extends Shortcode_Renderer {
 	public function get_name() { return 'sk_ajax_filter'; }
 	public function get_title() { return __( 'Filtro AJAX', 'skincare' ); }
 	public function get_icon() { return 'eicon-filter'; }

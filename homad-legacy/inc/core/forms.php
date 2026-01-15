@@ -10,43 +10,48 @@ defined( 'ABSPATH' ) || exit;
 add_action('wp_ajax_homad_submit_lead', 'homad_handle_lead_submission');
 add_action('wp_ajax_nopriv_homad_submit_lead', 'homad_handle_lead_submission');
 
-function homad_handle_lead_submission() {
-    // 1. Verify Nonce
-    if (!isset($_POST['homad_form_nonce']) || !wp_verify_nonce($_POST['homad_form_nonce'], 'homad_lead_nonce')) {
-        wp_send_json_error(['message' => 'Security check failed. Please refresh.']);
+function homad_verify_lead_nonce($nonce) {
+    if (!$nonce) {
+        return false;
     }
 
-    // 2. Dynamic Input Handling
-    // Instead of hardcoded fields, we iterate over POST data and save everything to meta
+    return wp_verify_nonce($nonce, 'homad_lead_action');
+}
+
+function homad_process_lead_submission($raw_data) {
     $email = '';
     $phone = '';
     $budget = '';
     $service_type = '';
-
-    // Store all submitted fields in an array for Content body
     $submission_data = [];
 
-    foreach ($_POST as $key => $value) {
-        if (in_array($key, ['action', 'homad_form_nonce'])) continue;
+    foreach ($raw_data as $key => $value) {
+        if (in_array($key, ['action', 'homad_form_nonce', 'security', 'nonce'], true)) {
+            continue;
+        }
 
         $clean_value = is_array($value) ? array_map('sanitize_text_field', $value) : sanitize_text_field($value);
         $submission_data[$key] = $clean_value;
 
-        // Map known keys to Standard Meta
-        if (strpos($key, 'email') !== false) $email = sanitize_email($value);
-        if (strpos($key, 'phone') !== false) $phone = sanitize_text_field($value);
-        if (strpos($key, 'budget') !== false) $budget = sanitize_text_field($value);
-        if (strpos($key, 'service') !== false) $service_type = sanitize_text_field($value);
+        if (strpos($key, 'email') !== false) {
+            $email = sanitize_email($value);
+        }
+        if (strpos($key, 'phone') !== false) {
+            $phone = sanitize_text_field($value);
+        }
+        if (strpos($key, 'budget') !== false) {
+            $budget = sanitize_text_field($value);
+        }
+        if (strpos($key, 'service') !== false) {
+            $service_type = sanitize_text_field($value);
+        }
     }
 
     if (!$email) {
-        wp_send_json_error(['message' => 'Email is required.']);
+        return new WP_Error('homad_lead_email', 'Email is required.');
     }
 
-    // 3. Create Lead Post
     $post_title = "Lead: $email" . ($service_type ? " ($service_type)" : "");
-
-    // Format Content from Data
     $content = "Lead Submission Details:\n\n";
     foreach ($submission_data as $k => $v) {
         $content .= ucfirst(str_replace('_', ' ', $k)) . ": $v\n";
@@ -60,18 +65,37 @@ function homad_handle_lead_submission() {
     ]);
 
     if (is_wp_error($lead_id)) {
-        wp_send_json_error(['message' => 'Could not save lead.']);
+        return new WP_Error('homad_lead_save', 'Could not save lead.');
     }
 
-    // 4. Save Meta Data (Standard CRM fields + Custom JSON blob)
     update_post_meta($lead_id, '_homad_lead_email', $email);
     update_post_meta($lead_id, '_homad_lead_phone', $phone);
     update_post_meta($lead_id, '_homad_lead_budget', $budget);
     update_post_meta($lead_id, '_homad_lead_status', 'new');
     update_post_meta($lead_id, '_homad_lead_full_data', $submission_data);
 
-    // 5. Send Notification (Optional - simplified for MVP)
-    // wp_mail(get_option('admin_email'), "New Lead: $post_title", "Details:\n\n$details\n\nContact: $email / $phone");
+    return [
+        'message' => 'Quote request received! We will contact you shortly.',
+        'lead_id' => $lead_id,
+    ];
+}
 
-    wp_send_json_success(['message' => 'Quote request received! We will contact you shortly.']);
+function homad_handle_lead_submission() {
+    $nonce = '';
+    if (isset($_POST['homad_form_nonce'])) {
+        $nonce = sanitize_text_field(wp_unslash($_POST['homad_form_nonce']));
+    } elseif (isset($_POST['security'])) {
+        $nonce = sanitize_text_field(wp_unslash($_POST['security']));
+    }
+
+    if (!homad_verify_lead_nonce($nonce)) {
+        wp_send_json_error(['message' => 'Security check failed. Please refresh.']);
+    }
+
+    $result = homad_process_lead_submission($_POST);
+    if (is_wp_error($result)) {
+        wp_send_json_error(['message' => $result->get_error_message()]);
+    }
+
+    wp_send_json_success($result);
 }

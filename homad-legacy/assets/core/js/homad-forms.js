@@ -108,6 +108,8 @@
                 e.preventDefault();
                 var form = $(this);
                 var valid = true;
+                var msgDiv = form.find('.homad-form-message');
+                msgDiv.text('').css('color', '');
 
                 // Custom Validation (DNI)
                 formConfig.forEach(function(field, index) {
@@ -115,7 +117,7 @@
                         var fieldId = field.name || 'field_' + index;
                         var input = form.find('[name="' + fieldId + '"]');
                         if (input.is(':visible') && input.val() && !/^\d+$/.test(input.val())) {
-                            alert(field.label + ' must be numbers only.');
+                            msgDiv.text(field.label + ' must be numbers only.').css('color', 'red');
                             valid = false;
                         }
                     }

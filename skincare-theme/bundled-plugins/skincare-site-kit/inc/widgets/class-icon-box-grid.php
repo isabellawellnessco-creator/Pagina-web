@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Icon_Box_Grid extends Widget_Base {
+class Icon_Box_Grid extends Shortcode_Renderer {
 	public function get_name() { return 'sk_icon_box_grid'; }
 	public function get_title() { return __( 'SK Icon Box Grid', 'skincare' ); }
 	public function get_icon() { return 'eicon-icon-box'; }

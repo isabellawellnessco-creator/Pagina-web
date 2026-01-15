@@ -93,8 +93,6 @@ class Order_Management {
 		$awarded_points = get_post_meta( $post->ID, '_sk_rewards_awarded', true );
 		$user_id = $order ? $order->get_user_id() : 0;
 		$user_points = $user_id ? (int) get_user_meta( $user_id, '_sk_rewards_points', true ) : 0;
-		$billing_phone = $order ? $order->get_billing_phone() : '';
-		$billing_phone = self::sanitize_phone( $billing_phone );
 
 		$rating_options = [ '', '1', '2', '3', '4', '5' ];
 		$priority_options = [ '', __( 'Baja', 'skincare' ), __( 'Media', 'skincare' ), __( 'Alta', 'skincare' ) ];
@@ -106,7 +104,6 @@ class Order_Management {
 		];
 		$packing_checklist = is_array( $packing_checklist ) ? $packing_checklist : [];
 		$picker_users = get_users( [ 'role__in' => [ 'administrator', 'shop_manager' ] ] );
-		$whatsapp_links = self::build_whatsapp_links( $order, $billing_phone );
 		?>
 		<p>
 			<label for="sk-warehouse"><strong><?php _e( 'Almacén', 'skincare' ); ?></strong></label>
@@ -240,18 +237,7 @@ class Order_Management {
 			<strong><?php _e( 'Saldo del cliente', 'skincare' ); ?></strong><br>
 			<?php echo $user_id ? esc_html( $user_points ) : '—'; ?>
 		</p>
-		<?php if ( $billing_phone ) : ?>
-			<div class="sk-whatsapp-actions">
-				<p><strong><?php _e( 'Acciones WhatsApp', 'skincare' ); ?></strong></p>
-				<ul>
-					<?php foreach ( $whatsapp_links as $label => $url ) : ?>
-						<li><a class="button" target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-		<?php else : ?>
-			<p><em><?php _e( 'No hay teléfono en el pedido para WhatsApp.', 'skincare' ); ?></em></p>
-		<?php endif; ?>
+		<p><em><?php _e( 'WhatsApp se envía automáticamente según el estado del pedido.', 'skincare' ); ?></em></p>
 		<?php
 	}
 
@@ -358,63 +344,4 @@ class Order_Management {
 		}
 	}
 
-	private static function sanitize_phone( $phone ) {
-		return preg_replace( '/\D+/', '', (string) $phone );
-	}
-
-	private static function build_whatsapp_links( $order, $phone ) {
-		if ( ! $order || ! $phone ) {
-			return [];
-		}
-
-		$order_number = $order->get_order_number();
-		$total = $order->get_formatted_order_total();
-		$carrier = get_post_meta( $order->get_id(), '_sk_carrier', true );
-		$tracking_url = get_post_meta( $order->get_id(), '_sk_tracking_url', true );
-
-		$placeholders = [
-			'{order_number}' => $order_number,
-			'{total}' => $total,
-			'{carrier}' => $carrier ? sprintf( __( 'Transportista: %s.', 'skincare' ), $carrier ) : '',
-			'{tracking_url}' => $tracking_url ? sprintf( __( 'Seguimiento: %s', 'skincare' ), $tracking_url ) : '',
-		];
-
-		$defaults = [
-			'confirm' => __( 'Hola, confirmamos tu pedido #{order_number}. Total: {total}. ¿Pago confirmado o contraentrega?', 'skincare' ),
-			'delivery' => __( 'Tu pedido #{order_number} fue asignado a delivery. Te contactaremos antes de la entrega.', 'skincare' ),
-			'onway' => __( 'Tu pedido #{order_number} va en camino. {carrier} {tracking_url}', 'skincare' ),
-			'delivered' => __( 'Pedido #{order_number} entregado. ¡Gracias por tu compra!', 'skincare' ),
-		];
-
-		$confirm_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'confirm' );
-		$delivery_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'delivery' );
-		$onway_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'onway' );
-		$delivered_template = \Skincare\SiteKit\Modules\Notifications::get_whatsapp_template( 'delivered' );
-
-		$messages = [
-			__( 'Confirmar pedido', 'skincare' ) => strtr(
-				$confirm_template ? $confirm_template : $defaults['confirm'],
-				$placeholders
-			),
-			__( 'Registrar delivery', 'skincare' ) => strtr(
-				$delivery_template ? $delivery_template : $defaults['delivery'],
-				$placeholders
-			),
-			__( 'Pedido en camino', 'skincare' ) => strtr(
-				$onway_template ? $onway_template : $defaults['onway'],
-				$placeholders
-			),
-			__( 'Pedido entregado', 'skincare' ) => strtr(
-				$delivered_template ? $delivered_template : $defaults['delivered'],
-				$placeholders
-			),
-		];
-
-		$links = [];
-		foreach ( $messages as $label => $message ) {
-			$links[ $label ] = 'https://wa.me/' . rawurlencode( $phone ) . '?text=' . rawurlencode( $message );
-		}
-
-		return $links;
-	}
 }

@@ -71,6 +71,18 @@ var homadWizard = (function($) {
         showStep(currentStep - 1);
     }
 
+    function showWizardNotice(message, type) {
+        var $notice = $wizard.find('.homad-wizard__notice');
+        if (!$notice.length) {
+            return;
+        }
+        $notice.removeClass('is-error is-success').addClass(type === 'success' ? 'is-success' : 'is-error');
+        $notice.text(message || '');
+        if (window.homadToast) {
+            window.homadToast(message, type === 'success' ? 'success' : 'error');
+        }
+    }
+
     function submitForm() {
         if (!validateStep(currentStep)) return;
 
@@ -98,13 +110,14 @@ var homadWizard = (function($) {
             success: function(response) {
                 if (response.success) {
                     showStep('success');
+                    showWizardNotice('Solicitud enviada correctamente.', 'success');
                 } else {
-                    alert('Error: ' + response.data.message);
+                    showWizardNotice('Error: ' + response.data.message, 'error');
                     $btn.text(origText).prop('disabled', false);
                 }
             },
             error: function() {
-                alert('Server error. Please try again.');
+                showWizardNotice('Server error. Please try again.', 'error');
                 $btn.text(origText).prop('disabled', false);
             }
         });

@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Product_Tabs extends Widget_Base {
+class Product_Tabs extends Shortcode_Renderer {
 	public function get_name() { return 'sk_product_tabs'; }
 	public function get_title() { return __( 'SK Product Tabs', 'skincare' ); }
 	public function get_icon() { return 'eicon-tabs'; }

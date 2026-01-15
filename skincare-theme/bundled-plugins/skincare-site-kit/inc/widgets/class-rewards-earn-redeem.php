@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Rewards_Earn_Redeem extends Widget_Base {
+class Rewards_Earn_Redeem extends Shortcode_Renderer {
 	public function get_name() { return 'sk_rewards_earn_redeem'; }
 	public function get_title() { return __( 'Recompensas: gana/canjea', 'skincare' ); }
 	public function get_icon() { return 'eicon-price-list'; }

@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Contact_Section extends Widget_Base {
+class Contact_Section extends Shortcode_Renderer {
 	public function get_name() { return 'sk_contact_section'; }
 	public function get_title() { return __( 'SK Contact Section', 'skincare' ); }
 	public function get_icon() { return 'eicon-form-horizontal'; }

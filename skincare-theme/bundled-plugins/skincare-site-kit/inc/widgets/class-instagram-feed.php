@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Instagram_Feed extends Widget_Base {
+class Instagram_Feed extends Shortcode_Renderer {
 	public function get_name() { return 'sk_instagram_feed'; }
 	public function get_title() { return __( 'SK Instagram Feed', 'skincare' ); }
 	public function get_icon() { return 'eicon-instagram-gallery'; }

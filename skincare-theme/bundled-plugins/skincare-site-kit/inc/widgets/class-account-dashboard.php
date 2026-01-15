@@ -1,6 +1,8 @@
 <?php
 namespace Skincare\SiteKit\Widgets;
 
+use Skincare\SiteKit\Modules\Tracking_Manager;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -40,13 +42,6 @@ class Account_Dashboard extends Shortcode_Renderer {
 			$points = \Skincare\SiteKit\Admin\Rewards_Master::get_user_balance( $current_user->ID );
 			$rewards_history = \Skincare\SiteKit\Admin\Rewards_Master::get_user_history( $current_user->ID, 20 );
 		}
-		$tracking_settings = get_option( 'sk_tracking_settings', [] );
-		$tracking_steps = isset( $tracking_settings['steps'] ) && is_array( $tracking_settings['steps'] )
-			? array_values( $tracking_settings['steps'] )
-			: [];
-		if ( count( $tracking_steps ) < 4 ) {
-			$tracking_steps = self::default_tracking_steps();
-		}
 
 		?>
 		<div class="sk-account-dashboard">
@@ -82,11 +77,14 @@ class Account_Dashboard extends Shortcode_Renderer {
 							<?php foreach ( $orders as $order ) : ?>
 								<?php
 								$order_id = $order->get_id();
+
+								// Tracking Data via Manager
+								$tracking = Tracking_Manager::get_tracking_details( $order );
+								$stepper_data = Tracking_Manager::get_steps_data( $order );
+								$steps = $stepper_data['steps'];
+								$step_index = $stepper_data['current_step'];
+
 								$warehouse = get_post_meta( $order_id, '_sk_warehouse_location', true );
-								$packing_status = get_post_meta( $order_id, '_sk_packing_status', true );
-								$carrier = get_post_meta( $order_id, '_sk_carrier', true );
-								$tracking_number = get_post_meta( $order_id, '_sk_tracking_number', true );
-								$tracking_url = get_post_meta( $order_id, '_sk_tracking_url', true );
 								$province_shipping = get_post_meta( $order_id, '_sk_province_shipping', true );
 								$deposit_paid = get_post_meta( $order_id, '_sk_deposit_paid', true );
 								$deposit_amount = get_post_meta( $order_id, '_sk_deposit_amount', true );
@@ -97,10 +95,7 @@ class Account_Dashboard extends Shortcode_Renderer {
 								$shipping_address = $order->get_formatted_shipping_address();
 								$payment_method = $order->get_payment_method_title();
 								$is_paid = $order->is_paid();
-								$order_status = $order->get_status();
-									$step_index = self::resolve_tracking_step( $order_status, $packing_status, $tracking_number, $tracking_url, $tracking_steps );
-									$steps = self::hydrate_tracking_steps( $tracking_steps, $packing_status, $tracking_number );
-									?>
+								?>
 									<article class="sk-card sk-order-card">
 									<header class="sk-order-card__header">
 										<div>
@@ -113,8 +108,8 @@ class Account_Dashboard extends Shortcode_Renderer {
 										</div>
 										<div class="sk-order-card__status">
 											<span class="sk-badge sk-badge--status"><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></span>
-											<?php if ( $packing_status ) : ?>
-												<span class="sk-badge sk-badge--neutral"><?php echo esc_html( $packing_status ); ?></span>
+											<?php if ( ! empty( $tracking['packing_status'] ) ) : ?>
+												<span class="sk-badge sk-badge--neutral"><?php echo esc_html( $tracking['packing_status'] ); ?></span>
 											<?php endif; ?>
 											<span class="sk-badge sk-badge--accent"><?php echo esc_html( $steps[ $step_index ]['label'] ); ?></span>
 										</div>
@@ -181,12 +176,12 @@ class Account_Dashboard extends Shortcode_Renderer {
 												<?php endforeach; ?>
 											</div>
 											<ul class="sk-order-card__list">
-												<li><strong><?php _e( 'Transportista:', 'skincare' ); ?></strong> <?php echo $carrier ? esc_html( $carrier ) : esc_html__( 'Por asignar', 'skincare' ); ?></li>
-												<li><strong><?php _e( 'Código de envío:', 'skincare' ); ?></strong> <?php echo $tracking_number ? esc_html( $tracking_number ) : esc_html__( 'Sin código', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Transportista:', 'skincare' ); ?></strong> <?php echo ! empty( $tracking['carrier'] ) ? esc_html( $tracking['carrier'] ) : esc_html__( 'Por asignar', 'skincare' ); ?></li>
+												<li><strong><?php _e( 'Código de envío:', 'skincare' ); ?></strong> <?php echo ! empty( $tracking['tracking_number'] ) ? esc_html( $tracking['tracking_number'] ) : esc_html__( 'Sin código', 'skincare' ); ?></li>
 												<li>
 													<strong><?php _e( 'Seguimiento:', 'skincare' ); ?></strong>
-													<?php if ( $tracking_url ) : ?>
-														<a href="<?php echo esc_url( $tracking_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Ver tracking', 'skincare' ); ?></a>
+													<?php if ( ! empty( $tracking['tracking_url'] ) ) : ?>
+														<a href="<?php echo esc_url( $tracking['tracking_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Ver tracking', 'skincare' ); ?></a>
 													<?php else : ?>
 														<?php esc_html_e( 'No disponible', 'skincare' ); ?>
 													<?php endif; ?>
@@ -261,64 +256,5 @@ class Account_Dashboard extends Shortcode_Renderer {
 			</div>
 		</div>
 		<?php
-	}
-
-	private static function default_tracking_steps() {
-		return [
-			[
-				'label' => __( 'Pedido confirmado', 'skincare' ),
-				'desc' => __( 'Estamos preparando tu pedido.', 'skincare' ),
-				'statuses' => 'wc-processing,wc-on-hold,wc-pending',
-			],
-			[
-				'label' => __( 'Empaque', 'skincare' ),
-				'desc' => __( 'Empaque en progreso.', 'skincare' ),
-				'statuses' => 'wc-processing',
-			],
-			[
-				'label' => __( 'En camino', 'skincare' ),
-				'desc' => __( 'Tu pedido va en camino.', 'skincare' ),
-				'statuses' => 'wc-sk-on-the-way',
-			],
-			[
-				'label' => __( 'Entregado', 'skincare' ),
-				'desc' => __( 'Pedido entregado.', 'skincare' ),
-				'statuses' => 'wc-completed,wc-sk-delivered',
-			],
-		];
-	}
-
-	private static function resolve_tracking_step( $order_status, $packing_status, $tracking_number, $tracking_url, $steps ) {
-		$step_index = 0;
-		$normalized_status = 'wc-' . $order_status;
-		$statuses = self::parse_step_statuses( $steps );
-
-		if ( in_array( $normalized_status, $statuses[3], true ) || 'completed' === $order_status ) {
-			return 3;
-		}
-		if ( $tracking_number || $tracking_url || in_array( $normalized_status, $statuses[2], true ) ) {
-			return 2;
-		}
-		if ( $packing_status || in_array( $normalized_status, $statuses[1], true ) ) {
-			return 1;
-		}
-
-		return $step_index;
-	}
-
-	private static function hydrate_tracking_steps( $steps, $packing_status, $tracking_number ) {
-		$steps[1]['desc'] = $packing_status ? $packing_status : $steps[1]['desc'];
-		$steps[2]['desc'] = $tracking_number ? __( 'Tu pedido va en camino.', 'skincare' ) : $steps[2]['desc'];
-		return $steps;
-	}
-
-	private static function parse_step_statuses( $steps ) {
-		$statuses = [];
-		foreach ( $steps as $step ) {
-			$raw = isset( $step['statuses'] ) ? $step['statuses'] : '';
-			$list = array_filter( array_map( 'trim', explode( ',', $raw ) ) );
-			$statuses[] = $list;
-		}
-		return array_pad( $statuses, 4, [] );
 	}
 }

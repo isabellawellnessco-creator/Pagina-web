@@ -18,11 +18,14 @@ class Loader {
 		\Skincare\SiteKit\Modules\Cart_Drawer::init();
 		\Skincare\SiteKit\Modules\Swatches::init();
 		\Skincare\SiteKit\Modules\Forms::init();
-		\Skincare\SiteKit\Modules\Filter_Handler::init(); // Added
+		\Skincare\SiteKit\Modules\Filter_Handler::init();
 		\Skincare\SiteKit\Modules\Press::init();
 		\Skincare\SiteKit\Modules\Purchase_Orders::init();
 		\Skincare\SiteKit\Modules\Notifications::init();
 		\Skincare\SiteKit\Modules\Coupons_Automation::init();
+		\Skincare\SiteKit\Modules\Tracking_Manager::init(); // Added
+		\Skincare\SiteKit\Modules\Marketing_Events::init(); // Will create next
+
 		\Skincare\SiteKit\Admin\Rewards_Master::init();
 		\Skincare\SiteKit\Core\Rest_Controller::init();
 
@@ -41,6 +44,9 @@ class Loader {
 			\Skincare\SiteKit\Admin\Coupons_Automation::init();
 			\Skincare\SiteKit\Admin\Tracking_Settings::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
+
+			\Skincare\SiteKit\Admin\Admin_Onboarding::init();
+			\Skincare\SiteKit\Admin\Tools::init();
 		}
 
 		// Enqueue Scripts

@@ -20,7 +20,7 @@ class Settings {
 			'Skincare Kit',
 			'manage_options',
 			'skincare-site-kit',
-			[ __CLASS__, 'render_page' ],
+			[ '\Skincare\SiteKit\Admin\Admin_Dashboard', 'render' ],
 			'dashicons-heart',
 			50
 		);

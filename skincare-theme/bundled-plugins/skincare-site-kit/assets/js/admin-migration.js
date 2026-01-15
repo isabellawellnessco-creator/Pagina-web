@@ -40,6 +40,20 @@
 		`;
 	};
 
+	const renderWarnings = (warnings) => {
+		if (!warnings || !warnings.length) {
+			return '';
+		}
+		return `
+			<div class="sk-admin-report__section sk-admin-report__section--warn">
+				<h4>Advertencias</h4>
+				<ul>
+					${warnings.map((item) => `<li>${item}</li>`).join('')}
+				</ul>
+			</div>
+		`;
+	};
+
 	const renderReport = (data) => {
 		report.innerHTML = `
 			<div class="sk-admin-report__card">
@@ -47,6 +61,8 @@
 				${renderList(data.changes, 'Cambios detectados')}
 				${renderList(data.pages, 'Páginas WooCommerce')}
 				${renderPlugins(data.plugins)}
+				${renderWarnings(data.warnings)}
+				${renderList(data.checklist, 'Checklist post-import')}
 			</div>
 		`;
 	};

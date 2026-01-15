@@ -26,6 +26,45 @@ jQuery(document).ready(function($) {
         }, 3200);
     }
 
+    window.skShowToast = showToast;
+
+    function showConfirmModal(options) {
+        var settings = $.extend({
+            title: 'Confirmar acción',
+            message: '',
+            confirmText: 'Confirmar',
+            cancelText: 'Cancelar',
+            onConfirm: function() {},
+            onCancel: function() {}
+        }, options || {});
+
+        var $modal = $(`
+            <div class="sk-modal" role="dialog" aria-modal="true">
+                <div class="sk-modal__overlay"></div>
+                <div class="sk-modal__content">
+                    <h3>${settings.title}</h3>
+                    <p>${settings.message}</p>
+                    <div class="sk-modal__actions">
+                        <button type="button" class="sk-modal__btn sk-modal__btn--cancel">${settings.cancelText}</button>
+                        <button type="button" class="sk-modal__btn sk-modal__btn--confirm">${settings.confirmText}</button>
+                    </div>
+                </div>
+            </div>
+        `);
+
+        $('body').append($modal);
+
+        $modal.find('.sk-modal__btn--cancel, .sk-modal__overlay').on('click', function() {
+            settings.onCancel();
+            $modal.remove();
+        });
+
+        $modal.find('.sk-modal__btn--confirm').on('click', function() {
+            settings.onConfirm();
+            $modal.remove();
+        });
+    }
+
     // Slider Logic (Simple Fade)
     $('.sk-hero-slider').each(function() {
         var $slider = $(this);
@@ -181,28 +220,35 @@ jQuery(document).ready(function($) {
         }
 
         var redeemPoints = sk_vars && sk_vars.redeem_points ? sk_vars.redeem_points : 500;
-        if (!confirm('¿Canjear ' + redeemPoints + ' puntos?')) {
-            return;
-        }
+        showConfirmModal({
+            title: 'Canje de puntos',
+            message: '¿Deseas canjear ' + redeemPoints + ' puntos por un cupón?',
+            confirmText: 'Canjear',
+            cancelText: 'Cancelar',
+            onConfirm: function() {
+                var originalText = $btn.text();
+                var loadingText = $btn.data('loading-text') || 'Canjeando...';
 
-        var originalText = $btn.text();
-        var loadingText = $btn.data('loading-text') || 'Canjeando...';
+                $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
+                $message.removeClass('is-success is-error').text('Procesando tu canje...');
 
-        $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
-        $message.removeClass('is-success is-error').text('Procesando tu canje...');
-
-        $.post(sk_vars.ajax_url, { action: 'sk_redeem_points', nonce: sk_vars.nonce }, function(res) {
-            if (res.success) {
-                $message.addClass('is-success').text('¡Listo! Tu cupón es ' + res.data.code + '.');
-                $('.points-value, .sk-points-total').text(res.data.new_balance);
-                $btn.remove();
-            } else {
-                $message.addClass('is-error').text(res.data.message || 'No se pudo canjear en este momento.');
-                $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+                $.post(sk_vars.ajax_url, { action: 'sk_redeem_points', nonce: sk_vars.nonce }, function(res) {
+                    if (res.success) {
+                        $message.addClass('is-success').text('¡Listo! Tu cupón es ' + res.data.code + '.');
+                        $('.points-value, .sk-points-total').text(res.data.new_balance);
+                        showToast('Canje exitoso. Cupón generado.', 'success');
+                        $btn.remove();
+                    } else {
+                        $message.addClass('is-error').text(res.data.message || 'No se pudo canjear en este momento.');
+                        showToast(res.data.message || 'No se pudo canjear en este momento.', 'error');
+                        $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+                    }
+                }).fail(function() {
+                    $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
+                    showToast('No se pudo conectar. Intenta de nuevo.', 'error');
+                    $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+                });
             }
-        }).fail(function() {
-            $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
-            $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
         });
     });
 

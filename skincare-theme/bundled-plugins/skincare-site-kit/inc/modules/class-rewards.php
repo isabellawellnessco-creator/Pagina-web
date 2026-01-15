@@ -7,17 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Rewards {
 
-	public static function calculate_points( $order ) {
-		if ( ! $order ) {
-			return 0;
-		}
-
-		$total = $order->get_total();
-		$refunded_total = $order->get_total_refunded();
-		$net_total = max( 0, $total - $refunded_total );
-		return (int) floor( $net_total );
-	}
-
 	public static function init() {
 		// AJAX Redeem
 		add_action( 'wp_ajax_sk_redeem_points', [ __CLASS__, 'ajax_redeem_points' ] );
@@ -32,41 +21,9 @@ class Rewards {
 			return;
 		}
 
-		$user_id = $order->get_user_id();
-
-		if ( ! $user_id ) {
-			return;
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			\Skincare\SiteKit\Admin\Rewards_Master::award_points_for_order( $order );
 		}
-
-		if ( $order->get_meta( '_sk_rewards_awarded', true ) ) {
-			return;
-		}
-
-		$points = self::calculate_points( $order );
-
-		if ( $points <= 0 ) {
-			return;
-		}
-
-		$current_points = get_user_meta( $user_id, '_sk_rewards_points', true );
-		$current_points = $current_points ? intval( $current_points ) : 0;
-
-		$new_points = $current_points + $points;
-
-		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
-
-		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
-		if ( ! is_array( $history ) ) $history = [];
-
-		$history[] = [
-			'date' => current_time( 'mysql' ),
-			'points' => $points,
-			'reason' => 'Pedido #' . $order_id
-		];
-
-		update_user_meta( $user_id, '_sk_rewards_history', $history );
-		$order->update_meta_data( '_sk_rewards_awarded', $points );
-		$order->save_meta_data();
 	}
 
 	public static function revoke_points( $order_id ) {
@@ -75,38 +32,9 @@ class Rewards {
 			return;
 		}
 
-		$user_id = $order->get_user_id();
-		if ( ! $user_id ) {
-			return;
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			\Skincare\SiteKit\Admin\Rewards_Master::revoke_points_for_order( $order );
 		}
-
-		$awarded = (int) $order->get_meta( '_sk_rewards_awarded', true );
-		if ( $awarded <= 0 ) {
-			return;
-		}
-
-		if ( $order->get_meta( '_sk_rewards_reversed', true ) ) {
-			return;
-		}
-
-		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
-		$new_points = max( 0, $current_points - $awarded );
-		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
-
-		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
-		if ( ! is_array( $history ) ) {
-			$history = [];
-		}
-
-		$history[] = [
-			'date' => current_time( 'mysql' ),
-			'points' => -$awarded,
-			'reason' => 'Reverso del pedido #' . $order_id,
-		];
-
-		update_user_meta( $user_id, '_sk_rewards_history', $history );
-		$order->update_meta_data( '_sk_rewards_reversed', 1 );
-		$order->save_meta_data();
 	}
 
 	public static function ajax_redeem_points() {

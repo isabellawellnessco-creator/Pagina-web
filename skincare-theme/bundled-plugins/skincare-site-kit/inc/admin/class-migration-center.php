@@ -204,6 +204,12 @@ class Migration_Center {
 			wp_send_json_error( [ 'message' => $payload->get_error_message() ] );
 		}
 
+		$payload = self::sanitize_payload( $payload );
+		$validation = self::validate_payload( $payload );
+		if ( is_wp_error( $validation ) ) {
+			wp_send_json_error( [ 'message' => $validation->get_error_message() ] );
+		}
+
 		$report = self::build_import_report( $payload, $dry_run );
 
 		if ( ! $dry_run ) {
@@ -288,6 +294,7 @@ class Migration_Center {
 			'plugins' => self::get_required_plugins_status(),
 			'pages' => [],
 			'warnings' => [],
+			'checklist' => self::get_post_import_checklist(),
 		];
 
 		if ( ! empty( $payload['options'] ) && is_array( $payload['options'] ) ) {
@@ -301,6 +308,16 @@ class Migration_Center {
 
 		$required_pages = self::ensure_wc_pages( $payload, true );
 		$report['pages'] = $required_pages;
+
+		foreach ( $report['plugins'] as $plugin ) {
+			if ( 'ok' !== $plugin['status'] ) {
+				$report['warnings'][] = sprintf( __( '%s no está activo o instalado.', 'skincare' ), $plugin['label'] );
+			}
+		}
+
+		if ( empty( $payload['options'] ) ) {
+			$report['warnings'][] = __( 'El archivo no contiene opciones importables.', 'skincare' );
+		}
 
 		if ( empty( $report['changes'] ) ) {
 			$report['changes'][] = __( 'No hay cambios detectados.', 'skincare' );
@@ -335,6 +352,58 @@ class Migration_Center {
 		self::ensure_wc_pages( $payload, false );
 		flush_rewrite_rules();
 		return true;
+	}
+
+	private static function validate_payload( $payload ) {
+		if ( empty( $payload ) || ! is_array( $payload ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'El archivo no contiene datos válidos.', 'skincare' ) );
+		}
+
+		if ( empty( $payload['options'] ) || ! is_array( $payload['options'] ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'El archivo no contiene opciones importables.', 'skincare' ) );
+		}
+
+		if ( isset( $payload['woocommerce'] ) && ! is_array( $payload['woocommerce'] ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'La sección WooCommerce es inválida.', 'skincare' ) );
+		}
+
+		if ( isset( $payload['gateways'] ) && ! is_array( $payload['gateways'] ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'La sección de pasarelas es inválida.', 'skincare' ) );
+		}
+
+		if ( isset( $payload['shipping_zones'] ) && ! is_array( $payload['shipping_zones'] ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'La sección de envíos es inválida.', 'skincare' ) );
+		}
+
+		if ( isset( $payload['pages'] ) && ! is_array( $payload['pages'] ) ) {
+			return new \WP_Error( 'sk_migration_invalid', __( 'La sección de páginas es inválida.', 'skincare' ) );
+		}
+
+		return true;
+	}
+
+	private static function sanitize_payload( $payload ) {
+		$payload = is_array( $payload ) ? $payload : [];
+		$payload['options'] = isset( $payload['options'] ) && is_array( $payload['options'] ) ? $payload['options'] : [];
+		$payload['woocommerce'] = isset( $payload['woocommerce'] ) && is_array( $payload['woocommerce'] ) ? $payload['woocommerce'] : [];
+		$payload['gateways'] = isset( $payload['gateways'] ) && is_array( $payload['gateways'] ) ? $payload['gateways'] : [];
+		$payload['shipping_zones'] = isset( $payload['shipping_zones'] ) && is_array( $payload['shipping_zones'] ) ? $payload['shipping_zones'] : [];
+		$payload['pages'] = isset( $payload['pages'] ) && is_array( $payload['pages'] ) ? $payload['pages'] : [];
+
+		$payload['options'] = array_intersect_key( $payload['options'], array_flip( self::OPTION_KEYS ) );
+		$payload['woocommerce'] = array_intersect_key( $payload['woocommerce'], array_flip( self::WC_OPTIONS ) );
+
+		return $payload;
+	}
+
+	private static function get_post_import_checklist() {
+		return [
+			__( 'Regenerar archivos CSS/JS en Elementor (Herramientas > Regenerar).', 'skincare' ),
+			__( 'Revisar estado de plugins requeridos y activar los faltantes.', 'skincare' ),
+			__( 'Verificar páginas WooCommerce asignadas (Tienda, Carrito, Checkout, Mi cuenta).', 'skincare' ),
+			__( 'Probar flujo de compra y confirmar emails/WhatsApp.', 'skincare' ),
+			__( 'Revisar tasas e impuestos en WooCommerce.', 'skincare' ),
+		];
 	}
 
 	private static function ensure_wc_pages( $payload, $dry_run ) {

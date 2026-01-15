@@ -448,8 +448,9 @@ class Settings {
 		// Get sk_template posts
 		$templates = get_posts( [
 			'post_type'      => 'sk_template',
-			'posts_per_page' => -1,
+			'posts_per_page' => 200,
 			'post_status'    => 'publish',
+			'no_found_rows'  => true,
 		] );
 
 		echo '<select name="sk_theme_builder_settings[' . esc_attr( $id ) . ']">';

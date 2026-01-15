@@ -51,6 +51,7 @@
                         </div>
 
                         <div class="sk-drawer-footer">
+                            <div class="sk-drawer-feedback" role="status" aria-live="polite"></div>
                             <!-- Extras -->
                             <div class="sk-cart-extras">
                                 <details>
@@ -101,13 +102,37 @@
                     action: 'sk_apply_coupon',
                     coupon_code: code
                 }, function(res) {
-                    alert(res.data.message);
+                    var message = res && res.data && res.data.message ? res.data.message : 'No se pudo aplicar el cupón.';
+                    SkincareCart.showDrawerMessage(message, res && res.success ? 'success' : 'error');
+                    if (window.skShowToast) {
+                        window.skShowToast(message, res && res.success ? 'success' : 'error');
+                    }
                     $(document.body).trigger('wc_update_cart');
+                }).fail(function() {
+                    var message = 'No se pudo conectar. Intenta de nuevo.';
+                    SkincareCart.showDrawerMessage(message, 'error');
+                    if (window.skShowToast) {
+                        window.skShowToast(message, 'error');
+                    }
                 });
             });
 
             // Initial Load
             this.updateCart();
+        },
+
+        showDrawerMessage: function(message, type) {
+            var $feedback = $('.sk-drawer-feedback');
+            if (!$feedback.length) {
+                return;
+            }
+            $feedback.removeClass('is-success is-error');
+            if (type === 'success') {
+                $feedback.addClass('is-success');
+            } else if (type === 'error') {
+                $feedback.addClass('is-error');
+            }
+            $feedback.text(message);
         },
 
         openDrawer: function() {

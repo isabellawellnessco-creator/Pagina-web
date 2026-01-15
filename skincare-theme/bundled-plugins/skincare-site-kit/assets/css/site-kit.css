@@ -117,6 +117,304 @@
     background: var(--c-text-main, #0F3062);
 }
 
+/* App UI Components */
+.sk-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(15, 48, 98, 0.08);
+}
+
+.sk-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sk-badge--status {
+    background: rgba(15, 48, 98, 0.12);
+    color: #0F3062;
+}
+
+.sk-badge--neutral {
+    background: rgba(229, 117, 126, 0.15);
+    color: #E5757E;
+}
+
+.sk-alert {
+    background: rgba(15, 48, 98, 0.06);
+    border: 1px solid rgba(15, 48, 98, 0.15);
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: #0F3062;
+}
+
+.sk-alert--success {
+    background: rgba(31, 143, 74, 0.08);
+    border-color: rgba(31, 143, 74, 0.2);
+    color: #1f8f4a;
+}
+
+.sk-alert--error {
+    background: rgba(204, 30, 50, 0.08);
+    border-color: rgba(204, 30, 50, 0.2);
+    color: #cc1e32;
+}
+
+.sk-empty-state {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 14px;
+    background: #f8f5f1;
+    border: 1px dashed #e6ded6;
+}
+
+.sk-empty-state--compact {
+    padding: 16px;
+    max-width: 520px;
+}
+
+.sk-empty-state__icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.sk-loader {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top-color: #fff;
+    animation: sk-spin-basic 0.8s linear infinite;
+}
+
+.sk-btn--loading.is-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.85;
+    padding-right: 46px;
+}
+
+.sk-btn--loading.is-loading::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top-color: #fff;
+    animation: sk-spin 0.8s linear infinite;
+}
+
+@keyframes sk-spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes sk-spin-basic {
+    to { transform: rotate(360deg); }
+}
+
+/* Account Dashboard */
+.sk-account-dashboard {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.sk-account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.sk-user-points-badge {
+    background: #E5757E;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.sk-account-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.sk-tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    font-size: 16px;
+}
+
+.sk-tab-btn.active {
+    color: #0F3062;
+    border-color: #0F3062;
+}
+
+.sk-tab-pane {
+    display: none;
+    animation: sk-fade-in 0.3s ease;
+}
+
+.sk-tab-pane.active {
+    display: block;
+}
+
+@keyframes sk-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sk-orders-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.sk-order-card__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.sk-order-card__meta {
+    color: #7f8a9b;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.sk-order-card__status {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sk-order-card__sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.sk-order-card__sections h5 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: #0F3062;
+}
+
+.sk-order-card__sections ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 6px;
+    color: #35455f;
+    font-size: 14px;
+}
+
+.sk-order-card__sections li strong {
+    color: #0F3062;
+}
+
+.sk-order-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    gap: 6px;
+}
+
+.sk-order-card__footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sk-divider {
+    padding: 0 8px;
+    color: #c2c7d0;
+}
+
+.sk-text-success {
+    color: #1f8f4a;
+    font-weight: 600;
+}
+
+.sk-text-warning {
+    color: #cc7a00;
+    font-weight: 600;
+}
+
+/* Stepper */
+.sk-stepper {
+    display: grid;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.sk-step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: #7f8a9b;
+}
+
+.sk-step__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d6dbe4;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.sk-step.is-active {
+    color: #0F3062;
+}
+
+.sk-step.is-active .sk-step__dot {
+    background: #E5757E;
+    box-shadow: 0 0 0 4px rgba(229, 117, 126, 0.2);
+}
+
+.sk-step.is-complete {
+    color: #1f8f4a;
+}
+
+.sk-step.is-complete .sk-step__dot {
+    background: #1f8f4a;
+}
+
+.sk-step p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: inherit;
+}
+
 /* Rewards Dashboard */
 .sk-rewards-dashboard {
     background: #F8F5F1;
@@ -137,6 +435,48 @@
     font-size: 4rem;
     font-weight: bold;
     color: #E5757E;
+}
+
+.sk-rewards-subtitle {
+    color: #5b6b80;
+    margin: 8px 0 16px;
+}
+
+.sk-rewards-actions {
+    display: grid;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.sk-inline-message {
+    min-height: 20px;
+    font-size: 14px;
+    color: #35455f;
+}
+
+.sk-inline-message.is-success {
+    color: #1f8f4a;
+}
+
+.sk-inline-message.is-error {
+    color: #cc1e32;
+}
+
+.sk-points-total {
+    font-size: 36px;
+    color: #E5757E;
+    margin: 10px 0;
+}
+
+.sk-rewards-overview {
+    background: #F8F5F1;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.sk-helper-text {
+    color: #7f8a9b;
+    font-size: 13px;
 }
 
 .sk-points-history ul {

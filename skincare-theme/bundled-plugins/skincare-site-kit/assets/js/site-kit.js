@@ -105,6 +105,52 @@ jQuery(document).ready(function($) {
         $(this).find('i').toggleClass('eicon-plus eicon-minus');
     });
 
+    // Account Tabs
+    $(document).on('click', '[data-sk-tabs] .sk-tab-btn', function() {
+        var $btn = $(this);
+        var $wrapper = $btn.closest('[data-sk-tabs]');
+        $wrapper.find('.sk-tab-btn').removeClass('active').attr('aria-selected', 'false');
+        $wrapper.find('.sk-tab-pane').removeClass('active');
+        $btn.addClass('active').attr('aria-selected', 'true');
+        $($btn.data('target')).addClass('active');
+    });
+
+    // Rewards Redeem
+    $(document).on('click', '#sk-redeem-btn', function(e) {
+        e.preventDefault();
+        var $btn = $(this);
+        var $container = $btn.closest('.sk-rewards-actions');
+        var $message = $container.find('.sk-inline-message');
+
+        if ($btn.hasClass('is-loading')) {
+            return;
+        }
+
+        if (!confirm('¿Canjear 500 puntos?')) {
+            return;
+        }
+
+        var originalText = $btn.text();
+        var loadingText = $btn.data('loading-text') || 'Canjeando...';
+
+        $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
+        $message.removeClass('is-success is-error').text('Procesando tu canje...');
+
+        $.post(sk_vars.ajax_url, { action: 'sk_redeem_points', nonce: sk_vars.nonce }, function(res) {
+            if (res.success) {
+                $message.addClass('is-success').text('¡Listo! Tu cupón es ' + res.data.code + '.');
+                $('.points-value, .sk-points-total').text(res.data.new_balance);
+                $btn.remove();
+            } else {
+                $message.addClass('is-error').text(res.data.message || 'No se pudo canjear en este momento.');
+                $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+            }
+        }).fail(function() {
+            $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
+            $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
+        });
+    });
+
     // Ajax Filter (Static Demo Logic)
     $('.sk-filter-group input').on('change', function() {
         var activeBrands = [];

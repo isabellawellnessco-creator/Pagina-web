@@ -13,15 +13,18 @@ class Account_Dashboard extends Widget_Base {
 	public function get_icon() { return 'eicon-person'; }
 	public function get_categories() { return [ 'general' ]; }
 
-	protected function render() {
-		if ( ! is_user_logged_in() ) {
-			echo '<div class="sk-login-prompt">';
-			echo '<h3>' . __( 'Bienvenido', 'skincare' ) . '</h3>';
-			echo '<p>' . __( 'Por favor inicia sesión para ver tu cuenta.', 'skincare' ) . '</p>';
-			wp_login_form();
-			echo '</div>';
-			return;
-		}
+		protected function render() {
+			if ( ! is_user_logged_in() ) {
+				echo '<div class="sk-empty-state sk-empty-state--compact">';
+				echo '<span class="sk-empty-state__icon">👋</span>';
+				echo '<div>';
+				echo '<h3>' . __( 'Bienvenido', 'skincare' ) . '</h3>';
+				echo '<p>' . __( 'Por favor inicia sesión para ver tu cuenta y tu tracking.', 'skincare' ) . '</p>';
+				wp_login_form();
+				echo '</div>';
+				echo '</div>';
+				return;
+			}
 
 		$current_user = wp_get_current_user();
 
@@ -48,17 +51,23 @@ class Account_Dashboard extends Widget_Base {
 				<a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="sk-logout-link"><?php _e( 'Cerrar Sesión', 'skincare' ); ?></a>
 			</div>
 
-			<div class="sk-account-tabs-wrapper">
-				<div class="sk-account-tabs">
-					<button class="sk-tab-btn active" data-target="#tab-orders"><?php _e( 'Mis Pedidos', 'skincare' ); ?></button>
-					<button class="sk-tab-btn" data-target="#tab-address"><?php _e( 'Direcciones', 'skincare' ); ?></button>
-					<button class="sk-tab-btn" data-target="#tab-rewards"><?php _e( 'Mis Puntos', 'skincare' ); ?></button>
+			<div class="sk-account-tabs-wrapper" data-sk-tabs>
+				<div class="sk-account-tabs" role="tablist">
+					<button class="sk-tab-btn active" data-target="#tab-orders" role="tab" aria-selected="true"><?php _e( 'Mis Pedidos', 'skincare' ); ?></button>
+					<button class="sk-tab-btn" data-target="#tab-address" role="tab" aria-selected="false"><?php _e( 'Direcciones', 'skincare' ); ?></button>
+					<button class="sk-tab-btn" data-target="#tab-rewards" role="tab" aria-selected="false"><?php _e( 'Mis Puntos', 'skincare' ); ?></button>
 				</div>
 
-				<div id="tab-orders" class="sk-tab-pane active">
+				<div id="tab-orders" class="sk-tab-pane active" role="tabpanel">
 					<?php if ( empty( $orders ) ) : ?>
-						<p><?php _e( 'No has realizado pedidos aún.', 'skincare' ); ?></p>
-						<a href="/shop/" class="btn sk-btn"><?php _e( 'Ir a la Tienda', 'skincare' ); ?></a>
+						<div class="sk-empty-state">
+							<span class="sk-empty-state__icon">🛍️</span>
+							<div>
+								<h4><?php _e( 'Todavía no tienes pedidos', 'skincare' ); ?></h4>
+								<p><?php _e( 'Empieza con un producto y te mostraremos el tracking aquí.', 'skincare' ); ?></p>
+								<a href="/shop/" class="btn sk-btn"><?php _e( 'Ir a la Tienda', 'skincare' ); ?></a>
+							</div>
+						</div>
 					<?php else : ?>
 						<div class="sk-orders-grid">
 							<?php foreach ( $orders as $order ) : ?>
@@ -79,8 +88,23 @@ class Account_Dashboard extends Widget_Base {
 								$shipping_address = $order->get_formatted_shipping_address();
 								$payment_method = $order->get_payment_method_title();
 								$is_paid = $order->is_paid();
+								$order_status = $order->get_status();
+								$step_index = 0;
+								if ( 'completed' === $order_status ) {
+									$step_index = 3;
+								} elseif ( $tracking_number || $tracking_url ) {
+									$step_index = 2;
+								} elseif ( $packing_status ) {
+									$step_index = 1;
+								}
+								$steps = [
+									[ 'label' => __( 'Pedido confirmado', 'skincare' ), 'desc' => __( 'Estamos preparando tu pedido.', 'skincare' ) ],
+									[ 'label' => __( 'Empaque', 'skincare' ), 'desc' => $packing_status ? $packing_status : __( 'Empaque en progreso.', 'skincare' ) ],
+									[ 'label' => __( 'En camino', 'skincare' ), 'desc' => $tracking_number ? __( 'Tu pedido va en camino.', 'skincare' ) : __( 'Esperando guía de envío.', 'skincare' ) ],
+									[ 'label' => __( 'Entregado', 'skincare' ), 'desc' => __( 'Pedido entregado.', 'skincare' ) ],
+								];
 								?>
-								<article class="sk-order-card">
+								<article class="sk-card sk-order-card">
 									<header class="sk-order-card__header">
 										<div>
 											<h4><?php printf( __( 'Pedido #%s', 'skincare' ), esc_html( $order->get_order_number() ) ); ?></h4>
@@ -139,7 +163,26 @@ class Account_Dashboard extends Widget_Base {
 
 										<section>
 											<h5><?php _e( 'Tracking', 'skincare' ); ?></h5>
-											<ul>
+											<div class="sk-stepper" aria-live="polite">
+												<?php foreach ( $steps as $index => $step ) : ?>
+													<?php
+													$step_class = 'sk-step';
+													if ( $index < $step_index ) {
+														$step_class .= ' is-complete';
+													} elseif ( $index === $step_index ) {
+														$step_class .= ' is-active';
+													}
+													?>
+													<div class="<?php echo esc_attr( $step_class ); ?>">
+														<span class="sk-step__dot"></span>
+														<div>
+															<strong><?php echo esc_html( $step['label'] ); ?></strong>
+															<p><?php echo esc_html( $step['desc'] ); ?></p>
+														</div>
+													</div>
+												<?php endforeach; ?>
+											</div>
+											<ul class="sk-order-card__list">
 												<li><strong><?php _e( 'Transportista:', 'skincare' ); ?></strong> <?php echo $carrier ? esc_html( $carrier ) : esc_html__( 'Por asignar', 'skincare' ); ?></li>
 												<li><strong><?php _e( 'Código de envío:', 'skincare' ); ?></strong> <?php echo $tracking_number ? esc_html( $tracking_number ) : esc_html__( 'Sin código', 'skincare' ); ?></li>
 												<li>
@@ -171,16 +214,16 @@ class Account_Dashboard extends Widget_Base {
 					<?php endif; ?>
 				</div>
 
-				<div id="tab-address" class="sk-tab-pane">
+				<div id="tab-address" class="sk-tab-pane" role="tabpanel">
 					<h4><?php _e( 'Dirección de Facturación', 'skincare' ); ?></h4>
 					<address><?php echo $address ? wp_kses_post( $address ) : __( 'No has configurado una dirección.', 'skincare' ); ?></address>
 					<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', 'billing' ) ); ?>" class="btn sk-btn-small"><?php _e( 'Editar', 'skincare' ); ?></a>
 				</div>
 
-				<div id="tab-rewards" class="sk-tab-pane">
-					<div class="sk-rewards-overview" style="background: #F8F5F1; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+				<div id="tab-rewards" class="sk-tab-pane" role="tabpanel">
+					<div class="sk-card sk-rewards-overview">
 						<h4><?php _e( 'Balance de Puntos', 'skincare' ); ?></h4>
-						<h2 style="color: #E5757E; font-size: 36px; margin: 10px 0;"><?php echo esc_html( $points ); ?></h2>
+						<h2 class="sk-points-total"><?php echo esc_html( $points ); ?></h2>
 						<p><?php _e( 'Gana puntos con cada compra y canjéalos por descuentos exclusivos.', 'skincare' ); ?></p>
 						<a href="/rewards/" class="btn sk-btn"><?php _e( 'Ver Catálogo de Premios', 'skincare' ); ?></a>
 					</div>
@@ -200,7 +243,7 @@ class Account_Dashboard extends Widget_Base {
 									<tr>
 										<td><?php echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $entry['date'] ) ) ); ?></td>
 										<td><?php echo esc_html( $entry['reason'] ); ?></td>
-										<td style="color: <?php echo $entry['points'] > 0 ? 'green' : 'red'; ?>;">
+										<td class="<?php echo $entry['points'] > 0 ? 'sk-text-success' : 'sk-text-warning'; ?>">
 											<?php echo $entry['points'] > 0 ? '+' . $entry['points'] : $entry['points']; ?>
 										</td>
 									</tr>
@@ -208,49 +251,17 @@ class Account_Dashboard extends Widget_Base {
 							</tbody>
 						</table>
 					<?php else : ?>
-						<p><?php _e( 'No hay historial de puntos aún.', 'skincare' ); ?></p>
+						<div class="sk-empty-state sk-empty-state--compact">
+							<span class="sk-empty-state__icon">✨</span>
+							<div>
+								<h4><?php _e( 'Aún no tienes movimientos', 'skincare' ); ?></h4>
+								<p><?php _e( 'Compra tus favoritos y verás aquí cada punto ganado.', 'skincare' ); ?></p>
+							</div>
+						</div>
 					<?php endif; ?>
 				</div>
 			</div>
 		</div>
-
-		<style>
-			.sk-account-dashboard { max-width: 980px; margin: 0 auto; }
-			.sk-account-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
-			.sk-user-points-badge { background: #E5757E; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-top: 5px; }
-			.sk-account-tabs { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-			.sk-tab-btn { background: none; border: none; padding: 10px 0; font-weight: bold; color: #aaa; cursor: pointer; border-bottom: 2px solid transparent; font-size: 16px; }
-			.sk-tab-btn.active { color: #0F3062; border-color: #0F3062; }
-			.sk-tab-pane { display: none; }
-			.sk-tab-pane.active { display: block; animation: fadeIn 0.3s; }
-			.sk-orders-grid { display: grid; gap: 20px; }
-			.sk-order-card { border: 1px solid #eee; border-radius: 14px; padding: 20px; background: #fff; box-shadow: 0 10px 30px rgba(15, 48, 98, 0.08); }
-			.sk-order-card__header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
-			.sk-order-card__meta { color: #7f8a9b; font-size: 14px; margin-top: 4px; }
-			.sk-order-card__status { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-			.sk-order-card__sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 16px; }
-			.sk-order-card__sections h5 { margin: 0 0 8px; font-size: 15px; color: #0F3062; }
-			.sk-order-card__sections ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; color: #35455f; font-size: 14px; }
-			.sk-order-card__sections li strong { color: #0F3062; }
-			.sk-order-card__footer { display: flex; justify-content: flex-end; }
-			.sk-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
-			.sk-badge--status { background: rgba(15, 48, 98, 0.12); color: #0F3062; }
-			.sk-badge--neutral { background: rgba(229, 117, 126, 0.15); color: #E5757E; }
-			.sk-divider { padding: 0 8px; color: #c2c7d0; }
-			.sk-text-success { color: #1f8f4a; font-weight: 600; }
-			.sk-text-warning { color: #cc7a00; font-weight: 600; }
-		</style>
-
-		<script>
-		jQuery(document).ready(function($){
-			$('.sk-tab-btn').click(function(){
-				$('.sk-tab-btn').removeClass('active');
-				$('.sk-tab-pane').removeClass('active');
-				$(this).addClass('active');
-				$($(this).data('target')).addClass('active');
-			});
-		});
-		</script>
 		<?php
 	}
 }

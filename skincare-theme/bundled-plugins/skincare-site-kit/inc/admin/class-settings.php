@@ -42,10 +42,21 @@ class Settings {
 			'sk-theme-builder',
 			[ __CLASS__, 'render_theme_builder_page' ]
 		);
+
+		add_submenu_page(
+			'skincare-site-kit',
+			'Localization',
+			'Localization',
+			'manage_options',
+			'sk-localization',
+			[ __CLASS__, 'render_localization_page' ]
+		);
 	}
 
 	public static function register_settings() {
 		register_setting( 'sk_theme_builder', 'sk_theme_builder_settings' );
+		register_setting( 'sk_localization', 'sk_currencies' );
+		register_setting( 'sk_localization', 'sk_languages' );
 
 		add_settings_section(
 			'sk_locations_section',
@@ -436,6 +447,103 @@ class Settings {
 				submit_button();
 				?>
 			</form>
+		</div>
+		<?php
+	}
+
+	public static function render_localization_page() {
+		$currencies = get_option( 'sk_currencies', [ 'PEN' => [ 'symbol' => 'S/', 'rate' => 1, 'name' => 'Soles' ] ] );
+		$languages = get_option( 'sk_languages', [ 'es_ES' => [ 'label' => 'Español', 'flag' => '' ] ] );
+		?>
+		<div class="wrap">
+			<h1>Localization Settings</h1>
+			<form method="post" action="options.php">
+				<?php settings_fields( 'sk_localization' ); ?>
+
+				<h2>Currencies</h2>
+				<p>Manage store currencies and exchange rates manually.</p>
+				<table class="widefat fixed striped">
+					<thead>
+						<tr>
+							<th>Code (ISO)</th>
+							<th>Name</th>
+							<th>Symbol</th>
+							<th>Exchange Rate (Base = 1)</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody id="sk-currency-list">
+						<?php foreach ( $currencies as $code => $data ) : ?>
+						<tr>
+							<td><input type="text" name="sk_currencies[<?php echo esc_attr( $code ); ?>][code]" value="<?php echo esc_attr( $code ); ?>" readonly></td>
+							<td><input type="text" name="sk_currencies[<?php echo esc_attr( $code ); ?>][name]" value="<?php echo esc_attr( $data['name'] ); ?>"></td>
+							<td><input type="text" name="sk_currencies[<?php echo esc_attr( $code ); ?>][symbol]" value="<?php echo esc_attr( $data['symbol'] ); ?>"></td>
+							<td><input type="number" step="0.0001" name="sk_currencies[<?php echo esc_attr( $code ); ?>][rate]" value="<?php echo esc_attr( $data['rate'] ); ?>"></td>
+							<td><button type="button" class="button sk-remove-row">Remove</button></td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+				<p><button type="button" class="button" id="sk-add-currency">Add Currency</button></p>
+
+				<hr>
+
+				<h2>Languages</h2>
+				<p>Define available languages for the switcher.</p>
+				<table class="widefat fixed striped">
+					<thead>
+						<tr>
+							<th>Locale Code</th>
+							<th>Label</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody id="sk-language-list">
+						<?php foreach ( $languages as $code => $data ) : ?>
+						<tr>
+							<td><input type="text" name="sk_languages[<?php echo esc_attr( $code ); ?>][code]" value="<?php echo esc_attr( $code ); ?>" readonly></td>
+							<td><input type="text" name="sk_languages[<?php echo esc_attr( $code ); ?>][label]" value="<?php echo esc_attr( $data['label'] ); ?>"></td>
+							<td><button type="button" class="button sk-remove-row">Remove</button></td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+				<p><button type="button" class="button" id="sk-add-language">Add Language</button></p>
+
+				<?php submit_button(); ?>
+			</form>
+
+			<script>
+			jQuery(document).ready(function($) {
+				$('#sk-add-currency').on('click', function() {
+					let code = prompt("Enter Currency Code (e.g., USD):");
+					if(code) {
+						let html = `<tr>
+							<td><input type="text" name="sk_currencies[${code}][code]" value="${code}" readonly></td>
+							<td><input type="text" name="sk_currencies[${code}][name]" value=""></td>
+							<td><input type="text" name="sk_currencies[${code}][symbol]" value=""></td>
+							<td><input type="number" step="0.0001" name="sk_currencies[${code}][rate]" value="1"></td>
+							<td><button type="button" class="button sk-remove-row">Remove</button></td>
+						</tr>`;
+						$('#sk-currency-list').append(html);
+					}
+				});
+				$('#sk-add-language').on('click', function() {
+					let code = prompt("Enter Locale Code (e.g., en_US):");
+					if(code) {
+						let html = `<tr>
+							<td><input type="text" name="sk_languages[${code}][code]" value="${code}" readonly></td>
+							<td><input type="text" name="sk_languages[${code}][label]" value=""></td>
+							<td><button type="button" class="button sk-remove-row">Remove</button></td>
+						</tr>`;
+						$('#sk-language-list').append(html);
+					}
+				});
+				$(document).on('click', '.sk-remove-row', function() {
+					$(this).closest('tr').remove();
+				});
+			});
+			</script>
 		</div>
 		<?php
 	}

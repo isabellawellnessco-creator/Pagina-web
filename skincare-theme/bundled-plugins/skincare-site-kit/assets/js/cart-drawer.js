@@ -5,17 +5,15 @@
         init: function() {
             if(typeof sk_cart_vars === 'undefined') return;
 
-            this.threshold = parseInt(sk_cart_vars.free_shipping_threshold);
+            this.threshold = parseFloat(sk_cart_vars.free_shipping_threshold);
+            this.currencySymbol = sk_cart_vars.currency_symbol || '$';
+            this.currencyCode = sk_cart_vars.currency_code || 'USD';
             this.createDrawer();
             this.bindEvents();
         },
 
         createDrawer: function() {
             if ($('#sk-cart-drawer').length) return;
-
-            // Structure: Left (Cart) + Right (Upsell Sidebar if needed, but standard is usually bottom or integrated)
-            // For "Skin Cupid" style, it's often a single wide drawer or split.
-            // Let's implement a standard right slide-over with Upsell at bottom or top.
 
             $('body').append(`
                 <div id="sk-cart-drawer" class="sk-drawer">
@@ -28,7 +26,7 @@
                         </div>
 
                         <div class="sk-shipping-progress-bar">
-                             <p class="sk-shipping-msg">¡Estás a <span class="amount-needed">£${this.threshold}</span> de <strong>Envío Gratis</strong>!</p>
+                             <p class="sk-shipping-msg">¡Estás a <span class="amount-needed">${this.formatMoney(this.threshold)}</span> de <strong>Envío Gratis</strong>!</p>
                              <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
                         </div>
 
@@ -45,13 +43,14 @@
                             <div class="sk-drawer-upsell">
                                 <h4>Te podría gustar</h4>
                                 <div class="sk-upsell-container">
-                                    ${sk_cart_vars.upsell_product_html}
+                                    ${sk_cart_vars.recommendations_html || ''}
                                 </div>
                             </div>
                         </div>
 
                         <div class="sk-drawer-footer">
                             <div class="sk-drawer-feedback" role="status" aria-live="polite"></div>
+
                             <!-- Extras -->
                             <div class="sk-cart-extras">
                                 <details>
@@ -67,12 +66,19 @@
                                 </details>
                             </div>
 
-                            <div class="sk-cart-subtotal">
-                                <span>Subtotal:</span>
-                                <span class="amount">$0.00</span>
+                             <div class="sk-policy-check">
+                                <label>
+                                    <input type="checkbox" id="sk-accept-policy">
+                                    Acepto las <a href="${sk_cart_vars.policy_url}" target="_blank">políticas de compra y devoluciones</a>.
+                                </label>
                             </div>
 
-                            <a href="/finalizar-compra/" class="btn sk-btn-checkout btn-block">Pagar Ahora</a>
+                            <div class="sk-cart-subtotal">
+                                <span>Subtotal:</span>
+                                <span class="amount">${this.formatMoney(0)}</span>
+                            </div>
+
+                            <a href="${sk_cart_vars.checkout_url}" class="btn sk-btn-checkout btn-block disabled" id="sk-checkout-btn">Finalizar Compra</a>
                         </div>
                     </div>
                 </div>
@@ -89,77 +95,106 @@
                 this.closeDrawer();
             });
 
+            // WC Events
             $(document.body).on('added_to_cart removed_from_cart updated_cart_totals', () => {
                 this.updateCart();
                 this.openDrawer();
             });
 
+            // Qty Buttons (+/-)
+            $(document).on('click', '.sk-qty-btn', function(e) {
+                e.preventDefault();
+                let $btn = $(this);
+                let $input = $btn.siblings('.sk-qty-input');
+                let val = parseInt($input.val()) || 0;
+                let step = parseInt($input.attr('step')) || 1;
+                let max = parseInt($input.attr('max'));
+
+                if ($btn.hasClass('plus')) {
+                    if (!max || val < max) {
+                        $input.val(val + step).trigger('change');
+                    }
+                } else {
+                    if (val > 1) {
+                         $input.val(val - step).trigger('change');
+                    }
+                }
+            });
+
+            // Debounce for input change to avoid massive AJAX spam
+            var debounceTimer;
+            $(document).on('change', '.sk-qty-input', function() {
+                 let key = $(this).data('key');
+                 let qty = $(this).val();
+                 clearTimeout(debounceTimer);
+                 debounceTimer = setTimeout(() => {
+                      SkincareCart.updateItemQty(key, qty);
+                 }, 500);
+            });
+
             // Coupon
             $(document).on('click', '#sk-apply-coupon', function(e) {
                 e.preventDefault();
-                var code = $('#sk-drawer-coupon').val();
-
-                // Helper for REST if available, otherwise manual fetch
-                // Assuming skRestFetch is globally available from site-kit.js or we replicate logic
-                var restFetch = window.skRestFetch || function(endpoint, options) {
-                    var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
-                    var restNonce = sk_vars && sk_vars.rest_nonce ? sk_vars.rest_nonce : '';
-                    var url = restUrl ? restUrl + endpoint : '';
-                    return fetch(url, $.extend(true, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-WP-Nonce': restNonce
-                        },
-                        credentials: 'same-origin'
-                    }, options || {}));
-                };
-
-                restFetch('cart/coupon', {
-                    body: JSON.stringify({ coupon_code: code })
-                })
-                .then(function(response) {
-                    return response.json().then(function(data) {
-                        return { ok: response.ok, data: data };
-                    });
-                })
-                .then(function(result) {
-                    var message = result.data && result.data.message ? result.data.message : 'No se pudo aplicar el cupón.';
-                    var success = result.ok && result.data && result.data.success;
-
-                    SkincareCart.showDrawerMessage(message, success ? 'success' : 'error');
-                    if (window.skShowToast) {
-                        window.skShowToast(message, success ? 'success' : 'error');
-                    }
-                    if (success) {
-                        $(document.body).trigger('wc_update_cart');
-                    }
-                })
-                .catch(function() {
-                    var message = 'No se pudo conectar. Intenta de nuevo.';
-                    SkincareCart.showDrawerMessage(message, 'error');
-                    if (window.skShowToast) {
-                        window.skShowToast(message, 'error');
-                    }
-                });
+                SkincareCart.applyCoupon($('#sk-drawer-coupon').val());
             });
 
-            // Initial Load
-            this.updateCart();
+            // Policy Check
+            $(document).on('change', '#sk-accept-policy', function() {
+                if($(this).is(':checked')) {
+                    $('#sk-checkout-btn').removeClass('disabled');
+                } else {
+                    $('#sk-checkout-btn').addClass('disabled');
+                }
+            });
+
+            $(document).on('click', '#sk-checkout-btn', function(e) {
+                if($(this).hasClass('disabled')) {
+                    e.preventDefault();
+                    SkincareCart.showDrawerMessage('Debes aceptar las políticas para continuar.', 'error');
+                }
+            });
+        },
+
+        applyCoupon: function(code) {
+             $.ajax({
+                 url: sk_vars.ajax_url,
+                 type: 'POST',
+                 data: {
+                     action: 'sk_apply_coupon',
+                     nonce: sk_cart_vars.nonce,
+                     coupon_code: code
+                 },
+                 success: (res) => {
+                     if(res.success) {
+                         this.showDrawerMessage(res.data.message, 'success');
+                         $(document.body).trigger('wc_update_cart');
+                     } else {
+                         this.showDrawerMessage(res.data ? res.data.message : 'Error', 'error');
+                     }
+                 }
+             });
+        },
+
+        updateItemQty: function(key, qty) {
+             $('.sk-drawer-content').addClass('loading');
+
+             $.post(sk_vars.ajax_url, {
+                 action: 'sk_update_cart_item',
+                 cart_item_key: key,
+                 qty: qty,
+                 nonce: sk_cart_vars.nonce
+             }, (res) => {
+                 $('.sk-drawer-content').removeClass('loading');
+                 if(res.success) {
+                      $(document.body).trigger('wc_update_cart');
+                 }
+             });
         },
 
         showDrawerMessage: function(message, type) {
             var $feedback = $('.sk-drawer-feedback');
-            if (!$feedback.length) {
-                return;
-            }
-            $feedback.removeClass('is-success is-error');
-            if (type === 'success') {
-                $feedback.addClass('is-success');
-            } else if (type === 'error') {
-                $feedback.addClass('is-error');
-            }
-            $feedback.text(message);
+            $feedback.removeClass('is-success is-error').addClass('is-' + type).text(message).show();
+            setTimeout(() => { $feedback.fadeOut(); }, 4000);
         },
 
         openDrawer: function() {
@@ -181,17 +216,36 @@
                         const $miniCart = $(data.fragments['div.widget_shopping_cart_content']);
                         if ($miniCart.length) {
                             $('.sk-cart-items').html($miniCart.find('.woocommerce-mini-cart').html());
-                            $('.sk-cart-subtotal .amount').html($miniCart.find('.total .amount').html());
+
+                            let subHtml = $miniCart.find('.total .amount').html();
+                            // Fallback if subtotal is missing (e.g. empty cart)
+                            $('.sk-cart-subtotal .amount').html(subHtml || this.formatMoney(0));
 
                             const count = $miniCart.find('.mini_cart_item').length;
                             $('.sk-cart-count').text(`(${count})`);
 
                             // Progress Bar Logic
-                            // Parse subtotal amount (remove currency symbols)
-                            let subtotalHtml = $miniCart.find('.total .amount').text();
-                            let subtotal = parseFloat(subtotalHtml.replace(/[^0-9.]/g, ''));
+                            let subtotalText = $miniCart.find('.total .amount').text();
 
-                            this.updateProgressBar(subtotal);
+                            // Advanced Parsing for Currency
+                            let raw = subtotalText.replace(this.currencySymbol, '').trim();
+                            let clean = raw.replace(/[^0-9.,]/g, '');
+                            let dotPos = clean.lastIndexOf('.');
+                            let commaPos = clean.lastIndexOf(',');
+                            let sep = Math.max(dotPos, commaPos);
+
+                            let val = 0;
+                            if (sep === -1) {
+                                val = parseFloat(clean);
+                            } else {
+                                let whole = clean.substring(0, sep).replace(/[^0-9]/g, '');
+                                let dec = clean.substring(sep+1);
+                                val = parseFloat(whole + '.' + dec);
+                            }
+
+                            if (isNaN(val)) val = 0;
+
+                            this.updateProgressBar(val);
 
                             if (count === 0) {
                                 $('.sk-cart-empty').show();
@@ -216,7 +270,19 @@
             if (needed <= 0) {
                 $('.sk-shipping-msg').html('¡Felicidades! Tienes <strong>Envío Gratis</strong>.');
             } else {
-                $('.sk-shipping-msg').html(`¡Estás a <span class="amount-needed">£${needed.toFixed(2)}</span> de <strong>Envío Gratis</strong>!`);
+                $('.sk-shipping-msg').html(`¡Estás a <span class="amount-needed">${this.formatMoney(needed)}</span> de <strong>Envío Gratis</strong>!`);
+            }
+        },
+
+        formatMoney: function(amount) {
+            try {
+                // Use Intl if supported
+                return new Intl.NumberFormat(this.currencyCode === 'PEN' ? 'es-PE' : 'en-US', {
+                    style: 'currency',
+                    currency: this.currencyCode
+                }).format(amount);
+            } catch(e) {
+                return this.currencySymbol + amount.toFixed(2);
             }
         }
     };

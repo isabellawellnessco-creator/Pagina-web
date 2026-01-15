@@ -36,6 +36,10 @@ class Loader {
 		if ( is_admin() ) {
 			\Skincare\SiteKit\Admin\Settings::init();
 			\Skincare\SiteKit\Admin\Operations_Dashboard::init();
+			\Skincare\SiteKit\Admin\Operations_Core::init();
+			\Skincare\SiteKit\Admin\Whatsapp_Context::init();
+			\Skincare\SiteKit\Admin\Stock_Manager::init();
+			\Skincare\SiteKit\Admin\Label_Generator::init();
 			\Skincare\SiteKit\Admin\Fulfillment::init();
 			\Skincare\SiteKit\Admin\Order_Management::init();
 			\Skincare\SiteKit\Admin\Rewards_Admin::init();
@@ -43,7 +47,7 @@ class Loader {
 			\Skincare\SiteKit\Admin\Notifications_Center::init();
 			\Skincare\SiteKit\Admin\Coupons_Automation::init();
 			\Skincare\SiteKit\Admin\Tracking_Settings::init();
-		\Skincare\SiteKit\Admin\Whatsapp_Templates::init();
+			\Skincare\SiteKit\Admin\Whatsapp_Templates::init();
 			\Skincare\SiteKit\Modules\Seeder::init();
 
 			\Skincare\SiteKit\Admin\Admin_Onboarding::init();

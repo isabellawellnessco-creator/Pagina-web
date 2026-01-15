@@ -1,5 +1,31 @@
 jQuery(document).ready(function($) {
 
+    function showToast(message, type) {
+        var $container = $('.sk-toast-container');
+        if (!$container.length) {
+            $container = $('<div class="sk-toast-container" aria-live="polite" aria-atomic="true"></div>');
+            $('body').append($container);
+        }
+        var $toast = $('<div class="sk-toast"></div>');
+        if (type) {
+            $toast.addClass('sk-toast--' + type);
+        }
+        $toast.text(message);
+        $container.append($toast);
+        setTimeout(function() {
+            $toast.addClass('is-visible');
+        }, 10);
+        setTimeout(function() {
+            $toast.removeClass('is-visible');
+            setTimeout(function() {
+                $toast.remove();
+                if (!$container.children().length) {
+                    $container.remove();
+                }
+            }, 300);
+        }, 3200);
+    }
+
     // Slider Logic (Simple Fade)
     $('.sk-hero-slider').each(function() {
         var $slider = $(this);
@@ -29,8 +55,12 @@ jQuery(document).ready(function($) {
         }, function(res) {
             if (res.success) {
                 $btn.addClass('added');
-                alert('Añadido a favoritos');
+                showToast('Añadido a favoritos', 'success');
+            } else {
+                showToast('No se pudo agregar a favoritos.', 'error');
             }
+        }).fail(function() {
+            showToast('No se pudo conectar. Intenta de nuevo.', 'error');
         });
     });
 
@@ -150,7 +180,8 @@ jQuery(document).ready(function($) {
             return;
         }
 
-        if (!confirm('¿Canjear 500 puntos?')) {
+        var redeemPoints = sk_vars && sk_vars.redeem_points ? sk_vars.redeem_points : 500;
+        if (!confirm('¿Canjear ' + redeemPoints + ' puntos?')) {
             return;
         }
 
@@ -223,11 +254,14 @@ jQuery(document).ready(function($) {
         }, function(res) {
             $btn.prop('disabled', false).text('Enviar Mensaje');
             if (res.success) {
-                alert(res.data.message);
+                showToast(res.data.message, 'success');
                 $form[0].reset();
             } else {
-                alert(res.data.message);
+                showToast(res.data.message, 'error');
             }
+        }).fail(function() {
+            $btn.prop('disabled', false).text('Enviar Mensaje');
+            showToast('No se pudo conectar. Intenta de nuevo.', 'error');
         });
     });
 

@@ -23,6 +23,7 @@ class Loader {
 		\Skincare\SiteKit\Modules\Purchase_Orders::init();
 		\Skincare\SiteKit\Modules\Notifications::init();
 		\Skincare\SiteKit\Modules\Coupons_Automation::init();
+		\Skincare\SiteKit\Admin\Rewards_Master::init();
 
 		// Initialize Shortcodes Wrapper
 		\Skincare\SiteKit\Core\Shortcodes::init();
@@ -33,7 +34,6 @@ class Loader {
 			\Skincare\SiteKit\Admin\Operations_Dashboard::init();
 			\Skincare\SiteKit\Admin\Fulfillment::init();
 			\Skincare\SiteKit\Admin\Order_Management::init();
-			\Skincare\SiteKit\Admin\Rewards_Master::init();
 			\Skincare\SiteKit\Admin\Rewards_Admin::init();
 			\Skincare\SiteKit\Admin\Migration_Center::init();
 			\Skincare\SiteKit\Admin\Notifications_Center::init();
@@ -50,6 +50,10 @@ class Loader {
 	}
 
 	public function enqueue_assets() {
+		$rules = get_option( 'sk_rewards_rules', [] );
+		$redeem_points = isset( $rules['redeem_points'] ) ? (int) $rules['redeem_points'] : 500;
+		$redeem_amount = isset( $rules['redeem_amount'] ) ? (float) $rules['redeem_amount'] : 5;
+
 		wp_enqueue_style( 'sk-site-kit', SKINCARE_KIT_URL . 'assets/css/site-kit.css', [], '1.0.0' );
 		wp_enqueue_script( 'sk-site-kit', SKINCARE_KIT_URL . 'assets/js/site-kit.js', ['jquery'], '1.0.0', true );
 
@@ -58,6 +62,8 @@ class Loader {
 			'ajax_url'          => admin_url( 'admin-ajax.php' ),
 			'nonce'             => wp_create_nonce( 'sk_ajax_nonce' ),
 			'placeholder_image' => SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg',
+			'redeem_points'     => $redeem_points,
+			'redeem_amount'     => $redeem_amount,
 		] );
 	}
 

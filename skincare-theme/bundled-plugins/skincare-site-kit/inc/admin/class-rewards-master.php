@@ -14,6 +14,8 @@ class Rewards_Master {
 		add_action( 'admin_post_sk_rewards_adjust', [ __CLASS__, 'handle_points_adjustment' ] );
 		add_action( 'init', [ __CLASS__, 'maybe_create_ledger_table' ] );
 		add_action( 'woocommerce_order_status_changed', [ __CLASS__, 'handle_order_status' ], 10, 4 );
+		add_action( 'sk_rewards_expire_points', [ __CLASS__, 'expire_points' ] );
+		self::schedule_expiration();
 	}
 
 	public static function register_menu() {
@@ -63,6 +65,24 @@ class Rewards_Master {
 			'sk_rewards_rules_section',
 			[ 'id' => 'points_expiry_days', 'default' => 365, 'min' => 0, 'step' => 1 ]
 		);
+
+		add_settings_field(
+			'redeem_points',
+			__( 'Points needed to redeem', 'skincare' ),
+			[ __CLASS__, 'render_number_field' ],
+			'sk-rewards-master',
+			'sk_rewards_rules_section',
+			[ 'id' => 'redeem_points', 'default' => 500, 'min' => 1, 'step' => 1 ]
+		);
+
+		add_settings_field(
+			'redeem_amount',
+			__( 'Coupon amount for redemption', 'skincare' ),
+			[ __CLASS__, 'render_number_field' ],
+			'sk-rewards-master',
+			'sk_rewards_rules_section',
+			[ 'id' => 'redeem_amount', 'default' => 5, 'min' => 0.01, 'step' => 0.01 ]
+		);
 	}
 
 	public static function sanitize_rules( $input ) {
@@ -70,6 +90,8 @@ class Rewards_Master {
 			'points_per_currency' => isset( $input['points_per_currency'] ) ? absint( $input['points_per_currency'] ) : 5,
 			'award_on_status' => isset( $input['award_on_status'] ) ? sanitize_text_field( $input['award_on_status'] ) : 'sk-delivered',
 			'points_expiry_days' => isset( $input['points_expiry_days'] ) ? absint( $input['points_expiry_days'] ) : 365,
+			'redeem_points' => isset( $input['redeem_points'] ) ? absint( $input['redeem_points'] ) : 500,
+			'redeem_amount' => isset( $input['redeem_amount'] ) ? (float) $input['redeem_amount'] : 5,
 		];
 	}
 
@@ -180,9 +202,10 @@ class Rewards_Master {
 			exit;
 		}
 
-		self::insert_ledger_entry( $user->ID, 0, $points, $note ?: __( 'Manual adjustment', 'skincare' ) );
+		self::record_ledger_entry( $user->ID, 0, $points, $note ?: __( 'Manual adjustment', 'skincare' ) );
 		$balance = (int) get_user_meta( $user->ID, '_sk_rewards_points', true );
 		update_user_meta( $user->ID, '_sk_rewards_points', $balance + $points );
+		self::append_history( $user->ID, $points, $note ?: __( 'Manual adjustment', 'skincare' ) );
 
 		wp_redirect( admin_url( 'admin.php?page=sk-rewards-master&updated=1' ) );
 		exit;
@@ -191,15 +214,21 @@ class Rewards_Master {
 	public static function handle_order_status( $order_id, $old_status, $new_status, $order ) {
 		$rules = get_option( 'sk_rewards_rules', [] );
 		$award_status = isset( $rules['award_on_status'] ) ? $rules['award_on_status'] : 'sk-delivered';
-		if ( $new_status !== $award_status ) {
-			return;
-		}
 
 		if ( ! $order instanceof \WC_Order ) {
 			$order = wc_get_order( $order_id );
 		}
 
 		if ( ! $order ) {
+			return;
+		}
+
+		if ( in_array( $new_status, [ 'cancelled', 'refunded' ], true ) ) {
+			self::revoke_awarded_points( $order );
+			return;
+		}
+
+		if ( $new_status !== $award_status ) {
 			return;
 		}
 
@@ -215,10 +244,11 @@ class Rewards_Master {
 			return;
 		}
 
-		self::insert_ledger_entry( $user_id, $order_id, $points, __( 'Order reward', 'skincare' ) );
+		self::record_ledger_entry( $user_id, $order_id, $points, __( 'Order reward', 'skincare' ) );
 		$balance = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
 		update_user_meta( $user_id, '_sk_rewards_points', $balance + $points );
 		update_post_meta( $order_id, '_sk_rewards_awarded', $points );
+		self::append_history( $user_id, $points, sprintf( 'Pedido #%s', $order->get_order_number() ) );
 	}
 
 	private static function get_recent_ledger() {
@@ -231,7 +261,7 @@ class Rewards_Master {
 		return $wpdb->get_results( "SELECT * FROM {$table} ORDER BY id DESC LIMIT 30" );
 	}
 
-	private static function insert_ledger_entry( $user_id, $order_id, $points, $note ) {
+	public static function record_ledger_entry( $user_id, $order_id, $points, $note ) {
 		global $wpdb;
 		$table = $wpdb->prefix . self::LEDGER_TABLE;
 		$wpdb->insert(
@@ -242,8 +272,9 @@ class Rewards_Master {
 				'points' => $points,
 				'note' => $note,
 				'created_at' => current_time( 'mysql' ),
+				'is_expired' => 0,
 			],
-			[ '%d', '%d', '%d', '%s', '%s' ]
+			[ '%d', '%d', '%d', '%s', '%s', '%d' ]
 		);
 	}
 
@@ -263,10 +294,94 @@ class Rewards_Master {
 			points int(11) NOT NULL,
 			note varchar(255) DEFAULT '',
 			created_at datetime NOT NULL,
+			is_expired tinyint(1) NOT NULL DEFAULT 0,
 			PRIMARY KEY  (id),
 			KEY user_id (user_id),
 			KEY order_id (order_id)
 		) {$charset_collate};";
 		dbDelta( $sql );
+	}
+
+	private static function append_history( $user_id, $points, $reason ) {
+		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
+		if ( ! is_array( $history ) ) {
+			$history = [];
+		}
+
+		$history[] = [
+			'date' => current_time( 'mysql' ),
+			'points' => (int) $points,
+			'reason' => $reason,
+		];
+
+		update_user_meta( $user_id, '_sk_rewards_history', $history );
+	}
+
+	private static function revoke_awarded_points( $order ) {
+		$order_id = $order->get_id();
+		$user_id = $order->get_user_id();
+		if ( ! $user_id ) {
+			return;
+		}
+
+		$awarded = (int) $order->get_meta( '_sk_rewards_awarded', true );
+		if ( $awarded <= 0 ) {
+			return;
+		}
+
+		if ( $order->get_meta( '_sk_rewards_reversed', true ) ) {
+			return;
+		}
+
+		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
+		$new_points = max( 0, $current_points - $awarded );
+		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
+		update_post_meta( $order_id, '_sk_rewards_reversed', 1 );
+
+		self::record_ledger_entry( $user_id, $order_id, -$awarded, __( 'Order refund/cancel', 'skincare' ) );
+		self::append_history( $user_id, -$awarded, sprintf( 'Reverso del pedido #%s', $order->get_order_number() ) );
+	}
+
+	private static function schedule_expiration() {
+		if ( wp_next_scheduled( 'sk_rewards_expire_points' ) ) {
+			return;
+		}
+		wp_schedule_event( time(), 'daily', 'sk_rewards_expire_points' );
+	}
+
+	public static function expire_points() {
+		$rules = get_option( 'sk_rewards_rules', [] );
+		$expiry_days = isset( $rules['points_expiry_days'] ) ? absint( $rules['points_expiry_days'] ) : 0;
+		if ( $expiry_days <= 0 ) {
+			return;
+		}
+
+		global $wpdb;
+		$table = $wpdb->prefix . self::LEDGER_TABLE;
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '{$table}'" ) !== $table ) {
+			return;
+		}
+
+		$cutoff = gmdate( 'Y-m-d H:i:s', strtotime( '-' . $expiry_days . ' days' ) );
+		$entries = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT id, user_id, points FROM {$table} WHERE is_expired = 0 AND points > 0 AND created_at < %s",
+				$cutoff
+			)
+		);
+
+		if ( empty( $entries ) ) {
+			return;
+		}
+
+		foreach ( $entries as $entry ) {
+			$user_id = (int) $entry->user_id;
+			$points = (int) $entry->points;
+			$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
+			$new_points = max( 0, $current_points - $points );
+			update_user_meta( $user_id, '_sk_rewards_points', $new_points );
+			$wpdb->update( $table, [ 'is_expired' => 1 ], [ 'id' => (int) $entry->id ], [ '%d' ], [ '%d' ] );
+			self::append_history( $user_id, -$points, __( 'Puntos expirados', 'skincare' ) );
+		}
 	}
 }

@@ -60,6 +60,10 @@ class Notifications_Center {
 							<input type="checkbox" name="settings[enable_auto_emails]" value="1" <?php checked( ! empty( $settings['enable_auto_emails'] ) ); ?>>
 							<?php esc_html_e( 'Activar envíos automáticos de email.', 'skincare' ); ?>
 						</label>
+						<label class="sk-admin-checkbox">
+							<input type="checkbox" name="settings[enable_auto_whatsapp]" value="1" <?php checked( ! empty( $settings['enable_auto_whatsapp'] ) ); ?>>
+							<?php esc_html_e( 'Activar envíos automáticos de WhatsApp.', 'skincare' ); ?>
+						</label>
 					</div>
 
 					<div class="sk-admin-template-grid">
@@ -167,6 +171,7 @@ class Notifications_Center {
 			'sender_name' => sanitize_text_field( $settings['sender_name'] ?? '' ),
 			'sender_email' => sanitize_email( $settings['sender_email'] ?? '' ),
 			'enable_auto_emails' => ! empty( $settings['enable_auto_emails'] ) ? 1 : 0,
+			'enable_auto_whatsapp' => ! empty( $settings['enable_auto_whatsapp'] ) ? 1 : 0,
 			'whatsapp_access_token' => sanitize_text_field( $settings['whatsapp_access_token'] ?? '' ),
 			'whatsapp_phone_id' => sanitize_text_field( $settings['whatsapp_phone_id'] ?? '' ),
 		];

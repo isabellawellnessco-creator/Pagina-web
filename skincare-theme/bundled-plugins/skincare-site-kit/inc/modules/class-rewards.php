@@ -19,11 +19,6 @@ class Rewards {
 	}
 
 	public static function init() {
-		// Award points on purchase
-		add_action( 'woocommerce_order_status_completed', [ __CLASS__, 'award_points' ] );
-		add_action( 'woocommerce_order_status_refunded', [ __CLASS__, 'revoke_points' ] );
-		add_action( 'woocommerce_order_status_cancelled', [ __CLASS__, 'revoke_points' ] );
-
 		// AJAX Redeem
 		add_action( 'wp_ajax_sk_redeem_points', [ __CLASS__, 'ajax_redeem_points' ] );
 
@@ -121,8 +116,13 @@ class Rewards {
 			wp_send_json_error( [ 'message' => 'Inicio de sesión requerido' ] );
 		}
 
-		$points_to_redeem = 500; // Fixed for demo
-		$discount_amount = 5;
+		$rules = get_option( 'sk_rewards_rules', [] );
+		$points_to_redeem = isset( $rules['redeem_points'] ) ? (int) $rules['redeem_points'] : 500;
+		$discount_amount = isset( $rules['redeem_amount'] ) ? (float) $rules['redeem_amount'] : 5;
+
+		if ( $points_to_redeem <= 0 || $discount_amount <= 0 ) {
+			wp_send_json_error( [ 'message' => 'Configuración de canje inválida' ] );
+		}
 
 		$user_id = get_current_user_id();
 		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
@@ -151,12 +151,22 @@ class Rewards {
 		// Log History
 		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
 		if ( ! is_array( $history ) ) $history = [];
+		$currency_symbol = function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : '£';
 		$history[] = [
 			'date' => current_time( 'mysql' ),
 			'points' => -$points_to_redeem,
-			'reason' => 'Canjeado por cupón de £' . $discount_amount
+			'reason' => 'Canjeado por cupón de ' . $currency_symbol . $discount_amount
 		];
 		update_user_meta( $user_id, '_sk_rewards_history', $history );
+
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			\Skincare\SiteKit\Admin\Rewards_Master::record_ledger_entry(
+				$user_id,
+				0,
+				-$points_to_redeem,
+				sprintf( 'Redeemed for coupon %s', $coupon_code )
+			);
+		}
 
 		wp_send_json_success( [
 			'message' => 'Canje exitoso.',

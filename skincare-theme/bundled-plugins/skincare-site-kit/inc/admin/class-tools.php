@@ -48,6 +48,10 @@ class Tools {
 				break;
 			case 'reset_seeder':
 				delete_option( \Skincare\SiteKit\Modules\Seeder::OPTION_NAME );
+				delete_option( \Skincare\SiteKit\Modules\Seeder::OPTION_VERSION );
+				delete_option( \Skincare\SiteKit\Modules\Seeder::OPTION_COMPLETED );
+				delete_option( \Skincare\SiteKit\Modules\Seeder::OPTION_LAST_RUN );
+				delete_option( \Skincare\SiteKit\Modules\Seeder::OPTION_LAST_ERROR );
 				add_settings_error( 'sk_tools', 'seeder_reset', __( 'Estado del Seeder reiniciado. Puedes volver a ejecutar el Asistente.', 'skincare' ), 'success' );
 				break;
 		}

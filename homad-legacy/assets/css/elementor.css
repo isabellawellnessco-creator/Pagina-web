@@ -1,9 +1,0 @@
-/* Mantener Elementor “editable por secciones”: no rompas sus contenedores */
-.elementor-section .homad-container{
-  width: min(var(--homad-container), calc(100% - 32px));
-}
-
-/* Ajustes suaves para tipografía dentro de widgets */
-.elementor-widget-heading .elementor-heading-title{
-  color: var(--homad-text);
-}

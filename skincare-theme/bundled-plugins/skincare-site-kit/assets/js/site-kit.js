@@ -28,43 +28,8 @@ jQuery(document).ready(function($) {
 
     window.skShowToast = showToast;
 
-    function showConfirmModal(options) {
-        var settings = $.extend({
-            title: 'Confirmar acción',
-            message: '',
-            confirmText: 'Confirmar',
-            cancelText: 'Cancelar',
-            onConfirm: function() {},
-            onCancel: function() {}
-        }, options || {});
-
-        var $modal = $(`
-            <div class="sk-modal" role="dialog" aria-modal="true">
-                <div class="sk-modal__overlay"></div>
-                <div class="sk-modal__content">
-                    <h3>${settings.title}</h3>
-                    <p>${settings.message}</p>
-                    <div class="sk-modal__actions">
-                        <button type="button" class="sk-modal__btn sk-modal__btn--cancel">${settings.cancelText}</button>
-                        <button type="button" class="sk-modal__btn sk-modal__btn--confirm">${settings.confirmText}</button>
-                    </div>
-                </div>
-            </div>
-        `);
-
-        $('body').append($modal);
-
-        $modal.find('.sk-modal__btn--cancel, .sk-modal__overlay').on('click', function() {
-            settings.onCancel();
-            $modal.remove();
-        });
-
-        $modal.find('.sk-modal__btn--confirm').on('click', function() {
-            settings.onConfirm();
-            $modal.remove();
-        });
-    }
-
+    // Deprecated: Custom Modal logic removed to ensure non-blocking UX.
+    // function showConfirmModal(options) { ... }
 
     function skRestFetch(endpoint, options) {
         var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
@@ -96,7 +61,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // Wishlist AJAX
+    // Wishlist AJAX - Using REST API
     $(document).on('click', '.sk-add-to-wishlist', function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -123,7 +88,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // Stock Notifier AJAX
+    // Stock Notifier AJAX - Using REST API
     $('#sk-stock-notifier-form').on('submit', function(e) {
         e.preventDefault();
         var $form = $(this);
@@ -149,7 +114,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // AJAX Search
+    // AJAX Search - Using REST API
     var searchTimeout;
     $('.sk-search-input').on('keyup', function() {
         var term = $(this).val();
@@ -166,6 +131,7 @@ jQuery(document).ready(function($) {
             var restUrl = sk_vars && sk_vars.rest_url ? sk_vars.rest_url : '';
             if(!restUrl) return;
 
+            // Use REST API for Search
             fetch(restUrl + 'search?term=' + encodeURIComponent(term))
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
@@ -236,56 +202,65 @@ jQuery(document).ready(function($) {
 
     animatePoints($('.sk-points-total'));
 
-    // Rewards Redeem
+    // Rewards Redeem (Inline Confirmation)
     $(document).on('click', '#sk-redeem-btn', function(e) {
         e.preventDefault();
         var $btn = $(this);
         var $container = $btn.closest('.sk-rewards-actions');
+        var $wrapper = $container.find('.sk-redeem-confirm-wrapper');
+        var $check = $wrapper.find('#sk-redeem-confirm-check');
         var $message = $container.find('.sk-inline-message');
 
-        if ($btn.hasClass('is-loading')) {
+        if ($btn.hasClass('is-loading')) return;
+
+        // Step 1: Show confirmation checkbox if not already visible
+        if (!$wrapper.is(':visible')) {
+            $wrapper.slideDown();
+            $btn.text('Confirmar Canje');
+            // Disable button until checked? Or let them click and validate?
+            // Let's validate on click.
             return;
         }
 
-        var redeemPoints = sk_vars && sk_vars.redeem_points ? sk_vars.redeem_points : 500;
-        showConfirmModal({
-            title: 'Canje de puntos',
-            message: '¿Deseas canjear ' + redeemPoints + ' puntos por un cupón?',
-            confirmText: 'Canjear',
-            cancelText: 'Cancelar',
-            onConfirm: function() {
-                var originalText = $btn.text();
-                var loadingText = $btn.data('loading-text') || 'Canjeando...';
+        // Step 2: Validate Checkbox
+        if (!$check.is(':checked')) {
+            showToast('Por favor confirma que deseas canjear tus puntos.', 'error');
+            $check.focus();
+            return;
+        }
 
-                $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
-                $message.removeClass('is-success is-error').text('Procesando tu canje...');
+        // Step 3: Proceed with Redeem
+        var originalText = $btn.data('original-text') || 'Canjear'; // Fallback
+        var loadingText = $btn.data('loading-text') || 'Canjeando...';
 
-                skRestFetch('rewards/redeem')
-                    .then(function(response) {
-                        return response.json().then(function(data) {
-                            return { ok: response.ok, data: data };
-                        });
-                    })
-                    .then(function(result) {
-                        if (result.ok) {
-                            $message.addClass('is-success').text('¡Listo! Tu cupón es ' + result.data.code + '.');
-                            $('.points-value, .sk-points-total').text(result.data.new_balance);
-                            showToast('Canje exitoso. Cupón generado.', 'success');
-                            $btn.remove();
-                        } else {
-                            var errorMessage = result.data && result.data.message ? result.data.message : 'No se pudo canjear en este momento.';
-                            $message.addClass('is-error').text(errorMessage);
-                            showToast(errorMessage, 'error');
-                            $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
-                        }
-                    })
-                    .catch(function() {
-                        $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
-                        showToast('No se pudo conectar. Intenta de nuevo.', 'error');
-                        $btn.removeClass('is-loading').prop('disabled', false).text(originalText);
-                    });
-            }
-        });
+        $btn.addClass('is-loading').prop('disabled', true).text(loadingText);
+        $message.removeClass('is-success is-error').text('Procesando tu canje...');
+
+        skRestFetch('rewards/redeem')
+            .then(function(response) {
+                return response.json().then(function(data) {
+                    return { ok: response.ok, data: data };
+                });
+            })
+            .then(function(result) {
+                if (result.ok) {
+                    $message.addClass('is-success').text('¡Listo! Tu cupón es ' + result.data.code + '.');
+                    $('.points-value, .sk-points-total').text(result.data.new_balance);
+                    showToast('Canje exitoso. Cupón generado.', 'success');
+                    $btn.hide();
+                    $wrapper.hide();
+                } else {
+                    var errorMessage = result.data && result.data.message ? result.data.message : 'No se pudo canjear en este momento.';
+                    $message.addClass('is-error').text(errorMessage);
+                    showToast(errorMessage, 'error');
+                    $btn.removeClass('is-loading').prop('disabled', false).text('Confirmar Canje');
+                }
+            })
+            .catch(function() {
+                $message.addClass('is-error').text('No se pudo conectar. Intenta de nuevo.');
+                showToast('No se pudo conectar. Intenta de nuevo.', 'error');
+                $btn.removeClass('is-loading').prop('disabled', false).text('Confirmar Canje');
+            });
     });
 
     // Ajax Filter (Static Demo Logic)

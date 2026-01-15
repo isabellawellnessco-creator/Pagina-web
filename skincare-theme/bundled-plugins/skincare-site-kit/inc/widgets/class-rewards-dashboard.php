@@ -47,7 +47,15 @@ class Rewards_Dashboard extends Shortcode_Renderer {
 		if ( intval( $points ) >= $redeem_points ) {
 			$amount_label = function_exists( 'wc_price' ) ? wc_price( $redeem_amount ) : $redeem_amount;
 			$label = sprintf( __( 'Canjear %1$s pts por %2$s', 'skincare' ), $redeem_points, $amount_label );
-			echo '<button id="sk-redeem-btn" class="btn sk-btn sk-btn--loading" data-loading-text="' . esc_attr__( 'Canjeando...', 'skincare' ) . '">' . esc_html( $label ) . '</button>';
+
+			// Inline Confirmation UI
+			echo '<div class="sk-redeem-container">';
+			echo '<div class="sk-redeem-confirm-wrapper" style="display:none; margin-bottom: 10px;">';
+			echo '<label><input type="checkbox" id="sk-redeem-confirm-check"> ' . __( 'Estoy seguro de canjear mis puntos por un cupón.', 'skincare' ) . '</label>';
+			echo '</div>';
+			echo '<button id="sk-redeem-btn" class="btn sk-btn" data-loading-text="' . esc_attr__( 'Canjeando...', 'skincare' ) . '" data-points="' . esc_attr( $redeem_points ) . '">' . esc_html( $label ) . '</button>';
+			echo '</div>';
+
 			echo '<span class="sk-helper-text">' . __( 'El cupón se mostrará aquí al confirmar.', 'skincare' ) . '</span>';
 		} else {
 			echo '<div class="sk-alert sk-alert--info">';

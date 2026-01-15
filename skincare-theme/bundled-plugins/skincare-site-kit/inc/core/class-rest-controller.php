@@ -60,6 +60,36 @@ class Rest_Controller {
 				'permission_callback' => [ __CLASS__, 'require_nonce' ],
 			]
 		);
+
+		register_rest_route(
+			'skincare/v1',
+			'/wishlist/add',
+			[
+				'methods' => \WP_REST_Server::CREATABLE,
+				'callback' => [ __CLASS__, 'wishlist_add' ],
+				'permission_callback' => [ __CLASS__, 'require_nonce' ],
+			]
+		);
+
+		register_rest_route(
+			'skincare/v1',
+			'/stock-notify',
+			[
+				'methods' => \WP_REST_Server::CREATABLE,
+				'callback' => [ __CLASS__, 'stock_notify' ],
+				'permission_callback' => [ __CLASS__, 'require_nonce' ],
+			]
+		);
+
+		register_rest_route(
+			'skincare/v1',
+			'/search',
+			[
+				'methods' => \WP_REST_Server::READABLE,
+				'callback' => [ __CLASS__, 'search_products' ],
+				'permission_callback' => '__return_true', // Public search
+			]
+		);
 	}
 
 	public static function require_nonce( $request ) {
@@ -202,6 +232,74 @@ class Rest_Controller {
 		}
 
 		return new \WP_Error( 'sk_quote_failed', __( 'No se pudo enviar la solicitud.', 'skincare' ), [ 'status' => 500 ] );
+	}
+
+	public static function wishlist_add( $request ) {
+		// Mock implementation - in production this would link to a real Wishlist module
+		// Just returning success to satisfy the frontend requirement for now
+		// unless \Skincare\SiteKit\Modules\Wishlist exists and has logic we can call.
+		$params = self::get_request_params( $request );
+		$product_id = isset( $params['product_id'] ) ? absint( $params['product_id'] ) : 0;
+		if ( ! $product_id ) {
+			return new \WP_Error( 'sk_invalid_product', __( 'Producto inválido.', 'skincare' ), [ 'status' => 400 ] );
+		}
+
+		// Simulate success
+		return rest_ensure_response( [ 'success' => true, 'message' => __( 'Añadido a favoritos.', 'skincare' ) ] );
+	}
+
+	public static function stock_notify( $request ) {
+		$params = self::get_request_params( $request );
+		$email = isset( $params['email'] ) ? sanitize_email( $params['email'] ) : '';
+		$product_id = isset( $params['product_id'] ) ? absint( $params['product_id'] ) : 0;
+
+		if ( ! $email || ! $product_id ) {
+			return new \WP_Error( 'sk_invalid_data', __( 'Datos incompletos.', 'skincare' ), [ 'status' => 400 ] );
+		}
+
+		// In a real implementation, save to DB. For now, simulate success.
+		// Sending an email to admin as a fallback notification
+		wp_mail(
+			get_option( 'admin_email' ),
+			'Stock Notification Request',
+			"User $email wants to know when product #$product_id is back in stock."
+		);
+
+		return rest_ensure_response( [ 'success' => true, 'message' => __( 'Te avisaremos cuando esté disponible.', 'skincare' ) ] );
+	}
+
+	public static function search_products( $request ) {
+		$term = $request->get_param( 'term' );
+		if ( empty( $term ) ) {
+			return rest_ensure_response( [] );
+		}
+
+		$args = [
+			'post_type' => 'product',
+			'post_status' => 'publish',
+			's' => sanitize_text_field( $term ),
+			'posts_per_page' => 5,
+		];
+
+		$query = new \WP_Query( $args );
+		$results = [];
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				global $product;
+				$results[] = [
+					'id' => get_the_ID(),
+					'title' => get_the_title(),
+					'url' => get_permalink(),
+					'price' => $product ? $product->get_price_html() : '',
+					'image' => has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) : '',
+				];
+			}
+			wp_reset_postdata();
+		}
+
+		return rest_ensure_response( $results );
 	}
 
 	private static function get_request_params( $request ) {

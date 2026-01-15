@@ -68,7 +68,7 @@ class Seeder {
 		}
 	}
 
-	private static function create_pages() {
+	public static function create_pages() {
 		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		$about_content = '
 		<section class="sk-about-hero">
@@ -314,7 +314,7 @@ class Seeder {
 		}
 	}
 
-	private static function create_categories() {
+	public static function create_categories() {
 		$groups = [
 			[
 				'name' => 'Limpieza',
@@ -387,7 +387,7 @@ class Seeder {
 		}
 	}
 
-	private static function upload_placeholder_image() {
+	public static function upload_placeholder_image() {
 		// Check if placeholder already exists in media library by title/name
 		// We use a specific title to find it easily
 		$image_title = 'SkinCupid Placeholder';
@@ -437,7 +437,7 @@ class Seeder {
 		return $id;
 	}
 
-	private static function create_products() {
+	public static function create_products() {
 		// We want to ensure demo products exist and have images.
 		// If they already exist, we will try to attach the image if missing.
 
@@ -503,7 +503,7 @@ class Seeder {
 		}
 	}
 
-	private static function create_theme_parts() {
+	public static function create_theme_parts() {
 		$parts = [
 			'Header Principal' => 'global_header',
 			'Footer Principal' => 'global_footer',
@@ -576,7 +576,7 @@ class Seeder {
 		update_option( 'sk_theme_builder_settings', $settings );
 	}
 
-	private static function create_menus() {
+	public static function create_menus() {
 		$primary = 'Primary Menu';
 		$footer = 'Footer Menu';
 

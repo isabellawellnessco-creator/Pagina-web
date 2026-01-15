@@ -36,10 +36,11 @@ class Coupons_Automation {
 		$user_id = $order->get_user_id();
 		$purchase_count_threshold = isset( $settings['purchase_count_threshold'] ) ? (int) $settings['purchase_count_threshold'] : 0;
 		if ( $user_id && $purchase_count_threshold > 0 ) {
+			$order_query_limit = max( 1, $purchase_count_threshold );
 			$completed_orders = wc_get_orders( [
 				'customer_id' => $user_id,
 				'status' => [ 'completed' ],
-				'limit' => -1,
+				'limit' => $order_query_limit,
 				'return' => 'ids',
 			] );
 			if ( count( $completed_orders ) < $purchase_count_threshold ) {

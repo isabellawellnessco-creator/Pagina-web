@@ -29,8 +29,9 @@ class Mega_Menu {
 		// Get Templates
 		$templates = get_posts( [
 			'post_type'      => 'sk_template',
-			'posts_per_page' => -1,
+			'posts_per_page' => 200,
 			'post_status'    => 'publish',
+			'no_found_rows'  => true,
 		] );
 
 		?>

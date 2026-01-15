@@ -24,10 +24,11 @@ class Wishlist_Grid extends Widget_Base {
 			return;
 		}
 
+		$limit = min( 50, count( $items ) );
 		$args = [
 			'post_type' => 'product',
 			'post__in' => $items,
-			'posts_per_page' => -1,
+			'posts_per_page' => $limit ? $limit : 1,
 		];
 
 		$query = new \WP_Query( $args );

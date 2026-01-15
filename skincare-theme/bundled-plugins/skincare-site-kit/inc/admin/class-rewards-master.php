@@ -224,7 +224,7 @@ class Rewards_Master {
 		}
 
 		if ( in_array( $new_status, [ 'cancelled', 'refunded' ], true ) ) {
-			self::revoke_awarded_points( $order );
+			self::revoke_points_for_order( $order, __( 'Order refund/cancel', 'skincare' ) );
 			return;
 		}
 
@@ -232,16 +232,31 @@ class Rewards_Master {
 			return;
 		}
 
-		if ( get_post_meta( $order_id, '_sk_rewards_awarded', true ) ) {
-			return;
+		self::award_points_for_order( $order );
+	}
+
+	public static function award_points_for_order( $order ) {
+		if ( ! $order instanceof \WC_Order ) {
+			$order = wc_get_order( $order );
 		}
 
+		if ( ! $order ) {
+			return false;
+		}
+
+		$order_id = $order->get_id();
+		if ( get_post_meta( $order_id, '_sk_rewards_awarded', true ) ) {
+			return false;
+		}
+
+		$rules = get_option( 'sk_rewards_rules', [] );
 		$points_per_currency = isset( $rules['points_per_currency'] ) ? absint( $rules['points_per_currency'] ) : 5;
 		$total = (float) $order->get_total();
 		$points = (int) round( $total * $points_per_currency );
 		$user_id = $order->get_user_id();
+
 		if ( ! $user_id || $points <= 0 ) {
-			return;
+			return false;
 		}
 
 		self::record_ledger_entry( $user_id, $order_id, $points, __( 'Order reward', 'skincare' ) );
@@ -249,6 +264,48 @@ class Rewards_Master {
 		update_user_meta( $user_id, '_sk_rewards_points', $balance + $points );
 		update_post_meta( $order_id, '_sk_rewards_awarded', $points );
 		self::append_history( $user_id, $points, sprintf( 'Pedido #%s', $order->get_order_number() ) );
+
+		return true;
+	}
+
+	public static function revoke_points_for_order( $order, $note = '' ) {
+		if ( ! $order instanceof \WC_Order ) {
+			$order = wc_get_order( $order );
+		}
+
+		if ( ! $order ) {
+			return false;
+		}
+
+		$order_id = $order->get_id();
+		$user_id = $order->get_user_id();
+		if ( ! $user_id ) {
+			return false;
+		}
+
+		$awarded = (int) $order->get_meta( '_sk_rewards_awarded', true );
+		if ( $awarded <= 0 ) {
+			return false;
+		}
+
+		if ( $order->get_meta( '_sk_rewards_reversed', true ) ) {
+			return false;
+		}
+
+		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
+		$new_points = max( 0, $current_points - $awarded );
+		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
+		update_post_meta( $order_id, '_sk_rewards_reversed', 1 );
+
+		self::record_ledger_entry(
+			$user_id,
+			$order_id,
+			-$awarded,
+			$note ? $note : __( 'Order refund/cancel', 'skincare' )
+		);
+		self::append_history( $user_id, -$awarded, sprintf( 'Reverso del pedido #%s', $order->get_order_number() ) );
+
+		return true;
 	}
 
 	private static function get_recent_ledger() {
@@ -318,28 +375,7 @@ class Rewards_Master {
 	}
 
 	private static function revoke_awarded_points( $order ) {
-		$order_id = $order->get_id();
-		$user_id = $order->get_user_id();
-		if ( ! $user_id ) {
-			return;
-		}
-
-		$awarded = (int) $order->get_meta( '_sk_rewards_awarded', true );
-		if ( $awarded <= 0 ) {
-			return;
-		}
-
-		if ( $order->get_meta( '_sk_rewards_reversed', true ) ) {
-			return;
-		}
-
-		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
-		$new_points = max( 0, $current_points - $awarded );
-		update_user_meta( $user_id, '_sk_rewards_points', $new_points );
-		update_post_meta( $order_id, '_sk_rewards_reversed', 1 );
-
-		self::record_ledger_entry( $user_id, $order_id, -$awarded, __( 'Order refund/cancel', 'skincare' ) );
-		self::append_history( $user_id, -$awarded, sprintf( 'Reverso del pedido #%s', $order->get_order_number() ) );
+		self::revoke_points_for_order( $order, __( 'Order refund/cancel', 'skincare' ) );
 	}
 
 	private static function schedule_expiration() {

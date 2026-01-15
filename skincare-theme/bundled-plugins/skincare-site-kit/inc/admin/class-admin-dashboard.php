@@ -2,7 +2,6 @@
 namespace Skincare\SiteKit\Admin;
 
 use Skincare\SiteKit\Modules\Seeder;
-use Skincare\SiteKit\Modules\Tracking_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -11,236 +10,230 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Admin_Dashboard {
 
 	public static function init() {
-		// Replaces the old settings page callback
+		add_action( 'admin_menu', [ __CLASS__, 'register_page' ] );
+		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_assets' ] );
+	}
+
+	public static function register_page() {
+		add_menu_page(
+			__( 'Skin Cupid', 'skincare' ),
+			__( 'Skin Cupid', 'skincare' ),
+			'manage_options',
+			'skincare-site-kit',
+			[ __CLASS__, 'render' ],
+			'dashicons-store',
+			2
+		);
+	}
+
+	public static function enqueue_assets( $hook ) {
+		if ( 'toplevel_page_skincare-site-kit' !== $hook ) {
+			return;
+		}
+
+		wp_enqueue_style( 'sk-site-kit-admin-dashboard', SKINCARE_KIT_URL . 'assets/css/admin-dashboard.css', [], '2.1.0' );
+
+		// Enqueue Components CSS for utility classes if theme is active
+		if ( function_exists( 'get_stylesheet_directory_uri' ) ) {
+			wp_enqueue_style( 'sk-admin-components', get_stylesheet_directory_uri() . '/assets/css/components.css', [], '2.1.0' );
+		}
 	}
 
 	public static function render() {
-		wp_enqueue_style( 'sk-site-kit-admin-dashboard', SKINCARE_KIT_URL . 'assets/css/admin-dashboard.css', [], '1.0.0' );
+		// Run logic to determine status
+		$setup_check = Seeder::run_smart_check();
+		$is_setup_ok = $setup_check['status'] === 'ok';
 
-		// Data gathering
+		// Data for cards
 		$theme_builder_active = ! empty( get_option( 'sk_theme_builder_settings', [] ) );
-		$rewards_active = class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' );
+		$demo_products = wp_count_posts( 'product' )->publish > 0;
+		$menus_assigned = has_nav_menu( 'primary' );
 
-		// Smart Check Results
-		$smart_check = Seeder::run_smart_check();
-
-		// Tracking Check: Get last 20 orders without tracking
-		$pending_tracking = 0;
-		if ( function_exists( 'wc_get_orders' ) ) {
-			$pending_tracking = count( wc_get_orders( [
-				'limit' => 20,
-				'status' => [ 'processing' ],
-				'meta_query' => [
-					[ 'key' => '_sk_tracking_number', 'compare' => 'NOT EXISTS' ]
-				]
-			] ) );
+		// Overall Status
+		$system_status = 'pending';
+		if ( $is_setup_ok && $theme_builder_active && $demo_products && $menus_assigned ) {
+			$system_status = 'complete';
 		}
 
-		// SMTP Check
-		$smtp_active = is_plugin_active( 'wp-mail-smtp/wp_mail_smtp.php' ) || is_plugin_active( 'post-smtp/postman-smtp.php' );
-
-		// WhatsApp Check
-		$notifications = get_option( 'sk_notification_settings', [] );
-		$whatsapp_configured = ! empty( $notifications['whatsapp_access_token'] );
-
-		// Last Log
-		$logs = get_option( Seeder::LOG_OPTION, [] );
-		$last_log = ! empty( $logs ) ? $logs[0] : null;
-
-		// Health Checks Array
-		$health_checks = [
-			[
-				'title' => __( 'Integridad del Sitio', 'skincare' ),
-				'desc' => $smart_check['status'] === 'ok' ? __( 'Todos los componentes base están instalados.', 'skincare' ) : __( 'Faltan componentes. Ejecuta el asistente.', 'skincare' ),
-				'status' => $smart_check['status'],
-				'action' => $smart_check['status'] === 'ok' ? '' : admin_url( 'admin.php?page=sk-onboarding&mode=repair' ),
-				'action_label' => __( 'Reparar', 'skincare' ),
-			],
-			[
-				'title' => __( 'Servicio de Email (SMTP)', 'skincare' ),
-				'desc' => $smtp_active ? __( 'Plugin SMTP detectado.', 'skincare' ) : __( 'No se detectó plugin SMTP. Recomendado para entregabilidad.', 'skincare' ),
-				'status' => $smtp_active ? 'ok' : 'warning',
-				'action' => '',
-			],
-			[
-				'title' => __( 'WhatsApp API', 'skincare' ),
-				'desc' => $whatsapp_configured ? __( 'Token de acceso configurado.', 'skincare' ) : __( 'No configurado. Revisa Notificaciones > WhatsApp.', 'skincare' ),
-				'status' => $whatsapp_configured ? 'ok' : 'warning',
-				'action' => $whatsapp_configured ? '' : admin_url( 'admin.php?page=sk-notifications-center' ),
-				'action_label' => __( 'Configurar', 'skincare' ),
-			],
-			[
-				'title' => __( 'Tracking de Pedidos', 'skincare' ),
-				'desc' => $pending_tracking === 0 ? __( 'Todos los pedidos recientes tienen tracking.', 'skincare' ) : sprintf( __( '%d pedidos recientes sin tracking.', 'skincare' ), $pending_tracking ),
-				'status' => $pending_tracking === 0 ? 'ok' : 'warning',
-				'action' => $pending_tracking === 0 ? '' : admin_url( 'edit.php?post_type=shop_order' ),
-				'action_label' => __( 'Ver Pedidos', 'skincare' ),
-			]
-		];
-
-		// Tax Check
-		if ( ! taxonomy_exists( 'pa_brand' ) ) {
-			$health_checks[] = [
-				'title' => __( 'Filtro de Marcas', 'skincare' ),
-				'desc' => __( 'Taxonomía "pa_brand" no existe. El filtro de marcas se ocultará.', 'skincare' ),
-				'status' => 'warning',
-				'action' => '',
-			];
-		}
+		// Calculate progress bar
+		$steps_total = 4;
+		$steps_done = 0;
+		if ( $is_setup_ok ) $steps_done++;
+		if ( $theme_builder_active ) $steps_done++;
+		if ( $demo_products ) $steps_done++;
+		if ( $menus_assigned ) $steps_done++;
+		$progress_pct = ( $steps_done / $steps_total ) * 100;
 
 		?>
-		<div class="wrap">
-			<div class="sk-control-center-header">
-				<div>
+		<div class="wrap sk-dashboard-wrap">
+			<div class="sk-header-hero">
+				<div class="sk-header-content">
 					<h1><?php _e( 'Skin Cupid Control Center', 'skincare' ); ?></h1>
-					<p><?php _e( 'Versión del sistema: 2.1.0', 'skincare' ); ?></p>
+					<p><?php _e( 'Gestiona el estado de tu tienda y configura las herramientas esenciales.', 'skincare' ); ?></p>
 				</div>
-				<div>
-					<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="button button-secondary"><?php _e( 'Reparar Instalación', 'skincare' ); ?></a>
-				</div>
-			</div>
-
-			<div class="sk-dashboard-grid">
-				<!-- Theme Builder Card -->
-				<div class="sk-dashboard-card">
-					<div class="sk-card-header">
-						<div class="sk-card-icon"><span class="dashicons dashicons-layout"></span></div>
-						<h3 class="sk-card-title"><?php _e( 'Theme Builder', 'skincare' ); ?></h3>
-						<div class="sk-status-indicator <?php echo $theme_builder_active ? 'is-active' : 'is-warning'; ?>"></div>
-					</div>
-					<div class="sk-card-body">
-						<p><?php _e( 'Controla el diseño de Cabeceras, Pies de página y Fichas de producto.', 'skincare' ); ?></p>
-					</div>
-					<div class="sk-card-footer">
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-theme-builder' ) ); ?>" class="sk-link"><?php _e( 'Configurar', 'skincare' ); ?> →</a>
-					</div>
-				</div>
-
-				<!-- Rewards Card -->
-				<div class="sk-dashboard-card">
-					<div class="sk-card-header">
-						<div class="sk-card-icon"><span class="dashicons dashicons-awards"></span></div>
-						<h3 class="sk-card-title"><?php _e( 'Sistema de Puntos', 'skincare' ); ?></h3>
-						<div class="sk-status-indicator <?php echo $rewards_active ? 'is-active' : 'is-inactive'; ?>"></div>
-					</div>
-					<div class="sk-card-body">
-						<p><?php _e( 'Gestión de lealtad, historial de puntos y canjes.', 'skincare' ); ?></p>
-					</div>
-					<div class="sk-card-footer">
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-rewards-control' ) ); ?>" class="sk-link"><?php _e( 'Administrar', 'skincare' ); ?> →</a>
-					</div>
-				</div>
-
-				<!-- Operations Card -->
-				<div class="sk-dashboard-card">
-					<div class="sk-card-header">
-						<div class="sk-card-icon"><span class="dashicons dashicons-chart-line"></span></div>
-						<h3 class="sk-card-title"><?php _e( 'Operaciones', 'skincare' ); ?></h3>
-						<div class="sk-status-indicator is-active"></div>
-					</div>
-					<div class="sk-card-body">
-						<p><?php _e( 'Dashboard de pedidos, almacén y métricas de cumplimiento.', 'skincare' ); ?></p>
-					</div>
-					<div class="sk-card-footer">
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-operations-dashboard' ) ); ?>" class="sk-link"><?php _e( 'Ver Dashboard', 'skincare' ); ?> →</a>
-					</div>
-				</div>
-
-				<!-- Tools Card -->
-				<div class="sk-dashboard-card">
-					<div class="sk-card-header">
-						<div class="sk-card-icon"><span class="dashicons dashicons-hammer"></span></div>
-						<h3 class="sk-card-title"><?php _e( 'Herramientas', 'skincare' ); ?></h3>
-						<div class="sk-status-indicator is-active"></div>
-					</div>
-					<div class="sk-card-body">
-						<p><?php _e( 'Mantenimiento, reinicio de importación y caché.', 'skincare' ); ?></p>
-					</div>
-					<div class="sk-card-footer">
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-tools' ) ); ?>" class="sk-link"><?php _e( 'Abrir Herramientas', 'skincare' ); ?> →</a>
-					</div>
+				<div class="sk-header-actions">
+					<?php if ( $system_status !== 'complete' ) : ?>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding' ) ); ?>" class="btn btn-primary">
+							<?php _e( 'Completar Configuración', 'skincare' ); ?>
+						</a>
+					<?php else : ?>
+						<a href="<?php echo esc_url( home_url() ); ?>" class="btn btn-secondary" target="_blank">
+							<?php _e( 'Ver Tienda', 'skincare' ); ?>
+						</a>
+					<?php endif; ?>
 				</div>
 			</div>
 
-			<div class="sk-health-section">
-				<div class="sk-health-header">
-					<h2><?php _e( 'Salud del Sistema', 'skincare' ); ?></h2>
-				</div>
-				<ul class="sk-health-list">
-					<?php foreach ( $health_checks as $check ) : ?>
-						<li class="sk-health-item">
-							<div class="sk-health-status <?php echo esc_attr( $check['status'] ); ?>">
-								<span class="dashicons dashicons-<?php echo $check['status'] === 'ok' ? 'yes' : 'warning'; ?>"></span>
+			<!-- System Status Overview -->
+			<div class="sk-section-status">
+				<div class="sk-status-card <?php echo $system_status === 'complete' ? 'sk-card--ok' : 'sk-card--warning'; ?>">
+					<div class="sk-status-header">
+						<h2><?php _e( 'Estado del Sistema', 'skincare' ); ?></h2>
+						<span class="sk-chip"><?php echo $system_status === 'complete' ? __( 'Operativo', 'skincare' ) : __( 'Requiere Atención', 'skincare' ); ?></span>
+					</div>
+
+					<div class="sk-progress-wrapper">
+						<div class="sk-progress-bar">
+							<div class="sk-progress-fill" style="width: <?php echo esc_attr( $progress_pct ); ?>%"></div>
+						</div>
+						<p><?php printf( __( '%d de %d pasos completados', 'skincare' ), $steps_done, $steps_total ); ?></p>
+					</div>
+
+					<div class="sk-actions-grid">
+						<!-- Onboarding Action -->
+						<div class="sk-action-item">
+							<div class="sk-action-icon"><span class="dashicons dashicons-welcome-learn-more"></span></div>
+							<div class="sk-action-text">
+								<h3><?php _e( 'Asistente de Configuración', 'skincare' ); ?></h3>
+								<p><?php _e( 'Repara o reinstala contenido demo, páginas y menús.', 'skincare' ); ?></p>
 							</div>
-							<div class="sk-health-info">
-								<h3><?php echo esc_html( $check['title'] ); ?></h3>
-								<p><?php echo esc_html( $check['desc'] ); ?></p>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="btn btn-secondary btn-sm">
+								<?php _e( 'Ejecutar Wizard', 'skincare' ); ?>
+							</a>
+						</div>
+
+						<!-- Demo Content Action -->
+						<div class="sk-action-item">
+							<div class="sk-action-icon"><span class="dashicons dashicons-products"></span></div>
+							<div class="sk-action-text">
+								<h3><?php _e( 'Contenido Demo', 'skincare' ); ?></h3>
+								<p><?php echo $demo_products ? __( 'Productos instalados.', 'skincare' ) : __( 'Faltan productos.', 'skincare' ); ?></p>
 							</div>
-							<?php if ( ! empty( $check['action'] ) ) : ?>
-								<div class="sk-health-action">
-									<a href="<?php echo esc_url( $check['action'] ); ?>" class="button button-small"><?php echo esc_html( $check['action_label'] ?? __( 'Corregir', 'skincare' ) ); ?></a>
-								</div>
+							<?php if ( ! $demo_products ) : ?>
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="btn btn-primary btn-sm"><?php _e( 'Importar', 'skincare' ); ?></a>
 							<?php endif; ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
+						</div>
 
-			<?php if ( $last_log ) : ?>
-			<div class="sk-health-section" style="margin-top: 20px;">
-				<div class="sk-health-header">
-					<h2><?php _e( 'Última Ejecución del Seeder', 'skincare' ); ?></h2>
-					<button class="button button-small" onclick="document.getElementById('sk-history-modal').style.display='block'"><?php _e( 'Ver Historial', 'skincare' ); ?></button>
-				</div>
-				<div class="sk-log-summary">
-					<p>
-						<strong><?php echo date( 'd/m/Y H:i:s', $last_log['timestamp'] ); ?></strong> -
-						<span class="sk-log-status <?php echo esc_attr( $last_log['status'] ); ?>"><?php echo esc_html( strtoupper( $last_log['status'] ) ); ?></span>
-						: <?php echo esc_html( $last_log['message'] ); ?>
-						(v<?php echo esc_html( $last_log['version'] ); ?>)
-					</p>
+						<!-- Theme Builder Action -->
+						<div class="sk-action-item">
+							<div class="sk-action-icon"><span class="dashicons dashicons-layout"></span></div>
+							<div class="sk-action-text">
+								<h3><?php _e( 'Theme Builder', 'skincare' ); ?></h3>
+								<p><?php echo $theme_builder_active ? __( 'Plantillas activas.', 'skincare' ) : __( 'Sin configurar.', 'skincare' ); ?></p>
+							</div>
+							<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=sk_template' ) ); ?>" class="btn btn-secondary btn-sm"><?php _e( 'Gestionar', 'skincare' ); ?></a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<?php endif; ?>
 
-			<!-- History Modal -->
-			<div id="sk-history-modal" class="sk-modal" style="display:none;">
-				<div class="sk-modal-content">
-					<span class="close" onclick="document.getElementById('sk-history-modal').style.display='none'">&times;</span>
-					<h2><?php _e( 'Historial de Ejecuciones', 'skincare' ); ?></h2>
-					<table class="widefat fixed striped">
+			<!-- Quick Actions & Health -->
+			<div class="sk-dashboard-columns">
+
+				<!-- Column 1: Shortcuts -->
+				<div class="sk-dashboard-column">
+					<h3><?php _e( 'Accesos Directos', 'skincare' ); ?></h3>
+					<div class="sk-shortcuts-grid">
+						<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=shop_order' ) ); ?>" class="sk-shortcut-card">
+							<span class="dashicons dashicons-cart"></span>
+							<span><?php _e( 'Pedidos', 'skincare' ); ?></span>
+						</a>
+						<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=product' ) ); ?>" class="sk-shortcut-card">
+							<span class="dashicons dashicons-tag"></span>
+							<span><?php _e( 'Productos', 'skincare' ); ?></span>
+						</a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-rewards-control' ) ); ?>" class="sk-shortcut-card">
+							<span class="dashicons dashicons-awards"></span>
+							<span><?php _e( 'Puntos', 'skincare' ); ?></span>
+						</a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-operations-dashboard' ) ); ?>" class="sk-shortcut-card">
+							<span class="dashicons dashicons-chart-bar"></span>
+							<span><?php _e( 'Operaciones', 'skincare' ); ?></span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Column 2: Health Checks (Legacy logic kept but styled) -->
+				<div class="sk-dashboard-column">
+					<h3><?php _e( 'Salud del Sistema', 'skincare' ); ?></h3>
+					<div class="sk-health-card sk-card">
+						<ul class="sk-health-list-new">
+							<?php
+							// Reuse logic from previous dashboard
+							$checks = [
+								'smtp' => [
+									'label' => __( 'Servidor de Correo (SMTP)', 'skincare' ),
+									'ok' => is_plugin_active( 'wp-mail-smtp/wp_mail_smtp.php' ) || is_plugin_active( 'post-smtp/postman-smtp.php' )
+								],
+								'whatsapp' => [
+									'label' => __( 'Conexión WhatsApp', 'skincare' ),
+									'ok' => ! empty( get_option( 'sk_notification_settings', [] )['whatsapp_access_token'] )
+								],
+								'seeder' => [
+									'label' => __( 'Integridad de Datos', 'skincare' ),
+									'ok' => $is_setup_ok
+								]
+							];
+
+							foreach ( $checks as $key => $check ) : ?>
+								<li class="sk-health-item-new">
+									<span class="sk-indicator <?php echo $check['ok'] ? 'ok' : 'issue'; ?>"></span>
+									<span><?php echo esc_html( $check['label'] ); ?></span>
+									<?php if ( ! $check['ok'] ) : ?>
+										<a href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>" class="sk-fix-link"><?php _e( 'Corregir', 'skincare' ); ?></a>
+									<?php endif; ?>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Recent Logs -->
+			<div class="sk-logs-section">
+				<h3><?php _e( 'Actividad Reciente', 'skincare' ); ?></h3>
+				<?php
+				$logs = get_option( Seeder::LOG_OPTION, [] );
+				if ( ! empty( $logs ) ) : ?>
+					<table class="wp-list-table widefat fixed striped">
 						<thead>
 							<tr>
-								<th>Fecha</th>
-								<th>Acción</th>
-								<th>Paso</th>
-								<th>Estado</th>
-								<th>Mensaje</th>
+								<th><?php _e( 'Fecha', 'skincare' ); ?></th>
+								<th><?php _e( 'Acción', 'skincare' ); ?></th>
+								<th><?php _e( 'Estado', 'skincare' ); ?></th>
+								<th><?php _e( 'Mensaje', 'skincare' ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ( $logs as $log ) : ?>
+							<?php foreach ( array_slice( $logs, 0, 5 ) as $log ) : ?>
 								<tr>
-									<td><?php echo date( 'Y-m-d H:i', $log['timestamp'] ); ?></td>
-									<td><?php echo esc_html( $log['action'] ?? '-' ); ?></td>
-									<td><?php echo esc_html( $log['step'] ?? '-' ); ?></td>
-									<td><?php echo esc_html( $log['status'] ); ?></td>
+									<td><?php echo date( 'd/m H:i', $log['timestamp'] ); ?></td>
+									<td><?php echo esc_html( $log['action'] ); ?></td>
+									<td>
+										<span class="sk-chip <?php echo $log['status'] === 'success' ? 'sk-msg--success' : ( $log['status'] === 'error' ? 'sk-msg--error' : '' ); ?>">
+											<?php echo esc_html( $log['status'] ); ?>
+										</span>
+									</td>
 									<td><?php echo esc_html( $log['message'] ); ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
 					</table>
-				</div>
+				<?php else: ?>
+					<p class="sk-msg sk-msg--info"><?php _e( 'No hay registros recientes.', 'skincare' ); ?></p>
+				<?php endif; ?>
 			</div>
-			<style>
-				/* Inline styles for modal simplicity */
-				.sk-modal { position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
-				.sk-modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 800px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; }
-				.close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-				.close:hover { color: black; }
-				.sk-log-status.error { color: #d63638; font-weight: bold; }
-				.sk-log-status.success { color: #00a32a; font-weight: bold; }
-			</style>
+
 		</div>
 		<?php
 	}

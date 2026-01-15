@@ -27,6 +27,11 @@ class Operations_Dashboard {
 		$rewards_orders = self::get_rewards_orders();
 		$reward_totals = self::summarize_points( $rewards_orders );
 		$order_counts = self::get_order_counts();
+
+		// Whatsapp Templates
+		$whatsapp_templates = class_exists( '\Skincare\SiteKit\Admin\Whatsapp_Templates' )
+			? \Skincare\SiteKit\Admin\Whatsapp_Templates::get_templates()
+			: [];
 		?>
 		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Operations Dashboard', 'skincare' ); ?></h1>
@@ -73,6 +78,132 @@ class Operations_Dashboard {
 				<p><?php esc_html_e( 'Resumen de puntos por pedido con acciones rápidas.', 'skincare' ); ?></p>
 				<?php self::render_rewards_table( $rewards_orders ); ?>
 			</div>
+
+			<!-- WhatsApp Modal -->
+			<div id="sk-whatsapp-modal" class="sk-modal" style="display:none;">
+				<div class="sk-modal-content">
+					<span class="sk-close-modal">&times;</span>
+					<h3><?php esc_html_e( 'Enviar WhatsApp al Cliente', 'skincare' ); ?></h3>
+
+					<div class="sk-modal-body">
+						<label><strong>1. Selecciona Plantilla</strong></label>
+						<select id="sk-wa-template-select" class="widefat" style="margin-bottom: 15px;">
+							<option value=""><?php esc_html_e( '-- Seleccionar --', 'skincare' ); ?></option>
+							<?php foreach ( $whatsapp_templates as $tpl ) : ?>
+								<option value="<?php echo esc_attr( $tpl['id'] ); ?>" data-message="<?php echo esc_attr( $tpl['message'] ); ?>">
+									<?php echo esc_html( $tpl['title'] ); ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+
+						<div id="sk-wa-extra-fields" style="display:none; margin-bottom: 15px; padding: 10px; background: #f0f0f1; border-radius: 4px;">
+							<label><strong>Fecha Estimada de Llegada</strong> (Opcional)</label>
+							<input type="date" id="sk-wa-delivery-date" class="widefat" value="<?php echo date( 'Y-m-d', strtotime( '+2 days' ) ); ?>">
+						</div>
+
+						<label><strong>2. Vista Previa / Editar Mensaje</strong></label>
+						<textarea id="sk-wa-message-preview" rows="8" class="widefat" style="margin-bottom: 15px;"></textarea>
+
+						<div style="text-align: right;">
+							<a href="#" id="sk-wa-send-btn" target="_blank" class="button button-primary button-hero" style="background-color: #25D366; border-color: #25D366;">
+								<span class="dashicons dashicons-whatsapp" style="margin-top: 5px;"></span> Abrir WhatsApp Web
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<style>
+				.sk-modal { position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
+				.sk-modal-content { background-color: #fff; padding: 20px; border-radius: 8px; width: 500px; max-width: 90%; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+				.sk-close-modal { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #aaa; }
+				.sk-close-modal:hover { color: #000; }
+			</style>
+
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					const modal = document.getElementById('sk-whatsapp-modal');
+					const closeBtn = document.querySelector('.sk-close-modal');
+					const templateSelect = document.getElementById('sk-wa-template-select');
+					const messageArea = document.getElementById('sk-wa-message-preview');
+					const dateField = document.getElementById('sk-wa-delivery-date');
+					const extraFields = document.getElementById('sk-wa-extra-fields');
+					const sendBtn = document.getElementById('sk-wa-send-btn');
+
+					let currentOrder = {};
+
+					// Open Modal
+					document.querySelectorAll('.sk-open-whatsapp').forEach(btn => {
+						btn.addEventListener('click', function(e) {
+							e.preventDefault();
+							currentOrder = {
+								phone: this.dataset.phone,
+								name: this.dataset.name,
+								id: this.dataset.id,
+								total: this.dataset.total,
+								address: this.dataset.address,
+								tracking: this.dataset.tracking
+							};
+
+							// Reset fields
+							templateSelect.value = '';
+							messageArea.value = '';
+							extraFields.style.display = 'none';
+
+							modal.style.display = 'flex';
+						});
+					});
+
+					// Close Modal
+					closeBtn.onclick = () => modal.style.display = 'none';
+					window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
+
+					// Update Template
+					templateSelect.addEventListener('change', function() {
+						const option = this.options[this.selectedIndex];
+						if (!option.value) return;
+
+						let msg = option.dataset.message;
+
+						// Show date field if needed
+						if (msg.includes('{delivery_date}')) {
+							extraFields.style.display = 'block';
+						} else {
+							extraFields.style.display = 'none';
+						}
+
+						updatePreview();
+					});
+
+					// Dynamic Update
+					dateField.addEventListener('change', updatePreview);
+
+					function updatePreview() {
+						const option = templateSelect.options[templateSelect.selectedIndex];
+						if (!option.value) return;
+
+						let msg = option.dataset.message;
+
+						msg = msg.replace(/{customer_name}/g, currentOrder.name)
+								 .replace(/{order_id}/g, currentOrder.id)
+								 .replace(/{total}/g, currentOrder.total)
+								 .replace(/{address}/g, currentOrder.address)
+								 .replace(/{tracking_url}/g, currentOrder.tracking || 'Pendiente')
+								 .replace(/{delivery_date}/g, dateField.value);
+
+						messageArea.value = msg;
+						updateLink();
+					}
+
+					messageArea.addEventListener('input', updateLink);
+
+					function updateLink() {
+						const text = encodeURIComponent(messageArea.value);
+						const phone = currentOrder.phone.replace(/\D/g, ''); // Clean phone
+						sendBtn.href = `https://wa.me/${phone}?text=${text}`;
+					}
+				});
+			</script>
 		</div>
 		<?php
 	}
@@ -163,13 +294,31 @@ class Operations_Dashboard {
 					<?php foreach ( $orders as $order ) : ?>
 						<tr>
 							<td>#<?php echo esc_html( $order->get_order_number() ); ?></td>
-							<td><?php echo esc_html( $order->get_formatted_billing_full_name() ); ?></td>
+							<td>
+								<?php echo esc_html( $order->get_formatted_billing_full_name() ); ?>
+								<?php if ( $order->get_billing_phone() ) : ?>
+									<br><small class="sk-text-muted"><?php echo esc_html( $order->get_billing_phone() ); ?></small>
+								<?php endif; ?>
+							</td>
 							<td><?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?></td>
 							<td><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></td>
 							<td>
 								<a class="button button-small" href="<?php echo esc_url( get_edit_post_link( $order->get_id() ) ); ?>">
 									<?php esc_html_e( 'Ver', 'skincare' ); ?>
 								</a>
+								<?php if ( $order->get_billing_phone() ) : ?>
+									<button type="button" class="button button-small sk-open-whatsapp"
+										data-phone="<?php echo esc_attr( $order->get_billing_phone() ); ?>"
+										data-name="<?php echo esc_attr( $order->get_billing_first_name() ); ?>"
+										data-id="<?php echo esc_attr( $order->get_order_number() ); ?>"
+										data-total="<?php echo esc_attr( $order->get_formatted_order_total() ); ?>"
+										data-address="<?php echo esc_attr( $order->get_billing_address_1() . ' ' . $order->get_billing_city() ); ?>"
+										data-tracking="<?php echo esc_attr( $order->get_meta( '_sk_tracking_url', true ) ); ?>"
+										title="Enviar WhatsApp"
+										style="color: #25D366; border-color: #25D366;">
+										<span class="dashicons dashicons-whatsapp"></span>
+									</button>
+								<?php endif; ?>
 							</td>
 						</tr>
 					<?php endforeach; ?>

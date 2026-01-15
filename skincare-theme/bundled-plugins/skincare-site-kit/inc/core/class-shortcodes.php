@@ -52,62 +52,22 @@ class Shortcodes {
 		// Instantiate the widget
 		$widget = new $class_name();
 
-		// Elementor widgets usually need $args and $instance data passed to render()
-		// Since we are bypassing Elementor's render cycle, we might need to manually call the protected render method
-		// or use a reflection trick if it's protected.
-		// However, most of our custom widgets have a protected render() method.
+		$settings = is_array( $atts ) ? $atts : [];
+		if ( strpos( $class_name, 'Marquee' ) !== false ) {
+			$settings['text'] = 'Envío gratis en pedidos del Reino Unido superiores a £25 🚚 • 10% de descuento en tu primera compra con el código: HELLO10 ✨';
+		}
+		if ( strpos( $class_name, 'Rewards_Castle' ) !== false ) {
+			$settings['tiers'] = [
+				[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 punto por £1' ],
+				[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 puntos por £1' ],
+				[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 puntos por £1' ],
+			];
+		}
 
-		// REFLECTION to call protected render()
-		try {
-			$reflection = new \ReflectionMethod( $class_name, 'render' );
-			$reflection->setAccessible( true );
-
-			// Default settings or passed attributes
-			$settings = is_array( $atts ) ? $atts : [];
-			// This part is tricky without Elementor's full stack.
-			// For simplicity in this "Replica" phase, our widgets might fail if they rely strictly on `get_settings_for_display`.
-			// Let's ensure our widgets are robust enough or mock the data.
-
-			// MOCK DATA for specific widgets to ensure they render something visuals
-			if ( strpos( $class_name, 'Marquee' ) !== false ) $settings['text'] = 'Envío gratis en pedidos del Reino Unido superiores a £25 🚚 • 10% de descuento en tu primera compra con el código: HELLO10 ✨';
-			if ( strpos( $class_name, 'Rewards_Castle' ) !== false ) {
-				$settings['tiers'] = [
-					[ 'title' => 'Cupids', 'points' => 0, 'benefits' => '1 punto por £1' ],
-					[ 'title' => 'Cherubs', 'points' => 200, 'benefits' => '1.25 puntos por £1' ],
-					[ 'title' => 'Angels', 'points' => 500, 'benefits' => '1.5 puntos por £1' ],
-				];
-			}
-			// Add more mocks as needed for visual fidelity without DB
-
-			if ( method_exists( $widget, 'set_settings' ) ) {
-				$widget->set_settings( $settings );
-			}
-
-			$widget_base = new \ReflectionClass( \Elementor\Widget_Base::class );
-			if ( $widget_base->hasProperty( 'data' ) ) {
-				$reflection_data = $widget_base->getProperty( 'data' );
-				$reflection_data->setAccessible( true );
-				$data = $reflection_data->getValue( $widget );
-				if ( ! is_array( $data ) ) {
-					$data = [];
-				}
-				if ( ! isset( $data['settings'] ) || ! is_array( $data['settings'] ) ) {
-					$data['settings'] = [];
-				}
-				$data['settings'] = $settings;
-				$reflection_data->setValue( $widget, $data );
-			}
-
-			if ( $widget_base->hasProperty( 'settings' ) ) {
-				$reflection_settings = $widget_base->getProperty( 'settings' );
-				$reflection_settings->setAccessible( true );
-				$reflection_settings->setValue( $widget, $settings );
-			}
-
-			$reflection->invoke( $widget );
-
-		} catch ( \ReflectionException $e ) {
-			return 'Error rendering widget: ' . $e->getMessage();
+		if ( method_exists( $widget, 'render_shortcode' ) ) {
+			$widget->render_shortcode( $settings );
+		} else {
+			return '';
 		}
 
 		return ob_get_clean();

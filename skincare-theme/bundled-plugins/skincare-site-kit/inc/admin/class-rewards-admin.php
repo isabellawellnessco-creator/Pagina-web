@@ -52,51 +52,11 @@ class Rewards_Admin {
 	}
 
 	private static function recalculate_points( $order_id ) {
-		$order = wc_get_order( $order_id );
-		if ( ! $order ) {
-			return false;
+		if ( class_exists( '\Skincare\SiteKit\Admin\Rewards_Master' ) ) {
+			return \Skincare\SiteKit\Admin\Rewards_Master::recalculate_order_points( $order_id );
 		}
 
-		if ( in_array( $order->get_status(), [ 'refunded', 'cancelled' ], true ) ) {
-			return false;
-		}
-
-		$user_id = $order->get_user_id();
-		if ( ! $user_id ) {
-			return false;
-		}
-
-		$rules = get_option( 'sk_rewards_rules', [] );
-		$points_per_currency = isset( $rules['points_per_currency'] ) ? absint( $rules['points_per_currency'] ) : 5;
-		$total = (float) $order->get_total();
-		$new_points = (int) round( $total * $points_per_currency );
-		$old_points = (int) $order->get_meta( '_sk_rewards_awarded', true );
-		$delta = $new_points - $old_points;
-
-		if ( 0 === $delta ) {
-			return true;
-		}
-
-		$current_points = (int) get_user_meta( $user_id, '_sk_rewards_points', true );
-		$updated_points = max( 0, $current_points + $delta );
-		update_user_meta( $user_id, '_sk_rewards_points', $updated_points );
-
-		$history = get_user_meta( $user_id, '_sk_rewards_history', true );
-		if ( ! is_array( $history ) ) {
-			$history = [];
-		}
-
-		$history[] = [
-			'date' => current_time( 'mysql' ),
-			'points' => $delta,
-			'reason' => sprintf( 'Admin adjust Order #%s', $order->get_order_number() ),
-		];
-
-		update_user_meta( $user_id, '_sk_rewards_history', $history );
-		$order->update_meta_data( '_sk_rewards_awarded', $new_points );
-		$order->save_meta_data();
-
-		return true;
+		return false;
 	}
 
 	public static function render_notice() {

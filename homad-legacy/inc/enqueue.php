@@ -62,6 +62,8 @@ function homad_scripts() {
     wp_localize_script('homad-app', 'homad_vars', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('homad_nonce'),
+        'rest_url' => esc_url_raw(rest_url()),
+        'lead_nonce' => wp_create_nonce('homad_lead_action'),
         'home_url' => home_url('/'),
         'theme_uri' => $uri
     ));

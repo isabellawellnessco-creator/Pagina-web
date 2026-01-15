@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Rewards_Actions extends Widget_Base {
+class Rewards_Actions extends Shortcode_Renderer {
 
 	public function get_name() {
 		return 'sk_rewards_actions';

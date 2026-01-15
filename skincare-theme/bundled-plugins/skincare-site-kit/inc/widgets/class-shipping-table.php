@@ -5,9 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 
-class Shipping_Table extends Widget_Base {
+class Shipping_Table extends Shortcode_Renderer {
 	public function get_name() { return 'sk_shipping_table'; }
 	public function get_title() { return __( 'Tabla de envíos', 'skincare' ); }
 	public function get_icon() { return 'eicon-table'; }

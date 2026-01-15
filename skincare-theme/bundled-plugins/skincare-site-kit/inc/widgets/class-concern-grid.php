@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Concern_Grid extends Widget_Base {
+class Concern_Grid extends Shortcode_Renderer {
 	public function get_name() { return 'sk_concern_grid'; }
 	public function get_title() { return __( 'Compra por necesidad', 'skincare' ); }
 	public function get_icon() { return 'eicon-gallery-grid'; }

@@ -5,9 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 
-class Store_Locator extends Widget_Base {
+class Store_Locator extends Shortcode_Renderer {
 	public function get_name() { return 'sk_store_locator'; }
 	public function get_title() { return __( 'Localizador de tiendas', 'skincare' ); }
 	public function get_icon() { return 'eicon-google-maps'; }

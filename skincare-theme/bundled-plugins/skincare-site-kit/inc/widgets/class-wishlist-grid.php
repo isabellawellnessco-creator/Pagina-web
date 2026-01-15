@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Wishlist_Grid extends Widget_Base {
+class Wishlist_Grid extends Shortcode_Renderer {
 	public function get_name() { return 'sk_wishlist_grid'; }
 	public function get_title() { return __( 'Lista de deseos', 'skincare' ); }
 	public function get_icon() { return 'eicon-heart'; }

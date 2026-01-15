@@ -14,10 +14,18 @@ defined('ABSPATH') || exit;
  */
 function homad_shortcode_services_grid($atts) {
     ob_start();
+    $atts = shortcode_atts(
+        [
+            'limit' => 12,
+        ],
+        $atts
+    );
+    $limit = max(1, absint($atts['limit']));
     $args = array(
         'post_type' => 'service',
-        'posts_per_page' => -1,
+        'posts_per_page' => $limit,
         'post_status' => 'publish',
+        'no_found_rows' => true,
     );
     $query = new WP_Query($args);
 
@@ -51,12 +59,20 @@ add_shortcode('homad_services_grid', 'homad_shortcode_services_grid');
  */
 function homad_shortcode_packages_grid($atts) {
     ob_start();
+    $atts = shortcode_atts(
+        [
+            'limit' => 12,
+        ],
+        $atts
+    );
+    $limit = max(1, absint($atts['limit']));
     $args = array(
         'post_type' => 'package',
-        'posts_per_page' => -1,
+        'posts_per_page' => $limit,
         'post_status' => 'publish',
         'orderby' => 'menu_order',
-        'order' => 'ASC'
+        'order' => 'ASC',
+        'no_found_rows' => true,
     );
     $query = new WP_Query($args);
 
@@ -227,6 +243,7 @@ function homad_shortcode_quote_wizard() {
             <span class="step" data-step="3">3. Contact</span>
         </div>
 
+        <div class="homad-wizard__notice" role="status" aria-live="polite"></div>
         <form id="homad-quote-form">
             <!-- STEP 1: Type Selection -->
             <div class="homad-wizard__step active" data-step="1">

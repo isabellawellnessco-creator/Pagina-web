@@ -5,12 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 use \Elementor\Group_Control_Image_Size;
 use \Elementor\Utils;
 
-class Rewards_Catalog extends Widget_Base {
+class Rewards_Catalog extends Shortcode_Renderer {
 
 	public function get_name() {
 		return 'sk_rewards_catalog';

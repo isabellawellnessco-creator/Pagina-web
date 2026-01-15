@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Brand_Slider extends Widget_Base {
+class Brand_Slider extends Shortcode_Renderer {
 	public function get_name() { return 'sk_brand_slider'; }
 	public function get_title() { return __( 'Carrusel de marcas', 'skincare' ); }
 	public function get_icon() { return 'eicon-carousel'; }

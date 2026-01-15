@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Product_Grid extends Widget_Base {
+class Product_Grid extends Shortcode_Renderer {
 
 	public function get_name() {
 		return 'sk_product_grid';

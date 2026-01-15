@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Hero_Slider extends Widget_Base {
+class Hero_Slider extends Shortcode_Renderer {
 
 	public function get_name() {
 		return 'sk_hero_slider';

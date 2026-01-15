@@ -41,7 +41,12 @@ get_header(); ?>
                                 <div class="homad-services-grid">
                                     <?php
                                     // Ideally we query 'service' CPT, but for now we ensure structure exists
-                                    $services = new WP_Query(['post_type'=>'service', 'posts_per_page'=>-1]);
+                                    $services = new WP_Query([
+                                        'post_type' => 'service',
+                                        'posts_per_page' => 12,
+                                        'post_status' => 'publish',
+                                        'no_found_rows' => true,
+                                    ]);
                                     if($services->have_posts()):
                                         while($services->have_posts()): $services->the_post();
                                             // ... existing loop
@@ -110,7 +115,7 @@ get_header(); ?>
                                     <h2 class="wizard-title">Hablemos de tu Proyecto</h2>
 
                                     <form id="homad-lead-form" class="homad-form" action="<?php echo admin_url('admin-ajax.php'); ?>" method="POST">
-                                        <?php wp_nonce_field('homad_lead_action', 'security'); ?>
+                                        <?php wp_nonce_field('homad_lead_action', 'homad_form_nonce'); ?>
                                         <input type="hidden" name="action" value="homad_submit_lead">
 
                                         <!-- Pregunta Filtro 1 -->

@@ -29,6 +29,7 @@ require_once HOMAD_CHILD_DIR . '/inc/core/admin.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/forms.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/admin-forms.php';
 require_once HOMAD_CHILD_DIR . '/inc/core/custom.php';
+require_once HOMAD_CHILD_DIR . '/inc/rest.php';
 
 // 4. Elementor Integration
 if (did_action('elementor/loaded') || defined('ELEMENTOR_VERSION')) {

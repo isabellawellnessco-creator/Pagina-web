@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Marquee extends Widget_Base {
+class Marquee extends Shortcode_Renderer {
 	public function get_name() { return 'sk_marquee'; }
 	public function get_title() { return __( 'SK Marquee', 'skincare' ); }
 	public function get_icon() { return 'eicon-text-area'; }

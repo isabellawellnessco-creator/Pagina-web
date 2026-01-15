@@ -5,10 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 
-class Ajax_Search extends Widget_Base {
+class Ajax_Search extends Shortcode_Renderer {
 
 	public function get_name() {
 		return 'sk_ajax_search';

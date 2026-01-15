@@ -25,6 +25,7 @@ class Loader {
 		\Skincare\SiteKit\Modules\Coupons_Automation::init();
 		\Skincare\SiteKit\Modules\Tracking_Manager::init(); // Added
 		\Skincare\SiteKit\Modules\Marketing_Events::init(); // Will create next
+		\Skincare\SiteKit\Modules\Localization::init();
 
 		\Skincare\SiteKit\Admin\Rewards_Master::init();
 		\Skincare\SiteKit\Core\Rest_Controller::init();
@@ -110,5 +111,6 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Price() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Add_To_Cart() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Sk_Switcher() );
 	}
 }

@@ -24,7 +24,7 @@ class Seeder {
 		}
 
 		// Don't run on AJAX or during the wizard itself
-		if ( wp_doing_ajax() || ( isset( $_GET['page'] ) && $_GET['page'] === 'sk-onboarding' ) ) {
+		if ( wp_doing_ajax() || ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'sk-onboarding', 'sk-theme-setup' ] ) ) ) {
 			return;
 		}
 
@@ -67,6 +67,11 @@ class Seeder {
 			}
 		}
 
+		// Check products (at least one)
+		if ( wp_count_posts( 'product' )->publish === 0 ) {
+			$issues[] = "No hay productos en la tienda.";
+		}
+
 		$result = [
 			'status' => empty( $issues ) ? 'ok' : 'issue',
 			'issues' => $issues,
@@ -99,7 +104,7 @@ class Seeder {
 
 	public static function create_pages() {
 		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
-		// Content definitions (kept from original)
+		// Content definitions
 		$about_content = '
 		<section class="sk-about-hero">
 			<img src="' . esc_url( $theme_assets . 'placeholder-hero-2.svg' ) . '" alt="Skin Cupid hero placeholder">
@@ -212,7 +217,6 @@ class Seeder {
 				'slug' => 'home',
 				'content' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
 				'template' => 'template-landing.php',
-				'shortcode_check' => 'sk_hero_slider',
 			],
 			[
 				'title' => 'Tienda',
@@ -314,20 +318,13 @@ class Seeder {
 				$post_id = wp_insert_post( $post_data );
 			} else {
 				$post_id = $existing_page->ID;
-				// Smart update: only if placeholder or empty
+				// Smart update: only if placeholder or empty or explicitly asking for repair
+				// But we want to be safe, so we mainly focus on creation.
+				// If we want to force update, we could check a flag, but for now we assume existence is enough
+				// unless the content is obviously broken/empty.
 				$current_content = $existing_page->post_content;
-				$needs_update = false;
-
-				if ( stripos( $current_content, 'homad' ) !== false ) {
-					$needs_update = true;
-				}
 
 				if ( empty( $current_content ) && ! empty( $page['content'] ) ) {
-					$needs_update = true;
-				}
-
-				// Only update content if absolutely necessary to avoid overwriting user edits
-				if ( $needs_update ) {
 					wp_update_post( [ 'ID' => $post_id, 'post_content' => $page['content'] ] );
 				}
 			}

@@ -18,20 +18,73 @@ input[type="button"],
   cursor: pointer;
   transition: all var(--transition-base);
   border: 1px solid var(--c-accent);
-  background-color: var(--c-accent);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.elementor-button:hover {
+  background-color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
   color: var(--c-text-inverse);
+  transform: translateY(-1px);
+}
+
+.btn:active,
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+.elementor-button:active {
+  transform: translateY(1px);
+  background-color: var(--c-accent);
+}
+
+.btn:disabled,
+button:disabled,
+input[type="submit"]:disabled,
+input[type="button"]:disabled,
+.elementor-button.disabled,
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.btn.is-loading,
+button.is-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn.is-loading::after,
+button.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: sk-spin 0.8s linear infinite;
+  left: 50%;
+  top: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+}
+
+@keyframes sk-spin {
+  to { transform: rotate(360deg); }
 }
 
 .btn-primary {
   background-color: var(--c-accent);
   color: var(--c-text-inverse);
   border-color: var(--c-accent);
-}
-
-.btn-primary:hover {
-  background-color: var(--c-accent-hover);
-  border-color: var(--c-accent-hover);
-  color: var(--c-text-inverse);
 }
 
 .btn-secondary {
@@ -43,6 +96,36 @@ input[type="button"],
 .btn-secondary:hover {
   background-color: var(--c-text-main);
   color: var(--c-text-inverse);
+}
+
+/* Messages */
+.sk-msg {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  border-left: 4px solid transparent;
+}
+
+.sk-msg--success {
+  background-color: #EDF8EE;
+  color: #145e22;
+  border-left-color: #46b450;
+}
+
+.sk-msg--error {
+  background-color: #FBEAEA;
+  color: #a31518;
+  border-left-color: #d63638;
+}
+
+.sk-msg--info {
+  background-color: #EBF5FA;
+  color: #135e96;
+  border-left-color: #2271b1;
 }
 
 /* Cards */
@@ -58,6 +141,18 @@ input[type="button"],
 .sk-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card);
+}
+
+.sk-card--ok {
+  border-top: 4px solid #46b450;
+}
+
+.sk-card--warning {
+  border-top: 4px solid #f0b849;
+}
+
+.sk-card--error {
+  border-top: 4px solid #d63638;
 }
 
 /* Page Layout */

@@ -12,6 +12,7 @@ class Admin_Dashboard {
 	public static function init() {
 		add_action( 'admin_menu', [ __CLASS__, 'register_page' ] );
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_assets' ] );
+		add_action( 'admin_post_sk_advanced_suite_setup', [ __CLASS__, 'handle_advanced_setup' ] );
 	}
 
 	public static function register_page() {
@@ -53,6 +54,15 @@ class Admin_Dashboard {
 		$seed_version = (int) get_option( Seeder::OPTION_VERSION, $legacy_seed_version );
 		$seed_last_run = get_option( Seeder::OPTION_LAST_RUN, 0 );
 		$seed_last_error = get_option( Seeder::OPTION_LAST_ERROR, '' );
+		$advanced_settings = get_option( 'sk_advanced_suite', [] );
+		$advanced_modules = self::get_advanced_modules();
+		$advanced_enabled = array_filter( array_map( function( $key ) use ( $advanced_settings ) {
+			return ! empty( $advanced_settings[ $key ] );
+		}, array_keys( $advanced_modules ) ) );
+		$advanced_total = count( $advanced_modules );
+		$advanced_done = count( $advanced_enabled );
+		$advanced_progress = $advanced_total ? ( $advanced_done / $advanced_total ) * 100 : 0;
+		$advanced_updated = isset( $_GET['sk_advanced_setup'] ) && $_GET['sk_advanced_setup'] === 'done';
 
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$elementor_pro_active = is_plugin_active( 'elementor-pro/elementor-pro.php' );
@@ -274,7 +284,102 @@ class Admin_Dashboard {
 				<?php endif; ?>
 			</div>
 
+			<div class="sk-logs-section">
+				<h3><?php _e( 'Suite Avanzada', 'skincare' ); ?></h3>
+				<p><?php _e( 'Activa analítica avanzada, inventario, tracking y facturación con un flujo de 1 clic.', 'skincare' ); ?></p>
+				<?php if ( $advanced_updated ) : ?>
+					<div class="notice notice-success is-dismissible"><p><?php _e( 'Suite avanzada configurada.', 'skincare' ); ?></p></div>
+				<?php endif; ?>
+				<div class="sk-status-card sk-card">
+					<div class="sk-status-header">
+						<h4><?php _e( 'Progreso', 'skincare' ); ?></h4>
+						<span class="sk-chip"><?php echo esc_html( sprintf( __( '%d/%d activos', 'skincare' ), $advanced_done, $advanced_total ) ); ?></span>
+					</div>
+					<div class="sk-progress-wrapper">
+						<div class="sk-progress-bar">
+							<div class="sk-progress-fill" style="width: <?php echo esc_attr( $advanced_progress ); ?>%"></div>
+						</div>
+					</div>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php?action=sk_advanced_suite_setup' ) ); ?>">
+						<?php wp_nonce_field( 'sk_advanced_suite_setup', 'sk_advanced_suite_nonce' ); ?>
+						<button class="btn btn-primary" type="submit"><?php _e( 'Configurar en 1 clic', 'skincare' ); ?></button>
+						<a class="btn btn-secondary" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ), 'sk_repair_link' ) ); ?>">
+							<?php _e( 'Importar contenido (1 clic)', 'skincare' ); ?>
+						</a>
+					</form>
+				</div>
+
+				<div class="sk-dashboard-columns" style="margin-top: 20px;">
+					<div class="sk-dashboard-column">
+						<div class="sk-health-card sk-card">
+							<ul class="sk-health-list-new">
+								<?php foreach ( $advanced_modules as $key => $module ) : ?>
+									<?php $active = ! empty( $advanced_settings[ $key ] ); ?>
+									<li class="sk-health-item-new">
+										<span class="sk-indicator <?php echo $active ? 'ok' : 'issue'; ?>"></span>
+										<span><?php echo esc_html( $module['label'] ); ?></span>
+										<?php if ( ! empty( $module['link'] ) ) : ?>
+											<a href="<?php echo esc_url( $module['link'] ); ?>" class="sk-fix-link"><?php _e( 'Configurar', 'skincare' ); ?></a>
+										<?php endif; ?>
+										<?php if ( ! empty( $module['description'] ) ) : ?>
+											<span class="description"><?php echo esc_html( $module['description'] ); ?></span>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		<?php
+	}
+
+	public static function handle_advanced_setup() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'No autorizado.', 'skincare' ) );
+		}
+
+		check_admin_referer( 'sk_advanced_suite_setup', 'sk_advanced_suite_nonce' );
+
+		$defaults = [];
+		foreach ( self::get_advanced_modules() as $key => $module ) {
+			$defaults[ $key ] = true;
+		}
+		update_option( 'sk_advanced_suite', $defaults );
+
+		wp_safe_redirect( add_query_arg( [ 'page' => 'skincare-site-kit', 'sk_advanced_setup' => 'done' ], admin_url( 'admin.php' ) ) );
+		exit;
+	}
+
+	private static function get_advanced_modules() {
+		return [
+			'analytics' => [
+				'label' => __( 'Analítica avanzada', 'skincare' ),
+				'description' => __( 'KPIs de ventas, cohortes y rendimiento.', 'skincare' ),
+				'link' => admin_url( 'admin.php?page=wc-admin&path=/analytics/overview' ),
+			],
+			'inventory' => [
+				'label' => __( 'Inventario avanzado', 'skincare' ),
+				'description' => __( 'Control de stock y ajustes rápidos.', 'skincare' ),
+				'link' => admin_url( 'admin.php?page=sk-stock-manager' ),
+			],
+			'tracking' => [
+				'label' => __( 'Tracking y estados', 'skincare' ),
+				'description' => __( 'Configura los pasos que ve el cliente.', 'skincare' ),
+				'link' => admin_url( 'admin.php?page=sk-tracking-settings' ),
+			],
+			'sunat' => [
+				'label' => __( 'SUNAT / Comprobantes', 'skincare' ),
+				'description' => __( 'Emite boletas y facturas desde Fulfillment.', 'skincare' ),
+				'link' => admin_url( 'admin.php?page=sk-fulfillment-center#sk-fulfillment-invoices' ),
+			],
+			'crm' => [
+				'label' => __( 'CRM y WhatsApp', 'skincare' ),
+				'description' => __( 'Plantillas y comunicación con clientes.', 'skincare' ),
+				'link' => admin_url( 'admin.php?page=sk-whatsapp-templates' ),
+			],
+		];
 	}
 }

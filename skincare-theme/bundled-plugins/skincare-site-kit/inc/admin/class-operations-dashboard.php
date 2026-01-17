@@ -31,6 +31,14 @@ class Operations_Dashboard {
 		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Centro de Operaciones Skin Cupid', 'skincare' ); ?></h1>
 			<p><?php esc_html_e( 'Gestión diaria de pedidos y logística.', 'skincare' ); ?></p>
+			<div class="sk-admin-cta">
+				<a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-fulfillment-center#sk-fulfillment-invoices' ) ); ?>">
+					<?php esc_html_e( 'Facturar', 'skincare' ); ?>
+				</a>
+				<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-fulfillment-center#sk-fulfillment-labels' ) ); ?>">
+					<?php esc_html_e( 'Crear etiqueta', 'skincare' ); ?>
+				</a>
+			</div>
 
 			<div class="sk-admin-hero">
 				<div class="sk-admin-grid">
@@ -87,6 +95,7 @@ class Operations_Dashboard {
 			</div>
 
 			<style>
+				.sk-admin-cta { margin: 12px 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
 				.metric-warning { border-left: 4px solid #ffba00; }
 				.sk-admin-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
 				.sk-admin-card { background: #fff; padding: 20px; border: 1px solid #ccd0d4; box-shadow: 0 1px 1px rgba(0,0,0,.04); }
@@ -155,6 +164,11 @@ class Operations_Dashboard {
 				}
 			}
 
+			$fulfillment_labels = admin_url( 'admin.php?page=sk-fulfillment-center&order_ids=' . $order->get_id() . '#sk-fulfillment-labels' );
+			$fulfillment_invoices = admin_url( 'admin.php?page=sk-fulfillment-center&order_ids=' . $order->get_id() . '#sk-fulfillment-invoices' );
+
+			echo '<a href="' . esc_url( $fulfillment_labels ) . '" class="button button-small">Etiqueta</a> ';
+			echo '<a href="' . esc_url( $fulfillment_invoices ) . '" class="button button-small">Comprobante SUNAT</a> ';
 			echo '<a href="' . esc_url( $edit_link ) . '" class="button button-small">Gestión</a>';
 			echo '</td>';
 			echo '</tr>';

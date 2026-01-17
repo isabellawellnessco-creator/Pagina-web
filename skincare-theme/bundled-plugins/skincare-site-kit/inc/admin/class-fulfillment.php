@@ -153,8 +153,23 @@ class Fulfillment {
 	}
 
 	public static function render_dashboard() {
+		$templates_updated = false;
+		if ( isset( $_POST['sk_fulfillment_templates_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['sk_fulfillment_templates_nonce'] ) ), 'sk_fulfillment_templates' ) ) {
+			$label_template = isset( $_POST['sk_label_template'] ) ? wp_kses_post( wp_unslash( $_POST['sk_label_template'] ) ) : '';
+			$invoice_template = isset( $_POST['sk_invoice_template'] ) ? wp_kses_post( wp_unslash( $_POST['sk_invoice_template'] ) ) : '';
+			update_option( 'sk_fulfillment_label_template', $label_template );
+			update_option( 'sk_fulfillment_invoice_template', $invoice_template );
+			$templates_updated = true;
+		}
+
 		$order_ids = self::parse_order_ids();
 		$orders = self::get_orders_from_ids( $order_ids );
+		$preview_order = self::get_preview_order( $orders );
+		$placeholders = self::get_template_placeholders( $preview_order );
+		$label_template_value = get_option( 'sk_fulfillment_label_template', '' );
+		$invoice_template_value = get_option( 'sk_fulfillment_invoice_template', '' );
+		$label_template_display = $label_template_value !== '' ? $label_template_value : self::get_default_template( 'label' );
+		$invoice_template_display = $invoice_template_value !== '' ? $invoice_template_value : self::get_default_template( 'invoice' );
 		?>
 		<div class="wrap sk-admin-dashboard">
 			<h1><?php esc_html_e( 'Fulfillment Center', 'skincare' ); ?></h1>
@@ -165,6 +180,7 @@ class Fulfillment {
 				<button class="sk-admin-tab" data-target="sk-fulfillment-packing"><?php esc_html_e( 'Packing Slips', 'skincare' ); ?></button>
 				<button class="sk-admin-tab" data-target="sk-fulfillment-labels"><?php esc_html_e( 'Shipping Labels', 'skincare' ); ?></button>
 				<button class="sk-admin-tab" data-target="sk-fulfillment-invoices"><?php esc_html_e( 'Invoices', 'skincare' ); ?></button>
+				<button class="sk-admin-tab" data-target="sk-fulfillment-templates"><?php esc_html_e( 'Plantillas', 'skincare' ); ?></button>
 			</nav>
 
 			<section id="sk-fulfillment-overview" class="sk-admin-panel is-active">
@@ -203,8 +219,146 @@ class Fulfillment {
 				<?php self::render_order_form( __( 'Invoice generator', 'skincare' ), 'sk-fulfillment-center' ); ?>
 				<?php self::render_invoice_cards( $orders ); ?>
 			</section>
+
+			<section id="sk-fulfillment-templates" class="sk-admin-panel">
+				<h2><?php esc_html_e( 'Plantillas de documentos', 'skincare' ); ?></h2>
+				<p><?php esc_html_e( 'Edita el diseño base de etiquetas de envío y comprobantes. Usa los placeholders para imprimir datos de pedidos.', 'skincare' ); ?></p>
+				<?php if ( $templates_updated ) : ?>
+					<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Plantillas actualizadas.', 'skincare' ); ?></p></div>
+				<?php endif; ?>
+				<div class="sk-admin-panel-grid">
+					<div class="sk-admin-card">
+						<h3><?php esc_html_e( 'Placeholders disponibles', 'skincare' ); ?></h3>
+						<table class="widefat striped">
+							<thead>
+								<tr>
+									<th><?php esc_html_e( 'Placeholder', 'skincare' ); ?></th>
+									<th><?php esc_html_e( 'Descripción', 'skincare' ); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ( self::get_placeholder_catalog() as $placeholder => $label ) : ?>
+									<tr>
+										<td><code>{{<?php echo esc_html( $placeholder ); ?>}}</code></td>
+										<td><?php echo esc_html( $label ); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+						<?php if ( ! $preview_order ) : ?>
+							<p class="description"><?php esc_html_e( 'No se encontró un pedido para mostrar previsualización. Crea un pedido y vuelve a cargar.', 'skincare' ); ?></p>
+						<?php endif; ?>
+					</div>
+				</div>
+				<form method="post" class="sk-admin-filter-bar">
+					<?php wp_nonce_field( 'sk_fulfillment_templates', 'sk_fulfillment_templates_nonce' ); ?>
+					<div class="sk-admin-panel-grid">
+						<div class="sk-admin-card">
+							<label for="sk-label-template"><strong><?php esc_html_e( 'Etiqueta de envío (HTML)', 'skincare' ); ?></strong></label>
+							<textarea id="sk-label-template" name="sk_label_template" rows="12" class="large-text code"><?php echo esc_textarea( $label_template_display ); ?></textarea>
+							<h4><?php esc_html_e( 'Vista previa', 'skincare' ); ?></h4>
+							<div class="sk-template-preview">
+								<?php echo wp_kses_post( self::render_template_preview( $label_template_display, $placeholders ) ); ?>
+							</div>
+						</div>
+						<div class="sk-admin-card">
+							<label for="sk-invoice-template"><strong><?php esc_html_e( 'Comprobante SUNAT / boleta (HTML)', 'skincare' ); ?></strong></label>
+							<textarea id="sk-invoice-template" name="sk_invoice_template" rows="12" class="large-text code"><?php echo esc_textarea( $invoice_template_display ); ?></textarea>
+							<h4><?php esc_html_e( 'Vista previa', 'skincare' ); ?></h4>
+							<div class="sk-template-preview">
+								<?php echo wp_kses_post( self::render_template_preview( $invoice_template_display, $placeholders ) ); ?>
+							</div>
+						</div>
+					</div>
+					<?php submit_button( __( 'Guardar cambios', 'skincare' ) ); ?>
+				</form>
+				<style>
+					.sk-template-preview { border: 1px dashed #ccd0d4; padding: 12px; background: #fcfcfc; }
+				</style>
+			</section>
 		</div>
 		<?php
+	}
+
+	private static function get_default_template( $type ) {
+		$defaults = [
+			'label' => '<h3>Etiqueta de envío</h3><p><strong>Pedido:</strong> {{order_number}}</p><p><strong>Cliente:</strong> {{customer_name}}</p><p><strong>Dirección:</strong><br>{{shipping_address}}</p><p><strong>Teléfono:</strong> {{phone}}</p>',
+			'invoice' => '<h3>Comprobante</h3><p><strong>Pedido:</strong> {{order_number}}</p><p><strong>Cliente:</strong> {{customer_name}}</p><p><strong>Email:</strong> {{email}}</p><p><strong>Total:</strong> {{order_total}}</p><h4>Items</h4>{{items_list}}',
+		];
+
+		return $defaults[ $type ] ?? '';
+	}
+
+	private static function get_preview_order( $orders ) {
+		if ( ! empty( $orders ) ) {
+			return $orders[0];
+		}
+
+		$latest = wc_get_orders( [
+			'limit' => 1,
+			'status' => [ 'processing', 'on-hold', 'pending', 'completed' ],
+			'orderby' => 'date',
+			'order' => 'DESC',
+		] );
+
+		return $latest ? $latest[0] : null;
+	}
+
+	private static function get_placeholder_catalog() {
+		return [
+			'order_number' => __( 'Número de pedido', 'skincare' ),
+			'customer_name' => __( 'Nombre completo del cliente', 'skincare' ),
+			'shipping_address' => __( 'Dirección de envío formateada', 'skincare' ),
+			'billing_address' => __( 'Dirección de facturación formateada', 'skincare' ),
+			'order_total' => __( 'Total del pedido', 'skincare' ),
+			'phone' => __( 'Teléfono del cliente', 'skincare' ),
+			'email' => __( 'Email del cliente', 'skincare' ),
+			'order_date' => __( 'Fecha del pedido', 'skincare' ),
+			'items_list' => __( 'Listado de productos (HTML)', 'skincare' ),
+		];
+	}
+
+	private static function get_template_placeholders( $order ) {
+		if ( ! $order ) {
+			return [
+				'order_number' => '—',
+				'customer_name' => '—',
+				'shipping_address' => '—',
+				'billing_address' => '—',
+				'order_total' => '—',
+				'phone' => '—',
+				'email' => '—',
+				'order_date' => '—',
+				'items_list' => '<ul><li>—</li></ul>',
+			];
+		}
+
+		$items = '';
+		foreach ( $order->get_items() as $item ) {
+			$items .= '<li>' . esc_html( $item->get_name() . ' × ' . $item->get_quantity() ) . '</li>';
+		}
+		$items_list = $items ? '<ul>' . $items . '</ul>' : '<ul><li>—</li></ul>';
+
+		return [
+			'order_number' => $order->get_order_number(),
+			'customer_name' => $order->get_formatted_billing_full_name(),
+			'shipping_address' => $order->get_formatted_shipping_address() ?: '—',
+			'billing_address' => $order->get_formatted_billing_address() ?: '—',
+			'order_total' => wp_kses_post( $order->get_formatted_order_total() ),
+			'phone' => $order->get_billing_phone() ?: '—',
+			'email' => $order->get_billing_email() ?: '—',
+			'order_date' => $order->get_date_created() ? $order->get_date_created()->date_i18n( 'Y-m-d H:i' ) : '—',
+			'items_list' => $items_list,
+		];
+	}
+
+	private static function render_template_preview( $template, $placeholders ) {
+		$replacement = [];
+		foreach ( $placeholders as $key => $value ) {
+			$replacement[ '{{' . $key . '}}' ] = $value;
+		}
+
+		return strtr( $template, $replacement );
 	}
 
 	private static function parse_order_ids() {

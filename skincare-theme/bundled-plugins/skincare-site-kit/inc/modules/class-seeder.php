@@ -467,18 +467,27 @@ class Seeder {
 		}
 	}
 
-	public static function upload_placeholder_image() {
-		$image_title = 'SkinCupid Placeholder';
-		$image_name  = 'skin-cupid-placeholder.svg';
+	public static function get_demo_images() {
+		// Define 3 brand-compliant placeholders
+		$images = [
+			[
+				'name'  => 'skin-cupid-demo-blue.png',
+				'url'   => 'https://placehold.co/600x600/F8F5F1/0F3062.png?text=Skin+Cupid+Blue',
+				'title' => 'Skin Cupid Demo Blue'
+			],
+			[
+				'name'  => 'skin-cupid-demo-pink.png',
+				'url'   => 'https://placehold.co/600x600/F8F5F1/E5757E.png?text=Skin+Cupid+Pink',
+				'title' => 'Skin Cupid Demo Pink'
+			],
+			[
+				'name'  => 'skin-cupid-demo-dark.png',
+				'url'   => 'https://placehold.co/600x600/0F3062/F8F5F1.png?text=Skin+Cupid+Dark',
+				'title' => 'Skin Cupid Demo Dark'
+			]
+		];
 
-		global $wpdb;
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'attachment'", $image_title ) );
-
-		if ( ! empty( $attachment ) ) {
-			return $attachment[0];
-		}
-
-		$image_url = SKINCARE_KIT_URL . 'assets/images/placeholder-product.svg';
+		$image_ids = [];
 
 		// Load WP libs
 		if ( ! function_exists( 'media_handle_sideload' ) ) {
@@ -487,23 +496,39 @@ class Seeder {
 			require_once( ABSPATH . 'wp-admin/includes/media.php' );
 		}
 
-		$tmp = download_url( $image_url );
-		if ( is_wp_error( $tmp ) ) return false;
+		global $wpdb;
 
-		$file_array = [ 'name' => $image_name, 'tmp_name' => $tmp ];
-		$id = media_handle_sideload( $file_array, 0 );
+		foreach ( $images as $img ) {
+			// Check if exists by title
+			$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'attachment'", $img['title'] ) );
 
-		if ( is_wp_error( $id ) ) {
-			@unlink( $file_array['tmp_name'] );
-			return false;
+			if ( ! empty( $attachment ) ) {
+				$image_ids[] = $attachment[0];
+				continue;
+			}
+
+			// Download
+			$tmp = download_url( $img['url'] );
+			if ( is_wp_error( $tmp ) ) continue;
+
+			$file_array = [ 'name' => $img['name'], 'tmp_name' => $tmp ];
+			$id = media_handle_sideload( $file_array, 0 );
+
+			if ( is_wp_error( $id ) ) {
+				@unlink( $file_array['tmp_name'] );
+				continue;
+			}
+
+			wp_update_post( [ 'ID' => $id, 'post_title' => $img['title'] ] );
+			$image_ids[] = $id;
 		}
 
-		wp_update_post( [ 'ID' => $id, 'post_title' => $image_title ] );
-		return $id;
+		return $image_ids;
 	}
 
 	public static function create_products() {
-		$placeholder_id = self::upload_placeholder_image();
+		$image_ids = self::get_demo_images();
+
 		$demo_products = [
 			[ 'name' => 'HaruHaru Wonder - Aceite limpiador Black Rice', 'price' => '19.00', 'cat' => 'Limpiador de aceite', 'seed_id' => 'product_haruharu_black_rice' ],
 			[ 'name' => 'Round Lab - Limpiador 1025 Dokdo', 'price' => '14.00', 'cat' => 'Limpiador a base de agua', 'seed_id' => 'product_roundlab_dokdo' ],
@@ -524,6 +549,9 @@ class Seeder {
 			[ 'name' => 'Mixsoon - Esencia Bean', 'price' => '28.00', 'cat' => 'Esencia', 'seed_id' => 'product_mixsoon_bean' ],
 			[ 'name' => 'Beauty of Joseon - Set de viaje Glow', 'price' => '30.00', 'cat' => 'Sets y regalos', 'seed_id' => 'product_boj_travel_glow' ],
 		];
+
+		$count_images = count( $image_ids );
+		$i = 0;
 
 		foreach ( $demo_products as $p ) {
 			$existing = self::get_seeded_post( 'product', $p['seed_id'], [ 'title' => $p['name'] ] );
@@ -546,13 +574,18 @@ class Seeder {
 					$term = get_term_by( 'name', $p['cat'], 'product_cat' );
 					if ( $term ) wp_set_object_terms( $post_id, $term->term_id, 'product_cat' );
 
-					if ( $placeholder_id ) set_post_thumbnail( $post_id, $placeholder_id );
+					if ( $count_images > 0 ) {
+						// Round robin assignment
+						$img_id = $image_ids[ $i % $count_images ];
+						set_post_thumbnail( $post_id, $img_id );
+					}
 
 					self::mark_seeded_post( $post_id, $p['seed_id'] );
 				}
 			} else {
 				self::mark_seeded_post( $existing->ID, $p['seed_id'] );
 			}
+			$i++;
 		}
 	}
 

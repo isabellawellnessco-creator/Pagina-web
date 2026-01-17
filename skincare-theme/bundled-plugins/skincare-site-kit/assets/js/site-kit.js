@@ -80,6 +80,59 @@ jQuery(document).ready(function($) {
         }, options || {}));
     }
 
+    function skAjaxRequest(action, data, options) {
+        var settings = $.extend({
+            method: 'POST',
+            retries: 0,
+            loadingTarget: null
+        }, options || {});
+
+        if (!sk_vars || !sk_vars.ajax_url) {
+            return Promise.reject(new Error('AJAX URL missing'));
+        }
+
+        var payload = $.extend({
+            action: action,
+            nonce: sk_vars.nonce || ''
+        }, data || {});
+
+        if (settings.loadingTarget) {
+            $(settings.loadingTarget).addClass('is-loading').attr('aria-busy', 'true');
+        }
+
+        var body = new URLSearchParams();
+        Object.keys(payload).forEach(function(key) {
+            if (typeof payload[key] !== 'undefined' && payload[key] !== null) {
+                body.append(key, payload[key]);
+            }
+        });
+
+        var request = function() {
+            return fetch(sk_vars.ajax_url, {
+                method: settings.method,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                credentials: 'same-origin',
+                body: body.toString()
+            }).then(function(response) {
+                return response.json();
+            });
+        };
+
+        return request().catch(function(error) {
+            if (settings.retries > 0) {
+                settings.retries -= 1;
+                return request();
+            }
+            throw error;
+        }).finally(function() {
+            if (settings.loadingTarget) {
+                $(settings.loadingTarget).removeClass('is-loading').removeAttr('aria-busy');
+            }
+        });
+    }
+
     // Slider Logic (Simple Fade)
     $('.sk-hero-slider').each(function() {
         var $slider = $(this);
@@ -97,30 +150,50 @@ jQuery(document).ready(function($) {
     });
 
     // Wishlist AJAX
-    $(document).on('click', '.sk-add-to-wishlist', function(e) {
+    $(document).on('click', '.sk-wishlist-toggle, .sk-add-to-wishlist', function(e) {
         e.preventDefault();
         var $btn = $(this);
         var pid = $btn.data('product-id');
+        var isToggle = $btn.hasClass('sk-wishlist-toggle');
+        var inWishlist = isToggle ? !!$btn.data('in-wishlist') : false;
+        var action = inWishlist ? 'sk_remove_from_wishlist' : 'sk_add_to_wishlist';
 
-        skRestFetch('wishlist/add', {
-            body: JSON.stringify({ product_id: pid })
-        })
-        .then(function(response) {
-            return response.json().then(function(data) {
-                return { ok: response.ok, data: data };
+        if (!pid) {
+            showToast('Producto inválido.', 'error');
+            return;
+        }
+
+        skAjaxRequest(action, { product_id: pid }, { loadingTarget: $btn })
+            .then(function(result) {
+                if (result && result.success) {
+                    if (isToggle) {
+                        var newState = !inWishlist;
+                        $btn.data('in-wishlist', newState);
+                        $btn.toggleClass('is-active', newState);
+                        $btn.attr('aria-pressed', newState ? 'true' : 'false');
+                        $btn.text(newState ? 'Quitar de favoritos' : 'Añadir a favoritos');
+                    } else {
+                        $btn.addClass('added');
+                    }
+
+                    if (inWishlist && isToggle) {
+                        var $productCard = $btn.closest('li.product');
+                        if ($productCard.length) {
+                            $productCard.remove();
+                        }
+                        if ($('.sk-wishlist-grid li.product').length === 0) {
+                            $('.sk-wishlist-grid').replaceWith('<p class="sk-wishlist-empty">Tu lista de deseos está vacía.</p>');
+                        }
+                    }
+
+                    showToast(result.data && result.data.message ? result.data.message : 'Favoritos actualizados.', 'success');
+                } else {
+                    showToast(result && result.data && result.data.message ? result.data.message : 'No se pudo actualizar favoritos.', 'error');
+                }
+            })
+            .catch(function() {
+                showToast('No se pudo conectar. Intenta de nuevo.', 'error');
             });
-        })
-        .then(function(result) {
-            if (result.ok && result.data.success) {
-                $btn.addClass('added');
-                showToast('Añadido a favoritos', 'success');
-            } else {
-                showToast('No se pudo agregar a favoritos.', 'error');
-            }
-        })
-        .catch(function() {
-            showToast('No se pudo conectar. Intenta de nuevo.', 'error');
-        });
     });
 
     // Stock Notifier AJAX
@@ -129,24 +202,20 @@ jQuery(document).ready(function($) {
         var $form = $(this);
         var $msg = $form.find('.message');
 
-        skRestFetch('stock-notify', {
-            body: JSON.stringify({
-                email: $form.find('input[name="email"]').val(),
-                product_id: $form.find('input[name="product_id"]').val()
+        skAjaxRequest('sk_stock_notify', {
+            email: $form.find('input[name="email"]').val(),
+            product_id: $form.find('input[name="product_id"]').val()
+        }, { loadingTarget: $form.find('button[type=\"submit\"]') })
+            .then(function(result) {
+                if (result && result.success) {
+                    $msg.html(result.data && result.data.message ? result.data.message : '¡Te avisaremos pronto!').css('color', 'green');
+                } else {
+                    $msg.html(result && result.data && result.data.message ? result.data.message : 'Error').css('color', 'red');
+                }
             })
-        })
-        .then(function(response) {
-            return response.json().then(function(data) {
-                return { ok: response.ok, data: data };
+            .catch(function() {
+                $msg.html('No se pudo conectar. Intenta de nuevo.').css('color', 'red');
             });
-        })
-        .then(function(result) {
-            if (result.ok && result.data.success) {
-                $msg.html(result.data.message).css('color', 'green');
-            } else {
-                $msg.html(result.data.message || 'Error').css('color', 'red');
-            }
-        });
     });
 
     // AJAX Search

@@ -1,5 +1,11 @@
 # Skincare Theme & Site Kit
 
+## Repository Layout
+
+* `skincare-theme/`: WordPress theme and bundled site kit plugin.
+* `refs/`: Reference assets and materials kept for the project.
+* Legacy delivery reports, audits, and Apps Script artifacts have been removed to keep the repo focused.
+
 ## Setup Instructions
 
 1.  **Activate Theme**: Go to Appearance > Themes and activate `skincare-theme`.

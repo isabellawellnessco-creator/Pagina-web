@@ -11,10 +11,6 @@ abstract class Shortcode_Renderer extends \Elementor\Widget_Base {
 			$settings = [];
 		}
 
-		if ( method_exists( $this, 'set_data' ) ) {
-			$this->set_data( 'settings', $settings );
-		}
-
 		if ( method_exists( $this, 'set_settings' ) ) {
 			$this->set_settings( $settings );
 		}

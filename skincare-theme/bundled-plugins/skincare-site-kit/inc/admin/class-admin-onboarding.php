@@ -23,7 +23,7 @@ class Admin_Onboarding {
 
 	public static function register_page() {
 		add_submenu_page(
-			'skincare-site-kit',
+			null,
 			__( 'Asistente de Configuración', 'skincare' ),
 			__( 'Configuración', 'skincare' ),
 			'manage_options',

@@ -7,13 +7,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class Shortcode_Renderer extends \Elementor\Widget_Base {
 	public function get_data( $key = null ) {
-		$data = parent::get_data( $key );
+		if ( 'settings' === $key ) {
+			if ( ! isset( $this->data['settings'] ) || ! is_array( $this->data['settings'] ) ) {
+				$this->data['settings'] = [];
+			}
 
-		if ( 'settings' === $key && ! is_array( $data ) ) {
-			return [];
+			return $this->data['settings'];
 		}
 
-		return $data;
+		return parent::get_data( $key );
 	}
 
 	public function get_init_settings() {

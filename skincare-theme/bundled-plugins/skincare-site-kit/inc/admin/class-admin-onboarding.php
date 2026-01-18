@@ -222,9 +222,6 @@ class Admin_Onboarding {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$widget_status = self::get_elementor_widget_status();
 		$customization_saved = isset( $_GET['customization'] ) && $_GET['customization'] === 'saved';
-		$seed_last_error = get_option( Seeder::OPTION_LAST_ERROR, '' );
-		$seed_last_run = get_option( Seeder::OPTION_LAST_RUN, 0 );
-		$seed_logs = get_option( Seeder::LOG_OPTION, [] );
 		$dependencies = [
 			[
 				'label' => __( 'WooCommerce', 'skincare' ),
@@ -330,53 +327,7 @@ class Admin_Onboarding {
 							<?php _e( 'Ejecutar reparación completa', 'skincare' ); ?>
 						</a>
 					</div>
-						<p class="description" id="sk-widget-status-message"></p>
-					</div>
-
-				<div class="sk-onboarding-content">
-					<div class="sk-section-header">
-						<div>
-							<strong><?php _e( 'Diagnóstico de importación', 'skincare' ); ?></strong>
-							<p><?php _e( 'Aquí puedes ver el último error y los pasos ejecutados.', 'skincare' ); ?></p>
-						</div>
-						<?php if ( $seed_last_run ) : ?>
-							<span class="sk-chip">
-								<?php echo esc_html( date_i18n( 'd/m/Y H:i', $seed_last_run ) ); ?>
-							</span>
-						<?php endif; ?>
-					</div>
-					<?php if ( $seed_last_error ) : ?>
-						<div class="sk-msg sk-msg--error">
-							<div>
-								<strong><?php _e( 'Último error detectado', 'skincare' ); ?></strong>
-								<p><?php echo esc_html( $seed_last_error ); ?></p>
-							</div>
-						</div>
-					<?php else : ?>
-						<div class="sk-msg sk-msg--success">
-							<div>
-								<strong><?php _e( 'Sin errores recientes.', 'skincare' ); ?></strong>
-								<p><?php _e( 'El último proceso terminó correctamente.', 'skincare' ); ?></p>
-							</div>
-						</div>
-					<?php endif; ?>
-					<?php if ( ! empty( $seed_logs ) ) : ?>
-						<ul class="sk-status-list">
-							<?php foreach ( $seed_logs as $entry ) : ?>
-								<li class="<?php echo $entry['status'] === 'success' ? 'is-ok' : 'is-missing'; ?>">
-									<span>
-										<?php echo esc_html( ucfirst( $entry['step'] ) ); ?>
-										<?php if ( ! empty( $entry['message'] ) ) : ?>
-											<br><small><?php echo esc_html( $entry['message'] ); ?></small>
-										<?php endif; ?>
-									</span>
-									<span class="sk-pill <?php echo $entry['status'] === 'success' ? 'sk-pill--ok' : 'sk-pill--warn'; ?>">
-										<?php echo esc_html( ucfirst( $entry['status'] ) ); ?>
-									</span>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
+					<p class="description" id="sk-widget-status-message"></p>
 				</div>
 
 				<div class="sk-onboarding-content">

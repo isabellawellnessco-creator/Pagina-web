@@ -7,6 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class Shortcode_Renderer extends \Elementor\Widget_Base {
 	public function render_shortcode( $settings = [] ) {
+		if ( ! is_array( $settings ) ) {
+			$settings = [];
+		}
+
 		if ( method_exists( $this, 'set_settings' ) ) {
 			$this->set_settings( $settings );
 		}

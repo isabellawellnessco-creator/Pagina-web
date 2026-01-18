@@ -80,6 +80,29 @@ class Theme_Builder {
 
 	public static function get_location_id( $location ) {
 		$settings = get_option( 'sk_theme_builder_settings', [] );
-		return isset( $settings[ $location ] ) ? $settings[ $location ] : false;
+		if ( isset( $settings[ $location ] ) && $settings[ $location ] ) {
+			return $settings[ $location ];
+		}
+
+		$seed_id = 'sk_template_' . $location;
+		$seeded = get_posts( [
+			'post_type'      => 'sk_template',
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'meta_query'     => [
+				[
+					'key'   => \Skincare\SiteKit\Modules\Seeder::META_SEED_ID,
+					'value' => $seed_id,
+				],
+			],
+		] );
+
+		if ( ! empty( $seeded ) ) {
+			$settings[ $location ] = $seeded[0]->ID;
+			update_option( 'sk_theme_builder_settings', $settings );
+			return $seeded[0]->ID;
+		}
+
+		return false;
 	}
 }

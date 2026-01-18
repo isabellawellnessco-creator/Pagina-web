@@ -6,9 +6,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Shortcode_Renderer extends \Elementor\Widget_Base {
+	public function get_init_settings() {
+		$settings = parent::get_init_settings();
+
+		return is_array( $settings ) ? $settings : [];
+	}
+
 	public function render_shortcode( $settings = [] ) {
-		if ( method_exists( $this, 'set_settings' ) ) {
-			$this->set_settings( $settings );
+		if ( ! is_array( $settings ) ) {
+			$settings = [];
+		}
+
+		if ( method_exists( $this, 'set_data' ) ) {
+			$this->set_data( 'settings', $settings );
 		}
 
 		$this->render();

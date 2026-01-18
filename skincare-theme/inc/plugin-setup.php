@@ -299,6 +299,10 @@ function skincare_setup_admin_notice() {
 		return;
 	}
 
+	if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'sk-theme-setup', 'sk-onboarding' ], true ) ) {
+		return;
+	}
+
 	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 	if ( $screen && in_array( $screen->id, [ 'appearance_page_sk-theme-setup', 'toplevel_page_skincare-site-kit', 'skincare-site-kit_page_sk-onboarding' ], true ) ) {
 		return;

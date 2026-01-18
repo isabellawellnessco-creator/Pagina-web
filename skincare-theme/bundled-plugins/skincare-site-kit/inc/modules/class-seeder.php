@@ -551,6 +551,9 @@ class Seeder {
 					self::mark_seeded_post( $post_id, $p['seed_id'] );
 				}
 			} else {
+				if ( $placeholder_id && ! has_post_thumbnail( $existing->ID ) ) {
+					set_post_thumbnail( $existing->ID, $placeholder_id );
+				}
 				self::mark_seeded_post( $existing->ID, $p['seed_id'] );
 			}
 		}

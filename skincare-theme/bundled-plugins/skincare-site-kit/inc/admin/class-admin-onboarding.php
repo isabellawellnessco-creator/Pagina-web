@@ -15,6 +15,7 @@ class Admin_Onboarding {
 
 		// AJAX Actions
 		add_action( 'wp_ajax_sk_onboarding_run_step', [ __CLASS__, 'handle_step' ] );
+		add_action( 'admin_post_sk_onboarding_save_customization', [ __CLASS__, 'handle_customization_save' ] );
 
 		// Redirect on activation (using a transient to check)
 		add_action( 'admin_init', [ __CLASS__, 'redirect_on_activation' ] );
@@ -41,6 +42,15 @@ class Admin_Onboarding {
 		if ( function_exists( 'get_stylesheet_directory_uri' ) ) {
 			wp_enqueue_style( 'sk-admin-components', get_stylesheet_directory_uri() . '/assets/css/components.css', [], '1.0.0' );
 		}
+		wp_enqueue_media();
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_script(
+			'sk-site-kit-admin-settings',
+			SKINCARE_KIT_URL . 'assets/js/admin-settings.js',
+			[ 'jquery', 'wp-color-picker' ],
+			'1.0.0',
+			true
+		);
 		wp_enqueue_script( 'sk-admin-onboarding', SKINCARE_KIT_URL . 'assets/js/admin-onboarding.js', ['jquery'], '1.0.0', true );
 
 		$mode = isset( $_GET['mode'] ) && $_GET['mode'] === 'repair' ? 'repair' : 'install';
@@ -53,6 +63,7 @@ class Admin_Onboarding {
 				'categories' => __( 'Configurando categorías...', 'skincare' ),
 				'products' => __( 'Revisando productos demo...', 'skincare' ),
 				'theme_parts' => __( 'Construyendo Theme Builder...', 'skincare' ),
+				'elementor_widgets' => __( 'Verificando widgets de Elementor...', 'skincare' ),
 				'menus' => __( 'Asignando menús...', 'skincare' ),
 				'finalize' => __( 'Finalizando...', 'skincare' ),
 			]
@@ -104,6 +115,9 @@ class Admin_Onboarding {
 				case 'theme_parts':
 					Seeder::create_theme_parts();
 					break;
+				case 'elementor_widgets':
+					self::ensure_elementor_widgets();
+					break;
 				case 'menus':
 					Seeder::create_menus();
 					break;
@@ -151,13 +165,40 @@ class Admin_Onboarding {
 		}
 	}
 
+	public static function handle_customization_save() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'skincare' ) );
+		}
+
+		check_admin_referer( 'sk_onboarding_save_customization', 'sk_onboarding_customization_nonce' );
+
+		$theme_settings = isset( $_POST['sk_theme_builder_settings'] ) ? (array) wp_unslash( $_POST['sk_theme_builder_settings'] ) : [];
+		$allowed_keys = [ 'global_header', 'global_footer', 'single_product', 'shop_archive' ];
+		$sanitized_theme = [];
+		foreach ( $allowed_keys as $key ) {
+			$sanitized_theme[ $key ] = isset( $theme_settings[ $key ] ) ? absint( $theme_settings[ $key ] ) : 0;
+		}
+		update_option( 'sk_theme_builder_settings', $sanitized_theme );
+
+		$branding_settings = isset( $_POST['sk_theme_branding_settings'] ) ? (array) wp_unslash( $_POST['sk_theme_branding_settings'] ) : [];
+		$sanitized_branding = Settings::sanitize_branding_settings( $branding_settings );
+		update_option( 'sk_theme_branding_settings', $sanitized_branding );
+
+		wp_safe_redirect( admin_url( 'admin.php?page=sk-onboarding&customization=saved' ) );
+		exit;
+	}
+
 	public static function render_continue_notice() {
 		if ( ! current_user_can( 'manage_options' ) || wp_doing_ajax() ) {
 			return;
 		}
 
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'sk-onboarding', 'sk-theme-setup' ], true ) ) {
+			return;
+		}
+
 		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		if ( $screen && strpos( $screen->id, 'sk-onboarding' ) !== false ) {
+		if ( $screen && ( strpos( $screen->id, 'sk-onboarding' ) !== false || strpos( $screen->id, 'sk-theme-setup' ) !== false ) ) {
 			return;
 		}
 
@@ -179,6 +220,11 @@ class Admin_Onboarding {
 	public static function render_page() {
 		$mode = isset( $_GET['mode'] ) && $_GET['mode'] === 'repair' ? 'repair' : 'install';
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$widget_status = self::get_elementor_widget_status();
+		$customization_saved = isset( $_GET['customization'] ) && $_GET['customization'] === 'saved';
+		$seed_last_error = get_option( Seeder::OPTION_LAST_ERROR, '' );
+		$seed_last_run = get_option( Seeder::OPTION_LAST_RUN, 0 );
+		$seed_logs = get_option( Seeder::LOG_OPTION, [] );
 		$dependencies = [
 			[
 				'label' => __( 'WooCommerce', 'skincare' ),
@@ -215,6 +261,14 @@ class Admin_Onboarding {
 				</div>
 
 				<div class="sk-onboarding-content">
+					<?php if ( $customization_saved ) : ?>
+						<div class="sk-msg sk-msg--success">
+							<div>
+								<strong><?php _e( 'Personalización guardada.', 'skincare' ); ?></strong>
+								<p><?php _e( 'Tus cambios de branding y Theme Builder fueron actualizados.', 'skincare' ); ?></p>
+							</div>
+						</div>
+					<?php endif; ?>
 					<div class="sk-msg sk-msg--info">
 						<div>
 							<strong><?php _e( 'Estado de dependencias', 'skincare' ); ?></strong>
@@ -238,6 +292,154 @@ class Admin_Onboarding {
 							</ul>
 						</div>
 					</div>
+				</div>
+
+				<div class="sk-onboarding-content">
+					<div class="sk-section-header">
+						<div>
+							<strong><?php _e( 'Widgets de Elementor', 'skincare' ); ?></strong>
+							<p><?php _e( 'Comprueba que los widgets de Skin Cupid están disponibles en Elementor.', 'skincare' ); ?></p>
+						</div>
+						<span class="sk-chip <?php echo empty( $widget_status['missing'] ) && $widget_status['loaded'] ? 'sk-chip--ok' : 'sk-chip--warn'; ?>">
+							<?php echo empty( $widget_status['missing'] ) && $widget_status['loaded'] ? esc_html__( 'Listo', 'skincare' ) : esc_html__( 'Requiere revisión', 'skincare' ); ?>
+						</span>
+					</div>
+					<?php if ( ! $widget_status['loaded'] ) : ?>
+						<div class="sk-msg sk-msg--error">
+							<div>
+								<strong><?php _e( 'Elementor no está activo.', 'skincare' ); ?></strong>
+								<p><?php _e( 'Activa Elementor para registrar los widgets del kit.', 'skincare' ); ?></p>
+							</div>
+						</div>
+					<?php endif; ?>
+					<ul class="sk-status-list">
+						<?php foreach ( $widget_status['widgets'] as $widget ) : ?>
+							<li class="<?php echo $widget['ok'] ? 'is-ok' : 'is-missing'; ?>">
+								<span><?php echo esc_html( $widget['label'] ); ?></span>
+								<span class="sk-pill <?php echo $widget['ok'] ? 'sk-pill--ok' : 'sk-pill--warn'; ?>">
+									<?php echo $widget['ok'] ? esc_html__( 'OK', 'skincare' ) : esc_html__( 'Faltante', 'skincare' ); ?>
+								</span>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+					<div class="sk-inline-actions">
+						<button type="button" class="button button-secondary" id="sk-recheck-widgets">
+							<?php _e( 'Reintentar widgets', 'skincare' ); ?>
+						</button>
+						<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>">
+							<?php _e( 'Ejecutar reparación completa', 'skincare' ); ?>
+						</a>
+					</div>
+						<p class="description" id="sk-widget-status-message"></p>
+					</div>
+
+				<div class="sk-onboarding-content">
+					<div class="sk-section-header">
+						<div>
+							<strong><?php _e( 'Diagnóstico de importación', 'skincare' ); ?></strong>
+							<p><?php _e( 'Aquí puedes ver el último error y los pasos ejecutados.', 'skincare' ); ?></p>
+						</div>
+						<?php if ( $seed_last_run ) : ?>
+							<span class="sk-chip">
+								<?php echo esc_html( date_i18n( 'd/m/Y H:i', $seed_last_run ) ); ?>
+							</span>
+						<?php endif; ?>
+					</div>
+					<?php if ( $seed_last_error ) : ?>
+						<div class="sk-msg sk-msg--error">
+							<div>
+								<strong><?php _e( 'Último error detectado', 'skincare' ); ?></strong>
+								<p><?php echo esc_html( $seed_last_error ); ?></p>
+							</div>
+						</div>
+					<?php else : ?>
+						<div class="sk-msg sk-msg--success">
+							<div>
+								<strong><?php _e( 'Sin errores recientes.', 'skincare' ); ?></strong>
+								<p><?php _e( 'El último proceso terminó correctamente.', 'skincare' ); ?></p>
+							</div>
+						</div>
+					<?php endif; ?>
+					<?php if ( ! empty( $seed_logs ) ) : ?>
+						<ul class="sk-status-list">
+							<?php foreach ( $seed_logs as $entry ) : ?>
+								<li class="<?php echo $entry['status'] === 'success' ? 'is-ok' : 'is-missing'; ?>">
+									<span>
+										<?php echo esc_html( ucfirst( $entry['step'] ) ); ?>
+										<?php if ( ! empty( $entry['message'] ) ) : ?>
+											<br><small><?php echo esc_html( $entry['message'] ); ?></small>
+										<?php endif; ?>
+									</span>
+									<span class="sk-pill <?php echo $entry['status'] === 'success' ? 'sk-pill--ok' : 'sk-pill--warn'; ?>">
+										<?php echo esc_html( ucfirst( $entry['status'] ) ); ?>
+									</span>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</div>
+
+				<div class="sk-onboarding-content">
+					<div class="sk-section-header">
+						<div>
+							<strong><?php _e( 'Personaliza tu tienda', 'skincare' ); ?></strong>
+							<p><?php _e( 'Selecciona templates y colores para que el sitio se vea profesional desde el inicio.', 'skincare' ); ?></p>
+						</div>
+						<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-branding-settings' ) ); ?>">
+							<?php _e( 'Configuración avanzada', 'skincare' ); ?>
+						</a>
+					</div>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="sk-customization-form">
+						<input type="hidden" name="action" value="sk_onboarding_save_customization">
+						<?php wp_nonce_field( 'sk_onboarding_save_customization', 'sk_onboarding_customization_nonce' ); ?>
+						<div class="sk-form-grid">
+							<div class="sk-form-field">
+								<label><?php _e( 'Header global', 'skincare' ); ?></label>
+								<?php Settings::render_select_field( [ 'id' => 'global_header' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Footer global', 'skincare' ); ?></label>
+								<?php Settings::render_select_field( [ 'id' => 'global_footer' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Plantilla producto', 'skincare' ); ?></label>
+								<?php Settings::render_select_field( [ 'id' => 'single_product' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Plantilla catálogo', 'skincare' ); ?></label>
+								<?php Settings::render_select_field( [ 'id' => 'shop_archive' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Logo principal', 'skincare' ); ?></label>
+								<?php Settings::render_media_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'logo_id', 'button_label' => __( 'Seleccionar logo', 'skincare' ) ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Color principal', 'skincare' ); ?></label>
+								<?php Settings::render_color_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'accent_color', 'default' => '#E5757E' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Color principal hover', 'skincare' ); ?></label>
+								<?php Settings::render_color_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'accent_hover_color', 'default' => '#D9656E' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Color de fondo', 'skincare' ); ?></label>
+								<?php Settings::render_color_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'background_color', 'default' => '#FFFFFF' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Color texto principal', 'skincare' ); ?></label>
+								<?php Settings::render_color_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'text_color', 'default' => '#0F3062' ] ); ?>
+							</div>
+							<div class="sk-form-field">
+								<label><?php _e( 'Color texto secundario', 'skincare' ); ?></label>
+								<?php Settings::render_color_field( [ 'option' => 'sk_theme_branding_settings', 'id' => 'text_light_color', 'default' => '#8798B0' ] ); ?>
+							</div>
+						</div>
+						<div class="sk-form-actions">
+							<button type="submit" class="button button-primary button-hero">
+								<?php _e( 'Guardar personalización', 'skincare' ); ?>
+							</button>
+						</div>
+					</form>
 				</div>
 
 				<div class="sk-onboarding-content" id="sk-wizard-intro">
@@ -308,5 +510,102 @@ class Admin_Onboarding {
 			</div>
 		</div>
 		<?php
+	}
+
+	private static function get_expected_widgets() {
+		return [
+			[ 'name' => 'sk_hero_slider', 'label' => __( 'Slider principal', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Hero_Slider' ],
+			[ 'name' => 'sk_product_grid', 'label' => __( 'Grid de productos', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Product_Grid' ],
+			[ 'name' => 'sk_wishlist_grid', 'label' => __( 'Wishlist', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Wishlist_Grid' ],
+			[ 'name' => 'sk_rewards_dashboard', 'label' => __( 'Panel de recompensas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Rewards_Dashboard' ],
+			[ 'name' => 'sk_ajax_search', 'label' => __( 'Búsqueda Ajax', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Ajax_Search' ],
+			[ 'name' => 'sk_rewards_castle', 'label' => __( 'Castle de recompensas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Rewards_Castle' ],
+			[ 'name' => 'sk_contact_section', 'label' => __( 'Sección contacto', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Contact_Section' ],
+			[ 'name' => 'sk_faq_accordion', 'label' => __( 'FAQ accordion', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\FAQ_Accordion' ],
+			[ 'name' => 'sk_shipping_table', 'label' => __( 'Tabla de envíos', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Shipping_Table' ],
+			[ 'name' => 'sk_store_locator', 'label' => __( 'Localizador de tiendas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Store_Locator' ],
+			[ 'name' => 'sk_account_dashboard', 'label' => __( 'Dashboard de cuenta', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Account_Dashboard' ],
+			[ 'name' => 'sk_marquee', 'label' => __( 'Marquee', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Marquee' ],
+			[ 'name' => 'sk_icon_box_grid', 'label' => __( 'Grid de íconos', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Icon_Box_Grid' ],
+			[ 'name' => 'sk_concern_grid', 'label' => __( 'Grid de necesidades', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Concern_Grid' ],
+			[ 'name' => 'sk_brand_slider', 'label' => __( 'Slider de marcas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Brand_Slider' ],
+			[ 'name' => 'sk_instagram_feed', 'label' => __( 'Feed de Instagram', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Instagram_Feed' ],
+			[ 'name' => 'sk_rewards_earn_redeem', 'label' => __( 'Recompensas ganar/canjear', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Rewards_Earn_Redeem' ],
+			[ 'name' => 'sk_rewards_catalog', 'label' => __( 'Catálogo de recompensas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Rewards_Catalog' ],
+			[ 'name' => 'sk_rewards_actions', 'label' => __( 'Acciones de recompensas', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Rewards_Actions' ],
+			[ 'name' => 'sk_product_tabs', 'label' => __( 'Tabs de producto', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Product_Tabs' ],
+			[ 'name' => 'sk_ajax_filter', 'label' => __( 'Filtro Ajax', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Ajax_Filter' ],
+			[ 'name' => 'sk_product_gallery', 'label' => __( 'Galería de producto', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Product_Gallery' ],
+			[ 'name' => 'sk_theme_part_title', 'label' => __( 'Theme: título', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Theme_Part_Title' ],
+			[ 'name' => 'sk_theme_part_price', 'label' => __( 'Theme: precio', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Theme_Part_Price' ],
+			[ 'name' => 'sk_theme_part_add_to_cart', 'label' => __( 'Theme: añadir al carrito', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Theme_Part_Add_To_Cart' ],
+			[ 'name' => 'sk_switcher', 'label' => __( 'Switcher', 'skincare' ), 'class' => '\\Skincare\\SiteKit\\Widgets\\Sk_Switcher' ],
+		];
+	}
+
+	private static function get_elementor_widget_status() {
+		$loaded = did_action( 'elementor/loaded' ) && class_exists( '\\Elementor\\Plugin' );
+		$widgets = [];
+		$missing = [];
+
+		$registered = [];
+		if ( $loaded ) {
+			$registered = \Elementor\Plugin::instance()->widgets_manager->get_widget_types();
+		}
+
+		foreach ( self::get_expected_widgets() as $widget ) {
+			$is_registered = $loaded && isset( $registered[ $widget['name'] ] );
+			$widgets[] = [
+				'name' => $widget['name'],
+				'label' => $widget['label'],
+				'ok' => $is_registered,
+			];
+			if ( ! $is_registered ) {
+				$missing[] = $widget['label'];
+			}
+		}
+
+		return [
+			'loaded' => $loaded,
+			'widgets' => $widgets,
+			'missing' => $missing,
+		];
+	}
+
+	private static function ensure_elementor_widgets() {
+		if ( ! did_action( 'elementor/loaded' ) || ! class_exists( '\\Elementor\\Plugin' ) ) {
+			throw new \Exception( __( 'Elementor no está cargado. Actívalo e inténtalo de nuevo.', 'skincare' ) );
+		}
+
+		$manager = \Elementor\Plugin::instance()->widgets_manager;
+		if ( ! $manager || ! method_exists( $manager, 'register' ) ) {
+			throw new \Exception( __( 'No se pudo acceder al gestor de widgets de Elementor.', 'skincare' ) );
+		}
+
+		$registered = $manager->get_widget_types();
+
+		foreach ( self::get_expected_widgets() as $widget ) {
+			if ( isset( $registered[ $widget['name'] ] ) ) {
+				continue;
+			}
+
+			$class = $widget['class'];
+			if ( class_exists( $class ) ) {
+				$instance = new $class();
+				$manager->register( $instance );
+			}
+		}
+
+		$registered = $manager->get_widget_types();
+		$missing = [];
+		foreach ( self::get_expected_widgets() as $widget ) {
+			if ( ! isset( $registered[ $widget['name'] ] ) ) {
+				$missing[] = $widget['label'];
+			}
+		}
+
+		if ( ! empty( $missing ) ) {
+			throw new \Exception( sprintf( __( 'Widgets faltantes: %s', 'skincare' ), implode( ', ', $missing ) ) );
+		}
 	}
 }

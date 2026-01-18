@@ -57,9 +57,13 @@ class Brand_Slider extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$brands = $settings['brands'] ?? [];
+		if ( ! is_array( $brands ) ) {
+			$brands = [];
+		}
 		$fallback_logo = get_stylesheet_directory_uri() . '/assets/images/placeholder-brand.svg';
 		echo '<div class="sk-brand-slider">';
-		foreach ( $settings['brands'] as $brand ) {
+		foreach ( $brands as $brand ) {
 			$logo_url = ! empty( $brand['logo']['url'] ) ? $brand['logo']['url'] : $fallback_logo;
 			$link_url = ! empty( $brand['link']['url'] ) ? $brand['link']['url'] : '#';
 			echo '<div class="sk-brand-item">';

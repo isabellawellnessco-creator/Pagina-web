@@ -69,10 +69,14 @@ class Product_Grid extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$posts_per_page = isset( $settings['posts_per_page'] ) ? (int) $settings['posts_per_page'] : 4;
+		if ( $posts_per_page <= 0 ) {
+			$posts_per_page = 4;
+		}
 
 		$args = [
 			'post_type' => 'product',
-			'posts_per_page' => $settings['posts_per_page'],
+			'posts_per_page' => $posts_per_page,
 		];
 
 		if ( ! empty( $settings['category'] ) ) {

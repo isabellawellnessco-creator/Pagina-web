@@ -30,14 +30,18 @@ class Autoloader {
 		// Skincare\SiteKit\Core\Loader -> inc/core/class-loader.php
 
 		$parts = explode( '\\', $relative_class );
-		$file_name = 'class-' . str_replace( '_', '-', strtolower( array_pop( $parts ) ) ) . '.php';
-
+		$file_stub = str_replace( '_', '-', strtolower( array_pop( $parts ) ) );
 		$folder = strtolower( implode( '/', $parts ) );
+		$base_path = self::$base_path . $folder . '/';
 
-		$path = self::$base_path . $folder . '/' . $file_name;
+		$prefixes = [ 'class-', 'interface-', 'trait-' ];
 
-		if ( file_exists( $path ) ) {
-			require_once $path;
+		foreach ( $prefixes as $prefix ) {
+			$path = $base_path . $prefix . $file_stub . '.php';
+			if ( file_exists( $path ) ) {
+				require_once $path;
+				break;
+			}
 		}
 	}
 }

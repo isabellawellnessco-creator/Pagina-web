@@ -19,14 +19,28 @@
 
 /* Archive Grid */
 .woocommerce .sk-woo-page ul.products,
-.woocommerce-page .sk-woo-page ul.products {
+.woocommerce-page .sk-woo-page ul.products,
+.woocommerce ul.products,
+.woocommerce-page ul.products,
+.sk-page-content ul.products,
+.elementor-widget-woocommerce-products ul.products,
+.elementor-widget-woocommerce-product-related ul.products,
+.elementor-widget-woocommerce-product-upsell ul.products,
+.elementor-widget-woocommerce-product-cross-sell ul.products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-6);
 }
 
 .woocommerce .sk-woo-page ul.products li.product,
-.woocommerce-page .sk-woo-page ul.products li.product {
+.woocommerce-page .sk-woo-page ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.sk-page-content ul.products li.product,
+.elementor-widget-woocommerce-products ul.products li.product,
+.elementor-widget-woocommerce-product-related ul.products li.product,
+.elementor-widget-woocommerce-product-upsell ul.products li.product,
+.elementor-widget-woocommerce-product-cross-sell ul.products li.product {
   width: 100%;
   margin: 0;
   border-radius: var(--radius-lg);

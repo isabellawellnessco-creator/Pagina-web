@@ -126,11 +126,15 @@ class Hero_Slider extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$slides = $settings['slides'] ?? [];
 		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-hero-1.svg';
 
 		// Simple HTML structure for a slider (would need JS init in assets/js/site-kit.js)
 		echo '<div class="sk-hero-slider">';
-		foreach ( $settings['slides'] as $slide ) {
+		if ( ! is_array( $slides ) ) {
+			$slides = [];
+		}
+		foreach ( $slides as $slide ) {
 			$image_url = ! empty( $slide['image']['url'] ) ? $slide['image']['url'] : $fallback_image;
 			$link_url = ! empty( $slide['link']['url'] ) ? $slide['link']['url'] : '#';
 			echo '<div class="sk-slide" style="background-image: url(' . esc_url( $image_url ) . ')">';

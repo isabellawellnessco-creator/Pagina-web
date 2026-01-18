@@ -25,8 +25,12 @@ class Icon_Box_Grid extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$items = $settings['items'] ?? [];
+		if ( ! is_array( $items ) ) {
+			$items = [];
+		}
 		echo '<div class="sk-icon-box-grid">';
-		foreach ( $settings['items'] as $item ) {
+		foreach ( $items as $item ) {
 			echo '<div class="sk-icon-box">';
 			echo '<div class="sk-ib-icon">';
 			\Elementor\Icons_Manager::render_icon( $item['icon'], [ 'aria-hidden' => 'true' ] );

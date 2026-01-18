@@ -72,9 +72,13 @@ class Concern_Grid extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$items = $settings['items'] ?? [];
+		if ( ! is_array( $items ) ) {
+			$items = [];
+		}
 		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-concern.svg';
 		echo '<div class="sk-concern-grid">';
-		foreach ( $settings['items'] as $item ) {
+		foreach ( $items as $item ) {
 			$image_url = ! empty( $item['image']['url'] ) ? $item['image']['url'] : $fallback_image;
 			$link_url = ! empty( $item['link']['url'] ) ? $item['link']['url'] : '#';
 			echo '<a href="' . esc_url( $link_url ) . '" class="sk-concern-item">';

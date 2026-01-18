@@ -46,11 +46,15 @@ class Instagram_Feed extends Shortcode_Renderer {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$gallery = $settings['gallery'] ?? [];
+		if ( ! is_array( $gallery ) ) {
+			$gallery = [];
+		}
 		$fallback_image = get_stylesheet_directory_uri() . '/assets/images/placeholder-instagram.svg';
 		echo '<div class="sk-insta-feed">';
 		echo '<h3>' . __( 'Síguenos en @skincupid', 'skincare' ) . '</h3>';
 		echo '<div class="sk-insta-grid">';
-		foreach ( $settings['gallery'] as $image ) {
+		foreach ( $gallery as $image ) {
 			$image_url = ! empty( $image['url'] ) ? $image['url'] : $fallback_image;
 			echo '<div class="sk-insta-item" style="background-image: url(' . esc_url( $image_url ) . ')"></div>';
 		}

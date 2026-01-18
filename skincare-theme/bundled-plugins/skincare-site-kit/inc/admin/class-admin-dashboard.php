@@ -11,6 +11,7 @@ class Admin_Dashboard {
 
 	public static function init() {
 		add_action( 'admin_menu', [ __CLASS__, 'register_page' ] );
+		add_action( 'admin_menu', [ __CLASS__, 'hide_submenus' ], 999 );
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_assets' ] );
 		add_action( 'admin_post_sk_advanced_suite_setup', [ __CLASS__, 'handle_advanced_setup' ] );
 	}
@@ -63,6 +64,7 @@ class Admin_Dashboard {
 		$advanced_done = count( $advanced_enabled );
 		$advanced_progress = $advanced_total ? ( $advanced_done / $advanced_total ) * 100 : 0;
 		$advanced_updated = isset( $_GET['sk_advanced_setup'] ) && $_GET['sk_advanced_setup'] === 'done';
+		$area_groups = self::get_area_groups();
 
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$elementor_pro_active = is_plugin_active( 'elementor-pro/elementor-pro.php' );
@@ -249,6 +251,35 @@ class Admin_Dashboard {
 				</div>
 			</div>
 
+			<div class="sk-areas-section">
+				<h2><?php _e( 'Áreas del plugin', 'skincare' ); ?></h2>
+				<p><?php _e( 'Accede a cada módulo desde una sola vista para evitar navegar por múltiples páginas.', 'skincare' ); ?></p>
+				<?php foreach ( $area_groups as $group ) : ?>
+					<div class="sk-areas-group">
+						<div class="sk-areas-group-header">
+							<h3><?php echo esc_html( $group['title'] ); ?></h3>
+							<?php if ( ! empty( $group['description'] ) ) : ?>
+								<p><?php echo esc_html( $group['description'] ); ?></p>
+							<?php endif; ?>
+						</div>
+						<div class="sk-areas-grid">
+							<?php foreach ( $group['items'] as $item ) : ?>
+								<?php if ( ! empty( $item['cap'] ) && ! current_user_can( $item['cap'] ) ) : ?>
+									<?php continue; ?>
+								<?php endif; ?>
+								<div class="sk-area-card">
+									<h4><?php echo esc_html( $item['label'] ); ?></h4>
+									<p><?php echo esc_html( $item['description'] ); ?></p>
+									<a class="button button-secondary" href="<?php echo esc_url( $item['link'] ); ?>">
+										<?php echo esc_html( $item['cta'] ); ?>
+									</a>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+
 			<!-- Recent Logs -->
 			<div class="sk-logs-section">
 				<h3><?php _e( 'Actividad Reciente', 'skincare' ); ?></h3>
@@ -379,6 +410,202 @@ class Admin_Dashboard {
 				'label' => __( 'CRM y WhatsApp', 'skincare' ),
 				'description' => __( 'Plantillas y comunicación con clientes.', 'skincare' ),
 				'link' => admin_url( 'admin.php?page=sk-whatsapp-templates' ),
+			],
+		];
+	}
+
+	public static function hide_submenus() {
+		$submenus = [
+			'sk-branding-settings',
+			'sk-theme-builder',
+			'sk-localization',
+			'sk-operations-dashboard',
+			'sk-stock-manager',
+			'sk-fulfillment-center',
+			'sk-sla-monitor',
+			'sk-batch-picking',
+			'sk-packing-slips',
+			'sk-shipping-labels',
+			'sk-invoices',
+			'sk-rewards-master',
+			'sk-rewards-control',
+			'sk-notifications-center',
+			'sk-whatsapp-templates',
+			'sk-coupons-automation',
+			'sk-tracking-settings',
+			'sk-migration-center',
+			'sk-tools',
+		];
+
+		foreach ( $submenus as $submenu ) {
+			remove_submenu_page( 'skincare-site-kit', $submenu );
+		}
+	}
+
+	private static function get_area_groups() {
+		return [
+			[
+				'title' => __( 'Marca y contenido', 'skincare' ),
+				'description' => __( 'Identidad visual y estructura de la tienda.', 'skincare' ),
+				'items' => [
+					[
+						'label' => __( 'Branding & Content', 'skincare' ),
+						'description' => __( 'Logos, colores, tipografías y contenido editorial.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-branding-settings' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+					[
+						'label' => __( 'Theme Builder', 'skincare' ),
+						'description' => __( 'Asignación de plantillas globales y layout de producto.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-theme-builder' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+					[
+						'label' => __( 'Localization', 'skincare' ),
+						'description' => __( 'Moneda, idiomas y configuración regional.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-localization' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+				],
+			],
+			[
+				'title' => __( 'Operaciones y logística', 'skincare' ),
+				'description' => __( 'Pedidos, stock y fulfillment en un solo lugar.', 'skincare' ),
+				'items' => [
+					[
+						'label' => __( 'Dashboard Ops', 'skincare' ),
+						'description' => __( 'Panel operativo diario para estados de pedidos.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-operations-dashboard' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Ingreso Stock', 'skincare' ),
+						'description' => __( 'Actualiza inventario rápidamente.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-stock-manager' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Fulfillment Center', 'skincare' ),
+						'description' => __( 'Gestión de pedidos, etiquetas e incidencias.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-fulfillment-center' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'SLA Monitor', 'skincare' ),
+						'description' => __( 'Detecta pedidos con retrasos críticos.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-sla-monitor' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Batch Picking', 'skincare' ),
+						'description' => __( 'Agrupa pedidos para preparar en lote.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-batch-picking' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Packing Slips', 'skincare' ),
+						'description' => __( 'Impresión de packing slips.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-packing-slips' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Shipping Labels', 'skincare' ),
+						'description' => __( 'Genera etiquetas de envío.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-shipping-labels' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Invoices', 'skincare' ),
+						'description' => __( 'Boletas y facturas desde el centro.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-invoices' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+				],
+			],
+			[
+				'title' => __( 'Clientes y marketing', 'skincare' ),
+				'description' => __( 'Mensajería, tracking y automatizaciones.', 'skincare' ),
+				'items' => [
+					[
+						'label' => __( 'Emails & WhatsApp', 'skincare' ),
+						'description' => __( 'Plantillas de notificación y pruebas.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-notifications-center' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+					[
+						'label' => __( 'Plantillas WhatsApp', 'skincare' ),
+						'description' => __( 'Mensajes predefinidos para equipo de ventas.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-whatsapp-templates' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Tracking', 'skincare' ),
+						'description' => __( 'Configura estados visibles para el cliente.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-tracking-settings' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Cupones automáticos', 'skincare' ),
+						'description' => __( 'Reglas para generar cupones automáticos.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-coupons-automation' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+				],
+			],
+			[
+				'title' => __( 'Rewards y fidelización', 'skincare' ),
+				'description' => __( 'Programas de puntos y control de recompensas.', 'skincare' ),
+				'items' => [
+					[
+						'label' => __( 'Rewards Master', 'skincare' ),
+						'description' => __( 'Reglas principales de puntos.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-rewards-master' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+					[
+						'label' => __( 'Rewards Control', 'skincare' ),
+						'description' => __( 'Monitorea puntos y ajustes por pedido.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-rewards-control' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_woocommerce',
+					],
+				],
+			],
+			[
+				'title' => __( 'Mantenimiento', 'skincare' ),
+				'description' => __( 'Migraciones y utilidades del sistema.', 'skincare' ),
+				'items' => [
+					[
+						'label' => __( 'Migración fácil', 'skincare' ),
+						'description' => __( 'Exporta e importa la configuración completa.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-migration-center' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+					[
+						'label' => __( 'Herramientas', 'skincare' ),
+						'description' => __( 'Acciones rápidas de mantenimiento.', 'skincare' ),
+						'link' => admin_url( 'admin.php?page=sk-tools' ),
+						'cta' => __( 'Abrir', 'skincare' ),
+						'cap' => 'manage_options',
+					],
+				],
 			],
 		];
 	}

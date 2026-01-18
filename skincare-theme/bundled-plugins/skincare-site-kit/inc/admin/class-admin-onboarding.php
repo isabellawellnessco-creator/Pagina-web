@@ -193,8 +193,12 @@ class Admin_Onboarding {
 			return;
 		}
 
+		if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'sk-onboarding', 'sk-theme-setup' ], true ) ) {
+			return;
+		}
+
 		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		if ( $screen && strpos( $screen->id, 'sk-onboarding' ) !== false ) {
+		if ( $screen && ( strpos( $screen->id, 'sk-onboarding' ) !== false || strpos( $screen->id, 'sk-theme-setup' ) !== false ) ) {
 			return;
 		}
 

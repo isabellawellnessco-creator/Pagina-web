@@ -7,6 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! interface_exists( Tracking_Provider_Contract::class ) && defined( 'SKINCARE_KIT_PATH' ) ) {
+	require_once SKINCARE_KIT_PATH . 'inc/interfaces/interface-tracking-provider-contract.php';
+}
+
 /**
  * Class Native_Manual_Provider
  * Implements the tracking logic using manual metadata fields (_sk_tracking_number, etc).

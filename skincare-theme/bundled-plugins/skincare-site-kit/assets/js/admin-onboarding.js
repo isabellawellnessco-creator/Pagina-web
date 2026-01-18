@@ -6,9 +6,11 @@ jQuery(document).ready(function($) {
     const $progressBar = $('.sk-progress-fill');
     const $statusText = $('.sk-progress-status');
     const $logList = $('.sk-log-list');
+    const $widgetCheckBtn = $('#sk-recheck-widgets');
+    const $widgetStatusMessage = $('#sk-widget-status-message');
 
     // Steps defined in PHP
-    const steps = ['pages', 'categories', 'products', 'theme_parts', 'menus', 'finalize'];
+    const steps = ['pages', 'categories', 'products', 'theme_parts', 'elementor_widgets', 'menus', 'finalize'];
     let currentStepIndex = 0;
 
     // Auto-start if mode is 'repair'
@@ -23,6 +25,38 @@ jQuery(document).ready(function($) {
         $progress.show();
         runStep();
     });
+
+    if ($widgetCheckBtn.length) {
+        $widgetCheckBtn.on('click', function() {
+            const originalLabel = $widgetCheckBtn.text();
+            $widgetCheckBtn.prop('disabled', true).text('Verificando...');
+            $widgetStatusMessage.text('');
+
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'sk_onboarding_run_step',
+                    nonce: sk_onboarding.nonce,
+                    step: 'elementor_widgets',
+                    mode: sk_onboarding.mode || 'install'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $widgetStatusMessage.text('Widgets verificados correctamente.');
+                    } else {
+                        $widgetStatusMessage.text(response.data.message || 'No se pudo verificar.');
+                    }
+                },
+                error: function() {
+                    $widgetStatusMessage.text('Error de conexión al verificar widgets.');
+                },
+                complete: function() {
+                    $widgetCheckBtn.prop('disabled', false).text(originalLabel);
+                }
+            });
+        });
+    }
 
     function runStep() {
         if (currentStepIndex >= steps.length) {

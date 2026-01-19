@@ -10,41 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-?>
 
-<?php
-while ( have_posts() ) :
-	the_post();
-	$content = trim( get_the_content() );
-	?>
-	<main id="main" class="site-main" role="main">
-		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
-			<section <?php post_class( 'sk-page' ); ?>>
-				<header class="sk-page-header">
-					<h1 class="sk-page-title"><?php the_title(); ?></h1>
-					<?php if ( has_excerpt() ) : ?>
-						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
-					<?php endif; ?>
-				</header>
-				<?php if ( $content ) : ?>
-					<section class="page-content sk-page-content">
-						<?php the_content(); ?>
-					</section>
-				<?php else : ?>
-					<section class="sk-page-section sk-rewards-castle">
-						<?php echo skincare_safe_shortcode( 'sk_rewards_castle' ); ?>
-					</section>
-					<section class="sk-page-section sk-rewards-earn-redeem">
-						<?php echo skincare_safe_shortcode( 'sk_rewards_earn_redeem' ); ?>
-					</section>
-					<section class="sk-page-section sk-rewards-dashboard">
-						<?php echo skincare_safe_shortcode( 'sk_rewards_dashboard' ); ?>
-					</section>
-				<?php endif; ?>
-			</section>
-		<?php endif; ?>
-	</main>
-<?php endwhile; ?>
+if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) ) {
+	while ( have_posts() ) :
+		the_post();
+		the_content();
+	endwhile;
+} else {
+	get_template_part( 'template-parts/f8/page-rewards' );
+}
 
-<?php
 get_footer();

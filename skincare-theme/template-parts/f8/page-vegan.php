@@ -252,7 +252,7 @@
     </div>
   <!--?--><!--?lit$892817291$--><!--?-->
         </div>
-      </template><span></span></klarna-placement><link rel="stylesheet" href="./Ve_files/fonts(1).css">
+      </template><span></span></klarna-placement>
 
 <script type="application/javascript">
     window.appBlockPlacements ||= [];

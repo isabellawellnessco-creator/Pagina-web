@@ -435,7 +435,7 @@
 <div data-domain="www.skincupid.co.uk" data-url="https://www.skincupid.co.uk" data-shop-json="" data-shop-surl="https://www.skincupid.co.uk"></div>
 <iframe id="joblyFrame" width="100%" style="border: 0px; min-height: 400px; height: 814px;" src="./Care_files/overview-settings.html"></iframe>
 </div>
-<script defer="" src="./Care_files/jobly.js.download"></script>
+
 </div>
 
 
@@ -485,7 +485,7 @@
         </p></div>
         
             <div class="embed-content text-center container !px-0 mx-auto w-full">
-                <script src="./Care_files/22680(1)" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
+                <div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">

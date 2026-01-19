@@ -5,8 +5,7 @@
 ?>
 
 <main id="MainContent" role="main" tabindex="-1">
-      <section id="shopify-section-template--21252938727659__loyalty_hero_YpFFUX" class="shopify-section"><script src="./Rewa_files/anime.min.js.download" defer=""></script>
-<script src="./Rewa_files/loyalty-hero.js.download" defer=""></script>
+      <section id="shopify-section-template--21252938727659__loyalty_hero_YpFFUX" class="shopify-section">
 <div class="overflow-auto max-lg:no-scrollbar max-w-[100vw]" data-scroll-element="">
   <div class="loyalty-hero min-h-[566px] max-h-[566px] lg:min-h-[740px] lg:max-h-none aspect-[1080/550] lg:aspect-[40/21] relative">
     

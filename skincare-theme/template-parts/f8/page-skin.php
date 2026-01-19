@@ -599,7 +599,7 @@
         </p></div>
         
             <div class="embed-content text-center container !px-0 mx-auto w-full">
-                <script src="./Skin_files/22680(1)" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
+                <div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">

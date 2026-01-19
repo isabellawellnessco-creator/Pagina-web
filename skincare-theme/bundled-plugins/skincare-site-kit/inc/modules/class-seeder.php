@@ -149,6 +149,80 @@ class Seeder {
 		}
 	}
 
+	private static function build_elementor_section( array $element ) {
+		$section_id = wp_generate_password( 7, false, false );
+		$column_id = wp_generate_password( 7, false, false );
+		$widget_id = wp_generate_password( 7, false, false );
+
+		$widget = [
+			'id' => $widget_id,
+			'elType' => 'widget',
+			'widgetType' => $element['widget_type'],
+			'settings' => $element['settings'] ?? [],
+			'elements' => [],
+		];
+
+		$column = [
+			'id' => $column_id,
+			'elType' => 'column',
+			'settings' => [
+				'_column_size' => 100,
+			],
+			'elements' => [ $widget ],
+		];
+
+		return [
+			'id' => $section_id,
+			'elType' => 'section',
+			'settings' => [],
+			'elements' => [ $column ],
+		];
+	}
+
+	private static function build_elementor_columns_section( array $columns ) {
+		$section_id = wp_generate_password( 7, false, false );
+		$elements = [];
+
+		foreach ( $columns as $column ) {
+			$column_id = wp_generate_password( 7, false, false );
+			$widgets = [];
+			foreach ( $column['widgets'] as $widget ) {
+				$widgets[] = [
+					'id' => wp_generate_password( 7, false, false ),
+					'elType' => 'widget',
+					'widgetType' => $widget['widget_type'],
+					'settings' => $widget['settings'] ?? [],
+					'elements' => [],
+				];
+			}
+
+			$elements[] = [
+				'id' => $column_id,
+				'elType' => 'column',
+				'settings' => [
+					'_column_size' => $column['size'] ?? 100,
+				],
+				'elements' => $widgets,
+			];
+		}
+
+		return [
+			'id' => $section_id,
+			'elType' => 'section',
+			'settings' => [],
+			'elements' => $elements,
+		];
+	}
+
+	private static function build_elementor_data( array $elements ) {
+		$sections = [];
+		foreach ( $elements as $element ) {
+			$sections[] = self::build_elementor_section( $element );
+		}
+
+		return $sections;
+	}
+
 	public static function create_pages() {
 		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		// Content definitions
@@ -276,70 +350,138 @@ class Seeder {
 			[
 				'title' => 'Sobre Skin Cupid',
 				'slug' => 'about',
-				'content' => $about_content,
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $about_content,
+						],
+					],
+				],
 				'template' => 'template-full-width.php',
 				'seed_id' => 'page_about',
 			],
-			[ 'title' => 'Contacto', 'slug' => 'contact', 'content' => $contact_content, 'seed_id' => 'page_contact' ],
-			[ 'title' => 'Preguntas frecuentes', 'slug' => 'faqs', 'content' => $faqs_content, 'seed_id' => 'page_faqs' ],
-			[ 'title' => 'Envíos', 'slug' => 'shipping', 'content' => $shipping_content, 'seed_id' => 'page_shipping' ],
+			[
+				'title' => 'Contacto',
+				'slug' => 'contact',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_contact_section' ],
+				],
+				'seed_id' => 'page_contact'
+			],
+			[
+				'title' => 'Preguntas frecuentes',
+				'slug' => 'faqs',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $faqs_content,
+						],
+					],
+					[ 'widget_type' => 'sk_faq_accordion' ],
+				],
+				'seed_id' => 'page_faqs'
+			],
+			[
+				'title' => 'Envíos',
+				'slug' => 'shipping',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $shipping_content,
+						],
+					],
+					[ 'widget_type' => 'sk_shipping_table' ],
+				],
+				'seed_id' => 'page_shipping'
+			],
 			[
 				'title' => 'Política de privacidad',
 				'slug' => 'privacy-policy',
-				'content' => '
-				<section class="sk-page-intro">
-					<h2>Política de privacidad</h2>
-					<p>Tu información está protegida. Conoce cómo recopilamos y usamos tus datos.</p>
-				</section>
-				<section class="sk-page-details">
-					<h3>Qué datos recopilamos</h3>
-					<ul>
-						<li>Información de contacto y envío.</li>
-						<li>Historial de pedidos y preferencias.</li>
-						<li>Comunicaciones con el equipo de soporte.</li>
-					</ul>
-					<h3>Cómo utilizamos la información</h3>
-					<p>Usamos tus datos para procesar pedidos, mejorar la experiencia y enviar novedades si lo autorizas.</p>
-				</section>
-				',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => '
+							<section class="sk-page-intro">
+								<h2>Política de privacidad</h2>
+								<p>Tu información está protegida. Conoce cómo recopilamos y usamos tus datos.</p>
+							</section>
+							<section class="sk-page-details">
+								<h3>Qué datos recopilamos</h3>
+								<ul>
+									<li>Información de contacto y envío.</li>
+									<li>Historial de pedidos y preferencias.</li>
+									<li>Comunicaciones con el equipo de soporte.</li>
+								</ul>
+								<h3>Cómo utilizamos la información</h3>
+								<p>Usamos tus datos para procesar pedidos, mejorar la experiencia y enviar novedades si lo autorizas.</p>
+							</section>
+							',
+						],
+					],
+				],
 				'template' => 'page-privacy.php',
 				'seed_id' => 'page_privacy',
 			],
 			[
 				'title' => 'Términos y condiciones',
 				'slug' => 'terms',
-				'content' => '
-				<section class="sk-page-intro">
-					<h2>Términos y condiciones</h2>
-					<p>Revisa los términos de compra, pagos y disponibilidad de productos.</p>
-				</section>
-				<section class="sk-page-details">
-					<h3>Pagos</h3>
-					<p>Aceptamos métodos de pago seguros disponibles al finalizar la compra.</p>
-					<h3>Disponibilidad</h3>
-					<p>Los productos están sujetos a disponibilidad y pueden variar según inventario.</p>
-				</section>
-				',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => '
+							<section class="sk-page-intro">
+								<h2>Términos y condiciones</h2>
+								<p>Revisa los términos de compra, pagos y disponibilidad de productos.</p>
+							</section>
+							<section class="sk-page-details">
+								<h3>Pagos</h3>
+								<p>Aceptamos métodos de pago seguros disponibles al finalizar la compra.</p>
+								<h3>Disponibilidad</h3>
+								<p>Los productos están sujetos a disponibilidad y pueden variar según inventario.</p>
+							</section>
+							',
+						],
+					],
+				],
 				'seed_id' => 'page_terms',
 			],
 			[
 				'title' => 'Políticas',
 				'slug' => 'politicas',
-				'content' => '
-				<section class="sk-page-intro">
-					<h2>Políticas de Compra y Devoluciones</h2>
-					<p>Información esencial para tu experiencia de compra.</p>
-				</section>
-				<section class="sk-page-details">
-					<h3>Aceptación de Políticas</h3>
-					<p>Al comprar en Skin Cupid, aceptas nuestros términos de servicio y política de privacidad.</p>
-					<ul>
-						<li><a href="/terms/">Términos y Condiciones</a></li>
-						<li><a href="/privacy-policy/">Política de Privacidad</a></li>
-						<li><a href="/shipping/">Envíos y Devoluciones</a></li>
-					</ul>
-				</section>
-				',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => '
+							<section class="sk-page-intro">
+								<h2>Políticas de Compra y Devoluciones</h2>
+								<p>Información esencial para tu experiencia de compra.</p>
+							</section>
+							<section class="sk-page-details">
+								<h3>Aceptación de Políticas</h3>
+								<p>Al comprar en Skin Cupid, aceptas nuestros términos de servicio y política de privacidad.</p>
+								<ul>
+									<li><a href="/terms/">Términos y Condiciones</a></li>
+									<li><a href="/privacy-policy/">Política de Privacidad</a></li>
+									<li><a href="/shipping/">Envíos y Devoluciones</a></li>
+								</ul>
+							</section>
+							',
+						],
+					],
+				],
 				'seed_id' => 'page_politicas',
 			],
 			[ 'title' => 'Lista de deseos', 'slug' => 'wishlist', 'content' => $wishlist_content, 'seed_id' => 'page_wishlist' ],
@@ -395,6 +537,14 @@ class Seeder {
 			}
 
 			if ( $post_id && ! is_wp_error( $post_id ) ) {
+				if ( ! empty( $page['elementor'] ) ) {
+					$current_data = get_post_meta( $post_id, '_elementor_data', true );
+					if ( empty( $current_data ) ) {
+						update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
+						update_post_meta( $post_id, '_elementor_version', '3.18.0' );
+						update_post_meta( $post_id, '_elementor_data', wp_json_encode( self::build_elementor_data( $page['elementor'] ) ) );
+					}
+				}
 				self::mark_seeded_post( $post_id, $page['seed_id'] );
 				$page_ids[ $page['slug'] ] = $post_id;
 			}
@@ -608,9 +758,50 @@ class Seeder {
 			if ( $has_valid_setting ) continue;
 
 			$content = '';
-			if ( $key === 'global_header' ) $content = $header_content;
-			if ( $key === 'global_footer' ) $content = $footer_content;
-			if ( $key === 'shop_archive' ) $content = $archive_content;
+			$elementor_data = [];
+			if ( $key === 'global_header' ) {
+				$elementor_data = self::build_elementor_data( [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $header_content,
+						],
+					],
+				] );
+			}
+			if ( $key === 'global_footer' ) {
+				$elementor_data = self::build_elementor_data( [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $footer_content,
+						],
+					],
+				] );
+			}
+			if ( $key === 'shop_archive' ) {
+				$elementor_data = [
+					self::build_elementor_columns_section( [
+						[
+							'size' => 25,
+							'widgets' => [
+								[ 'widget_type' => 'sk_ajax_filter' ],
+							],
+						],
+						[
+							'size' => 75,
+							'widgets' => [
+								[
+									'widget_type' => 'sk_product_grid',
+									'settings' => [
+										'posts_per_page' => 12,
+									],
+								],
+							],
+						],
+					] ),
+				];
+			}
 
 			$existing = self::get_seeded_post( 'sk_template', 'sk_template_' . $key, [ 'title' => $title ] );
 			if ( $existing ) {
@@ -625,6 +816,14 @@ class Seeder {
 			}
 
 			if ( ! is_wp_error( $post_id ) ) {
+				if ( ! empty( $elementor_data ) ) {
+					$current_data = get_post_meta( $post_id, '_elementor_data', true );
+					if ( empty( $current_data ) ) {
+						update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
+						update_post_meta( $post_id, '_elementor_version', '3.18.0' );
+						update_post_meta( $post_id, '_elementor_data', wp_json_encode( $elementor_data ) );
+					}
+				}
 				self::mark_seeded_post( $post_id, 'sk_template_' . $key );
 				$settings[ $key ] = $post_id;
 			}

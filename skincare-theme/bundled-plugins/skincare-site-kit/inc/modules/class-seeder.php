@@ -179,20 +179,20 @@ class Seeder {
 		</section>
 		';
 
-		$contact_content = '[sk_contact_section]';
+		$contact_content = '[sk_section name="contact_section"]';
 		$faqs_content = '
 		<section class="sk-page-intro">
 			<h2>Preguntas frecuentes</h2>
 			<p>Resuelve dudas sobre compras, envíos y devoluciones antes de escribirnos.</p>
 		</section>
-		[sk_faq_accordion]
+		[sk_section name="faq_accordion"]
 		';
 		$shipping_content = '
 		<section class="sk-page-intro">
 			<h2>Envíos y devoluciones</h2>
 			<p>Conoce los tiempos de entrega y nuestras políticas de devolución.</p>
 		</section>
-		[sk_shipping_table]
+		[sk_section name="shipping_table"]
 		<section class="sk-page-details">
 			<h3>Devoluciones sencillas</h3>
 			<ul>
@@ -202,10 +202,10 @@ class Seeder {
 			</ul>
 		</section>
 		';
-		$rewards_content = '[sk_rewards_castle][sk_rewards_earn_redeem][sk_rewards_dashboard]';
-		$wishlist_content = '[sk_wishlist_grid]';
-		$account_content = '[sk_account_dashboard]';
-		$store_locator_content = '[sk_store_locator]';
+		$rewards_content = '[sk_section name="rewards_castle"][sk_section name="rewards_earn_redeem"][sk_section name="rewards_dashboard"]';
+		$wishlist_content = '[sk_section name="wishlist_grid"]';
+		$account_content = '[sk_section name="account_dashboard"]';
+		$store_locator_content = '[sk_section name="store_locator"]';
 		$learn_content = '
 		<section class="sk-learn-hero">
 			<h2>Aprende sobre K-Beauty</h2>
@@ -262,14 +262,14 @@ class Seeder {
 			[
 				'title' => 'Inicio',
 				'slug' => 'home',
-				'content' => '[sk_marquee][sk_hero_slider][sk_icon_box_grid][sk_product_grid][sk_concern_grid][sk_brand_slider][sk_instagram_feed]',
+				'content' => '[sk_section name="marquee"][sk_section name="hero_slider"][sk_section name="icon_box_grid"][sk_section name="product_grid"][sk_section name="concern_grid"][sk_section name="brand_slider"][sk_section name="instagram_feed"]',
 				'template' => 'template-landing.php',
 				'seed_id' => 'page_home',
 			],
 			[
 				'title' => 'Tienda',
 				'slug' => 'shop',
-				'content' => '[sk_product_grid posts_per_page="12"]',
+				'content' => '[sk_section name="product_grid" posts_per_page="12"]',
 				'template' => 'template-full-width.php',
 				'seed_id' => 'page_shop',
 			],
@@ -345,7 +345,12 @@ class Seeder {
 			[ 'title' => 'Lista de deseos', 'slug' => 'wishlist', 'content' => $wishlist_content, 'seed_id' => 'page_wishlist' ],
 			[ 'title' => 'Recompensas', 'slug' => 'rewards', 'content' => $rewards_content, 'seed_id' => 'page_rewards' ],
 			[ 'title' => 'Mi cuenta', 'slug' => 'account', 'content' => $account_content, 'seed_id' => 'page_account' ],
-			[ 'title' => 'Iniciar sesión', 'slug' => 'login', 'content' => '[woocommerce_my_account]', 'seed_id' => 'page_login' ],
+			[
+				'title' => 'Iniciar sesión',
+				'slug' => 'login',
+				'content' => '<section class="sk-page-details">[woocommerce_my_account]</section>',
+				'seed_id' => 'page_login'
+			],
 			[ 'title' => 'Localizador de tiendas', 'slug' => 'store-locator', 'content' => $store_locator_content, 'seed_id' => 'page_store_locator' ],
 			[ 'title' => 'Trabaja con nosotros', 'slug' => 'care', 'content' => $care_content, 'seed_id' => 'page_care' ],
 			[ 'title' => 'Prensa', 'slug' => 'skin', 'content' => $press_content, 'seed_id' => 'page_press' ],
@@ -570,7 +575,7 @@ class Seeder {
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
-			<div class="sk-menu">[sk_widget name="nav_menu"]</div>
+			<div class="sk-menu">[sk_section name="nav_menu"]</div>
 			<div class="sk-icons">
 				<a href="#" class="sk-search-trigger"><i class="eicon-search"></i></a>
 				<a href="/wishlist/"><i class="eicon-heart"></i></a>
@@ -581,10 +586,10 @@ class Seeder {
 		$archive_content = '
 		<div class="sk-archive-layout" style="display:flex; gap:30px;">
 			<aside class="sk-sidebar" style="width:250px;">
-				[sk_ajax_filter]
+				[sk_section name="ajax_filter"]
 			</aside>
 			<main class="sk-main-loop" style="flex:1;">
-				[sk_product_grid posts_per_page="12"]
+				[sk_section name="product_grid" posts_per_page="12"]
 			</main>
 		</div>';
 

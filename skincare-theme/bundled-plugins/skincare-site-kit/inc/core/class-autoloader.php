@@ -26,7 +26,7 @@ class Autoloader {
 
 		// Map Namespace to Folder Structure
 		// Skincare\SiteKit\Modules\MegaMenu -> inc/modules/class-mega-menu.php
-		// Skincare\SiteKit\Widgets\Hero -> inc/widgets/class-hero.php
+		// Skincare\SiteKit\Widgets\Hero -> inc/widgets/class-hero.php (sections)
 		// Skincare\SiteKit\Core\Loader -> inc/core/class-loader.php
 
 		$parts = explode( '\\', $relative_class );

@@ -58,7 +58,7 @@ class Loader {
 		// Enqueue Scripts
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
 
-		// Elementor Widgets
+		// Elementor Sections
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 	}
 
@@ -83,7 +83,7 @@ class Loader {
 	}
 
 	public function register_widgets( $widgets_manager ) {
-		// General Widgets
+		// General Sections
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Hero_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Grid() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Wishlist_Grid() );
@@ -107,7 +107,7 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() );
 
-		// Theme Builder Widgets
+		// Theme Builder Sections
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Title() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Price() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Theme_Part_Add_To_Cart() );

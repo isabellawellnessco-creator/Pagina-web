@@ -223,6 +223,36 @@ class Seeder {
 		return $sections;
 	}
 
+	private static function should_refresh_elementor_data( $post_id ) {
+		$current_data = get_post_meta( $post_id, '_elementor_data', true );
+		if ( empty( $current_data ) ) {
+			return true;
+		}
+
+		$post = get_post( $post_id );
+		if ( $post && strpos( $post->post_content, '[' ) !== false && strpos( $post->post_content, 'sk_' ) !== false ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private static function seed_elementor_data( $post_id, array $elementor_data ) {
+		if ( empty( $elementor_data ) ) {
+			return;
+		}
+
+		if ( self::should_refresh_elementor_data( $post_id ) ) {
+			update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
+			update_post_meta( $post_id, '_elementor_version', '3.18.0' );
+			update_post_meta( $post_id, '_elementor_data', wp_json_encode( $elementor_data ) );
+			wp_update_post( [
+				'ID' => $post_id,
+				'post_content' => '',
+			] );
+		}
+	}
+
 	public static function create_pages() {
 		$theme_assets = get_stylesheet_directory_uri() . '/assets/images/';
 		// Content definitions
@@ -253,20 +283,17 @@ class Seeder {
 		</section>
 		';
 
-		$contact_content = '[sk_section name="contact_section"]';
 		$faqs_content = '
 		<section class="sk-page-intro">
 			<h2>Preguntas frecuentes</h2>
 			<p>Resuelve dudas sobre compras, envíos y devoluciones antes de escribirnos.</p>
 		</section>
-		[sk_section name="faq_accordion"]
 		';
 		$shipping_content = '
 		<section class="sk-page-intro">
 			<h2>Envíos y devoluciones</h2>
 			<p>Conoce los tiempos de entrega y nuestras políticas de devolución.</p>
 		</section>
-		[sk_section name="shipping_table"]
 		<section class="sk-page-details">
 			<h3>Devoluciones sencillas</h3>
 			<ul>
@@ -276,10 +303,6 @@ class Seeder {
 			</ul>
 		</section>
 		';
-		$rewards_content = '[sk_section name="rewards_castle"][sk_section name="rewards_earn_redeem"][sk_section name="rewards_dashboard"]';
-		$wishlist_content = '[sk_section name="wishlist_grid"]';
-		$account_content = '[sk_section name="account_dashboard"]';
-		$store_locator_content = '[sk_section name="store_locator"]';
 		$learn_content = '
 		<section class="sk-learn-hero">
 			<h2>Aprende sobre K-Beauty</h2>
@@ -336,14 +359,31 @@ class Seeder {
 			[
 				'title' => 'Inicio',
 				'slug' => 'home',
-				'content' => '[sk_section name="marquee"][sk_section name="hero_slider"][sk_section name="icon_box_grid"][sk_section name="product_grid"][sk_section name="concern_grid"][sk_section name="brand_slider"][sk_section name="instagram_feed"]',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_marquee' ],
+					[ 'widget_type' => 'sk_hero_slider' ],
+					[ 'widget_type' => 'sk_icon_box_grid' ],
+					[ 'widget_type' => 'sk_product_grid' ],
+					[ 'widget_type' => 'sk_concern_grid' ],
+					[ 'widget_type' => 'sk_brand_slider' ],
+					[ 'widget_type' => 'sk_instagram_feed' ],
+				],
 				'template' => 'template-landing.php',
 				'seed_id' => 'page_home',
 			],
 			[
 				'title' => 'Tienda',
 				'slug' => 'shop',
-				'content' => '[sk_section name="product_grid" posts_per_page="12"]',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'sk_product_grid',
+						'settings' => [
+							'posts_per_page' => 12,
+						],
+					],
+				],
 				'template' => 'template-full-width.php',
 				'seed_id' => 'page_shop',
 			],
@@ -484,22 +524,137 @@ class Seeder {
 				],
 				'seed_id' => 'page_politicas',
 			],
-			[ 'title' => 'Lista de deseos', 'slug' => 'wishlist', 'content' => $wishlist_content, 'seed_id' => 'page_wishlist' ],
-			[ 'title' => 'Recompensas', 'slug' => 'rewards', 'content' => $rewards_content, 'seed_id' => 'page_rewards' ],
-			[ 'title' => 'Mi cuenta', 'slug' => 'account', 'content' => $account_content, 'seed_id' => 'page_account' ],
+			[
+				'title' => 'Lista de deseos',
+				'slug' => 'wishlist',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_wishlist_grid' ],
+				],
+				'seed_id' => 'page_wishlist'
+			],
+			[
+				'title' => 'Recompensas',
+				'slug' => 'rewards',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_rewards_castle' ],
+					[ 'widget_type' => 'sk_rewards_earn_redeem' ],
+					[ 'widget_type' => 'sk_rewards_dashboard' ],
+				],
+				'seed_id' => 'page_rewards'
+			],
+			[
+				'title' => 'Mi cuenta',
+				'slug' => 'account',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_account_dashboard' ],
+				],
+				'seed_id' => 'page_account'
+			],
 			[
 				'title' => 'Iniciar sesión',
 				'slug' => 'login',
-				'content' => '<section class="sk-page-details">[woocommerce_my_account]</section>',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'woocommerce-my-account' ],
+				],
 				'seed_id' => 'page_login'
 			],
-			[ 'title' => 'Localizador de tiendas', 'slug' => 'store-locator', 'content' => $store_locator_content, 'seed_id' => 'page_store_locator' ],
-			[ 'title' => 'Trabaja con nosotros', 'slug' => 'care', 'content' => $care_content, 'seed_id' => 'page_care' ],
-			[ 'title' => 'Prensa', 'slug' => 'skin', 'content' => $press_content, 'seed_id' => 'page_press' ],
-			[ 'title' => 'Skincare coreano', 'slug' => 'korean', 'content' => $korean_content, 'seed_id' => 'page_korean' ],
-			[ 'title' => 'Maquillaje', 'slug' => 'makeup', 'content' => $makeup_content, 'seed_id' => 'page_makeup' ],
-			[ 'title' => 'Belleza vegana', 'slug' => 'vegan', 'content' => $vegan_content, 'seed_id' => 'page_vegan' ],
-			[ 'title' => 'Aprender', 'slug' => 'learn', 'content' => $learn_content, 'seed_id' => 'page_learn' ],
+			[
+				'title' => 'Localizador de tiendas',
+				'slug' => 'store-locator',
+				'content' => '',
+				'elementor' => [
+					[ 'widget_type' => 'sk_store_locator' ],
+				],
+				'seed_id' => 'page_store_locator'
+			],
+			[
+				'title' => 'Trabaja con nosotros',
+				'slug' => 'care',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $care_content,
+						],
+					],
+				],
+				'seed_id' => 'page_care'
+			],
+			[
+				'title' => 'Prensa',
+				'slug' => 'skin',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $press_content,
+						],
+					],
+				],
+				'seed_id' => 'page_press'
+			],
+			[
+				'title' => 'Skincare coreano',
+				'slug' => 'korean',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $korean_content,
+						],
+					],
+				],
+				'seed_id' => 'page_korean'
+			],
+			[
+				'title' => 'Maquillaje',
+				'slug' => 'makeup',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $makeup_content,
+						],
+					],
+				],
+				'seed_id' => 'page_makeup'
+			],
+			[
+				'title' => 'Belleza vegana',
+				'slug' => 'vegan',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $vegan_content,
+						],
+					],
+				],
+				'seed_id' => 'page_vegan'
+			],
+			[
+				'title' => 'Aprender',
+				'slug' => 'learn',
+				'content' => '',
+				'elementor' => [
+					[
+						'widget_type' => 'text-editor',
+						'settings' => [
+							'editor' => $learn_content,
+						],
+					],
+				],
+				'seed_id' => 'page_learn'
+			],
 		];
 
 		$page_ids = [];
@@ -538,12 +693,7 @@ class Seeder {
 
 			if ( $post_id && ! is_wp_error( $post_id ) ) {
 				if ( ! empty( $page['elementor'] ) ) {
-					$current_data = get_post_meta( $post_id, '_elementor_data', true );
-					if ( empty( $current_data ) ) {
-						update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
-						update_post_meta( $post_id, '_elementor_version', '3.18.0' );
-						update_post_meta( $post_id, '_elementor_data', wp_json_encode( self::build_elementor_data( $page['elementor'] ) ) );
-					}
+					self::seed_elementor_data( $post_id, self::build_elementor_data( $page['elementor'] ) );
 				}
 				self::mark_seeded_post( $post_id, $page['seed_id'] );
 				$page_ids[ $page['slug'] ] = $post_id;
@@ -725,7 +875,7 @@ class Seeder {
 		$header_content = '
 		<div class="sk-header-row">
 			<div class="sk-logo"><h1>Skin Cupid</h1></div>
-			<div class="sk-menu">[sk_section name="nav_menu"]</div>
+			<div class="sk-menu"><span>Menú principal</span></div>
 			<div class="sk-icons">
 				<a href="#" class="sk-search-trigger"><i class="eicon-search"></i></a>
 				<a href="/wishlist/"><i class="eicon-heart"></i></a>
@@ -733,15 +883,7 @@ class Seeder {
 			</div>
 		</div>';
 		$footer_content = '<div class="sk-footer-content"><p>© ' . date('Y') . ' Skin Cupid. Todos los derechos reservados.</p></div>';
-		$archive_content = '
-		<div class="sk-archive-layout" style="display:flex; gap:30px;">
-			<aside class="sk-sidebar" style="width:250px;">
-				[sk_section name="ajax_filter"]
-			</aside>
-			<main class="sk-main-loop" style="flex:1;">
-				[sk_section name="product_grid" posts_per_page="12"]
-			</main>
-		</div>';
+		$archive_content = [];
 
 		$settings = get_option( 'sk_theme_builder_settings', [] );
 
@@ -816,14 +958,7 @@ class Seeder {
 			}
 
 			if ( ! is_wp_error( $post_id ) ) {
-				if ( ! empty( $elementor_data ) ) {
-					$current_data = get_post_meta( $post_id, '_elementor_data', true );
-					if ( empty( $current_data ) ) {
-						update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
-						update_post_meta( $post_id, '_elementor_version', '3.18.0' );
-						update_post_meta( $post_id, '_elementor_data', wp_json_encode( $elementor_data ) );
-					}
-				}
+				self::seed_elementor_data( $post_id, $elementor_data );
 				self::mark_seeded_post( $post_id, 'sk_template_' . $key );
 				$settings[ $key ] = $post_id;
 			}

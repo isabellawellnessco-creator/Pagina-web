@@ -19,27 +19,27 @@ while ( have_posts() ) :
 	?>
 	<main id="main" class="site-main" role="main">
 		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
-			<article <?php post_class( 'sk-page' ); ?>>
+			<section <?php post_class( 'sk-page' ); ?>>
 				<header class="sk-page-header">
 					<h1 class="sk-page-title"><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?>
 						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
 					<?php endif; ?>
 				</header>
-				<div class="page-content sk-page-content">
-					<?php if ( $content ) : ?>
+				<?php if ( $content ) : ?>
+					<section class="page-content sk-page-content">
 						<?php the_content(); ?>
-					<?php endif; ?>
-					<?php
-					get_template_part( 'template-parts/sections/post-grid', null, [
-						'title' => __( 'Guías destacadas', 'skincare' ),
-						'description' => __( 'Artículos y rutinas para aprender sobre skincare coreano.', 'skincare' ),
-						'category' => 'learn',
-						'limit' => 6,
-					] );
-					?>
-				</div>
-			</article>
+					</section>
+				<?php endif; ?>
+				<?php
+				get_template_part( 'template-parts/sections/post-grid', null, [
+					'title' => __( 'Guías destacadas', 'skincare' ),
+					'description' => __( 'Artículos y rutinas para aprender sobre skincare coreano.', 'skincare' ),
+					'category' => 'learn',
+					'limit' => 6,
+				] );
+				?>
+			</section>
 		<?php endif; ?>
 	</main>
 <?php endwhile; ?>

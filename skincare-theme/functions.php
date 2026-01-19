@@ -82,6 +82,19 @@ function skincare_shortcode_button( $atts, $content = null ) {
 }
 add_shortcode( 'sk_button', 'skincare_shortcode_button' );
 
+if ( ! function_exists( 'skincare_safe_shortcode' ) ) {
+	function skincare_safe_shortcode( $tag, $atts_string = '' ) {
+		if ( ! shortcode_exists( $tag ) ) {
+			return '';
+		}
+
+		$atts_string = trim( $atts_string );
+		$shortcode   = $atts_string ? sprintf( '[%s %s]', $tag, $atts_string ) : sprintf( '[%s]', $tag );
+
+		return do_shortcode( $shortcode );
+	}
+}
+
 function skincare_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'skincare_branding', [
 		'title'       => __( 'Skincare Branding', 'skincare' ),

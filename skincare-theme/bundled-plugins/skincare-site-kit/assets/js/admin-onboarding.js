@@ -43,13 +43,13 @@ jQuery(document).ready(function($) {
                 },
                 success: function(response) {
                     if (response.success) {
-                        $widgetStatusMessage.text('Widgets verificados correctamente.');
+                        $widgetStatusMessage.text('Secciones verificadas correctamente.');
                     } else {
                         $widgetStatusMessage.text(response.data.message || 'No se pudo verificar.');
                     }
                 },
                 error: function() {
-                    $widgetStatusMessage.text('Error de conexión al verificar widgets.');
+                    $widgetStatusMessage.text('Error de conexión al verificar secciones.');
                 },
                 complete: function() {
                     $widgetCheckBtn.prop('disabled', false).text(originalLabel);

@@ -36,28 +36,26 @@ function skincare_enqueue_scripts() {
 
 		wp_enqueue_style( 'skincare-f8-fonts', $f8_css . '/fonts.css', [], $ver );
 		wp_enqueue_style( 'skincare-f8-core', $f8_css . '/core.css', ['skincare-f8-fonts'], $ver );
-		wp_enqueue_style( 'skincare-f8-app-embed', $f8_css . '/app-embed-block.css', ['skincare-f8-core'], $ver );
-		wp_enqueue_style( 'skincare-f8-app-base', $f8_css . '/app-base.css', ['skincare-f8-app-embed'], $ver );
-		wp_enqueue_style( 'skincare-f8-accelerated-checkout', $f8_css . '/accelerated-checkout-backwards-compat.css', ['skincare-f8-app-base'], $ver );
-		wp_enqueue_style( 'skincare-f8-1700', $f8_css . '/1700.7ed44b4acefaba122d0d.css', ['skincare-f8-accelerated-checkout'], $ver );
-		wp_enqueue_style( 'skincare-f8-532', $f8_css . '/532.f5cf641d94bc70223e6f.css', ['skincare-f8-1700'], $ver );
-		wp_enqueue_style( 'skincare-f8-base', $f8_css . '/base.css', ['skincare-f8-532'], $ver );
+		wp_enqueue_style( 'skincare-f8-base', $f8_css . '/base.css', ['skincare-f8-core'], $ver );
 		wp_enqueue_style( 'skincare-f8-custom', $f8_css . '/custom.css', ['skincare-f8-base'], $ver );
-		wp_enqueue_style( 'skincare-f8-wishlist-collection', $f8_css . '/component-wishlist-button-collection.css', ['skincare-f8-custom'], $ver );
-		wp_enqueue_style( 'skincare-f8-wishlist-product', $f8_css . '/component-wishlist-button-product.css', ['skincare-f8-wishlist-collection'], $ver );
-		wp_enqueue_style( 'skincare-f8-wishlist-page', $f8_css . '/component-wishlist-page-bundle.css', ['skincare-f8-wishlist-product'], $ver );
-		wp_enqueue_style( 'skincare-f8-glider', $f8_css . '/glider.min.css', ['skincare-f8-wishlist-page'], $ver );
-		wp_enqueue_style( 'skincare-f8-bogos', $f8_css . '/bogos.bundle.min.css', ['skincare-f8-glider'], $ver );
-		wp_enqueue_style( 'skincare-f8-freegifts', $f8_css . '/freegifts-main.min.css', ['skincare-f8-bogos'], $ver );
-		wp_enqueue_style( 'skincare-f8-collection-tile', $f8_css . '/collection-tile-controller.af177681.css', ['skincare-f8-freegifts'], $ver );
-		wp_enqueue_style( 'skincare-f8-vegan-form', $f8_css . '/vegan-form.css', ['skincare-f8-collection-tile'], $ver );
-		wp_enqueue_style( 'skincare-f8-vegan-main', $f8_css . '/vegan-main.css', ['skincare-f8-vegan-form'], $ver );
-		wp_enqueue_style( 'skincare-f8-vegan-klarna-fonts', $f8_css . '/vegan-klarna-fonts.css', ['skincare-f8-vegan-main'], $ver );
-		wp_enqueue_style( 'skincare-f8-locator-fonts', $f8_css . '/locator-fonts.css', ['skincare-f8-vegan-klarna-fonts'], $ver );
-		wp_enqueue_style( 'skincare-f8-locator-fonts-2', $f8_css . '/locator-fonts-2.css', ['skincare-f8-locator-fonts'], $ver );
+		wp_enqueue_style( 'skincare-f8-glider', $f8_css . '/glider.min.css', ['skincare-f8-custom'], $ver );
+
+		if ( is_page( ['korean', 'makeup'] ) ) {
+			wp_enqueue_style( 'skincare-f8-collection-tile', $f8_css . '/collection-tile-controller.af177681.css', ['skincare-f8-custom'], $ver );
+		}
+
+		if ( is_page( 'vegan' ) ) {
+			wp_enqueue_style( 'skincare-f8-vegan-form', $f8_css . '/vegan-form.css', ['skincare-f8-custom'], $ver );
+			wp_enqueue_style( 'skincare-f8-vegan-main', $f8_css . '/vegan-main.css', ['skincare-f8-vegan-form'], $ver );
+			wp_enqueue_style( 'skincare-f8-vegan-klarna-fonts', $f8_css . '/vegan-klarna-fonts.css', ['skincare-f8-vegan-main'], $ver );
+		}
+
+		if ( is_page( 'store-locator' ) ) {
+			wp_enqueue_style( 'skincare-f8-locator-fonts', $f8_css . '/locator-fonts.css', ['skincare-f8-custom'], $ver );
+			wp_enqueue_style( 'skincare-f8-locator-fonts-2', $f8_css . '/locator-fonts-2.css', ['skincare-f8-locator-fonts'], $ver );
+		}
 
 		wp_enqueue_script( 'skincare-f8-glider', $f8_js . '/glider.min.js', [], $ver, true );
-		wp_enqueue_script( 'skincare-f8-bundle', $f8_js . '/bundle.min.js', ['skincare-f8-glider'], $ver, true );
 
 		if ( is_page( ['contact', 'learn', 'skin'] ) || is_page_template( 'template-landing.php' ) || is_page( 'care' ) ) {
 			wp_enqueue_script( 'skincare-f8-showcase-gallery', $f8_js . '/showcase-gallery.js', [], $ver, true );

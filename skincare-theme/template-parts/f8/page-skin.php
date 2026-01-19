@@ -11,12 +11,12 @@
         <nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/blogs/press" itemprop="item" title="Press" aria-current="page" pa-marked="1"><span itemprop="name">Press</span></a>
+        <a href="<?php echo esc_url( home_url( "/blogs/press" ) ); ?>" itemprop="item" title="Press" aria-current="page" pa-marked="1"><span itemprop="name">Press</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav>
@@ -45,7 +45,7 @@
     <div id="press-card-1" class="press-card">
         <div class="press-card-inner gap-7.5 lg:gap-11 flex flex-col lg:flex-row">
             
-                <a href="https://www.skincupid.co.uk/blogs/press/glamour-february-issue-2023" title="February Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/glamour-february-issue-2023" ) ); ?>" title="February Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
                     
                         <picture class="block w-full max-w-xl max-lg:mx-auto lg:max-w-xs">
                             <source srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=992 992," media="(max-width: 992px)">
@@ -56,7 +56,7 @@
                 </a>
             
             <div class="w-full flex flex-col gap-5 lg:w-2/5 grow-1 max-lg:items-center ">
-                <a href="https://www.skincupid.co.uk/blogs/press/glamour-february-issue-2023" title="February Issue 2023" class="flex flex-col gap-5" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/glamour-february-issue-2023" ) ); ?>" title="February Issue 2023" class="flex flex-col gap-5" pa-marked="1">
                     
                         
                             <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-glamour-logo.svg' ) ); ?>" alt="Press glamour logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="115" loading="eager" class="w-64 h-auto object-cover" fetchpriority="high">
@@ -66,7 +66,7 @@
                 </a>
                 
                 
-                    <a class="btn w-fit btn-primary" href="https://www.skincupid.co.uk/collections/heimish" title="Shop All HEIMISH Products" pa-marked="1">
+                    <a class="btn w-fit btn-primary" href="<?php echo esc_url( home_url( "/collections/heimish" ) ); ?>" title="Shop All HEIMISH Products" pa-marked="1">
                         Shop All HEIMISH Products
                         <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -91,7 +91,7 @@
     <div id="press-card-2" class="press-card">
         <div class="press-card-inner gap-7.5 lg:gap-11 flex flex-col lg:flex-row">
             
-                <a href="https://www.skincupid.co.uk/blogs/press/vogue-march-issue-2023" title="March Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/vogue-march-issue-2023" ) ); ?>" title="March Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
                     
                         
                         <picture class="block lg:max-w-xs">
@@ -103,7 +103,7 @@
                 </a>
             
             <div class="w-full flex flex-col gap-5 lg:w-2/5 grow-1 max-lg:items-center ">
-                <a href="https://www.skincupid.co.uk/blogs/press/vogue-march-issue-2023" title="March Issue 2023" class="flex flex-col gap-5" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/vogue-march-issue-2023" ) ); ?>" title="March Issue 2023" class="flex flex-col gap-5" pa-marked="1">
                     
                         
                             
@@ -114,7 +114,7 @@
                 </a>
                 
                 
-                    <a class="btn w-fit btn-primary" href="https://www.skincupid.co.uk/collections/roundlab" title="Shop All ROUND LAB Products" pa-marked="1">
+                    <a class="btn w-fit btn-primary" href="<?php echo esc_url( home_url( "/collections/roundlab" ) ); ?>" title="Shop All ROUND LAB Products" pa-marked="1">
                         Shop All ROUND LAB Products
                         <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -147,7 +147,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/roundlab-1025-dokdo-toner-100ml-200ml-1" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/roundlab-1025-dokdo-toner-100ml-200ml-1" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/ROUNDLAB1025DokdoToner200ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml.jpg?v=1760352113&amp;width=550" width="2000" height="2000" alt="ROUND LAB 1025 Dokdo Toner (100ml/200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w">
@@ -246,7 +246,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7985614356715" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="43726835777771">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7985614356715" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="43726835777771">
         <input type="hidden" name="product_id" value="7985614356715">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" disabled="" pa-marked="1">
         <!-- Available state content -->
@@ -314,7 +314,7 @@
     <div id="press-card-3" class="press-card">
         <div class="press-card-inner gap-7.5 lg:gap-11 flex flex-col lg:flex-row">
             
-                <a href="https://www.skincupid.co.uk/blogs/press/glamour-january-issue-2023" title="January Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/glamour-january-issue-2023" ) ); ?>" title="January Issue 2023" class="w-full lg:w-[30%] grow-0" pa-marked="1">
                     
                         
                         <picture class="block lg:max-w-xs">
@@ -326,7 +326,7 @@
                 </a>
             
             <div class="w-full flex flex-col gap-5 lg:w-2/5 grow-1 max-lg:items-center ">
-                <a href="https://www.skincupid.co.uk/blogs/press/glamour-january-issue-2023" title="January Issue 2023" class="flex flex-col gap-5" pa-marked="1">
+                <a href="<?php echo esc_url( home_url( "/blogs/press/glamour-january-issue-2023" ) ); ?>" title="January Issue 2023" class="flex flex-col gap-5" pa-marked="1">
                     
                         
                             
@@ -337,7 +337,7 @@
                 </a>
                 
                 
-                    <a class="btn w-fit btn-primary" href="https://www.skincupid.co.uk/collections/nacific" title="Shop All NACIFIC Products" pa-marked="1">
+                    <a class="btn w-fit btn-primary" href="<?php echo esc_url( home_url( "/collections/nacific" ) ); ?>" title="Shop All NACIFIC Products" pa-marked="1">
                         Shop All NACIFIC Products
                         <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -370,7 +370,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-fresh-herb-origin-serum-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/nacific-fresh-herb-origin-serum-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg?v=1760352100&amp;width=550" width="2000" height="2000" alt="NACIFIC Fresh Herb Origin Serum 50ML" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w">
@@ -479,7 +479,7 @@
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7804747088107" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43208293155051">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7804747088107" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43208293155051">
       <input type="hidden" name="product_id" value="7804747088107">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="zmyu9g"><span class="hidden lg:contents">
@@ -603,7 +603,7 @@
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18070487911579367_thumb.jpg" alt="K-beauty best-sellers that are actually popular in Korea! Let’s break down why they are ✨ viral-worthy✨ and which one might become your next holy grail...😍 
 
@@ -638,7 +638,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--image">
-        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="carousel" data-media-type="image">
                 <picture>
                     <source type="image/webp" data-srcset="" data-sizes="100w" data-ll-status="entered" class="entered" sizes="100w">
@@ -663,7 +663,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18065456026688231_thumb.jpg" alt="For our rosacea-prone cherubs with sensitive skin, meet our gentle and soothing top-picks for skin that needs a little extra love!💖
 
@@ -694,7 +694,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17904967569063389_thumb.jpg" alt="We are back with a ‘Korea vs global skincare’ part 2! 🇰🇷🌎 Which of these viral skincare products are your top picks? 🙌
 
@@ -723,7 +723,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18027468473226417_thumb.jpg" alt="Skin Cupid’s pop up is coming next week! 👀✨ Get ready for K-beauty best-sellers, new exciting arrivals, and freebies! We can’t wait to meet our Cherubs 🙌
 
@@ -759,7 +759,7 @@ We will be giving out goodie bags worth £200 on the following days:
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17892597363104192_thumb.jpg" alt="Tackling closed comedones isn’t for the weak but its nothing a good skincare routine can’t handle! ✨Don’t have one? No (pore)blem! We’re sharing 3 holy grails your skin will thank you for! 🙌
 
@@ -789,7 +789,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18473581711001780_thumb.jpg" alt="Happy Black Friday Cherubs!🎉 This year, we’re rolling out our biggest sale yet to help your skincare dreams come true!✨You can expect up to 40% off worldwide (no discount code needed)😍and a Buy One, Get One Free on our top-sellers!🙌
 
@@ -817,7 +817,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18018236564635389_thumb.jpg" alt="TIRTIR’s full range of 30 viral cushion foundation shades has officially landed at Skin Cupid! We’re thrilled that even more Cherubs can experience this incredible cushion 🌟
 
@@ -848,7 +848,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18035783183462967_thumb.jpg" alt="A late night Korea vlog while Melody was out there! There’s nothing like a good convenience store trip and some instant ramen that satisfies late night cravings ☺️ 
 
@@ -885,7 +885,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18069176722655981_thumb.jpg" alt="Big things are happening and the countdown to magic starts now! ✨ Can you guess what it could be? 👀🙌
 
@@ -916,7 +916,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18275602132216336_thumb.jpg" alt="Guess who’s back again 👀 Dr. Althea’s viral acne relief cream is finally back in stock and if you know, you KNOW there’s no other like it! 🙌
 
@@ -947,7 +947,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="https://www.skincupid.co.uk/blogs/press#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="<?php echo esc_url( home_url( "/blogs/press#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18030693905520415_thumb.jpg" alt="If you’ve wanted the Dior lip oil but aren’t a fan of the price tag…we got you! A juicy, non-sticky, protective lip oil... who does it better than TIRTIR? We’re totally obsessed!😍
 

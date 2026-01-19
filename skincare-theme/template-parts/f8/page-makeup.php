@@ -12,12 +12,12 @@
     <div><nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-            <a href="https://www.skincupid.co.uk/collections/all-make-up" itemprop="item" title="ALL MAKE UP" aria-current="page" pa-marked="1"><span itemprop="name">ALL MAKE UP</span></a>
+            <a href="<?php echo esc_url( home_url( "/collections/all-make-up" ) ); ?>" itemprop="item" title="ALL MAKE UP" aria-current="page" pa-marked="1"><span itemprop="name">ALL MAKE UP</span></a>
             <meta itemprop="position" content="2">
         </li></ol>
 </nav></div>
@@ -39,7 +39,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/all-make-up" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter pointer-events-none" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/all-make-up" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter pointer-events-none" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/View_All.jpg' ) ); ?>" alt="View All image" srcset="//www.skincupid.co.uk/cdn/shop/files/View_All.jpg?v=1727262848&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 border-melon-primary border-[5px]" fetchpriority="high">
@@ -54,7 +54,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/foundation-concealer" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/foundation-concealer" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Foundation.jpg' ) ); ?>" alt="Foundation image" srcset="//www.skincupid.co.uk/cdn/shop/files/Foundation.jpg?v=1740572186&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -69,7 +69,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/contour-highlight" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/contour-highlight" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Contour_Highlight.jpg' ) ); ?>" alt="Contour Highlight image" srcset="//www.skincupid.co.uk/cdn/shop/files/Contour_Highlight.jpg?v=1741100894&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -84,7 +84,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/blush" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/blush" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Blusher.jpg' ) ); ?>" alt="Blusher image" srcset="//www.skincupid.co.uk/cdn/shop/files/Blusher.jpg?v=1740571800&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -99,7 +99,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/eyeshadow" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/eyeshadow" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Eyeshadow.jpg' ) ); ?>" alt="Eyeshadow image" srcset="//www.skincupid.co.uk/cdn/shop/files/Eyeshadow.jpg?v=1740571845&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -114,7 +114,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/eyeliner" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/eyeliner" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Eyeliner.jpg' ) ); ?>" alt="Eyeliner image" srcset="//www.skincupid.co.uk/cdn/shop/files/Eyeliner.jpg?v=1740571884&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -129,7 +129,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/mascara" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/mascara" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Mascara.jpg' ) ); ?>" alt="Mascara image" srcset="//www.skincupid.co.uk/cdn/shop/files/Mascara.jpg?v=1740571921&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -144,7 +144,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/eyebrows" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/eyebrows" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Eyebrow.jpg' ) ); ?>" alt="Eyebrow image" srcset="//www.skincupid.co.uk/cdn/shop/files/Eyebrow.jpg?v=1740571950&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -159,7 +159,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/lips" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/lips" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Lip.jpg' ) ); ?>" alt="Lip image" srcset="//www.skincupid.co.uk/cdn/shop/files/Lip.jpg?v=1740572154&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -174,7 +174,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/priming-setting" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/priming-setting" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Primer_194982db-2478-4b1b-897e-fe10d38843fe.jpg' ) ); ?>" alt="Primer 194982db 2478 4b1b 897e fe10d38843fe image" srcset="//www.skincupid.co.uk/cdn/shop/files/Primer_194982db-2478-4b1b-897e-fe10d38843fe.jpg?v=1741100957&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -189,7 +189,7 @@
           
             
             
-            <a href="https://www.skincupid.co.uk/collections/devices-tools" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( "/collections/devices-tools" ) ); ?>" class="quick-filter snap-start flex flex-col gap-2 justify-start items-center min-w-[100px] grow shrink-0 group/quick-filter" pa-marked="1">
               
               
               <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Tool.jpg' ) ); ?>" alt="Tool image" srcset="//www.skincupid.co.uk/cdn/shop/files/Tool.jpg?v=1740572039&amp;width=200 200w" width="200" height="200" loading="eager" class="quick-filter-image rounded-[10px] w-25 aspect-1 transition-all duration-200 group-hover/quick-filter:border-melon-primary group-hover/quick-filter:border-[5px]" fetchpriority="high">
@@ -961,7 +961,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="bare_grape">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/rom-nd-juicy-lasting-tint" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/rom-nd-juicy-lasting-tint" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/ROM_ND_Juicy_Lasting_Tint_MERGE.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_350x.png?v=1760352458 350w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_450x.png?v=1760352458 450w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_750x.png?v=1760352458 750w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_1000x.png?v=1760352458 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE.png?v=1760352458&amp;width=550" width="2000" height="2000" alt="ROM&amp;ND Juicy Lasting Tint" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_350x.png?v=1760352458 350w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_450x.png?v=1760352458 450w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_750x.png?v=1760352458 750w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Juicy_Lasting_Tint_MERGE_1000x.png?v=1760352458 1000w">
@@ -1060,7 +1060,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9009486692587" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46763340366059">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9009486692587" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46763340366059">
         <input type="hidden" name="product_id" value="9009486692587">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="7yq78">
         <!-- Available state content -->
@@ -1244,7 +1244,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="mellow_peach">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/etude-house-fixing-tint-11-colours-4g-reduced" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/etude-house-fixing-tint-11-colours-4g-reduced" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_350x.jpg?v=1760352068 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_450x.jpg?v=1760352068 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_750x.jpg?v=1760352068 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_1000x.jpg?v=1760352068 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g.jpg?v=1760352068&amp;width=550" width="2000" height="2000" alt="Etude House Fixing Tint (11 Colours) 4g" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_350x.jpg?v=1760352068 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_450x.jpg?v=1760352068 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_750x.jpg?v=1760352068 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_1000x.jpg?v=1760352068 1000w">
@@ -1356,7 +1356,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8960560103659" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46606559576299">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8960560103659" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46606559576299">
         <input type="hidden" name="product_id" value="8960560103659">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="b27s4d">
         <!-- Available state content -->
@@ -1485,7 +1485,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="01_black">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-slim-liquid-eyeliner" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-slim-liquid-eyeliner" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_350x.png?v=1758712303 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_450x.png?v=1758712303 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_750x.png?v=1758712303 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_1000x.png?v=1758712303 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid.png?v=1758712303&amp;width=550" width="2000" height="2000" alt="Judydoll Slim Liquid Eyeliner Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_350x.png?v=1758712303 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_450x.png?v=1758712303 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_750x.png?v=1758712303 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Slim_Liquid_Eyeliner_Skin_Cupid_1000x.png?v=1758712303 1000w">
@@ -1584,7 +1584,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001735422187" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739740623083">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001735422187" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739740623083">
         <input type="hidden" name="product_id" value="9001735422187">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="c94r9h">
         <!-- Available state content -->
@@ -1698,7 +1698,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="02_dark_brown">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-liquid-eyebrow-pen" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-liquid-eyebrow-pen" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_350x.png?v=1758706019 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_450x.png?v=1758706019 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_750x.png?v=1758706019 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_1000x.png?v=1758706019 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid.png?v=1758706019&amp;width=550" width="2000" height="2000" alt="Judydoll Liquid Eyebrow Pen Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_350x.png?v=1758706019 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_450x.png?v=1758706019 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_750x.png?v=1758706019 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyebrow_Pen_Skin_Cupid_1000x.png?v=1758706019 1000w">
@@ -1797,7 +1797,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001726574827" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739667058923">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001726574827" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739667058923">
         <input type="hidden" name="product_id" value="9001726574827">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="0kl1ml">
         <!-- Available state content -->
@@ -1906,7 +1906,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="#101_joyful">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/laka-fruity-glam-tint" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/laka-fruity-glam-tint" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/LAKA_Fruity_Glam_Tint.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_350x.png?v=1760352441 350w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_450x.png?v=1760352441 450w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_750x.png?v=1760352441 750w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_1000x.png?v=1760352441 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint.png?v=1760352441&amp;width=550" width="2000" height="2000" alt="LAKA Fruity Glam Tint" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_350x.png?v=1760352441 350w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_450x.png?v=1760352441 450w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_750x.png?v=1760352441 750w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Glam_Tint_1000x.png?v=1760352441 1000w">
@@ -2005,7 +2005,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8988365947115" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46699421565163">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8988365947115" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46699421565163">
         <input type="hidden" name="product_id" value="8988365947115">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="lb3wph">
         <!-- Available state content -->
@@ -2159,7 +2159,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="13c_fair">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/tirtir-mask-fit-red-cushion-spf40-pa-3-shades" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/tirtir-mask-fit-red-cushion-spf40-pa-3-shades" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_1000x.jpg?v=1760352158 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades.jpg?v=1760352158&amp;width=550" width="2000" height="2000" alt="TIRTIR Mask Fit Red Cushion SPF40 PA++ (18g) 9 Shades" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_1000x.jpg?v=1760352158 1000w">
@@ -2258,7 +2258,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8165758075115" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="45921329447147">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8165758075115" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="45921329447147">
         <input type="hidden" name="product_id" value="8165758075115">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="ziiay">
         <!-- Available state content -->
@@ -2507,7 +2507,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="h01_moon_dust">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-jelly-highlighter-stick" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-jelly-highlighter-stick" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_350x.png?v=1759161921 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_450x.png?v=1759161921 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_750x.png?v=1759161921 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_1000x.png?v=1759161921 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01.png?v=1759161921&amp;width=550" width="2000" height="2000" alt="JOOCYEE Jelly Highlighter Stick Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_350x.png?v=1759161921 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_450x.png?v=1759161921 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_750x.png?v=1759161921 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_1000x.png?v=1759161921 1000w">
@@ -2606,7 +2606,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001740959979" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739817398507">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001740959979" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739817398507">
         <input type="hidden" name="product_id" value="9001740959979">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="1kdtprj">
         <!-- Available state content -->
@@ -2720,7 +2720,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="01_black">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-curling-iron-mascara" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-curling-iron-mascara" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Curling_Iron_Mascara_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_350x.png?v=1758708203 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_450x.png?v=1758708203 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_750x.png?v=1758708203 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_1000x.png?v=1758708203 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid.png?v=1758708203&amp;width=550" width="2000" height="2000" alt="Judydoll Curling Iron Mascara Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_350x.png?v=1758708203 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_450x.png?v=1758708203 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_750x.png?v=1758708203 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Curling_Iron_Mascara_Skin_Cupid_1000x.png?v=1758708203 1000w">
@@ -2905,7 +2905,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="g401_tea_jelly">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-glazed-multi-purpose-stick" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-glazed-multi-purpose-stick" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_350x.png?v=1759218356 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_450x.png?v=1759218356 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_750x.png?v=1759218356 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_1000x.png?v=1759218356 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid.png?v=1759218356&amp;width=550" width="2000" height="2000" alt="JOOCYEE Glazed Multi-Purpose Stick Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_350x.png?v=1759218356 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_450x.png?v=1759218356 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_750x.png?v=1759218356 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_1000x.png?v=1759218356 1000w">
@@ -3004,7 +3004,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001751838955" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739917209835">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001751838955" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739917209835">
         <input type="hidden" name="product_id" value="9001751838955">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="ojbzk">
         <!-- Available state content -->
@@ -3118,7 +3118,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/vt-reedle-shot-lip-plumper-expert" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/vt-reedle-shot-lip-plumper-expert" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/VT_Reedle_Shot_Lip_Plumper_Expert.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_1000x.png?v=1760352454 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert.png?v=1760352454&amp;width=550" width="2000" height="2000" alt="VT Reedle Shot Lip Plumper (Expert)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_1000x.png?v=1760352454 1000w">
@@ -3216,7 +3216,7 @@
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8989763731691" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="46702979612907">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8989763731691" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="46702979612907">
       <input type="hidden" name="product_id" value="8989763731691">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="o5l93n"><span class="hidden lg:contents">
@@ -3273,7 +3273,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/etude-house-my-lash-serum" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/etude-house-my-lash-serum" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/ETUDE_HOUSE_My_Lash_Serum_9g.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_350x.jpg?v=1760352063 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_450x.jpg?v=1760352063 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_750x.jpg?v=1760352063 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_1000x.jpg?v=1760352063 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g.jpg?v=1760352063&amp;width=550" width="2000" height="2000" alt="ETUDE HOUSE My Lash Serum (9g)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_350x.jpg?v=1760352063 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_450x.jpg?v=1760352063 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_750x.jpg?v=1760352063 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_My_Lash_Serum_9g_1000x.jpg?v=1760352063 1000w">
@@ -3382,7 +3382,7 @@
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-6762503176382" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="39938078671038">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-6762503176382" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="39938078671038">
       <input type="hidden" name="product_id" value="6762503176382">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="poyzwe"><span class="hidden lg:contents">
@@ -3439,7 +3439,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="s01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-liquid-eyeshadow" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-liquid-eyeshadow" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_350x.png?v=1759134320 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_450x.png?v=1759134320 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_750x.png?v=1759134320 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_1000x.png?v=1759134320 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640.png?v=1759134320&amp;width=550" width="2000" height="2000" alt="Liquid Eyeshadow (4 Colours)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_350x.png?v=1759134320 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_450x.png?v=1759134320 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_750x.png?v=1759134320 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_1000x.png?v=1759134320 1000w">
@@ -3538,7 +3538,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001720938731" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739622658283">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001720938731" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739622658283">
         <input type="hidden" name="product_id" value="9001720938731">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="3uy72">
         <!-- Available state content -->
@@ -3657,7 +3657,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="#908_vanilla">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/laka-mono-eyeshadow" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/laka-mono-eyeshadow" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/LAKAMonoEyeshadow.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_1000x.png?v=1760352436 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow.png?v=1760352436&amp;width=550" width="2000" height="2000" alt="LAKA Mono Eyeshadow" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/LAKAMonoEyeshadow_1000x.png?v=1760352436 1000w">
@@ -3756,7 +3756,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8987380056299" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46696949088491">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8987380056299" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46696949088491">
         <input type="hidden" name="product_id" value="8987380056299">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="z8e3ak">
         <!-- Available state content -->
@@ -3885,7 +3885,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="1n">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/tirtir-glide-hide-blurring-concealer-8g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/tirtir-glide-hide-blurring-concealer-8g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/TIR_TIR_Glide_Hide_Blurring_Concealer.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_350x.png?v=1760350782 350w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_450x.png?v=1760350782 450w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_750x.png?v=1760350782 750w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_1000x.png?v=1760350782 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer.png?v=1760350782&amp;width=550" width="2000" height="2000" alt="TIR TIR Glide &amp; Hide Blurring Concealer (8g) Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_350x.png?v=1760350782 350w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_450x.png?v=1760350782 450w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_750x.png?v=1760350782 750w, //www.skincupid.co.uk/cdn/shop/files/TIR_TIR_Glide_Hide_Blurring_Concealer_1000x.png?v=1760350782 1000w">
@@ -3984,7 +3984,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9060667097323" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46858864492779">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9060667097323" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46858864492779">
         <input type="hidden" name="product_id" value="9060667097323">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="vzkxem">
         <!-- Available state content -->
@@ -4113,7 +4113,7 @@
 
 
 <div class="product-card relative flex flex-col h-full is-long-vendor" data-active-colour="barely">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/objet-liquid-6ml-24-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/objet-liquid-6ml-24-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_350x.jpg?v=1760352372 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_450x.jpg?v=1760352372 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_750x.jpg?v=1760352372 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_1000x.jpg?v=1760352372 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours.jpg?v=1760352372&amp;width=550" width="2000" height="2000" alt="Muzigae Mansion Objet Liquid (6ml) - 24 colours" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_350x.jpg?v=1760352372 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_450x.jpg?v=1760352372 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_750x.jpg?v=1760352372 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Liquid_6ml_-_24_colours_1000x.jpg?v=1760352372 1000w">
@@ -4212,7 +4212,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8903084212459" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46388458291435">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8903084212459" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46388458291435">
         <input type="hidden" name="product_id" value="8903084212459">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="nkvdwe">
         <!-- Available state content -->
@@ -4446,7 +4446,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="13c_fair">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/parnell-cicamanu-serum-cushion-15g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/parnell-cicamanu-serum-cushion-15g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Parnell_Cicamanu_Serum_Cushion_SkinCupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_350x.png?v=1760352409 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_450x.png?v=1760352409 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_750x.png?v=1760352409 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_1000x.png?v=1760352409 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid.png?v=1760352409&amp;width=550" width="2000" height="2000" alt="Parnell Cicamanu Serum Cushion" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_350x.png?v=1760352409 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_450x.png?v=1760352409 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_750x.png?v=1760352409 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_1000x.png?v=1760352409 1000w">
@@ -4545,7 +4545,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8962311094507" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46615989125355">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8962311094507" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46615989125355">
         <input type="hidden" name="product_id" value="8962311094507">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" disabled="" pa-marked="1">
         <!-- Available state content -->
@@ -4744,7 +4744,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="#01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-liquid-highlighter-contour-duo" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-liquid-highlighter-contour-duo" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_350x.png?v=1758622611 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_450x.png?v=1758622611 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_750x.png?v=1758622611 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_1000x.png?v=1758622611 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid.png?v=1758622611&amp;width=550" width="2000" height="2000" alt="Judydoll Liquid Highlighter Contour Duo Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_350x.png?v=1758622611 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_450x.png?v=1758622611 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_750x.png?v=1758622611 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_1000x.png?v=1758622611 1000w">
@@ -4843,7 +4843,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001708880107" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739544178923">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001708880107" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739544178923">
         <input type="hidden" name="product_id" value="9001708880107">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="7747v7">
         <!-- Available state content -->
@@ -4952,7 +4952,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="c01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-watery-multiuse-colour-balm" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-watery-multiuse-colour-balm" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_350x.png?v=1758707039 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_450x.png?v=1758707039 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_750x.png?v=1758707039 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_1000x.png?v=1758707039 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid.png?v=1758707039&amp;width=550" width="2000" height="2000" alt="Judydoll Watery Multiuse Colour Balm " class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_350x.png?v=1758707039 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_450x.png?v=1758707039 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_750x.png?v=1758707039 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Watery_Multiuse_Colour_Balm_Skin_Cupid_1000x.png?v=1758707039 1000w">
@@ -5051,7 +5051,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001729589483" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739691929835">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001729589483" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739691929835">
         <input type="hidden" name="product_id" value="9001729589483">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="1yoh1">
         <!-- Available state content -->
@@ -5180,7 +5180,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="#n01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-iced-tea-watery-lip-gloss" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-iced-tea-watery-lip-gloss" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_350x.png?v=1758621099 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_450x.png?v=1758621099 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_750x.png?v=1758621099 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_1000x.png?v=1758621099 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid.png?v=1758621099&amp;width=550" width="2000" height="2000" alt="Judydoll Iced Tea Watery Lip Gloss Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_350x.png?v=1758621099 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_450x.png?v=1758621099 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_750x.png?v=1758621099 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Iced_Tea_Watery_Lip_Gloss_Skin_Cupid_1000x.png?v=1758621099 1000w">
@@ -5279,7 +5279,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-9001707798763" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739540738283">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-9001707798763" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46739540738283">
         <input type="hidden" name="product_id" value="9001707798763">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="t2ufid">
         <!-- Available state content -->
@@ -5398,7 +5398,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="#01_gentle_peach">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dasique-melting-candy-balm-7-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dasique-melting-candy-balm-7-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/MeltingCandyBalm_6Colours.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_350x.jpg?v=1760352270 350w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_450x.jpg?v=1760352270 450w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_750x.jpg?v=1760352270 750w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_1000x.jpg?v=1760352270 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours.jpg?v=1760352270&amp;width=550" width="2000" height="2000" alt="DASIQUE Melting Candy Balm all shades" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_350x.jpg?v=1760352270 350w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_450x.jpg?v=1760352270 450w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_750x.jpg?v=1760352270 750w, //www.skincupid.co.uk/cdn/shop/files/MeltingCandyBalm_6Colours_1000x.jpg?v=1760352270 1000w">
@@ -5508,7 +5508,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8739366764779" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="45804289294571">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8739366764779" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="45804289294571">
         <input type="hidden" name="product_id" value="8739366764779">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="synk1l">
         <!-- Available state content -->
@@ -5642,7 +5642,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="honey">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/tirtir-my-glow-lip-oil-5-7ml-2-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/tirtir-my-glow-lip-oil-5-7ml-2-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_1000x.jpg?v=1760352158 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours.jpg?v=1760352158&amp;width=550" width="2000" height="2000" alt="TIRTIR My Glow Lip Oil (5.7ml) - 2 Colours" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_My_Glow_Lip_Oil_5.7ml_-_2_Colours_1000x.jpg?v=1760352158 1000w">
@@ -5741,7 +5741,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8165830787307" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="44300763529451">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8165830787307" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="44300763529451">
         <input type="hidden" name="product_id" value="8165830787307">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="ayssch">
         <!-- Available state content -->
@@ -5850,7 +5850,7 @@
 
 
 <div class="product-card relative flex flex-col h-full" data-active-colour="mellow_peach">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/etude-house-fixing-tint-11-colours-4g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/etude-house-fixing-tint-11-colours-4g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_350x.jpg?v=1760352068 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_450x.jpg?v=1760352068 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_750x.jpg?v=1760352068 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_1000x.jpg?v=1760352068 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g.jpg?v=1760352068&amp;width=550" width="2000" height="2000" alt="Etude House Fixing Tint (11 Colours) 4g" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_350x.jpg?v=1760352068 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_450x.jpg?v=1760352068 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_750x.jpg?v=1760352068 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Fixing_Tint_11_Colours_4g_1000x.jpg?v=1760352068 1000w">
@@ -5960,7 +5960,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-6921456943294" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="40480286605502">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-6921456943294" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="40480286605502">
         <input type="hidden" name="product_id" value="6921456943294">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="xejbsk">
         <!-- Available state content -->
@@ -6114,7 +6114,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/cc-red-correct" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/cc-red-correct" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/Erborian_CC_Red_Correct_Cream.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_1000x.png?v=1760352368 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream.png?v=1760352368&amp;width=550" width="2000" height="2000" alt="Erborian CC Red Correct Cream" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_1000x.png?v=1760352368 1000w">
@@ -6213,7 +6213,7 @@
             
               
   
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8901925535979" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46384284270827">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8901925535979" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="selected-variant-id" name="id" value="46384284270827">
         <input type="hidden" name="product_id" value="8901925535979">
         <input type="hidden" id="quantity" name="quantity" value="1" min="1"><button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="yogz1">
         <!-- Available state content -->
@@ -6277,7 +6277,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/vt-reedle-shot-lip-plumper-beginner" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/vt-reedle-shot-lip-plumper-beginner" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/makeup/VT_Reedle_Shot_Lip_Plumper_Beginner.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_1000x.png?v=1760352453 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner.png?v=1760352453&amp;width=550" width="2000" height="2000" alt="VT Reedle Shot Lip Plumper (Beginner)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="362px" srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Beginner_1000x.png?v=1760352453 1000w">
@@ -6375,7 +6375,7 @@
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8989762879723" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="46702978760939">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8989762879723" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="46702978760939">
       <input type="hidden" name="product_id" value="8989762879723">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" pa-marked="1" fdprocessedid="5agagq"><span class="hidden lg:contents">
@@ -6424,8 +6424,8 @@
                         <div class="flex flex-row items-center justify-center my-15 lg:my-20"><nav role="navigation" aria-lavel="Pagination navigation" class="">
     <ol class="list-none flex text-base flex-row items-center justify-center lg:justify-start gap-2.5">
         
-<li class="flex items-center justify-center h-7 w-7 text-secondary border-b border-b-citron-primary" aria-current="true">1</li><li><a href="https://www.skincupid.co.uk/collections/all-make-up?page=2" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">2</a></li><li><a href="https://www.skincupid.co.uk/collections/all-make-up?page=3" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">3</a></li><li class="flex items-center justify-center h-7 w-7 text-secondary" aria-current="true">…</li><li><a href="https://www.skincupid.co.uk/collections/all-make-up?page=7" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">7</a></li><li>
-                <a href="https://www.skincupid.co.uk/collections/all-make-up?page=2" class="flex items-center justify-center h-7 w-7 transition ease-in-out duration-300 border border-primary rounded-full hover:bg-primary text-primary hover:text-white" pa-marked="1">
+<li class="flex items-center justify-center h-7 w-7 text-secondary border-b border-b-citron-primary" aria-current="true">1</li><li><a href="<?php echo esc_url( home_url( "/collections/all-make-up?page=2" ) ); ?>" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">2</a></li><li><a href="<?php echo esc_url( home_url( "/collections/all-make-up?page=3" ) ); ?>" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">3</a></li><li class="flex items-center justify-center h-7 w-7 text-secondary" aria-current="true">…</li><li><a href="<?php echo esc_url( home_url( "/collections/all-make-up?page=7" ) ); ?>" class="flex text-secondary items-center justify-center h-7 w-7 transition ease-in-out duration-300 border-b border-b-transparent hover:border-b-primary" pa-marked="1">7</a></li><li>
+                <a href="<?php echo esc_url( home_url( "/collections/all-make-up?page=2" ) ); ?>" class="flex items-center justify-center h-7 w-7 transition ease-in-out duration-300 border border-primary rounded-full hover:bg-primary text-primary hover:text-white" pa-marked="1">
                     <span class="sr-only">Next page</span>
                     <span aria-hidden="true" class="flex w-3.5 h-auto"><svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">

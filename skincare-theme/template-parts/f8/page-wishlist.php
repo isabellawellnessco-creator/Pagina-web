@@ -21,7 +21,7 @@
                 </div>
             
             
-                <a href="https://www.skincupid.co.uk/collections/all" style="color:#0f3062;" class="btn btn-link" title="Earn More Points" pa-marked="1">
+                <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" style="color:#0f3062;" class="btn btn-link" title="Earn More Points" pa-marked="1">
                     Earn More Points
                     <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -41,31 +41,31 @@
             
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/account" id="link_kVpxRE" title="Order History" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_kVpxRE" title="Order History" pa-marked="1">
                         Order History
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/account/addresses" id="link_TQkJCW" title="Saved Addresses" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_TQkJCW" title="Saved Addresses" pa-marked="1">
                         Saved Addresses
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 after:!left-0 after:!right-0" href="https://www.skincupid.co.uk/pages/wishlist" id="link_VLtLUn" title="Wishlist" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 after:!left-0 after:!right-0" href="<?php echo esc_url( home_url( '/wishlist/' ) ); ?>" id="link_VLtLUn" title="Wishlist" pa-marked="1">
                         Wishlist
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/pages/loyalty" id="link_dyGXeC" title="Rewards" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( home_url( '/rewards/' ) ); ?>" id="link_dyGXeC" title="Rewards" pa-marked="1">
                         Rewards
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/account/logout" id="link_N6qNeX" title="Logout" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( wp_logout_url( wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_N6qNeX" title="Logout" pa-marked="1">
                         Logout
                     </a>
                 
@@ -109,7 +109,7 @@
           <!--?lit$321280441$--> <!--?lit$321280441$-->
         <div class="wk-login-callout">
           <p>
-            <!--?lit$321280441$-->To save your wishlist please <a href="https://www.skincupid.co.uk/account/login">login</a> or <a href="https://www.skincupid.co.uk/account/register">sign up</a>.
+            <!--?lit$321280441$-->To save your wishlist please <a href="<?php echo esc_url( wp_login_url() ); ?>">login</a> or <a href="<?php echo esc_url( wp_registration_url() ); ?>">sign up</a>.
           </p>
         </div>
       
@@ -150,7 +150,7 @@
 
 
 <div class="product-card relative flex flex-col h-full">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-essence">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( '/product/dr-ceuracle-vegan-kombucha-tea-essence/' ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/wishlist/Dr.Ceuracle-Vean_Kombucha_Tea_Essence.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_350x.jpg?v=1760352073 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_450x.jpg?v=1760352073 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_750x.jpg?v=1760352073 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_1000x.jpg?v=1760352073 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence.jpg?v=1760352073&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Vegan Kombucha Tea Essence (150ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="280px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_350x.jpg?v=1760352073 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_450x.jpg?v=1760352073 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_750x.jpg?v=1760352073 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence_1000x.jpg?v=1760352073 1000w">
@@ -263,7 +263,7 @@
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-6999714332862" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40763173175486">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-6999714332862" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40763173175486">
       <input type="hidden" name="product_id" value="6999714332862">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="ra1vl8"><span class="hidden lg:contents">

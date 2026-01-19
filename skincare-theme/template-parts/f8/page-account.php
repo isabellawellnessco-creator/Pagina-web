@@ -21,7 +21,7 @@
                 </div>
             
             
-                <a href="https://www.skincupid.co.uk/collections/all" style="color:#0f3062;" class="btn btn-link" title="Earn More Points" pa-marked="1">
+                <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" style="color:#0f3062;" class="btn btn-link" title="Earn More Points" pa-marked="1">
                     Earn More Points
                     <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -41,31 +41,31 @@
             
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 after:!left-0 after:!right-0" href="https://www.skincupid.co.uk/account" id="link_kVpxRE" title="Order History" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 after:!left-0 after:!right-0" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_kVpxRE" title="Order History" pa-marked="1">
                         Order History
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/account/addresses" id="link_TQkJCW" title="Saved Addresses" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_TQkJCW" title="Saved Addresses" pa-marked="1">
                         Saved Addresses
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/pages/wishlist" id="link_VLtLUn" title="Wishlist" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( home_url( '/wishlist/' ) ); ?>" id="link_VLtLUn" title="Wishlist" pa-marked="1">
                         Wishlist
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/pages/loyalty" id="link_dyGXeC" title="Rewards" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( home_url( '/rewards/' ) ); ?>" id="link_dyGXeC" title="Rewards" pa-marked="1">
                         Rewards
                     </a>
                 
             
                 
-                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="https://www.skincupid.co.uk/account/logout" id="link_N6qNeX" title="Logout" pa-marked="1">
+                    <a class="account-header-link w-max shrink-0 text-base font-medium capitalize pb-2.5 relative block top-level !overflow-visible after:!-bottom-0.5 transition-200 hover:after:left-0 hover:after:right-0" href="<?php echo esc_url( wp_logout_url( wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="link_N6qNeX" title="Logout" pa-marked="1">
                         Logout
                     </a>
                 
@@ -106,7 +106,7 @@
     
     
     <div>
-        <a href="https://www.skincupid.co.uk/a/loop_subscriptions/auth?customer_id=8735449972971&amp;myshopify_domain=skincupid8.myshopify.com&amp;locale=&amp;rootUrl=/" id="loop-subscriptions-customer-portal-link" pa-marked="1">
+        <a href="<?php echo esc_url( wc_get_endpoint_url( 'subscriptions', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" id="loop-subscriptions-customer-portal-link" pa-marked="1">
             <button class="btn h-10 btn-primary self-center md:self-start" pa-marked="1" fdprocessedid="ozutyu">My Subscriptions</button>
         </a>
     </div>

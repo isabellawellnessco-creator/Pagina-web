@@ -17,7 +17,7 @@
             
             </p><div class="flex lg:flex-wrap items-center gap-2.5 w-full justify-center">
                 
-                <a class="btn btn btn-tertiary max-lg:!text-sm max-lg:!px-5" href="https://www.skincupid.co.uk/account/register" pa-marked="1">
+                <a class="btn btn btn-tertiary max-lg:!text-sm max-lg:!px-5" href="<?php echo esc_url( wp_registration_url() ); ?>" pa-marked="1">
                     Create account
                 </a>
                 <div class="btn btn !translate-y-0 pointer-events-none btn-primary max-lg:!text-sm max-lg:!px-5">
@@ -53,12 +53,12 @@
 </style>
 <div class="px-[1.25rem] m-auto max-w-xl py-12 lg:py-24 relative" x-data="{ form: window.location.hash ? window.location.hash.substring(1) : &#39;login&#39; }">
     <div x-show="form === &#39;login&#39;">
-    <h1 class="sr-only">Login to your account</h1><form method="post" action="https://www.skincupid.co.uk/account/login" id="customer_login_form" accept-charset="UTF-8" data-login-with-shop-sign-in="true" data-np-intersection-state="observed"><input type="hidden" name="form_type" value="customer_login"><input type="hidden" name="utf8" value="✓"><div class="flex flex-col gap-5 w-full lg:gap-6">
+    <h1 class="sr-only">Login to your account</h1><form method="post" action="<?php echo esc_url( wp_login_url() ); ?>" id="customer_login_form" accept-charset="UTF-8" data-login-with-shop-sign-in="true" data-np-intersection-state="observed"><input type="hidden" name="form_type" value="customer_login"><input type="hidden" name="utf8" value="✓"><div class="flex flex-col gap-5 w-full lg:gap-6">
             <div class="custom-field">
-                <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" placeholder="Enter your email address" pattern=".*\S+.*" required="" data-np-intersection-state="observed" fdprocessedid="wd7zc9">
+                <input type="email" name="log" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" placeholder="Enter your email address" pattern=".*\S+.*" required="" data-np-intersection-state="observed" fdprocessedid="wd7zc9">
                 <label for="CustomerEmail">Email Address</label>       
             </div><div class="custom-field">
-                    <input type="password" value="" name="customer[password]" id="CustomerPassword" autocomplete="current-password" placeholder="Enter your password" pattern=".*\S+.*" minlength="5" required="" data-np-intersection-state="observed" fdprocessedid="ojj4ko">
+                    <input type="password" value="" name="pwd" id="CustomerPassword" autocomplete="current-password" placeholder="Enter your password" pattern=".*\S+.*" minlength="5" required="" data-np-intersection-state="observed" fdprocessedid="ojj4ko">
                     <label for="CustomerPassword">Password</label>
                 </div><button type="submit" class="self-center btn btn-primary" pa-marked="1" fdprocessedid="2ai5j">
                 Login to your account
@@ -74,13 +74,13 @@
         </div><input type="hidden" name="login_with_shop[analytics_trace_id]" value="94992819-bfd4-44d7-b3ca-c6397695b0df"></form></div>
     
     <div x-show="form === &#39;recover&#39;" style="display: none;">
-        <form method="post" action="https://www.skincupid.co.uk/account/recover" accept-charset="UTF-8"><input type="hidden" name="form_type" value="recover_customer_password"><input type="hidden" name="utf8" value="✓">
+        <form method="post" action="<?php echo esc_url( wp_lostpassword_url() ); ?>" accept-charset="UTF-8"><input type="hidden" name="form_type" value="recover_customer_password"><input type="hidden" name="utf8" value="✓">
             <h2 class="mb-6 text-center capitalize">Reset password</h2>
             <p class="mb-6 text-base text-center">We will send you an email to reset your password.</p>
             
                 <div class="flex flex-col gap-5 w-full lg:gap-6">
                     <div class="custom-field">
-                        <input type="email" name="email" id="RecoverEmail" required="" placeholder="Enter your email address" autocapitalize="off" data-np-intersection-state="observed">
+                        <input type="email" name="user_login" id="RecoverEmail" required="" placeholder="Enter your email address" autocapitalize="off" data-np-intersection-state="observed">
                         <label for="RecoverEmail">Email Address</label>
                     </div><button type="submit" class="self-center btn btn-primary" pa-marked="1">
                         Reset Password
@@ -98,7 +98,7 @@
         </form>
     </div>
       <div id="loop_login" class="flex justify-center mt-6">
-        <a href="https://www.skincupid.co.uk/a/loop_subscriptions/customer" pa-marked="1">Manage subscriptions</a>
+        <a href="<?php echo esc_url( wc_get_endpoint_url( 'subscriptions', '', wc_get_page_permalink( 'myaccount' ) ) ); ?>" pa-marked="1">Manage subscriptions</a>
       </div>
 </div>
 

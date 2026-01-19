@@ -10,7 +10,7 @@
 <div class="overflow-auto max-lg:no-scrollbar max-w-[100vw]" data-scroll-element="">
   <div class="loyalty-hero min-h-[566px] max-h-[566px] lg:min-h-[740px] lg:max-h-none aspect-[1080/550] lg:aspect-[40/21] relative">
     
-      <a href="https://www.skincupid.co.uk/" class="sticky lg:absolute top-5 left-5 lg:top-15 lg:left-15 z-[5] btn btn-primary" pa-marked="1">
+      <a href="<?php echo esc_url( home_url( "/" ) ); ?>" class="sticky lg:absolute top-5 left-5 lg:top-15 lg:left-15 z-[5] btn btn-primary" pa-marked="1">
         <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="15.7252" y1="6.32412" x2="1.72522" y2="6.32412" stroke="currentColor" stroke-width="1.2"></line>
     <path d="M6.72522 11.9741L1.22522 6.47412L6.72522 0.974121" stroke="currentColor" stroke-width="1.2"></path>
@@ -38,7 +38,7 @@
         </div>
       
       
-        <a href="https://www.skincupid.co.uk/pages/rewards#tier-cherubs" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
+        <a href="<?php echo esc_url( home_url( '/rewards/#tier-cherubs' ) ); ?>" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
             --x-pos: 7%;
             --y-pos: 1%;
             --height: 320px;
@@ -69,7 +69,7 @@
         </div>
       
       
-        <a href="https://www.skincupid.co.uk/pages/rewards#tier-cupids" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
+        <a href="<?php echo esc_url( home_url( '/rewards/#tier-cupids' ) ); ?>" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
             --x-pos: 26%;
             --y-pos: 23%;
             --height: 460px;
@@ -100,7 +100,7 @@
         </div>
       
       
-        <a href="https://www.skincupid.co.uk/pages/rewards#tier-angels" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
+        <a href="<?php echo esc_url( home_url( '/rewards/#tier-angels' ) ); ?>" data-hero-link="" class="absolute left-[var(--x-pos)] bottom-[var(--y-pos)] w-auto z-10 hover:z-30 group" style="
             --x-pos: 69%;
             --y-pos: 9%;
             --height: 260px;
@@ -155,7 +155,7 @@
         
         <div class="flex flex-col lg:flex-row gap-2.5 max-w-[180px] lg:max-w-none mx-auto">
           
-            <a href="https://www.skincupid.co.uk/pages/rewards#loyalty-signup-heading" class="btn btn-primary" pa-marked="1">
+            <a href="<?php echo esc_url( home_url( '/rewards/#loyalty-signup-heading' ) ); ?>" class="btn btn-primary" pa-marked="1">
               Join Now
               <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -167,7 +167,7 @@
             </a>
           
           
-            <a href="https://www.skincupid.co.uk/account" class="btn btn-secondary-inverted" pa-marked="1">
+            <a href="<?php echo esc_url( wp_login_url() ); ?>" class="btn btn-secondary-inverted" pa-marked="1">
               Log In
               <svg width="100%" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Group 6466">
@@ -197,7 +197,7 @@
         <h2 class="font-heading font-bold text-center mb-10">Available Rewards</h2>
         
         <div class="ll-embed text-center">
-            <div data-lion-rewards-list=""><div class="lion-isolator"><div class="lion-rewards-list"><div class="lion-reward-item lion-reward-item--checkout-redemption lion-reward-item--guest" data-reward-id="184964"><div class="lion-reward-item__content"><div class="lion-reward-item__icon lion-icon lion-icon__reward lion-icon__reward--checkout-redemption"></div><div class="lion-reward-item__title">Redeem your points when you checkout</div><div class="lion-reward-item__meta"><span data-i18n-key="ui.dashboard.redeem_points.checkout_redemption_points">100 points per <span class="lion-currency"><span class="lion-currency__value">£1</span></span></span></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224997" data-product-handle="anua-heartleaf-pore-control-cleansing-oil-200ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf Cleansing Oil</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" alt="Photo of Heartleaf Cleansing Oil"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-pore-control-cleansing-oil-200ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224998" data-product-handle="anua-heartleaf-77-soothing-toner-250ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf 77% Soothing Toner</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" alt="Photo of Heartleaf 77% Soothing Toner"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-77-soothing-toner-250ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div></div></div></div>
+            <div data-lion-rewards-list=""><div class="lion-isolator"><div class="lion-rewards-list"><div class="lion-reward-item lion-reward-item--checkout-redemption lion-reward-item--guest" data-reward-id="184964"><div class="lion-reward-item__content"><div class="lion-reward-item__icon lion-icon lion-icon__reward lion-icon__reward--checkout-redemption"></div><div class="lion-reward-item__title">Redeem your points when you checkout</div><div class="lion-reward-item__meta"><span data-i18n-key="ui.dashboard.redeem_points.checkout_redemption_points">100 points per <span class="lion-currency"><span class="lion-currency__value">£1</span></span></span></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224997" data-product-handle="anua-heartleaf-pore-control-cleansing-oil-200ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf Cleansing Oil</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" alt="Photo of Heartleaf Cleansing Oil"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="<?php echo esc_url( home_url( "/products/anua-heartleaf-pore-control-cleansing-oil-200ml" ) ); ?>" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="<?php echo esc_url( home_url( '/rewards/#' ) ); ?>" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224998" data-product-handle="anua-heartleaf-77-soothing-toner-250ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf 77% Soothing Toner</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" alt="Photo of Heartleaf 77% Soothing Toner"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="<?php echo esc_url( home_url( "/products/anua-heartleaf-77-soothing-toner-250ml" ) ); ?>" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="<?php echo esc_url( home_url( '/rewards/#' ) ); ?>" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div></div></div></div>
           </div>
       </div>
     </div>
@@ -265,7 +265,7 @@
         
           <div class="mx-auto mb-10 max-w-4xl font-sans text-base text-center"><p>Sign up today to start earning points every time you shop! Redeem your points for exclusive discounts, special offers, and members-only perks. It’s free, easy, and rewarding, just the way loyalty should be.</p></div>
         
-        <div class="relative mx-auto w-full max-w-4xl"><form method="post" action="https://www.skincupid.co.uk/account" id="loyalty_signup_form" accept-charset="UTF-8" data-login-with-shop-sign-up="true" data-np-intersection-state="visible"><input type="hidden" name="form_type" value="create_customer"><input type="hidden" name="utf8" value="✓">
+        <div class="relative mx-auto w-full max-w-4xl"><form method="post" action="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" id="loyalty_signup_form" accept-charset="UTF-8" data-login-with-shop-sign-up="true" data-np-intersection-state="visible"><input type="hidden" name="form_type" value="create_customer"><input type="hidden" name="utf8" value="✓">
               
             <div class="flex flex-col gap-5 w-full lg:grid lg:cols-2 lg:gap-x-7.5 lg:gap-y-5">
               <div class="custom-field">

@@ -11,12 +11,12 @@
         <nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves" itemprop="item" title="2026 K-Beauty Must Haves" aria-current="page" pa-marked="1"><span itemprop="name">2026 K-Beauty Must Haves</span></a>
+        <a href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves" ) ); ?>" itemprop="item" title="2026 K-Beauty Must Haves" aria-current="page" pa-marked="1"><span itemprop="name">2026 K-Beauty Must Haves</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav>
@@ -998,7 +998,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/oil-cleanser" title="Oil Cleanser" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/oil-cleanser" ) ); ?>" title="Oil Cleanser" pa-marked="1">
                                         Oil Cleanser
                                     </a>
                                 
@@ -1024,7 +1024,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/manyo-pure-cleansing-oil-200ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/manyo-pure-cleansing-oil-200ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Ma-Nyo_Pure_Cleansing_Oil_200ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_350x.png?v=1757858503 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_450x.png?v=1757858503 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_750x.png?v=1757858503 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_1000x.png?v=1757858503 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml.png?v=1757858503&amp;width=550" width="2000" height="2000" alt="ma:nyo Pure Cleansing Oil (200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_350x.png?v=1757858503 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_450x.png?v=1757858503 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_750x.png?v=1757858503 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Pure_Cleansing_Oil_200ml_1000x.png?v=1757858503 1000w">
@@ -1152,7 +1152,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/beplain-mung-bean-cleansing-oil-200ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/beplain-mung-bean-cleansing-oil-200ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/BeplainMungBeanCleansingOil_200ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_1000x.png?v=1760352453 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml.png?v=1760352453&amp;width=550" width="2000" height="2000" alt="Beplain Mung Bean Cleansing Oil (200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/BeplainMungBeanCleansingOil_200ml_1000x.png?v=1760352453 1000w">
@@ -1280,7 +1280,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/mixsoon-bean-cleansing-oil-195ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/mixsoon-bean-cleansing-oil-195ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Mixsoon-Bean_Cleansing_Oil_195ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_350x.jpg?v=1760352163 350w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_450x.jpg?v=1760352163 450w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_750x.jpg?v=1760352163 750w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_1000x.jpg?v=1760352163 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml.jpg?v=1760352163&amp;width=550" width="2000" height="2000" alt="MIXSOON Bean Cleansing Oil (195ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_350x.jpg?v=1760352163 350w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_450x.jpg?v=1760352163 450w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_750x.jpg?v=1760352163 750w, //www.skincupid.co.uk/cdn/shop/files/Mixsoon-Bean_Cleansing_Oil_195ml_1000x.jpg?v=1760352163 1000w">
@@ -1421,7 +1421,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3 is-long-vendor">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/haruharu-wonder-black-rice-moisture-deep-cleansing-oil-150ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/haruharu-wonder-black-rice-moisture-deep-cleansing-oil-150ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_350x.jpg?v=1760352049 350w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_450x.jpg?v=1760352049 450w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_750x.jpg?v=1760352049 750w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_1000x.jpg?v=1760352049 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml.jpg?v=1760352049&amp;width=550" width="2000" height="2000" alt="HARUHARU WONDER Black Rice Moisture Deep Cleansing Oil (150ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_350x.jpg?v=1760352049 350w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_450x.jpg?v=1760352049 450w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_750x.jpg?v=1760352049 750w, //www.skincupid.co.uk/cdn/shop/files/HARUHARU_WONDER_Black_Rice_Moisture_Deep_Cleansing_Oil_150ml_1000x.jpg?v=1760352049 1000w">
@@ -1562,7 +1562,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-althea-pure-grinding-cleansing-balm-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-althea-pure-grinding-cleansing-balm-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Dr.Althea-Grinding_Cleansing_Balm.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_350x.jpg?v=1760352234 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_450x.jpg?v=1760352234 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_750x.jpg?v=1760352234 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_1000x.jpg?v=1760352234 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm.jpg?v=1760352234&amp;width=550" width="2000" height="2000" alt="Dr.ALTHEA Pure Grinding Cleansing Balm (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_350x.jpg?v=1760352234 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_450x.jpg?v=1760352234 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_750x.jpg?v=1760352234 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Althea-Grinding_Cleansing_Balm_1000x.jpg?v=1760352234 1000w">
@@ -1725,7 +1725,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/water-based-cleanser" title="Water-Based Cleanser" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/water-based-cleanser" ) ); ?>" title="Water-Based Cleanser" pa-marked="1">
                                         Water-Based Cleanser
                                     </a>
                                 
@@ -1751,7 +1751,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/manyo-pure-deep-cleansing-foam-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/manyo-pure-deep-cleansing-foam-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_350x.png?v=1757858665 350w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_450x.png?v=1757858665 450w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_750x.png?v=1757858665 750w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_1000x.png?v=1757858665 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml.png?v=1757858665&amp;width=550" width="2000" height="2000" alt="Ma:nyo Pure &amp; Deep Cleansing Foam (100ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_350x.png?v=1757858665 350w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_450x.png?v=1757858665 450w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_750x.png?v=1757858665 750w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Pure_Deep_Cleansing_Foam_100ml_1000x.png?v=1757858665 1000w">
@@ -1879,7 +1879,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/beplain-mung-bean-ph-balanced-cleansing-foam-80ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/beplain-mung-bean-ph-balanced-cleansing-foam-80ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_1000x.png?v=1760352453 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml.png?v=1760352453&amp;width=550" width="2000" height="2000" alt="Beplain Mung Bean Ph-Balanced Cleansing Foam (80ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_350x.png?v=1760352453 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_450x.png?v=1760352453 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_750x.png?v=1760352453 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Ph-Balanced_Cleansing_Foam_80ml_1000x.png?v=1760352453 1000w">
@@ -2007,7 +2007,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/etude-house-soonjung-p-h-6-5-whip-cleanser-150ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/etude-house-soonjung-p-h-6-5-whip-cleanser-150ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_350x.jpg?v=1760352058 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_450x.jpg?v=1760352058 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_750x.jpg?v=1760352058 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_1000x.jpg?v=1760352058 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml.jpg?v=1760352058&amp;width=550" width="2000" height="2000" alt="ETUDE HOUSE Soon Jung pH 6.5 Whip Cleanser" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_350x.jpg?v=1760352058 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_450x.jpg?v=1760352058 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_750x.jpg?v=1760352058 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Soon_Jung_P.H._6.5_Whip_Cleanser_150ml_1000x.jpg?v=1760352058 1000w">
@@ -2146,7 +2146,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/anua-heartleaf-quercetinol-deep-cleansing-foam-150ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/anua-heartleaf-quercetinol-deep-cleansing-foam-150ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_350x.png?v=1762437714 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_450x.png?v=1762437714 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_750x.png?v=1762437714 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_1000x.png?v=1762437714 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging.png?v=1762437714&amp;width=550" width="2048" height="2048" alt="ANUA Heartleaf Quercetinol Deep Cleansing Foam" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_350x.png?v=1762437714 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_450x.png?v=1762437714 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_750x.png?v=1762437714 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Quercetinol_Deep_Cleansing_Foam_150ml_New-Packaging_1000x.png?v=1762437714 1000w">
@@ -2305,7 +2305,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/exfoliator" title="Toner Pads" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/exfoliator" ) ); ?>" title="Toner Pads" pa-marked="1">
                                         Toner Pads
                                     </a>
                                 
@@ -2331,7 +2331,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/molvany-artichoke-soothing-acne-pore-toner-pad" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/molvany-artichoke-soothing-acne-pore-toner-pad" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/MolvanyArtichokeSoothingAcnePoreTonerPad.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_1000x.jpg?v=1760352289 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad.jpg?v=1760352289&amp;width=550" width="2000" height="2000" alt="MOLVANY Artichoke Soothing Acne Pore Toner Pad" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_1000x.jpg?v=1760352289 1000w">
@@ -2459,7 +2459,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/medicube-zero-pore-pads-2-0-70-pads" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/medicube-zero-pore-pads-2-0-70-pads" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/MEDICUBE_Zero_Pore_Pads_70_Pads.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_350x.png?v=1760352243 350w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_450x.png?v=1760352243 450w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_750x.png?v=1760352243 750w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_1000x.png?v=1760352243 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads.png?v=1760352243&amp;width=550" width="2048" height="2048" alt="MEDICUBE Zero Pore Pads (70 Pads)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_350x.png?v=1760352243 350w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_450x.png?v=1760352243 450w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_750x.png?v=1760352243 750w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Zero_Pore_Pads_70_Pads_1000x.png?v=1760352243 1000w">
@@ -2587,7 +2587,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-phyto-niacin-brightening-toner-pad-165ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/nacific-phyto-niacin-brightening-toner-pad-165ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/NACIFICPhytoNiacinBrighteningTonerPad_165ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_350x.jpg?v=1760352308 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_450x.jpg?v=1760352308 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_750x.jpg?v=1760352308 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_1000x.jpg?v=1760352308 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml.jpg?v=1760352308&amp;width=550" width="2000" height="2000" alt="NACIFIC Phyto Niacin Brightening Toner Pad (165ml) " class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_350x.jpg?v=1760352308 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_450x.jpg?v=1760352308 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_750x.jpg?v=1760352308 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFICPhytoNiacinBrighteningTonerPad_165ml_1000x.jpg?v=1760352308 1000w">
@@ -2726,7 +2726,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/biodance-collagen-gel-toner-pads-60-pads" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/biodance-collagen-gel-toner-pads-60-pads" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid..png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._350x.png?v=1760352404 350w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._450x.png?v=1760352404 450w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._750x.png?v=1760352404 750w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._1000x.png?v=1760352404 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid..png?v=1760352404&amp;width=550" width="2000" height="2000" alt="BIODANCE Gel Toner Pads" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._350x.png?v=1760352404 350w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._450x.png?v=1760352404 450w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._750x.png?v=1760352404 750w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_CollagenGelTonerPads60Pads_SkinCupid._1000x.png?v=1760352404 1000w">
@@ -2874,7 +2874,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/toner" title="Toner &amp; Essence" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/toner" ) ); ?>" title="Toner &amp; Essence" pa-marked="1">
                                         Toner &amp; Essence
                                     </a>
                                 
@@ -2900,7 +2900,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/s-nature-aqua-collagen-peptide-triple-gel-essence-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/s-nature-aqua-collagen-peptide-triple-gel-essence-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_350x.jpg?v=1760352318 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_450x.jpg?v=1760352318 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_750x.jpg?v=1760352318 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_1000x.jpg?v=1760352318 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml.jpg?v=1760352318&amp;width=550" width="2000" height="2000" alt="S.NATURE Aqua Collagen Peptide Triple Gel Essence (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_350x.jpg?v=1760352318 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_450x.jpg?v=1760352318 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_750x.jpg?v=1760352318 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUACOLLAGENPEPTIDETRIPLEGELESSENCE50ml_1000x.jpg?v=1760352318 1000w">
@@ -3028,7 +3028,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/manyo-galac-niacin-3-0-essence-60ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/manyo-galac-niacin-3-0-essence-60ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Ma_nyo_Galac_Niacin_3.0_Essence_60ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_350x.png?v=1757671823 350w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_450x.png?v=1757671823 450w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_750x.png?v=1757671823 750w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_1000x.png?v=1757671823 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml.png?v=1757671823&amp;width=550" width="2000" height="2000" alt="Ma:nyo Galac Niacin 3.0 Essence (60ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_350x.png?v=1757671823 350w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_450x.png?v=1757671823 450w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_750x.png?v=1757671823 750w, //www.skincupid.co.uk/cdn/shop/files/Ma_nyo_Galac_Niacin_3.0_Essence_60ml_1000x.png?v=1757671823 1000w">
@@ -3156,7 +3156,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-uyu-cream-toner-150ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/nacific-uyu-cream-toner-150ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Nacific-Uyu_Cream_Toner_150ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_350x.jpg?v=1760352131 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_450x.jpg?v=1760352131 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_750x.jpg?v=1760352131 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_1000x.jpg?v=1760352131 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml.jpg?v=1760352131&amp;width=550" width="2000" height="2000" alt="NACIFIC Uyu Cream Toner (150ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_350x.jpg?v=1760352131 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_450x.jpg?v=1760352131 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_750x.jpg?v=1760352131 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Uyu_Cream_Toner_150ml_1000x.jpg?v=1760352131 1000w">
@@ -3295,7 +3295,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/swimming-pool-toner-300ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/swimming-pool-toner-300ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Swimming_poolToner_300ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_350x.jpg?v=1760352344 350w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_450x.jpg?v=1760352344 450w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_750x.jpg?v=1760352344 750w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_1000x.jpg?v=1760352344 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml.jpg?v=1760352344&amp;width=550" width="2000" height="2000" alt="Eqqualberry Swimming Pool Toner (300ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_350x.jpg?v=1760352344 350w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_450x.jpg?v=1760352344 450w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_750x.jpg?v=1760352344 750w, //www.skincupid.co.uk/cdn/shop/files/Swimming_poolToner_300ml_1000x.jpg?v=1760352344 1000w">
@@ -3434,7 +3434,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/zeroid-pimprove-toner-200ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/zeroid-pimprove-toner-200ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ZEROID_Pimprove_Toner_200ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_350x.png?v=1760352313 350w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_450x.png?v=1760352313 450w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_750x.png?v=1760352313 750w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_1000x.png?v=1760352313 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml.png?v=1760352313&amp;width=550" width="2048" height="2048" alt="ZEROID Pimprove Toner (200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_350x.png?v=1760352313 350w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_450x.png?v=1760352313 450w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_750x.png?v=1760352313 750w, //www.skincupid.co.uk/cdn/shop/files/ZEROID_Pimprove_Toner_200ml_1000x.png?v=1760352313 1000w">
@@ -3593,7 +3593,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/serum" title="Serum &amp; Ampoule" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/serum" ) ); ?>" title="Serum &amp; Ampoule" pa-marked="1">
                                         Serum &amp; Ampoule
                                     </a>
                                 
@@ -3619,7 +3619,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/pdrn-vita-toning-ampoule-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/pdrn-vita-toning-ampoule-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/PDRN_Vita_Toning_Ampoule_30ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_350x.jpg?v=1760352349 350w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_450x.jpg?v=1760352349 450w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_750x.jpg?v=1760352349 750w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_1000x.jpg?v=1760352349 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml.jpg?v=1760352349&amp;width=550" width="2000" height="2000" alt="genabelle PDRN Vita Toning Ampoule (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_350x.jpg?v=1760352349 350w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_450x.jpg?v=1760352349 450w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_750x.jpg?v=1760352349 750w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Vita_Toning_Ampoule_30ml_1000x.jpg?v=1760352349 1000w">
@@ -3747,7 +3747,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/purito-centella-unscented-serum-60ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/purito-centella-unscented-serum-60ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_350x.jpg?v=1760352049 350w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_450x.jpg?v=1760352049 450w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_750x.jpg?v=1760352049 750w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_1000x.jpg?v=1760352049 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml.jpg?v=1760352049&amp;width=550" width="2000" height="2000" alt="PURITO Wonder Releaf Centella Serum Unscented (60ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_350x.jpg?v=1760352049 350w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_450x.jpg?v=1760352049 450w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_750x.jpg?v=1760352049 750w, //www.skincupid.co.uk/cdn/shop/files/PURITO_Wonder_Releaf_Centella_Serum_Unscented_60ml_1000x.jpg?v=1760352049 1000w">
@@ -3890,7 +3890,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/manyo-bifida-biome-complex-ampoule-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/manyo-bifida-biome-complex-ampoule-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_350x.png?v=1757856027 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_450x.png?v=1757856027 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_750x.png?v=1757856027 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_1000x.png?v=1757856027 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml.png?v=1757856027&amp;width=550" width="2000" height="2000" alt="ma:nyo Bifida Biome Complex Ampoule (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_350x.png?v=1757856027 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_450x.png?v=1757856027 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_750x.png?v=1757856027 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Complex_Ampoule_30ml_1000x.png?v=1757856027 1000w">
@@ -4018,7 +4018,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/anua-niacinamide-10-txa-4-dark-spot-correcting-serum-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/anua-niacinamide-10-txa-4-dark-spot-correcting-serum-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_350x.jpg?v=1760352238 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_450x.jpg?v=1760352238 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_750x.jpg?v=1760352238 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_1000x.jpg?v=1760352238 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025.jpg?v=1760352238&amp;width=550" width="2000" height="2000" alt="ANUA Niacinamide 10% + TXA 4% Dark Spot Correcting Serum (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_350x.jpg?v=1760352238 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_450x.jpg?v=1760352238 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_750x.jpg?v=1760352238 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Niacinamide_10_TXA_4_Dark_Spot_Correcting_Serum_30ml_new_packaging_2025_1000x.jpg?v=1760352238 1000w">
@@ -4157,7 +4157,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/beplain-mung-bean-pore-tight-up-serum-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/beplain-mung-bean-pore-tight-up-serum-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_350x.png?v=1760352449 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_450x.png?v=1760352449 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_750x.png?v=1760352449 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_1000x.png?v=1760352449 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml.png?v=1760352449&amp;width=550" width="2000" height="2000" alt="Beplain Mung Bean Pore Tight-Up Serum (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_350x.png?v=1760352449 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_450x.png?v=1760352449 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_750x.png?v=1760352449 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Mung_Bean_Pore_Tight-Up_Serum_30ml_1000x.png?v=1760352449 1000w">
@@ -4285,7 +4285,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/some-by-mi-retinol-intense-reactivating-serum-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/some-by-mi-retinol-intense-reactivating-serum-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/SomeByMi-Retinol_Intense_Serum.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_350x.jpg?v=1760352109 350w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_450x.jpg?v=1760352109 450w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_750x.jpg?v=1760352109 750w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_1000x.jpg?v=1760352109 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum.jpg?v=1760352109&amp;width=550" width="2000" height="2000" alt="SOME BY MI Retinol Intense Reactivating Serum (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_350x.jpg?v=1760352109 350w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_450x.jpg?v=1760352109 450w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_750x.jpg?v=1760352109 750w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Retinol_Intense_Serum_1000x.jpg?v=1760352109 1000w">
@@ -4413,7 +4413,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/some-by-mi-beta-panthenol-repair-serum-30ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/some-by-mi-beta-panthenol-repair-serum-30ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/SomeByMi-Beta_Panthenol_Repair_Serum_30ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_350x.jpg?v=1760352225 350w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_450x.jpg?v=1760352225 450w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_750x.jpg?v=1760352225 750w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_1000x.jpg?v=1760352225 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml.jpg?v=1760352225&amp;width=550" width="2000" height="2000" alt="SOME BY MI Beta Panthenol Repair Serum (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_350x.jpg?v=1760352225 350w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_450x.jpg?v=1760352225 450w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_750x.jpg?v=1760352225 750w, //www.skincupid.co.uk/cdn/shop/files/SomeByMi-Beta_Panthenol_Repair_Serum_30ml_1000x.jpg?v=1760352225 1000w">
@@ -4570,7 +4570,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/face-mask" title="Mask" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/face-mask" ) ); ?>" title="Mask" pa-marked="1">
                                         Mask
                                     </a>
                                 
@@ -4596,7 +4596,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/molvany-mugwort-heating-therapy-pack" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/molvany-mugwort-heating-therapy-pack" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/MolvanyMugwortHeatingTherapypack.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_1000x.jpg?v=1760352289 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack.jpg?v=1760352289&amp;width=550" width="2000" height="2000" alt="MOLVANY Mugwort Heating Therapy Pack" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyMugwortHeatingTherapypack_1000x.jpg?v=1760352289 1000w">
@@ -4724,7 +4724,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/biodance-bio-collagen-real-deep-mask-4ea" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/biodance-bio-collagen-real-deep-mask-4ea" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_350x.jpg?v=1760352274 350w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_450x.jpg?v=1760352274 450w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_750x.jpg?v=1760352274 750w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_1000x.jpg?v=1760352274 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea.jpg?v=1760352274&amp;width=550" width="2000" height="2000" alt="BIODANCE Bio-Collagen Real Deep Mask (4ea)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_350x.jpg?v=1760352274 350w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_450x.jpg?v=1760352274 450w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_750x.jpg?v=1760352274 750w, //www.skincupid.co.uk/cdn/shop/files/BIODANCE_Bio-Collagen_Real_Deep_Mask_4ea_1000x.jpg?v=1760352274 1000w">
@@ -4863,7 +4863,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/medicube-collagen-night-wrapping-mask-75ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/medicube-collagen-night-wrapping-mask-75ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_350x.png?v=1760352239 350w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_450x.png?v=1760352239 450w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_750x.png?v=1760352239 750w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_1000x.png?v=1760352239 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml.png?v=1760352239&amp;width=550" width="2048" height="2048" alt="MEDICUBE Collagen Night Wrapping Mask (75ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_350x.png?v=1760352239 350w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_450x.png?v=1760352239 450w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_750x.png?v=1760352239 750w, //www.skincupid.co.uk/cdn/shop/files/MEDICUBE_Collagen_Night_Wrapping_Mask_75ml_1000x.png?v=1760352239 1000w">
@@ -4991,7 +4991,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-phyto-niacin-brightening-sleeping-mask-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/nacific-phyto-niacin-brightening-sleeping-mask-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Nacific-Sleeping_Mask_100ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_350x.jpg?v=1760352190 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_450x.jpg?v=1760352190 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_750x.jpg?v=1760352190 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_1000x.jpg?v=1760352190 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml.jpg?v=1760352190&amp;width=550" width="2000" height="2000" alt="NACIFIC Phyto Niacin Brightening Sleeping Mask (100ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_350x.jpg?v=1760352190 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_450x.jpg?v=1760352190 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_750x.jpg?v=1760352190 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sleeping_Mask_100ml_1000x.jpg?v=1760352190 1000w">
@@ -5134,7 +5134,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/reedle-shot-vita-light-brightening-mask-30ea" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/reedle-shot-vita-light-brightening-mask-30ea" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_350x.jpg?v=1760352344 350w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_450x.jpg?v=1760352344 450w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_750x.jpg?v=1760352344 750w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_1000x.jpg?v=1760352344 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK.jpg?v=1760352344&amp;width=550" width="2000" height="2000" alt="Reedle Shot Vita-Light Brightening Mask (30pcs)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_350x.jpg?v=1760352344 350w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_450x.jpg?v=1760352344 450w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_750x.jpg?v=1760352344 750w, //www.skincupid.co.uk/cdn/shop/files/VTREEDLESHOTVITA-LIGHTBRIGHTENINGMASK_1000x.jpg?v=1760352344 1000w">
@@ -5282,7 +5282,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/moisturiser" title="Moisturiser" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/moisturiser" ) ); ?>" title="Moisturiser" pa-marked="1">
                                         Moisturiser
                                     </a>
                                 
@@ -5308,7 +5308,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/s-nature-aqua-squalane-moisturising-cream-80ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/s-nature-aqua-squalane-moisturising-cream-80ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_350x.jpg?v=1760352318 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_450x.jpg?v=1760352318 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_750x.jpg?v=1760352318 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_1000x.jpg?v=1760352318 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1.jpg?v=1760352318&amp;width=550" width="2000" height="2000" alt="S.NATURE Aqua Squalane Moisturising Cream (80ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_350x.jpg?v=1760352318 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_450x.jpg?v=1760352318 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_750x.jpg?v=1760352318 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATUREAQUASQUALANEMOISTURIZINGCREAM80ml_1_1000x.jpg?v=1760352318 1000w">
@@ -5436,7 +5436,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/parnell-cicamanu-gel-cream-75ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/parnell-cicamanu-gel-cream-75ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_1000x.png?v=1760352413 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid.png?v=1760352413&amp;width=550" width="2000" height="2000" alt="Parnell Cicamanu Gel Cream (75ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Gel_Cream_75ml_SkinCupid_1000x.png?v=1760352413 1000w">
@@ -5564,7 +5564,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/molvany-volume-increasing-protein-cream-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/molvany-volume-increasing-protein-cream-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/MolvanyVolumeIncreasingProteinCream.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_1000x.jpg?v=1760352289 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream.jpg?v=1760352289&amp;width=550" width="2000" height="2000" alt="MOLVANY Volume Increasing Protein Cream (100ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyVolumeIncreasingProteinCream_1000x.jpg?v=1760352289 1000w">
@@ -5692,7 +5692,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-different-cica-metal-cream" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-different-cica-metal-cream" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Dr.Different_CICA_Metal_Cream_SkinCupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_350x.png?v=1760352404 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_450x.png?v=1760352404 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_750x.png?v=1760352404 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_1000x.png?v=1760352404 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid.png?v=1760352404&amp;width=550" width="2000" height="2000" alt="Dr.Different CICA Metal Cream SkinCupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_350x.png?v=1760352404 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_450x.png?v=1760352404 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_750x.png?v=1760352404 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Different_CICA_Metal_Cream_SkinCupid_1000x.png?v=1760352404 1000w">
@@ -5820,7 +5820,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/zeroid-intensive-cream-80ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/zeroid-intensive-cream-80ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ZEROIDIntensiveCream80ml_1.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_350x.jpg?v=1760352313 350w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_450x.jpg?v=1760352313 450w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_750x.jpg?v=1760352313 750w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_1000x.jpg?v=1760352313 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1.jpg?v=1760352313&amp;width=550" width="2000" height="2000" alt="ZEROID Intensive Cream (80ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_350x.jpg?v=1760352313 350w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_450x.jpg?v=1760352313 450w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_750x.jpg?v=1760352313 750w, //www.skincupid.co.uk/cdn/shop/files/ZEROIDIntensiveCream80ml_1_1000x.jpg?v=1760352313 1000w">
@@ -5959,7 +5959,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/manyo-bifida-biome-aqua-barrier-cream-80ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/manyo-bifida-biome-aqua-barrier-cream-80ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_350x.png?v=1757857058 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_450x.png?v=1757857058 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_750x.png?v=1757857058 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_1000x.png?v=1757857058 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml.png?v=1757857058&amp;width=550" width="2000" height="2000" alt="ma:nyo Bifida Biome Aqua Barrier Cream (80ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_350x.png?v=1757857058 350w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_450x.png?v=1757857058 450w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_750x.png?v=1757857058 750w, //www.skincupid.co.uk/cdn/shop/files/Ma-Nyo_Bifida_Biome_Aqua_Barrier_Cream_80ml_1000x.png?v=1757857058 1000w">
@@ -6107,7 +6107,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/sunscreen" title="Suncream" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/sunscreen" ) ); ?>" title="Suncream" pa-marked="1">
                                         Suncream
                                     </a>
                                 
@@ -6133,7 +6133,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/skin1004-madagascar-centella-hyalu-cica-water-fit-sun-serum-spf50-pa-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/skin1004-madagascar-centella-hyalu-cica-water-fit-sun-serum-spf50-pa-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Skin1004-Hyalu_Sun_Serum.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_1000x.jpg?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum.jpg?v=1760352100&amp;width=550" width="2000" height="2000" alt="SKIN1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum SPF50+ PA++++ (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/Skin1004-Hyalu_Sun_Serum_1000x.jpg?v=1760352100 1000w">
@@ -6276,7 +6276,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-hyal-reyouth-moist-sun-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-hyal-reyouth-moist-sun-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Dr.Ceuracle-Moist_Sun.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_1000x.jpg?v=1760352105 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun.jpg?v=1760352105&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Hyal Reyouth Moist Sun SPF 50 PA++++ (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Moist_Sun_1000x.jpg?v=1760352105 1000w">
@@ -6415,7 +6415,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-sun-essence-spf50-pa-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/nacific-sun-essence-spf50-pa-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Nacific-Sun_Essence_50g.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_350x.jpg?v=1760352118 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_450x.jpg?v=1760352118 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_750x.jpg?v=1760352118 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_1000x.jpg?v=1760352118 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g.jpg?v=1760352118&amp;width=550" width="2000" height="2000" alt="NACIFIC Sun Essence SPF50 PA++++ (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_350x.jpg?v=1760352118 350w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_450x.jpg?v=1760352118 450w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_750x.jpg?v=1760352118 750w, //www.skincupid.co.uk/cdn/shop/files/Nacific-Sun_Essence_50g_1000x.jpg?v=1760352118 1000w">
@@ -6554,7 +6554,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/beplain-sunmuse-mineral-sunscreen-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/beplain-sunmuse-mineral-sunscreen-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Beplain_Sunmuse_Mineral_Sunscreen_50ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_1000x.png?v=1760352454 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml.png?v=1760352454&amp;width=550" width="2000" height="2000" alt="Beplain Sunmuse Mineral Sunscreen (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/Beplain_Sunmuse_Mineral_Sunscreen_50ml_1000x.png?v=1760352454 1000w">
@@ -6682,7 +6682,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/anua-heartleaf-silky-moisture-sun-cream-spf50-pa-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/anua-heartleaf-silky-moisture-sun-cream-spf50-pa-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_350x.jpg?v=1760352144 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_450x.jpg?v=1760352144 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_750x.jpg?v=1760352144 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_1000x.jpg?v=1760352144 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27.jpg?v=1760352144&amp;width=550" width="2000" height="2000" alt="ANUA Heartleaf Silky Moisture Sun Cream SPF50+ PA++++ (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_350x.jpg?v=1760352144 350w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_450x.jpg?v=1760352144 450w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_750x.jpg?v=1760352144 750w, //www.skincupid.co.uk/cdn/shop/files/ANUA_Heartleaf_Silky_Moisture_Sun_Cream_SPF50_PA_50ml_bab2c3f5-47f6-4e99-9947-bee9789bcc27_1000x.jpg?v=1760352144 1000w">
@@ -6821,7 +6821,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/isntree-hyaluronic-acid-airy-sun-stick-22g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/isntree-hyaluronic-acid-airy-sun-stick-22g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_1000x.jpg?v=1760352096 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g.jpg?v=1760352096&amp;width=550" width="2000" height="2000" alt="ISNTREE Hyaluronic Acid Airy Sun Stick SPF50+ PA++++ (22g)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/ISNTREE_Hyaluronic_Acid_Airy_Sun_Stick_SPF50_PA_22g_1000x.jpg?v=1760352096 1000w">
@@ -7004,7 +7004,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/vt-cosmetics-vt-reedle-shot-100-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/vt-cosmetics-vt-reedle-shot-100-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/VTCOSMETICSVTReedleShot100_50ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_350x.png?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_450x.png?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_750x.png?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_1000x.png?v=1760352289 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml.png?v=1760352289&amp;width=550" width="2048" height="2048" alt="VTCOSMETICSVTReedleShot100_50ml" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_350x.png?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_450x.png?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_750x.png?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/VTCOSMETICSVTReedleShot100_50ml_1000x.png?v=1760352289 1000w">
@@ -7132,7 +7132,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/melacare-spicule-toning-shot-ampoule-3pcs" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/melacare-spicule-toning-shot-ampoule-3pcs" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_350x.jpg?v=1760352353 350w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_450x.jpg?v=1760352353 450w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_750x.jpg?v=1760352353 750w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_1000x.jpg?v=1760352353 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs.jpg?v=1760352353&amp;width=550" width="2000" height="2000" alt="GENABELLE Melacare Spicule Toning Shot Ampoule (3pcs)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_350x.jpg?v=1760352353 350w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_450x.jpg?v=1760352353 450w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_750x.jpg?v=1760352353 750w, //www.skincupid.co.uk/cdn/shop/files/PDRN_Melacare_Spicule_Toning_Shot_Ampoule_3pcs_1000x.jpg?v=1760352353 1000w">
@@ -7260,7 +7260,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/purcell-24-7-colostrum-pore-defence-ampoule-55ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/purcell-24-7-colostrum-pore-defence-ampoule-55ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_1000x.png?v=1760352413 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml.png?v=1760352413&amp;width=550" width="2000" height="2000" alt="24/7 COLOSTRUM PORE DEFENCE AMPOULE (55ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/PURCELL24_7COLOSTRUMPOREDEFENCEAMPOULE_55ml_1000x.png?v=1760352413 1000w">
@@ -7388,7 +7388,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/parnell-cicamanu-serum-mist-50ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/parnell-cicamanu-serum-mist-50ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_1000x.png?v=1760352413 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid.png?v=1760352413&amp;width=550" width="2000" height="2000" alt="Parnell Cicamanu Serum Mist (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_350x.png?v=1760352413 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_450x.png?v=1760352413 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_750x.png?v=1760352413 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Mist_50ml_Skin_Cupid_1000x.png?v=1760352413 1000w">
@@ -7516,7 +7516,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/s-nature-aqua-squalane-mist-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/s-nature-aqua-squalane-mist-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/landing/S.NATURE_Aqua_Squalane_Mist_100ml.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_350x.png?v=1760352426 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_450x.png?v=1760352426 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_750x.png?v=1760352426 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_1000x.png?v=1760352426 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml.png?v=1760352426&amp;width=550" width="2000" height="2000" alt="S.NATURE Aqua Squalane Mist (100ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_350x.png?v=1760352426 350w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_450x.png?v=1760352426 450w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_750x.png?v=1760352426 750w, //www.skincupid.co.uk/cdn/shop/files/S.NATURE_Aqua_Squalane_Mist_100ml_1000x.png?v=1760352426 1000w">
@@ -7664,7 +7664,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/hair-care" title="Haircare - Basics" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/hair-care" ) ); ?>" title="Haircare - Basics" pa-marked="1">
                                         Haircare - Basics
                                     </a>
                                 
@@ -7690,7 +7690,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/unove-deep-damage-repair-shampoo-sweet-breeze-500ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/unove-deep-damage-repair-shampoo-sweet-breeze-500ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml.png?v=1760352436&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_1000x.png?v=1760352436 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml.png?v=1760352436&amp;width=550" width="2000" height="2000" alt="UNOVE Deep Damage Repair Shampoo 500ml" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Repair_Shampoo_500ml_1000x.png?v=1760352436 1000w">
@@ -7818,7 +7818,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/daeng-gi-meo-ri-ki-gold-premium-shampoo-500ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/daeng-gi-meo-ri-ki-gold-premium-shampoo-500ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml.jpg?v=1760352083&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_350x.jpg?v=1760352083 350w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_450x.jpg?v=1760352083 450w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_750x.jpg?v=1760352083 750w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_1000x.jpg?v=1760352083 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml.jpg?v=1760352083&amp;width=550" width="2000" height="2000" alt="DAENG GI MEO RI Ki Gold Premium Shampoo (500ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_350x.jpg?v=1760352083 350w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_450x.jpg?v=1760352083 450w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_750x.jpg?v=1760352083 750w, //www.skincupid.co.uk/cdn/shop/files/DGM-Ki_Gold_Premium_Shampoo_500ml_1000x.jpg?v=1760352083 1000w">
@@ -7957,7 +7957,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/day-collagen-shampoo-morning-of-resort-360ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/day-collagen-shampoo-morning-of-resort-360ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml.jpg?v=1760352331&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_350x.jpg?v=1760352331 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_450x.jpg?v=1760352331 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_750x.jpg?v=1760352331 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_1000x.jpg?v=1760352331 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml.jpg?v=1760352331&amp;width=550" width="2000" height="2000" alt="Treecell Day Collagen Shampoo Morning of Resort (360ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_350x.jpg?v=1760352331 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_450x.jpg?v=1760352331 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_750x.jpg?v=1760352331 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Day_Collagen_Shampoo_Morning_of_Resort_360_ml_1000x.jpg?v=1760352331 1000w">
@@ -8085,7 +8085,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/night-collagen-shampoo-midnight-forest-360ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/night-collagen-shampoo-midnight-forest-360ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml.jpg?v=1760352331&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_350x.jpg?v=1760352331 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_450x.jpg?v=1760352331 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_750x.jpg?v=1760352331 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_1000x.jpg?v=1760352331 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml.jpg?v=1760352331&amp;width=550" width="2000" height="2000" alt="TREECELL Night Collagen Shampoo Midnight Forest 360ml" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_350x.jpg?v=1760352331 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_450x.jpg?v=1760352331 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_750x.jpg?v=1760352331 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Collagen_Shampoo_Midnight_Forest_360ml_1000x.jpg?v=1760352331 1000w">
@@ -8213,7 +8213,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/kundal-honey-macadamia-nature-shampoo-6-scents-500ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/kundal-honey-macadamia-nature-shampoo-6-scents-500ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml.png?v=1760352208&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_350x.png?v=1760352208 350w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_450x.png?v=1760352208 450w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_750x.png?v=1760352208 750w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_1000x.png?v=1760352208 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml.png?v=1760352208&amp;width=550" width="2048" height="2048" alt="KUNDAL Honey &amp; Macadamia Nature Shampoo - 7 Scents (500ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_350x.png?v=1760352208 350w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_450x.png?v=1760352208 450w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_750x.png?v=1760352208 750w, //www.skincupid.co.uk/cdn/shop/files/KUNDAL_Honey_Macadamia_Nature_Shampoo_-_7_Scents_500ml_1000x.png?v=1760352208 1000w">
@@ -8337,7 +8337,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/kundal-dandruff-relief-shampoo-apple-green-tea-500ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/kundal-dandruff-relief-shampoo-apple-green-tea-500ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo.jpg?v=1760352208&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_350x.jpg?v=1760352208 350w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_450x.jpg?v=1760352208 450w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_750x.jpg?v=1760352208 750w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_1000x.jpg?v=1760352208 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo.jpg?v=1760352208&amp;width=550" width="2000" height="2000" alt="KUNDAL Dandruff Relief Shampoo Apple Green Tea (500ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_350x.jpg?v=1760352208 350w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_450x.jpg?v=1760352208 450w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_750x.jpg?v=1760352208 750w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Apple_Greentea_Dandruff_Relief_Shampoo_1000x.jpg?v=1760352208 1000w">
@@ -8485,7 +8485,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/hair-treatments" title="Glass Hair - Treatments" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/hair-treatments" ) ); ?>" title="Glass Hair - Treatments" pa-marked="1">
                                         Glass Hair - Treatments
                                     </a>
                                 
@@ -8511,7 +8511,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/forte-ampoule-treatment-200ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/forte-ampoule-treatment-200ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml.jpg?v=1760352336&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_1000x.jpg?v=1760352336 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml.jpg?v=1760352336&amp;width=550" width="2000" height="2000" alt="Forte Ampoule Treatment (200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELLForteAmpouleTreatment200ml_1000x.jpg?v=1760352336 1000w">
@@ -8639,7 +8639,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/unove-deep-damage-treatment-ex-207ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/unove-deep-damage-treatment-ex-207ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1.png?v=1760352436&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_1000x.png?v=1760352436 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1.png?v=1760352436&amp;width=550" width="2000" height="2000" alt=" UNOVE Deep Damage Treatment EX Tender Bloom (207ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Deep_Damage_Treatment_EX_Tender_Bloom_207ml_f7a96588-65bd-4ee4-a417-f44c9eb064a1_1000x.png?v=1760352436 1000w">
@@ -8767,7 +8767,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/night-perfector-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/night-perfector-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml.jpg?v=1760352336&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_1000x.jpg?v=1760352336 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml.jpg?v=1760352336&amp;width=550" width="2000" height="2000" alt="TREECELL Night Perfector 100ml" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Night_Perfector_100ml_1000x.jpg?v=1760352336 1000w">
@@ -8895,7 +8895,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/recovery-oil-essence-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/recovery-oil-essence-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml.jpg?v=1760352336&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml_1000x.jpg?v=1760352336 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Recovery_Oil_Essence_Product_100ml.jpg?v=1760352336&amp;width=550" width="2000" height="2000" alt="TREECELL Recovery Oil Essence Product
@@ -9025,7 +9025,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/unove-heat-guard-leave-in-treatment-147ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/unove-heat-guard-leave-in-treatment-147ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml.png?v=1760352436&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_1000x.png?v=1760352436 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml.png?v=1760352436&amp;width=550" width="2000" height="2000" alt="UNOVE Heat Guard Leave In Treatment (147ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_350x.png?v=1760352436 350w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_450x.png?v=1760352436 450w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_750x.png?v=1760352436 750w, //www.skincupid.co.uk/cdn/shop/files/UNOVE_Heat_Guard_Leave_In_Treatment_147ml_1000x.png?v=1760352436 1000w">
@@ -9153,7 +9153,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/kundal-head-spa-scalp-care-scalp-tonic-100ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/kundal-head-spa-scalp-care-scalp-tonic-100ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic.jpg?v=1760352212&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_350x.jpg?v=1760352212 350w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_450x.jpg?v=1760352212 450w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_750x.jpg?v=1760352212 750w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_1000x.jpg?v=1760352212 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic.jpg?v=1760352212&amp;width=550" width="2000" height="2000" alt="KUNDAL Head Spa &amp; Scalp Care+ Scalp Tonic (100ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_350x.jpg?v=1760352212 350w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_450x.jpg?v=1760352212 450w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_750x.jpg?v=1760352212 750w, //www.skincupid.co.uk/cdn/shop/files/Kundal-Scalp_Tonic_1000x.jpg?v=1760352212 1000w">
@@ -9281,7 +9281,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/carotene-cooling-scaler-200ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/carotene-cooling-scaler-200ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml.jpg?v=1760352336&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_1000x.jpg?v=1760352336 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml.jpg?v=1760352336&amp;width=550" width="2000" height="2000" alt="TREECELL Carotene Cooling Scaler 200ml" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/TREECELL_Carotene_Cooling_Scaler_200ml_1000x.jpg?v=1760352336 1000w">
@@ -9429,7 +9429,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/face" title="Make Up - Base" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/face" ) ); ?>" title="Make Up - Base" pa-marked="1">
                                         Make Up - Base
                                     </a>
                                 
@@ -9455,7 +9455,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/peach-c-beige-glow-makeup-base-35ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/peach-c-beige-glow-makeup-base-35ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml.jpg?v=1760352336&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_1000x.jpg?v=1760352336 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml.jpg?v=1760352336&amp;width=550" width="2000" height="2000" alt="Peach C Beige Glow Makeup Base (35ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_350x.jpg?v=1760352336 350w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_450x.jpg?v=1760352336 450w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_750x.jpg?v=1760352336 750w, //www.skincupid.co.uk/cdn/shop/files/Beige_Glow_Makeup_Base_35ml_1000x.jpg?v=1760352336 1000w">
@@ -9583,7 +9583,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="13c_fair">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/parnell-cicamanu-serum-cushion-15g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/parnell-cicamanu-serum-cushion-15g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid.png?v=1760352409&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_350x.png?v=1760352409 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_450x.png?v=1760352409 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_750x.png?v=1760352409 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_1000x.png?v=1760352409 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid.png?v=1760352409&amp;width=550" width="2000" height="2000" alt="Parnell Cicamanu Serum Cushion" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_350x.png?v=1760352409 350w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_450x.png?v=1760352409 450w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_750x.png?v=1760352409 750w, //www.skincupid.co.uk/cdn/shop/files/Parnell_Cicamanu_Serum_Cushion_SkinCupid_1000x.png?v=1760352409 1000w">
@@ -9846,7 +9846,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="13c_fair">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/tirtir-mask-fit-red-cushion-spf40-pa-3-shades" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/tirtir-mask-fit-red-cushion-spf40-pa-3-shades" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades.jpg?v=1760352158&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_1000x.jpg?v=1760352158 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades.jpg?v=1760352158&amp;width=550" width="2000" height="2000" alt="TIRTIR Mask Fit Red Cushion SPF40 PA++ (18g) 9 Shades" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_350x.jpg?v=1760352158 350w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_450x.jpg?v=1760352158 450w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_750x.jpg?v=1760352158 750w, //www.skincupid.co.uk/cdn/shop/files/TIRTIR_Mask_Fit_Red_Cushion_SPF40_PA_18g_9_Shades_1000x.jpg?v=1760352158 1000w">
@@ -10159,7 +10159,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="clair">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/bb-cream-40ml-5-shades" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/bb-cream-40ml-5-shades" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades.png?v=1760352368&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_1000x.png?v=1760352368 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades.png?v=1760352368&amp;width=550" width="2000" height="2000" alt="Erborian BB Cream (40ml)- 5 shades" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_BB_Cream_40ml_-_5_shades_1000x.png?v=1760352368 1000w">
@@ -10347,7 +10347,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/cc-red-correct" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/cc-red-correct" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream.png?v=1760352368&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_1000x.png?v=1760352368 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream.png?v=1760352368&amp;width=550" width="2000" height="2000" alt="Erborian CC Red Correct Cream" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_350x.png?v=1760352368 350w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_450x.png?v=1760352368 450w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_750x.png?v=1760352368 750w, //www.skincupid.co.uk/cdn/shop/files/Erborian_CC_Red_Correct_Cream_1000x.png?v=1760352368 1000w">
@@ -10475,7 +10475,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3 is-long-vendor" data-active-colour="n21">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/sleek-matt-cushion-15g-4-shades" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/sleek-matt-cushion-15g-4-shades" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades.jpg?v=1760352382&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_350x.jpg?v=1760352382 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_450x.jpg?v=1760352382 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_750x.jpg?v=1760352382 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_1000x.jpg?v=1760352382 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades.jpg?v=1760352382&amp;width=550" width="2000" height="2000" alt="Muzigae Mansion Sleek Matt Cushion (15g) - 4 shades" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_350x.jpg?v=1760352382 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_450x.jpg?v=1760352382 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_750x.jpg?v=1760352382 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Sleek_Matt_Cushion_15g_-_4_shades_1000x.jpg?v=1760352382 1000w">
@@ -10678,7 +10678,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/all-make-up" title="Make Up - Colour" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/all-make-up" ) ); ?>" title="Make Up - Colour" pa-marked="1">
                                         Make Up - Colour
                                     </a>
                                 
@@ -10704,7 +10704,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="01_black_brown">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/peach-c-brush-fixxyliner-2-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/peach-c-brush-fixxyliner-2-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades.jpg?v=1760352340&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_350x.jpg?v=1760352340 350w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_450x.jpg?v=1760352340 450w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_750x.jpg?v=1760352340 750w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_1000x.jpg?v=1760352340 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades.jpg?v=1760352340&amp;width=550" width="2000" height="2000" alt="Brush Fixxyliner - 2 Colours" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_350x.jpg?v=1760352340 350w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_450x.jpg?v=1760352340 450w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_750x.jpg?v=1760352340 750w, //www.skincupid.co.uk/cdn/shop/files/BrushFixxyliner_2shades_1000x.jpg?v=1760352340 1000w">
@@ -10877,7 +10877,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="h01_moon_dust">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-jelly-highlighter-stick" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-jelly-highlighter-stick" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01.png?v=1759161921&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_350x.png?v=1759161921 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_450x.png?v=1759161921 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_750x.png?v=1759161921 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_1000x.png?v=1759161921 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01.png?v=1759161921&amp;width=550" width="2000" height="2000" alt="JOOCYEE Jelly Highlighter Stick Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_350x.png?v=1759161921 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_450x.png?v=1759161921 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_750x.png?v=1759161921 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Jelly_Highlighter_Stick_Skin_Cupid_01_1000x.png?v=1759161921 1000w">
@@ -11055,7 +11055,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="g401_tea_jelly">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-glazed-multi-purpose-stick" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-glazed-multi-purpose-stick" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid.png?v=1759218356&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_350x.png?v=1759218356 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_450x.png?v=1759218356 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_750x.png?v=1759218356 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_1000x.png?v=1759218356 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid.png?v=1759218356&amp;width=550" width="2000" height="2000" alt="JOOCYEE Glazed Multi-Purpose Stick Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_350x.png?v=1759218356 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_450x.png?v=1759218356 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_750x.png?v=1759218356 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Glazed_Multi-Purpose_Stick_Skin_Cupid_1000x.png?v=1759218356 1000w">
@@ -11233,7 +11233,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="#01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-liquid-highlighter-contour-duo" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-liquid-highlighter-contour-duo" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid.png?v=1758622611&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_350x.png?v=1758622611 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_450x.png?v=1758622611 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_750x.png?v=1758622611 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_1000x.png?v=1758622611 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid.png?v=1758622611&amp;width=550" width="2000" height="2000" alt="Judydoll Liquid Highlighter Contour Duo Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_350x.png?v=1758622611 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_450x.png?v=1758622611 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_750x.png?v=1758622611 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Highlighter_Contour_Duo_Skin_Cupid_1000x.png?v=1758622611 1000w">
@@ -11406,7 +11406,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dasique-shadow-palette-07-milk-latte" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dasique-shadow-palette-07-milk-latte" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte.jpg?v=1760352261&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_350x.jpg?v=1760352261 350w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_450x.jpg?v=1760352261 450w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_750x.jpg?v=1760352261 750w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_1000x.jpg?v=1760352261 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte.jpg?v=1760352261&amp;width=550" width="2000" height="2000" alt="DASIQUE Shadow Palette #07 Milk Latte" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_350x.jpg?v=1760352261 350w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_450x.jpg?v=1760352261 450w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_750x.jpg?v=1760352261 750w, //www.skincupid.co.uk/cdn/shop/files/DasiqueShadowPalette_07MilkLatte_1000x.jpg?v=1760352261 1000w">
@@ -11545,7 +11545,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/curl-fix-mascara-01-black" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/curl-fix-mascara-01-black" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23.jpg?v=1760352285&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_350x.jpg?v=1760352285 350w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_450x.jpg?v=1760352285 450w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_750x.jpg?v=1760352285 750w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_1000x.jpg?v=1760352285 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23.jpg?v=1760352285&amp;width=550" width="2000" height="2000" alt="ETUDE HOUSE Curl Fix Mascara 02 Brown (23)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_350x.jpg?v=1760352285 350w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_450x.jpg?v=1760352285 450w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_750x.jpg?v=1760352285 750w, //www.skincupid.co.uk/cdn/shop/files/ET._MBS_CurlFixMascara02Brown_23_1000x.jpg?v=1760352285 1000w">
@@ -11673,7 +11673,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/etude-house-dr-mascara-fixer-for-perfect-lash-6ml" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/etude-house-dr-mascara-fixer-for-perfect-lash-6ml" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml.jpg?v=1760352077&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_350x.jpg?v=1760352077 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_450x.jpg?v=1760352077 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_750x.jpg?v=1760352077 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_1000x.jpg?v=1760352077 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml.jpg?v=1760352077&amp;width=550" width="2000" height="2000" alt="Dr. Mascara Fixer For Perfect Lash (6ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_350x.jpg?v=1760352077 350w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_450x.jpg?v=1760352077 450w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_750x.jpg?v=1760352077 750w, //www.skincupid.co.uk/cdn/shop/files/ETUDE_HOUSE_Dr._Mascara_Fixer_For_Perfect_Lash_6ml_1000x.jpg?v=1760352077 1000w">
@@ -11801,7 +11801,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="s01">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/judydoll-liquid-eyeshadow" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/judydoll-liquid-eyeshadow" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640.png?v=1759134320&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_350x.png?v=1759134320 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_450x.png?v=1759134320 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_750x.png?v=1759134320 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_1000x.png?v=1759134320 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640.png?v=1759134320&amp;width=550" width="2000" height="2000" alt="Liquid Eyeshadow (4 Colours)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_350x.png?v=1759134320 350w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_450x.png?v=1759134320 450w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_750x.png?v=1759134320 750w, //www.skincupid.co.uk/cdn/shop/files/Judydoll_Liquid_Eyeshadow_Skin_Cupid_3b1b1f7d-d6c2-40bb-ad5b-ae5925368640_1000x.png?v=1759134320 1000w">
@@ -12004,7 +12004,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/lips" title="Make Up - Lips" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/lips" ) ); ?>" title="Make Up - Lips" pa-marked="1">
                                         Make Up - Lips
                                     </a>
                                 
@@ -12030,7 +12030,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="564_peach_dew">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-lasting-glossy-rouge" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-lasting-glossy-rouge" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid.png?v=1759221514&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_350x.png?v=1759221514 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_450x.png?v=1759221514 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_750x.png?v=1759221514 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_1000x.png?v=1759221514 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid.png?v=1759221514&amp;width=550" width="2000" height="2000" alt="JOOCYEE Lasting Glossy Rouge Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_350x.png?v=1759221514 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_450x.png?v=1759221514 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_750x.png?v=1759221514 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Lasting_Glossy_Rouge_Skin_Cupid_1000x.png?v=1759221514 1000w">
@@ -12208,7 +12208,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3 is-long-vendor" data-active-colour="prime">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/moodwear-blur-lipstick-4g-8-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/moodwear-blur-lipstick-4g-8-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main.jpg?v=1760352381&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_350x.jpg?v=1760352381 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_450x.jpg?v=1760352381 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_750x.jpg?v=1760352381 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_1000x.jpg?v=1760352381 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main.jpg?v=1760352381&amp;width=550" width="2000" height="2000" alt="Muzigae Mansion Moodwear Blur Lipstick (4g) - 8 colours" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_350x.jpg?v=1760352381 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_450x.jpg?v=1760352381 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_750x.jpg?v=1760352381 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Moodwear_Blur_Lipstick_4g_-_8_colours_main_1000x.jpg?v=1760352381 1000w">
@@ -12411,7 +12411,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="to_love">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/peach-c-jelly-beam-tint-5-colours-35g" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/peach-c-jelly-beam-tint-5-colours-35g" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid.png?v=1761224765&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_350x.png?v=1761224765 350w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_450x.png?v=1761224765 450w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_750x.png?v=1761224765 750w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_1000x.png?v=1761224765 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid.png?v=1761224765&amp;width=550" width="2000" height="2000" alt="Peach C Jelly Beam Tint (35g)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_350x.png?v=1761224765 350w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_450x.png?v=1761224765 450w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_750x.png?v=1761224765 750w, //www.skincupid.co.uk/cdn/shop/files/PeachC_JellyBeamTintSkinCupid_1000x.png?v=1761224765 1000w">
@@ -12599,7 +12599,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="700_glowy">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/laka-fruity-lip-glotioner" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/laka-fruity-lip-glotioner" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner.png?v=1762968918&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_350x.png?v=1762968918 350w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_450x.png?v=1762968918 450w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_750x.png?v=1762968918 750w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_1000x.png?v=1762968918 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner.png?v=1762968918&amp;width=550" width="2000" height="2000" alt="LAKA Fruity Lip Glotioner Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_350x.png?v=1762968918 350w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_450x.png?v=1762968918 450w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_750x.png?v=1762968918 750w, //www.skincupid.co.uk/cdn/shop/files/LAKA_Fruity_Lip_Glotioner_1000x.png?v=1762968918 1000w">
@@ -12777,7 +12777,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/vt-reedle-shot-lip-plumper-expert" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/vt-reedle-shot-lip-plumper-expert" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert.png?v=1760352454&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_1000x.png?v=1760352454 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert.png?v=1760352454&amp;width=550" width="2000" height="2000" alt="VT Reedle Shot Lip Plumper (Expert)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_350x.png?v=1760352454 350w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_450x.png?v=1760352454 450w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_750x.png?v=1760352454 750w, //www.skincupid.co.uk/cdn/shop/files/VT_Reedle_Shot_Lip_Plumper_Expert_1000x.png?v=1760352454 1000w">
@@ -12905,7 +12905,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="1990_vintage_brown">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/joocyee-velvet-rouge" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/joocyee-velvet-rouge" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid.png?v=1759219355&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_350x.png?v=1759219355 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_450x.png?v=1759219355 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_750x.png?v=1759219355 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_1000x.png?v=1759219355 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid.png?v=1759219355&amp;width=550" width="2000" height="2000" alt="JOOCYEE Velvet Rouge Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_350x.png?v=1759219355 350w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_450x.png?v=1759219355 450w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_750x.png?v=1759219355 750w, //www.skincupid.co.uk/cdn/shop/files/JOOCYEE_Velvet_Rouge_Stick_Skin_Cupid_1000x.png?v=1759219355 1000w">
@@ -13078,7 +13078,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3 is-long-vendor" data-active-colour="signature">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/objet-water-5-8ml-8-colours" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/objet-water-5-8ml-8-colours" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP.jpg?v=1760352377&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_350x.jpg?v=1760352377 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_450x.jpg?v=1760352377 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_750x.jpg?v=1760352377 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_1000x.jpg?v=1760352377 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP.jpg?v=1760352377&amp;width=550" width="2000" height="2000" alt="Muzigae Mansion Objet Water (5.8ml) - 8 Colours" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_350x.jpg?v=1760352377 350w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_450x.jpg?v=1760352377 450w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_750x.jpg?v=1760352377 750w, //www.skincupid.co.uk/cdn/shop/files/Muzigae_Mansion_Objet_Water_5.8ml_-_8_Colours_PDP_1000x.jpg?v=1760352377 1000w">
@@ -13281,7 +13281,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3" data-active-colour="03_kaya_beige">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/romand-lip-mate-pencil" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/romand-lip-mate-pencil" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil.png?v=1758004366&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_350x.png?v=1758004366 350w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_450x.png?v=1758004366 450w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_750x.png?v=1758004366 750w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_1000x.png?v=1758004366 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil.png?v=1758004366&amp;width=550" width="2000" height="2000" alt="Romand Lip Mate Pencil" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_350x.png?v=1758004366 350w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_450x.png?v=1758004366 450w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_750x.png?v=1758004366 750w, //www.skincupid.co.uk/cdn/shop/files/ROM_ND_Lip_Mate_Pencil_1000x.png?v=1758004366 1000w">
@@ -13484,7 +13484,7 @@
                             
                             <h3 class="step__title font-bold border-b-2 w-fit border-b-citron-primary title-link">
                                 
-                                    <a href="https://www.skincupid.co.uk/collections/lifestyle" title="Lifestyle" pa-marked="1">
+                                    <a href="<?php echo esc_url( home_url( "/collections/lifestyle" ) ); ?>" title="Lifestyle" pa-marked="1">
                                         Lifestyle
                                     </a>
                                 
@@ -13510,7 +13510,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/skin-cupid-tote-bag" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/skin-cupid-tote-bag" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag.png?v=1758002634&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_350x.png?v=1758002634 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_450x.png?v=1758002634 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_750x.png?v=1758002634 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_1000x.png?v=1758002634 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag.png?v=1758002634&amp;width=550" width="2000" height="2000" alt="Skin Cupid Tote Bag" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_350x.png?v=1758002634 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_450x.png?v=1758002634 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_750x.png?v=1758002634 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Tote_Bag_1000x.png?v=1758002634 1000w">
@@ -13638,7 +13638,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/skin-cupid-pen" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/skin-cupid-pen" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen.png?v=1760963708&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_350x.png?v=1760963708 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_450x.png?v=1760963708 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_750x.png?v=1760963708 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_1000x.png?v=1760963708 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen.png?v=1760963708&amp;width=550" width="2000" height="2000" alt="Skin Cupid Pen" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_350x.png?v=1760963708 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_450x.png?v=1760963708 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_750x.png?v=1760963708 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Pen_1000x.png?v=1760963708 1000w">
@@ -13762,7 +13762,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/skin-cupid-notebook-1" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/skin-cupid-notebook-1" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc.png?v=1763128072&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_350x.png?v=1763128072 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_450x.png?v=1763128072 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_750x.png?v=1763128072 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_1000x.png?v=1763128072 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc.png?v=1763128072&amp;width=550" width="2000" height="2000" alt="Skin Cupid Notebook (1 pc)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_350x.png?v=1763128072 350w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_450x.png?v=1763128072 450w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_750x.png?v=1763128072 750w, //www.skincupid.co.uk/cdn/shop/files/Skin_Cupid_Notebook_1_pc_1000x.png?v=1763128072 1000w">
@@ -13890,7 +13890,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/sonny-angel-blind-box-hippers-dreaming-series-1-pc" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/sonny-angel-blind-box-hippers-dreaming-series-1-pc" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid.png?v=1761130448&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_350x.png?v=1761130448 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_450x.png?v=1761130448 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_750x.png?v=1761130448 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_1000x.png?v=1761130448 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid.png?v=1761130448&amp;width=550" width="2000" height="2000" alt="Sonny Angel Blind Box Hippers Dreaming Series (1 pc) Skin Cupid " class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_350x.png?v=1761130448 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_450x.png?v=1761130448 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_750x.png?v=1761130448 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Dreaming_Series_1_pc_Skin_Cupid_1000x.png?v=1761130448 1000w">
@@ -14014,7 +14014,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/sonny-angel-hippers-harvest" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/sonny-angel-hippers-harvest" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid.png?v=1759141797&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_350x.png?v=1759141797 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_450x.png?v=1759141797 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_750x.png?v=1759141797 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_1000x.png?v=1759141797 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid.png?v=1759141797&amp;width=550" width="2000" height="2000" alt="Sonny Angel Hippers Harvest Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_350x.png?v=1759141797 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_450x.png?v=1759141797 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_750x.png?v=1759141797 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_HIPPERS_HARVEST_NEW_Skin_Cupid_1000x.png?v=1759141797 1000w">
@@ -14138,7 +14138,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/sonny-angel-hippers-monchichi" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/sonny-angel-hippers-monchichi" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid.png?v=1761128389&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_350x.png?v=1761128389 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_450x.png?v=1761128389 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_750x.png?v=1761128389 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_1000x.png?v=1761128389 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid.png?v=1761128389&amp;width=550" width="2000" height="2000" alt="Sonny Angel Blind Box Hippers Monchichi (1 pc) Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_350x.png?v=1761128389 350w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_450x.png?v=1761128389 450w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_750x.png?v=1761128389 750w, //www.skincupid.co.uk/cdn/shop/files/Sonny_Angel_Blind_Box_Hippers_Monchichi_1_pc_Skin_Cupid_1000x.png?v=1761128389 1000w">
@@ -14262,7 +14262,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/smiski-blind-box-living-series" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/smiski-blind-box-living-series" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid.png?v=1758794160&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_350x.png?v=1758794160 350w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_450x.png?v=1758794160 450w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_750x.png?v=1758794160 750w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_1000x.png?v=1758794160 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid.png?v=1758794160&amp;width=550" width="2000" height="2000" alt="SMISKI LIVING Collection box SkinCupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_350x.png?v=1758794160 350w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_450x.png?v=1758794160 450w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_750x.png?v=1758794160 750w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_LIVING_SkinCupid_1000x.png?v=1758794160 1000w">
@@ -14386,7 +14386,7 @@
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/sonny-angel-hippers-smiski" pa-marked="1">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/sonny-angel-hippers-smiski" ) ); ?>" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski.png?v=1759144517&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_350x.png?v=1759144517 350w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_450x.png?v=1759144517 450w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_750x.png?v=1759144517 750w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_1000x.png?v=1759144517 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski.png?v=1759144517&amp;width=550" width="2000" height="2000" alt="Hippers Smiski Skin Cupid" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="259px" srcset="//www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_350x.png?v=1759144517 350w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_450x.png?v=1759144517 450w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_750x.png?v=1759144517 750w, //www.skincupid.co.uk/cdn/shop/files/SMISKI_Hippers_Smiski_1000x.png?v=1759144517 1000w">
@@ -14776,7 +14776,7 @@
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18070487911579367_thumb.jpg" alt="K-beauty best-sellers that are actually popular in Korea! Let’s break down why they are ✨ viral-worthy✨ and which one might become your next holy grail...😍 
 
@@ -14811,7 +14811,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--image">
-        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="carousel" data-media-type="image">
                 <picture>
                     <source type="image/webp" data-srcset="" data-sizes="100w" data-ll-status="entered" class="entered" sizes="100w">
@@ -14836,7 +14836,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18065456026688231_thumb.jpg" alt="For our rosacea-prone cherubs with sensitive skin, meet our gentle and soothing top-picks for skin that needs a little extra love!💖
 
@@ -14867,7 +14867,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17904967569063389_thumb.jpg" alt="We are back with a ‘Korea vs global skincare’ part 2! 🇰🇷🌎 Which of these viral skincare products are your top picks? 🙌
 
@@ -14896,7 +14896,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18027468473226417_thumb.jpg" alt="Skin Cupid’s pop up is coming next week! 👀✨ Get ready for K-beauty best-sellers, new exciting arrivals, and freebies! We can’t wait to meet our Cherubs 🙌
 
@@ -14932,7 +14932,7 @@ We will be giving out goodie bags worth £200 on the following days:
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17892597363104192_thumb.jpg" alt="Tackling closed comedones isn’t for the weak but its nothing a good skincare routine can’t handle! ✨Don’t have one? No (pore)blem! We’re sharing 3 holy grails your skin will thank you for! 🙌
 
@@ -14962,7 +14962,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18473581711001780_thumb.jpg" alt="Happy Black Friday Cherubs!🎉 This year, we’re rolling out our biggest sale yet to help your skincare dreams come true!✨You can expect up to 40% off worldwide (no discount code needed)😍and a Buy One, Get One Free on our top-sellers!🙌
 
@@ -14990,7 +14990,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18018236564635389_thumb.jpg" alt="TIRTIR’s full range of 30 viral cushion foundation shades has officially landed at Skin Cupid! We’re thrilled that even more Cherubs can experience this incredible cushion 🌟
 
@@ -15021,7 +15021,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18035783183462967_thumb.jpg" alt="A late night Korea vlog while Melody was out there! There’s nothing like a good convenience store trip and some instant ramen that satisfies late night cravings ☺️ 
 
@@ -15058,7 +15058,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18069176722655981_thumb.jpg" alt="Big things are happening and the countdown to magic starts now! ✨ Can you guess what it could be? 👀🙌
 
@@ -15089,7 +15089,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18275602132216336_thumb.jpg" alt="Guess who’s back again 👀 Dr. Althea’s viral acne relief cream is finally back in stock and if you know, you KNOW there’s no other like it! 🙌
 
@@ -15120,7 +15120,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="https://www.skincupid.co.uk/pages/2026-skincare-must-haves#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="<?php echo esc_url( home_url( "/pages/2026-skincare-must-haves#" ) ); ?>">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18030693905520415_thumb.jpg" alt="If you’ve wanted the Dior lip oil but aren’t a fan of the price tag…we got you! A juicy, non-sticky, protective lip oil... who does it better than TIRTIR? We’re totally obsessed!😍
 

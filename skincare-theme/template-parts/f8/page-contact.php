@@ -9,12 +9,12 @@
     <div class="flex justify-center lg:justify-start w-full container !px-0"><nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/pages/contact-us" itemprop="item" title="Contact Us" aria-current="page" pa-marked="1"><span itemprop="name">Contact Us</span></a>
+        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" itemprop="item" title="Contact Us" aria-current="page" pa-marked="1"><span itemprop="name">Contact Us</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav></div>
@@ -28,7 +28,7 @@
             <p class="text-center text-base lg:text-lg-xl mt-6 lg:mt-8">Please do not hesitate to contact us, we love hearing from you!</p>
         
     </div>
-    <div class="container"><form method="post" action="https://www.skincupid.co.uk/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form" data-np-intersection-state="visible"><input type="hidden" name="form_type" value="contact"><input type="hidden" name="utf8" value="✓">
+    <div class="container"><form method="post" action="<?php echo esc_url( rest_url( 'skincare/v1/forms/contact' ) ); ?>" id="contact_form" accept-charset="UTF-8" class="contact-form" data-np-intersection-state="visible"><input type="hidden" name="form_type" value="contact"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>">
             <div class="contact-form__fields lg:grid grid-cols-2 gap-x-8 gap-y-6 xl:max-w-[870px] mx-auto">
                 
 
@@ -37,7 +37,7 @@
                                     <span class="text-citron-primary inline-block mr-2">*</span>
                                     Reason for contacting us:
                                 </label>
-                                <select name="contact[reason-for-contacting-us]" id="reason-for-contacting-us" class="w-full" required="" fdprocessedid="dnyw5" data-np-mark="1" data-np-intersection-state="observed">
+                                <select name="reason" id="reason-for-contacting-us" class="w-full" required="" fdprocessedid="dnyw5" data-np-mark="1" data-np-intersection-state="observed">
                                     <option value="">Pick a reason</option>
                                     
                                         <option value="General enquiries">General enquiries</option>
@@ -58,7 +58,7 @@
                                     <span class="text-citron-primary inline-block mr-2">*</span>
                                     Full Name:
                                 </label>
-                                <input type="text" name="contact[full-name]" id="full-name" placeholder="Full Name" class="w-full" required="" fdprocessedid="dj6hg" data-np-mark="1" data-np-intersection-state="observed">
+                                <input type="text" name="name" id="full-name" placeholder="Full Name" class="w-full" required="" fdprocessedid="dj6hg" data-np-mark="1" data-np-intersection-state="observed">
                             </div>
                 
 <div class="contact-form__fields__field field--text col-span-1 mb-[22px] lg:mb-0" data-field-id="email-address">
@@ -66,7 +66,7 @@
                                     <span class="text-citron-primary inline-block mr-2">*</span>
                                     Email Address:
                                 </label>
-                                <input type="email" name="contact[email]" id="email-address" placeholder="Email Address" class="w-full" required="" fdprocessedid="6xe95o" data-np-mark="1" data-np-intersection-state="observed">
+                                <input type="email" name="email" id="email-address" placeholder="Email Address" class="w-full" required="" fdprocessedid="6xe95o" data-np-mark="1" data-np-intersection-state="observed">
                             </div>
                 
 <div class="contact-form__fields__field field--text col-span-1 mb-[22px] lg:mb-0" data-field-id="order-number">
@@ -74,7 +74,7 @@
                                     
                                     Order Number:
                                 </label>
-                                <input type="text" name="contact[order-number]" id="order-number" placeholder="Order Number" class="w-full" fdprocessedid="zzwcph" data-np-mark="1" data-np-intersection-state="observed">
+                                <input type="text" name="contact" id="order-number" placeholder="Order Number" class="w-full" fdprocessedid="zzwcph" data-np-mark="1" data-np-intersection-state="observed">
                             </div>
                 
 <div class="contact-form__fields__field field--textarea col-span-2 mb-[22px] lg:mb-0" data-field-id="message">
@@ -82,7 +82,7 @@
                                     <span class="text-citron-primary inline-block mr-2">*</span>
                                     Message
                                 </label>
-                                <textarea maxlength="500" name="contact[message]" id="message" placeholder="Type your message here (500 character limit)" class="w-full h-[150px]" required="" data-np-mark="1" data-np-intersection-state="observed"></textarea>
+                                <textarea maxlength="500" name="message" id="message" placeholder="Type your message here (500 character limit)" class="w-full h-[150px]" required="" data-np-mark="1" data-np-intersection-state="observed"></textarea>
                             </div>
                     
                 
@@ -144,7 +144,7 @@
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453110" data-href="https://www.instagram.com/reel/DDIHFnNukqT/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18070487911579367_thumb.jpg" alt="K-beauty best-sellers that are actually popular in Korea! Let’s break down why they are ✨ viral-worthy✨ and which one might become your next holy grail...😍 
 
@@ -179,7 +179,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--image">
-        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10453025" data-href="https://www.instagram.com/p/DDHYrToIPYV/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="carousel" data-media-type="image">
                 <picture>
                     <source type="image/webp" data-srcset="" data-sizes="100w" data-ll-status="entered" class="entered" sizes="100w">
@@ -204,7 +204,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452628" data-href="https://www.instagram.com/reel/DDFvKFtOijd/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18065456026688231_thumb.jpg" alt="For our rosacea-prone cherubs with sensitive skin, meet our gentle and soothing top-picks for skin that needs a little extra love!💖
 
@@ -235,7 +235,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10452081" data-href="https://www.instagram.com/reel/DC9vUcNujzI/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17904967569063389_thumb.jpg" alt="We are back with a ‘Korea vs global skincare’ part 2! 🇰🇷🌎 Which of these viral skincare products are your top picks? 🙌
 
@@ -264,7 +264,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451158" data-href="https://www.instagram.com/reel/DC7JUoXu5II/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18027468473226417_thumb.jpg" alt="Skin Cupid’s pop up is coming next week! 👀✨ Get ready for K-beauty best-sellers, new exciting arrivals, and freebies! We can’t wait to meet our Cherubs 🙌
 
@@ -300,7 +300,7 @@ We will be giving out goodie bags worth £200 on the following days:
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451159" data-href="https://www.instagram.com/reel/DC4kQ9Mupth/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/17892597363104192_thumb.jpg" alt="Tackling closed comedones isn’t for the weak but its nothing a good skincare routine can’t handle! ✨Don’t have one? No (pore)blem! We’re sharing 3 holy grails your skin will thank you for! 🙌
 
@@ -330,7 +330,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451160" data-href="https://www.instagram.com/reel/DC2DqKEOdnK/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18473581711001780_thumb.jpg" alt="Happy Black Friday Cherubs!🎉 This year, we’re rolling out our biggest sale yet to help your skincare dreams come true!✨You can expect up to 40% off worldwide (no discount code needed)😍and a Buy One, Get One Free on our top-sellers!🙌
 
@@ -358,7 +358,7 @@ Stitched: @juliavocadotoast
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451161" data-href="https://www.instagram.com/reel/DCzgfxsOASF/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18018236564635389_thumb.jpg" alt="TIRTIR’s full range of 30 viral cushion foundation shades has officially landed at Skin Cupid! We’re thrilled that even more Cherubs can experience this incredible cushion 🌟
 
@@ -389,7 +389,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451162" data-href="https://www.instagram.com/reel/DCw1AUuusad/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18035783183462967_thumb.jpg" alt="A late night Korea vlog while Melody was out there! There’s nothing like a good convenience store trip and some instant ramen that satisfies late night cravings ☺️ 
 
@@ -426,7 +426,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451163" data-href="https://www.instagram.com/reel/DCrtKXQu5iO/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18069176722655981_thumb.jpg" alt="Big things are happening and the countdown to magic starts now! ✨ Can you guess what it could be? 👀🙌
 
@@ -457,7 +457,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451164" data-href="https://www.instagram.com/reel/DCpJgHMutA0/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18275602132216336_thumb.jpg" alt="Guess who’s back again 👀 Dr. Althea’s viral acne relief cream is finally back in stock and if you know, you KNOW there’s no other like it! 🙌
 
@@ -488,7 +488,7 @@ Available on Skin Cupid’s Website!
 			
 		</a>
 	</div><div class="showcase-grid-item showcase-grid-item--video">
-        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="https://www.skincupid.co.uk/pages/contact-us#">
+        <a class="showcase-grid-item-post square no-products" data-id="10451165" data-href="https://www.instagram.com/reel/DCmkfAVunpd/" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>#">
             <div class="showcase-grid-item-post-media" data-post-type="video" data-media-type="video">
                             <img data-src="https://public-showcase-media.sfo3.digitaloceanspaces.com/18030693905520415_thumb.jpg" alt="If you’ve wanted the Dior lip oil but aren’t a fan of the price tag…we got you! A juicy, non-sticky, protective lip oil... who does it better than TIRTIR? We’re totally obsessed!😍
 

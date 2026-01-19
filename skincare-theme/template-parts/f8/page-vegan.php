@@ -27,17 +27,17 @@
     <div class="overflow-x-auto py-3 w-full lg:hidden mobile-breadcrumbs"><nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li class="js-collection-breadcrumb" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-            <a href="https://www.skincupid.co.uk/collections/all-skincare" itemprop="item" title="ALL KOREAN SKINCARE" pa-marked="1"><span itemprop="name">ALL KOREAN SKINCARE</span></a>
+            <a href="<?php echo esc_url( home_url( "/collections/all-skincare" ) ); ?>" itemprop="item" title="ALL KOREAN SKINCARE" pa-marked="1"><span itemprop="name">ALL KOREAN SKINCARE</span></a>
             <meta itemprop="position" content="2">
         </li>
         <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-essence" itemprop="item" title="Vegan Kombucha Tea Essence (150ml)" aria-current="page" pa-marked="1"><span itemprop="name">Vegan Kombucha Tea Essence (150ml)</span></a>
+        <a href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-essence" ) ); ?>" itemprop="item" title="Vegan Kombucha Tea Essence (150ml)" aria-current="page" pa-marked="1"><span itemprop="name">Vegan Kombucha Tea Essence (150ml)</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav></div>
@@ -101,17 +101,17 @@
 <div class="hidden w-full lg:flex lg:mb-2.5"><nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li class="js-collection-breadcrumb" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-            <a href="https://www.skincupid.co.uk/collections/all-skincare" itemprop="item" title="ALL KOREAN SKINCARE" pa-marked="1"><span itemprop="name">ALL KOREAN SKINCARE</span></a>
+            <a href="<?php echo esc_url( home_url( "/collections/all-skincare" ) ); ?>" itemprop="item" title="ALL KOREAN SKINCARE" pa-marked="1"><span itemprop="name">ALL KOREAN SKINCARE</span></a>
             <meta itemprop="position" content="2">
         </li>
         <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-essence" itemprop="item" title="Vegan Kombucha Tea Essence (150ml)" aria-current="page" pa-marked="1"><span itemprop="name">Vegan Kombucha Tea Essence (150ml)</span></a>
+        <a href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-essence" ) ); ?>" itemprop="item" title="Vegan Kombucha Tea Essence (150ml)" aria-current="page" pa-marked="1"><span itemprop="name">Vegan Kombucha Tea Essence (150ml)</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav></div>
@@ -130,7 +130,7 @@
               
 <div class="flex flex-col gap-3 lg:gap-1">
                 
-                  <span class="font-extrabold uppercase text-lg-xl text-primary font-heading"><a href="https://www.skincupid.co.uk/collections/vendors?q=DR%20CEURACLE" title="DR CEURACLE" pa-marked="1">DR CEURACLE</a></span>
+                  <span class="font-extrabold uppercase text-lg-xl text-primary font-heading"><a href="<?php echo esc_url( home_url( "/collections/vendors?q=DR%20CEURACLE" ) ); ?>" title="DR CEURACLE" pa-marked="1">DR CEURACLE</a></span>
                 
                 
                 <h1 class="font-extrabold h4 lg:h3">Vegan Kombucha Tea Essence (150ml)</h1>
@@ -153,7 +153,7 @@
                 <p>Say hello to nourishing, multifunctional skincare! A truly unique and multi-tasking product, DR CEURACLE’s Kombucha Tea Essence can be applied as either a toner, or as an essence-cream hybrid. The formula contains a cocktail of star ingredients, including a high concentration (780,000ppm) of the brand’s...<button type="button" class="inline-flex ml-1 underline text-primary js-read-more-btn" pa-marked="1" fdprocessedid="iyhaa8q">Read more</button></p>
               </div>
 
-<div><form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-form-template--21252932960491__product" accept-charset="UTF-8" class="flex flex-col product-main-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form" data-np-intersection-state="observed"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40763173175486">
+<div><form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-form-template--21252932960491__product" accept-charset="UTF-8" class="flex flex-col product-main-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form" data-np-intersection-state="observed"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40763173175486">
                   <input type="hidden" name="product_id" value="6999714332862"><div class="mb-4">
                     <div class="flex gap-1 w-full h-10">
                       
@@ -587,7 +587,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-gel-cream-75ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7000384831678&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-gel-cream-75ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7000384831678&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/Dr.Ceuracle-Kombucha_Tea_Gel_Cream.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_350x.jpg?v=1760352073 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_450x.jpg?v=1760352073 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_750x.jpg?v=1760352073 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_1000x.jpg?v=1760352073 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream.jpg?v=1760352073&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Vegan Kombucha Tea Gel Cream (75ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_350x.jpg?v=1760352073 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_450x.jpg?v=1760352073 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_750x.jpg?v=1760352073 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Gel_Cream_1000x.jpg?v=1760352073 1000w">
@@ -700,7 +700,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7000384831678" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40765129097406">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7000384831678" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="40765129097406">
       <input type="hidden" name="product_id" value="7000384831678">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="y7yypa"><span class="hidden lg:contents">
@@ -753,7 +753,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-beginning-set?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7917862846699&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-beginning-set?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7917862846699&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/Dr.Ceuracle-Kombucha_Tea_Beginning_Set.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_1000x.jpg?v=1760352105 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set.jpg?v=1760352105&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Vegan Kombucha Beginning Set" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Kombucha_Tea_Beginning_Set_1000x.jpg?v=1760352105 1000w">
@@ -866,7 +866,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7917862846699" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43533346472171">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7917862846699" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43533346472171">
       <input type="hidden" name="product_id" value="7917862846699">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="kf448q"><span class="hidden lg:contents">
@@ -919,7 +919,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/axis-y-artichoke-intensive-skin-barrier-ampoule-30ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7658323345643&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/axis-y-artichoke-intensive-skin-barrier-ampoule-30ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7658323345643&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_350x.jpg?v=1760352091 350w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_450x.jpg?v=1760352091 450w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_750x.jpg?v=1760352091 750w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_1000x.jpg?v=1760352091 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml.jpg?v=1760352091&amp;width=550" width="2000" height="2000" alt="AXIS-Y Artichoke Intensive Skin Barrier Ampoule (30ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_350x.jpg?v=1760352091 350w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_450x.jpg?v=1760352091 450w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_750x.jpg?v=1760352091 750w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YArtichokeIntensiveSkinBarrierAmpoule_30ml_1000x.jpg?v=1760352091 1000w">
@@ -1030,7 +1030,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7658323345643" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="42731693965547">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7658323345643" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="42731693965547">
       <input type="hidden" name="product_id" value="7658323345643">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="i5037"><span class="hidden lg:contents">
@@ -1083,7 +1083,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-gel-cream-mini-15ml?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7929478709483&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-gel-cream-mini-15ml?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7929478709483&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_1000x.jpg?v=1760352105 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml.jpg?v=1760352105&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Vegan Kombucha Tea Gel Cream Mini (15ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_350x.jpg?v=1760352105 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_450x.jpg?v=1760352105 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_750x.jpg?v=1760352105 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Gel_mini_15ml_1000x.jpg?v=1760352105 1000w">
@@ -1196,7 +1196,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7929478709483" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43563925340395">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7929478709483" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43563925340395">
       <input type="hidden" name="product_id" value="7929478709483">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="3vuxh8"><span class="hidden lg:contents">
@@ -1249,7 +1249,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/axis-y-pha-resurfacing-glow-peel-50ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7783510606059&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/axis-y-pha-resurfacing-glow-peel-50ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7783510606059&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/AXIS-YPHAResurfacingGlowPeel_50ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_1000x.jpg?v=1760352096 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml.jpg?v=1760352096&amp;width=550" width="2000" height="2000" alt="AXIS-Y PHA Resurfacing Glow Peel (50ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/AXIS-YPHAResurfacingGlowPeel_50ml_1000x.jpg?v=1760352096 1000w">
@@ -1360,7 +1360,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7783510606059" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43139338600683">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7783510606059" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="43139338600683">
       <input type="hidden" name="product_id" value="7783510606059">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0" fdprocessedid="xlctuhj"><span class="hidden lg:contents">
@@ -1413,7 +1413,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/molvany-artichoke-soothing-acne-pore-toner-pad?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=8770839544043&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/molvany-artichoke-soothing-acne-pore-toner-pad?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=8770839544043&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/MolvanyArtichokeSoothingAcnePoreTonerPad.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_1000x.jpg?v=1760352289 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad.jpg?v=1760352289&amp;width=550" width="2000" height="2000" alt="MOLVANY Artichoke Soothing Acne Pore Toner Pad" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_350x.jpg?v=1760352289 350w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_450x.jpg?v=1760352289 450w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_750x.jpg?v=1760352289 750w, //www.skincupid.co.uk/cdn/shop/files/MolvanyArtichokeSoothingAcnePoreTonerPad_1000x.jpg?v=1760352289 1000w">
@@ -1511,7 +1511,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8770839544043" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="45899424432363">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8770839544043" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="45899424432363">
       <input type="hidden" name="product_id" value="8770839544043">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0"><span class="hidden lg:contents">
@@ -1564,7 +1564,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-lip-balm-3-7g?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7690943627499&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-lip-balm-3-7g?pr_prod_strat=e5_desc&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=7690943627499&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/vegan/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_1000x.jpg?v=1760352096 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm.jpg?v=1760352096&amp;width=550" width="2000" height="2000" alt="DR CEURACLE Vegan Kombucha Tea Lip Balm (3.7g)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_350x.jpg?v=1760352096 350w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_450x.jpg?v=1760352096 450w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_750x.jpg?v=1760352096 750w, //www.skincupid.co.uk/cdn/shop/files/Dr.Ceuracle-Vegan_Kombucha_Tea_Lip_Balm_1000x.jpg?v=1760352096 1000w">
@@ -1677,7 +1677,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-7690943627499" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="42837632680171">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-7690943627499" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="42837632680171">
       <input type="hidden" name="product_id" value="7690943627499">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0"><span class="hidden lg:contents">
@@ -1730,7 +1730,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
 
 
 <div class="product-card relative flex flex-col h-full pt-3">
-  <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/dr-althea-amino-acid-gentle-bubble-cleanser-140ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=8311450173675&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform">
+  <a class="flex flex-col w-full" href="<?php echo esc_url( home_url( "/products/dr-althea-amino-acid-gentle-bubble-cleanser-140ml?pr_prod_strat=jac&amp;pr_rec_id=ec764dfa5&amp;pr_rec_pid=8311450173675&amp;pr_ref_pid=6999714332862&amp;pr_seq=uniform" ) ); ?>">
     <div class="relative rounded-[10px] group">
       
         <img src="https://www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml.jpg?v=1760352212&amp;width=550" data-srcset="//www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_350x.jpg?v=1760352212 350w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_450x.jpg?v=1760352212 450w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_750x.jpg?v=1760352212 750w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_1000x.jpg?v=1760352212 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml.jpg?v=1760352212&amp;width=550" width="2000" height="2000" alt="Dr.ALTHEA Amino Acid Gentle Bubble Cleanser (140ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes lazyloaded" style="aspect-ratio:9/10;" sizes="316px" srcset="//www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_350x.jpg?v=1760352212 350w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_450x.jpg?v=1760352212 450w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_750x.jpg?v=1760352212 750w, //www.skincupid.co.uk/cdn/shop/files/DR._ALTHEA_Amino_Acid_Gentle_Bubble_Cleanser_140ml_1000x.jpg?v=1760352212 1000w">
@@ -1843,7 +1843,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
           <div class="atc-wrapper block z-[1] ml-auto">
             
               
-<form method="post" action="https://www.skincupid.co.uk/cart/add" id="product-card-form-8311450173675" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="44795353235691">
+<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>" id="product-card-form-8311450173675" accept-charset="UTF-8" class="product-card-form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" class="single-variant" name="id" value="44795353235691">
       <input type="hidden" name="product_id" value="8311450173675">
       <input type="hidden" id="quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" class="btn btn-add min-h-[38px] max-lg:!py-2.5 max-lg:!px-3 js-atc-btn w-fit !translate-y-0"><span class="hidden lg:contents">
@@ -1941,7 +1941,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
             <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget jdgm--done-setup-widget" data-id="6999714332862" data-widget-name="review_widget" data-impressions-tracked="true" data-views-tracked="true"> 
             <div class="jdgm-rev-widg" data-updated-at="2025-12-24T23:38:32Z" data-average-rating="4.92" data-number-of-reviews="38" data-number-of-questions="0" data-image-url="https://cdn.shopify.com/s/files/1/0267/7676/4606/files/Dr.Ceuracle-Vean_Kombucha_Tea_Essence.jpg?v=1760352073"> <style class="jdgm-temp-hiding-style">.jdgm-rev-widg{ display: none }</style> <div class="jdgm-rev-widg__header"> <h2 class="jdgm-rev-widg__title">Customer Reviews</h2>  <div class="jdgm-row-stars"><div class="jdgm-rev-widg__summary"><div class="jdgm-rev-widg__summary-inner"> <div class="jdgm-rev-widg__summary-stars" aria-label="Average rating is 4.92 stars" role="img"> <span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span> <span class="jdgm-rev-widg__summary-average"><a class="jdgm-link" target="_blank" href="https://app.judge.me/reviews/stores/www.skincupid.co.uk">4.92 out of 5</a></span></div> <div class="jdgm-rev-widg__summary-text">Based on 38 reviews</div> </div></div><div class="jdgm-histogram jdgm-temp-hidden">  <div class="jdgm-histogram__row" data-rating="5" data-frequency="35" data-percentage="92">  <div class="jdgm-histogram__star" role="button" aria-label="92% (35) reviews with 5 star rating" tabindex="0" fdprocessedid="0gocpi"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span></div> <div class="jdgm-histogram__bar"> <div class="jdgm-histogram__bar-content" style="width: 92%;"> </div> </div>  <div class="jdgm-histogram__frequency">35</div> </div>  <div class="jdgm-histogram__row" data-rating="4" data-frequency="3" data-percentage="8">  <div class="jdgm-histogram__star" role="button" aria-label="8% (3) reviews with 4 star rating" tabindex="0" fdprocessedid="t7ds7"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--off"></span></div> <div class="jdgm-histogram__bar"> <div class="jdgm-histogram__bar-content" style="width: 8%;"> </div> </div>  <div class="jdgm-histogram__frequency">3</div> </div>  <div class="jdgm-histogram__row" data-rating="3" data-frequency="0" data-percentage="0">  <div class="jdgm-histogram__star" role="button" aria-label="0% (0) reviews with 3 star rating" tabindex="0" fdprocessedid="6g53w"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span></div> <div class="jdgm-histogram__bar"> <div class="jdgm-histogram__bar-content" style="width: 0%;"> </div> </div>  <div class="jdgm-histogram__frequency">0</div> </div>  <div class="jdgm-histogram__row" data-rating="2" data-frequency="0" data-percentage="0">  <div class="jdgm-histogram__star" role="button" aria-label="0% (0) reviews with 2 star rating" tabindex="0" fdprocessedid="15p4z8"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span></div> <div class="jdgm-histogram__bar"> <div class="jdgm-histogram__bar-content" style="width: 0%;"> </div> </div>  <div class="jdgm-histogram__frequency">0</div> </div>  <div class="jdgm-histogram__row" data-rating="1" data-frequency="0" data-percentage="0">  <div class="jdgm-histogram__star" role="button" aria-label="0% (0) reviews with 1 star rating" tabindex="0" fdprocessedid="6o2fr9"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span><span class="jdgm-star jdgm--off"></span></div> <div class="jdgm-histogram__bar"> <div class="jdgm-histogram__bar-content" style="width: 0%;"> </div> </div>  <div class="jdgm-histogram__frequency">0</div> </div>  <div class="jdgm-histogram__row jdgm-histogram__clear-filter" data-rating="null" tabindex="0">See all reviews</div> </div><div class="jdgm-widget-actions-wrapper">
   
-<a style="" href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-essence#" class="jdgm-write-rev-link" role="button" pa-marked="1" aria-expanded="false">Write a review</a></div>
+<a style="" href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-essence#" ) ); ?>" class="jdgm-write-rev-link" role="button" pa-marked="1" aria-expanded="false">Write a review</a></div>
 </div>
 
 <div class="jdgm-form-wrapper" style="display: none">
@@ -2028,7 +2028,7 @@ Camellia Sinensis Leaf Water / Aqua, Camellia Sinensis Leaf Extract, Saccharomyc
     </div>
 
     <div class="jdgm-form__fieldset jdgm-form__fieldset-actions">
-      <a href="https://www.skincupid.co.uk/products/dr-ceuracle-vegan-kombucha-tea-essence#judgeme_product_reviews" role="button" class="jdgm-btn jdgm-btn--border jdgm-cancel-rev ">Cancel review</a>
+      <a href="<?php echo esc_url( home_url( "/products/dr-ceuracle-vegan-kombucha-tea-essence#judgeme_product_reviews" ) ); ?>" role="button" class="jdgm-btn jdgm-btn--border jdgm-cancel-rev ">Cancel review</a>
       <input type="submit" class="jdgm-btn jdgm-btn--solid jdgm-submit-rev " value="Submit Review">
     </div>
   </form>

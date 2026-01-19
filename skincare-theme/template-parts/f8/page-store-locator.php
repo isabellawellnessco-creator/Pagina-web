@@ -11,12 +11,12 @@
             <div class="flex justify-center lg:justify-start w-full container !px-0"><nav role="navigation" aria-label="breadcrumbs">
     <ol class="flex flex-row items-center gap-2 text-secondary uppercase text-xs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
+        <a href="<?php echo esc_url( home_url( "/" ) ); ?>" itemprop="item" title="Home" pa-marked="1"><span itemprop="name">Home</span></a>
         <meta itemprop="position" content="1">
     </li>
     <li class=""><span aria-hidden="true" class="flex">|</span></li>
 <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-        <a href="https://www.skincupid.co.uk/pages/store-locator" itemprop="item" title="Store Locator" aria-current="page" pa-marked="1"><span itemprop="name">Store Locator</span></a>
+        <a href="<?php echo esc_url( home_url( "/pages/store-locator" ) ); ?>" itemprop="item" title="Store Locator" aria-current="page" pa-marked="1"><span itemprop="name">Store Locator</span></a>
         <meta itemprop="position" content="2">
     </li></ol>
 </nav></div>

@@ -1186,3 +1186,243 @@
         display: none !important;
     }
 }
+
+/* =========================================
+   Rewards Page Sections (New Replica)
+   ========================================= */
+
+/* Hero Section */
+.sk-rewards-hero {
+    position: relative;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #F8F5F1; /* Background Main */
+    color: #0F3062; /* Text Primary */
+    overflow: hidden;
+}
+
+.sk-rewards-hero__bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    /* Placeholder for background image */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+}
+
+.sk-rewards-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sk-rewards-hero__title {
+    font-family: 'Quincy', serif; /* Atlas Heading Font */
+    font-size: 3rem;
+    color: #E5757E; /* Heading Primary */
+    margin-bottom: 20px;
+}
+
+.sk-rewards-hero__subtitle {
+    font-size: 1.2rem;
+    color: #0F3062;
+    margin-bottom: 30px;
+}
+
+.sk-rewards-hero__status {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(15, 48, 98, 0.08);
+}
+
+.sk-rewards-hero__points {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #E5757E;
+    line-height: 1;
+}
+
+.sk-rewards-hero__label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    color: #7f8a9b;
+}
+
+.sk-rewards-hero__actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Steps (How it works) */
+.sk-rewards-steps {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sk-section-title {
+    font-family: 'Quincy', serif;
+    font-size: 2.5rem;
+    color: #0F3062;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sk-rewards-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.sk-rewards-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sk-rewards-step__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #E5757E;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sk-rewards-step h3 {
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+/* VIP Tiers Table */
+.sk-rewards-tiers {
+    padding: 60px 20px;
+    background: #fff;
+}
+
+.sk-rewards-tiers__table {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sk-tier-header, .sk-tier-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.sk-tier-header {
+    background: #F8F5F1;
+    border-bottom: 2px solid #eee;
+}
+
+.sk-tier-header h3 {
+    margin: 0;
+    color: #0F3062;
+    font-size: 1.2rem;
+}
+
+.sk-tier-header span {
+    display: block;
+    font-size: 0.85rem;
+    color: #E5757E;
+    margin-top: 5px;
+}
+
+.sk-tier-row {
+    border-bottom: 1px solid #eee;
+}
+
+.sk-tier-row:last-child {
+    border-bottom: none;
+}
+
+.sk-tier-col.sk-tier-label {
+    text-align: left;
+    font-weight: bold;
+    color: #0F3062;
+    padding-left: 20px;
+}
+
+/* Ways to Earn Grid */
+.sk-rewards-earn {
+    padding: 60px 20px;
+    background: #F8F5F1;
+}
+
+.sk-rewards-earn__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sk-earn-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.sk-earn-card:hover {
+    transform: translateY(-5px);
+}
+
+.sk-earn-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sk-earn-card h4 {
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+.sk-earn-card p {
+    color: #E5757E;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sk-rewards-steps__grid,
+    .sk-tier-header, .sk-tier-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Stack table for mobile or make scrollable */
+    .sk-rewards-tiers__table {
+        overflow-x: auto;
+    }
+
+    .sk-tier-header, .sk-tier-row {
+        min-width: 600px; /* Force scroll */
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+}

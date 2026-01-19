@@ -83,13 +83,16 @@ class Loader {
 	}
 
 	public function register_widgets( $widgets_manager ) {
+		// Require Manual Widgets (Multi-class files)
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/class-rewards-page-sections.php';
+
 		// General Sections
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Hero_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Grid() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Wishlist_Grid() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Dashboard() );
+		// $widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Dashboard() ); // Deprecated
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Search() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Castle() );
+		// $widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Castle() ); // Deprecated
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Contact_Section() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\FAQ_Accordion() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Shipping_Table() );
@@ -100,10 +103,16 @@ class Loader {
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Concern_Grid() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Brand_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Instagram_Feed() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Catalog() );
-		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Actions() );
+		// $widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Earn_Redeem() ); // Deprecated
+		// $widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Catalog() ); // Deprecated
+		// $widgets_manager->register( new \Skincare\SiteKit\Widgets\Rewards_Actions() ); // Deprecated
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Tabs() );
+
+		// New Rewards Page Sections (HTML Replica)
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Sk_Rewards_Hero_Section() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Sk_Rewards_How_It_Works_Section() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Sk_Rewards_VIP_Tiers_Section() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Sk_Rewards_Ways_To_Earn_Section() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Ajax_Filter() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Gallery() );
 

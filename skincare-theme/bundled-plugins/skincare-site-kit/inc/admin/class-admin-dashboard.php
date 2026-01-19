@@ -225,7 +225,7 @@ class Admin_Dashboard {
 								'elementor_pro' => [
 									'label' => __( 'Elementor Pro (opcional)', 'skincare' ),
 									'ok' => $elementor_pro_active,
-									'help' => __( 'Habilita Theme Builder avanzado y widgets WooCommerce extra.', 'skincare' ),
+									'help' => __( 'Habilita Theme Builder avanzado y secciones WooCommerce extra.', 'skincare' ),
 									'action' => 'https://elementor.com/pro/',
 								]
 							];

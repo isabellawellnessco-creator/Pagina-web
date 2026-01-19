@@ -63,7 +63,7 @@ class Admin_Onboarding {
 				'categories' => __( 'Configurando categorías...', 'skincare' ),
 				'products' => __( 'Revisando productos demo...', 'skincare' ),
 				'theme_parts' => __( 'Construyendo Theme Builder...', 'skincare' ),
-				'elementor_widgets' => __( 'Verificando widgets de Elementor...', 'skincare' ),
+				'elementor_widgets' => __( 'Verificando secciones de Elementor...', 'skincare' ),
 				'menus' => __( 'Asignando menús...', 'skincare' ),
 				'finalize' => __( 'Finalizando...', 'skincare' ),
 			]
@@ -239,7 +239,7 @@ class Admin_Onboarding {
 				'label' => __( 'Elementor Pro', 'skincare' ),
 				'active' => is_plugin_active( 'elementor-pro/elementor-pro.php' ),
 				'required' => false,
-				'help' => __( 'Opcional. Habilita Theme Builder avanzado y widgets WooCommerce extra.', 'skincare' ),
+				'help' => __( 'Opcional. Habilita Theme Builder avanzado y secciones WooCommerce extra.', 'skincare' ),
 				'action' => 'https://elementor.com/pro/',
 			],
 		];
@@ -294,8 +294,8 @@ class Admin_Onboarding {
 				<div class="sk-onboarding-content">
 					<div class="sk-section-header">
 						<div>
-							<strong><?php _e( 'Widgets de Elementor', 'skincare' ); ?></strong>
-							<p><?php _e( 'Comprueba que los widgets de Skin Cupid están disponibles en Elementor.', 'skincare' ); ?></p>
+							<strong><?php _e( 'Secciones de Elementor', 'skincare' ); ?></strong>
+							<p><?php _e( 'Comprueba que las secciones de Skin Cupid están disponibles en Elementor.', 'skincare' ); ?></p>
 						</div>
 						<span class="sk-chip <?php echo empty( $widget_status['missing'] ) && $widget_status['loaded'] ? 'sk-chip--ok' : 'sk-chip--warn'; ?>">
 							<?php echo empty( $widget_status['missing'] ) && $widget_status['loaded'] ? esc_html__( 'Listo', 'skincare' ) : esc_html__( 'Requiere revisión', 'skincare' ); ?>
@@ -305,7 +305,7 @@ class Admin_Onboarding {
 						<div class="sk-msg sk-msg--error">
 							<div>
 								<strong><?php _e( 'Elementor no está activo.', 'skincare' ); ?></strong>
-								<p><?php _e( 'Activa Elementor para registrar los widgets del kit.', 'skincare' ); ?></p>
+								<p><?php _e( 'Activa Elementor para registrar las secciones del kit.', 'skincare' ); ?></p>
 							</div>
 						</div>
 					<?php endif; ?>
@@ -321,7 +321,7 @@ class Admin_Onboarding {
 					</ul>
 					<div class="sk-inline-actions">
 						<button type="button" class="button button-secondary" id="sk-recheck-widgets">
-							<?php _e( 'Reintentar widgets', 'skincare' ); ?>
+							<?php _e( 'Reintentar secciones', 'skincare' ); ?>
 						</button>
 						<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=sk-onboarding&mode=repair' ) ); ?>">
 							<?php _e( 'Ejecutar reparación completa', 'skincare' ); ?>
@@ -530,7 +530,7 @@ class Admin_Onboarding {
 
 		$manager = \Elementor\Plugin::instance()->widgets_manager;
 		if ( ! $manager || ! method_exists( $manager, 'register' ) ) {
-			throw new \Exception( __( 'No se pudo acceder al gestor de widgets de Elementor.', 'skincare' ) );
+			throw new \Exception( __( 'No se pudo acceder al gestor de secciones de Elementor.', 'skincare' ) );
 		}
 
 		$registered = $manager->get_widget_types();
@@ -556,7 +556,7 @@ class Admin_Onboarding {
 		}
 
 		if ( ! empty( $missing ) ) {
-			throw new \Exception( sprintf( __( 'Widgets faltantes: %s', 'skincare' ), implode( ', ', $missing ) ) );
+			throw new \Exception( sprintf( __( 'Secciones faltantes: %s', 'skincare' ), implode( ', ', $missing ) ) );
 		}
 	}
 }

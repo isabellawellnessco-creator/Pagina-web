@@ -5,8 +5,8 @@
 ?>
 
 <main id="MainContent" role="main" tabindex="-1">
-      <section id="shopify-section-template--21252938727659__loyalty_hero_YpFFUX" class="shopify-section"><script src="./Rewa_files/anime.min.js.download" defer=""></script>
-<script src="./Rewa_files/loyalty-hero.js.download" defer=""></script>
+      <section id="shopify-section-template--21252938727659__loyalty_hero_YpFFUX" class="shopify-section"><script src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/anime.min.js.download' ) ); ?>" defer=""></script>
+<script src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/loyalty-hero.js.download' ) ); ?>" defer=""></script>
 <div class="overflow-auto max-lg:no-scrollbar max-w-[100vw]" data-scroll-element="">
   <div class="loyalty-hero min-h-[566px] max-h-[566px] lg:min-h-[740px] lg:max-h-none aspect-[1080/550] lg:aspect-[40/21] relative">
     
@@ -20,10 +20,10 @@
       </a>
     
     
-      <img src="./Rewa_files/cupid-world-logo.png" alt="Cupid world logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/cupid-world-logo.png?v=1756501703&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/cupid-world-logo.png?v=1756501703&amp;width=500 500w" width="500" height="273" class="sticky mt-[-20px] lg:mt-0 lg:absolute top-5 left-[calc(100vw-165px)] lg:top-15 lg:left-auto lg:right-15 w-[135px] lg:w-[145px] lg:w-[240px] h-auto z-[5]" draggable="false">
+      <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/cupid-world-logo.png' ) ); ?>" alt="Cupid world logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/cupid-world-logo.png?v=1756501703&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/cupid-world-logo.png?v=1756501703&amp;width=500 500w" width="500" height="273" class="sticky mt-[-20px] lg:mt-0 lg:absolute top-5 left-[calc(100vw-165px)] lg:top-15 lg:left-auto lg:right-15 w-[135px] lg:w-[145px] lg:w-[240px] h-auto z-[5]" draggable="false">
     
     
-      <video playsinline="true" class="absolute top-0 left-0 w-full h-full object-cover translate-z-0" autoplay="autoplay" loop="loop" muted="muted" preload="metadata" aria-label="Hero bg mobile copy 2 image" poster="//www.skincupid.co.uk/cdn/shop/files/preview_images/ecbc6fe0d4cd4790bb623157737a2297.thumbnail.0000000000_small.jpg?v=1756801994"><source src="//www.skincupid.co.uk/cdn/shop/videos/c/vp/ecbc6fe0d4cd4790bb623157737a2297/ecbc6fe0d4cd4790bb623157737a2297.HD-720p-4.5Mbps-56638436.mp4?v=0" type="video/mp4"><img alt="Hero bg mobile copy 2 image" src="./Rewa_files/ecbc6fe0d4cd4790bb623157737a2297.thumbnail.0000000000_small.jpg"></video>
+      <video playsinline="true" class="absolute top-0 left-0 w-full h-full object-cover translate-z-0" autoplay="autoplay" loop="loop" muted="muted" preload="metadata" aria-label="Hero bg mobile copy 2 image" poster="//www.skincupid.co.uk/cdn/shop/files/preview_images/ecbc6fe0d4cd4790bb623157737a2297.thumbnail.0000000000_small.jpg?v=1756801994"><source src="//www.skincupid.co.uk/cdn/shop/videos/c/vp/ecbc6fe0d4cd4790bb623157737a2297/ecbc6fe0d4cd4790bb623157737a2297.HD-720p-4.5Mbps-56638436.mp4?v=0" type="video/mp4"><img alt="Hero bg mobile copy 2 image" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ecbc6fe0d4cd4790bb623157737a2297.thumbnail.0000000000_small.jpg' ) ); ?>"></video>
     
     
       
@@ -34,7 +34,7 @@
             --mobile-height: 210px;
             ">
           
-          <img src="./Rewa_files/foreground-tree.png" alt="Foreground tree image" srcset="//www.skincupid.co.uk/cdn/shop/files/foreground-tree.png?height=376&amp;v=1756492200 352w, //www.skincupid.co.uk/cdn/shop/files/foreground-tree.png?height=420&amp;v=1756492200 393w" width="393" height="420" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/foreground-tree.png' ) ); ?>" alt="Foreground tree image" srcset="//www.skincupid.co.uk/cdn/shop/files/foreground-tree.png?height=376&amp;v=1756492200 352w, //www.skincupid.co.uk/cdn/shop/files/foreground-tree.png?height=420&amp;v=1756492200 393w" width="393" height="420" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
         </div>
       
       
@@ -53,7 +53,7 @@
             <span class="text-[14px] leading-[20px]">Start Here</span>
           </div>
           
-          <img src="./Rewa_files/cabin2.png" alt="Cabin2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/cabin2.png?height=392&amp;v=1758644753 352w, //www.skincupid.co.uk/cdn/shop/files/cabin2.png?height=640&amp;v=1758644753 574w" width="574" height="640" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/cabin2.png' ) ); ?>" alt="Cabin2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/cabin2.png?height=392&amp;v=1758644753 352w, //www.skincupid.co.uk/cdn/shop/files/cabin2.png?height=640&amp;v=1758644753 574w" width="574" height="640" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
         </a>
       
     
@@ -65,7 +65,7 @@
             --mobile-height: 120px;
             ">
           
-          <img src="./Rewa_files/Foreground_2.png" alt="Foreground 2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Foreground_2.png?height=280&amp;v=1756495423 280w" width="280" height="280" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Foreground_2.png' ) ); ?>" alt="Foreground 2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Foreground_2.png?height=280&amp;v=1756495423 280w" width="280" height="280" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
         </div>
       
       
@@ -84,7 +84,7 @@
             <span class="text-[14px] leading-[20px]">Spend £600</span>
           </div>
           
-          <img src="./Rewa_files/Cupid_Castle_1.png" alt="" srcset="//www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=248&amp;v=1758549138 352w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=588&amp;v=1758549138 832w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=848&amp;v=1758549138 1200w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=920&amp;v=1758549138 1301w" width="1301" height="920" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Cupid_Castle_1.png' ) ); ?>" alt="" srcset="//www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=248&amp;v=1758549138 352w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=588&amp;v=1758549138 832w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=848&amp;v=1758549138 1200w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Castle_1.png?height=920&amp;v=1758549138 1301w" width="1301" height="920" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
         </a>
       
     
@@ -96,7 +96,7 @@
             --mobile-height: 160px;
             ">
           
-          <img src="./Rewa_files/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png" alt="Foreground 3 401cf352 c3dd 42a3 8050 3f12525713b9 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png?height=432&amp;v=1756742021 352w, //www.skincupid.co.uk/cdn/shop/files/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png?height=480&amp;v=1756742021 391w" width="391" height="480" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png' ) ); ?>" alt="Foreground 3 401cf352 c3dd 42a3 8050 3f12525713b9 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png?height=432&amp;v=1756742021 352w, //www.skincupid.co.uk/cdn/shop/files/Foreground_3_401cf352-c3dd-42a3-8050-3f12525713b9.png?height=480&amp;v=1756742021 391w" width="391" height="480" class="w-auto h-[var(--mobile-height)] lg:h-[var(--height)]" draggable="false">
         </div>
       
       
@@ -115,7 +115,7 @@
             <span class="text-[14px] leading-[20px]">Spend £300</span>
           </div>
           
-          <img src="./Rewa_files/Cupid_Manor_house_1_1.png" alt="" srcset="//www.skincupid.co.uk/cdn/shop/files/Cupid_Manor_house_1_1.png?height=276&amp;v=1758550724 352w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Manor_house_1_1.png?height=520&amp;v=1758550724 663w" width="663" height="520" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Cupid_Manor_house_1_1.png' ) ); ?>" alt="" srcset="//www.skincupid.co.uk/cdn/shop/files/Cupid_Manor_house_1_1.png?height=276&amp;v=1758550724 352w, //www.skincupid.co.uk/cdn/shop/files/Cupid_Manor_house_1_1.png?height=520&amp;v=1758550724 663w" width="663" height="520" class="h-[var(--mobile-height)] lg:h-[var(--height)] w-auto group-hover:drop-shadow-[0px_10px_10px_white]" draggable="false">
         </a>
       
     
@@ -197,7 +197,7 @@
         <h2 class="font-heading font-bold text-center mb-10">Available Rewards</h2>
         
         <div class="ll-embed text-center">
-            <div data-lion-rewards-list=""><div class="lion-isolator"><div class="lion-rewards-list"><div class="lion-reward-item lion-reward-item--checkout-redemption lion-reward-item--guest" data-reward-id="184964"><div class="lion-reward-item__content"><div class="lion-reward-item__icon lion-icon lion-icon__reward lion-icon__reward--checkout-redemption"></div><div class="lion-reward-item__title">Redeem your points when you checkout</div><div class="lion-reward-item__meta"><span data-i18n-key="ui.dashboard.redeem_points.checkout_redemption_points">100 points per <span class="lion-currency"><span class="lion-currency__value">£1</span></span></span></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224997" data-product-handle="anua-heartleaf-pore-control-cleansing-oil-200ml"><div class="lion-reward-item__content"><img src="./Rewa_files/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf Cleansing Oil</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="./Rewa_files/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg" alt="Photo of Heartleaf Cleansing Oil"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-pore-control-cleansing-oil-200ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224998" data-product-handle="anua-heartleaf-77-soothing-toner-250ml"><div class="lion-reward-item__content"><img src="./Rewa_files/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf 77% Soothing Toner</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="./Rewa_files/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg" alt="Photo of Heartleaf 77% Soothing Toner"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-77-soothing-toner-250ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div></div></div></div>
+            <div data-lion-rewards-list=""><div class="lion-isolator"><div class="lion-rewards-list"><div class="lion-reward-item lion-reward-item--checkout-redemption lion-reward-item--guest" data-reward-id="184964"><div class="lion-reward-item__content"><div class="lion-reward-item__icon lion-icon lion-icon__reward lion-icon__reward--checkout-redemption"></div><div class="lion-reward-item__title">Redeem your points when you checkout</div><div class="lion-reward-item__meta"><span data-i18n-key="ui.dashboard.redeem_points.checkout_redemption_points">100 points per <span class="lion-currency"><span class="lion-currency__value">£1</span></span></span></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224997" data-product-handle="anua-heartleaf-pore-control-cleansing-oil-200ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf Cleansing Oil</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_Pore_Control_Cleansing_Oil_200ml_renew_package.jpg' ) ); ?>" alt="Photo of Heartleaf Cleansing Oil"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-pore-control-cleansing-oil-200ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div><div class="lion-reward-item lion-reward-item--product-cart lion-reward-item--guest" data-reward-id="224998" data-product-handle="anua-heartleaf-77-soothing-toner-250ml"><div class="lion-reward-item__content"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" style="object-fit: cover; height: 42px; width: 42px; border-radius: 4px;"><div class="lion-reward-item__title">Heartleaf 77% Soothing Toner</div><div class="lion-reward-item__meta"><span class="lion-reward-item__percent-off" data-i18n-key="ui.dashboard.redeem_points.free_product">Free product</span><span class="lion-reward-item__cost"><span data-i18n-key="ui.general.points_count"><span class="value">700</span> <span class="text">points</span></span></span></div><div class="lion-reward-item__product-image"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/ANUA_Heartleaf_77_Soothing_Toner_250ml.jpg' ) ); ?>" alt="Photo of Heartleaf 77% Soothing Toner"></div><div class="lion-reward-item__links"><div class="lion-reward-item__more-info-url lion-reward-item__more-info-url--external-link"><a href="https://www.skincupid.co.uk/products/anua-heartleaf-77-soothing-toner-250ml" data-i18n-key="ui.dashboard.redeem_points.view_product">View product</a></div><div class="lion-reward-item__more-info-url lion-reward-item__terms-url"><a href="https://www.skincupid.co.uk/pages/rewards#" data-i18n-key="ui.dashboard.redeem_points.terms_and_conditions_title">Terms and Conditions</a></div></div></div></div></div></div></div>
           </div>
       </div>
     </div>
@@ -217,7 +217,7 @@
             <div class="flex flex-col gap-7">
               <h3 class="font-sans text-[28px]">Step 1</h3>
               
-                <img src="./Rewa_files/Join_1.png" alt="Join 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Join_1.png?v=1757525044&amp;width=200 200w" width="200" height="161" loading="lazy" class="h-15 w-auto block mx-auto">
+                <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Join_1.png' ) ); ?>" alt="Join 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Join_1.png?v=1757525044&amp;width=200 200w" width="200" height="161" loading="lazy" class="h-15 w-auto block mx-auto">
               
             </div>
             <hgroup class="flex flex-col gap-4.5">
@@ -230,7 +230,7 @@
             <div class="flex flex-col gap-7">
               <h3 class="font-sans text-[28px]">Step 2</h3>
               
-                <img src="./Rewa_files/Extra_Points_1.png" alt="Extra Points 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Extra_Points_1.png?v=1757525079&amp;width=200 200w" width="200" height="161" loading="lazy" class="h-15 w-auto block mx-auto">
+                <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/Extra_Points_1.png' ) ); ?>" alt="Extra Points 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/Extra_Points_1.png?v=1757525079&amp;width=200 200w" width="200" height="161" loading="lazy" class="h-15 w-auto block mx-auto">
               
             </div>
             <hgroup class="flex flex-col gap-4.5">
@@ -243,7 +243,7 @@
             <div class="flex flex-col gap-7">
               <h3 class="font-sans text-[28px]">Step 3</h3>
               
-                <img src="./Rewa_files/how-it-works-3.svg" alt="How it works 3 image" srcset="//www.skincupid.co.uk/cdn/shop/files/how-it-works-3.svg?v=1755878482&amp;width=200 200w" width="200" height="150" loading="lazy" class="h-15 w-auto block mx-auto">
+                <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/how-it-works-3.svg' ) ); ?>" alt="How it works 3 image" srcset="//www.skincupid.co.uk/cdn/shop/files/how-it-works-3.svg?v=1755878482&amp;width=200 200w" width="200" height="150" loading="lazy" class="h-15 w-auto block mx-auto">
               
             </div>
             <hgroup class="flex flex-col gap-4.5">
@@ -373,7 +373,7 @@
             <div class="relative overflow-y-visible px-6 lg:px-10 pb-6 lg:pb-10 pt-[150px] flex flex-col w-full h-full shrink-0 grow-0 items-center snap-start rounded-[30px] text-center min-h-[300px]  bg-white  hover:bg-secondary group-focus/tier-card:bg-secondary transition-all duration-500">
               
                 <div class="absolute transition-all left-0 right-0 top-[-40px] w-auto h-[185px] group-hover/tier-card:top-[-60px] group-focus/tier-card:top-[-60px]">
-                  <img src="./Rewa_files/tier-1_1.png" alt="Tier 1 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-1_1.png?v=1756479221&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-1_1.png?v=1756479221&amp;width=400 400w" width="400" height="495" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
+                  <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/tier-1_1.png' ) ); ?>" alt="Tier 1 1 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-1_1.png?v=1756479221&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-1_1.png?v=1756479221&amp;width=400 400w" width="400" height="495" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
                 </div>
               
               <h3 class="font-heading text-primary font-bold text-[40px] mb-5">Cherub Cottage</h3>
@@ -398,7 +398,7 @@
             <div class="relative overflow-y-visible px-6 lg:px-10 pb-6 lg:pb-10 pt-[150px] flex flex-col w-full h-full shrink-0 grow-0 items-center snap-start rounded-[30px] text-center min-h-[300px]  bg-white  hover:bg-secondary group-focus/tier-card:bg-secondary transition-all duration-500">
               
                 <div class="absolute transition-all left-0 right-0 top-[-40px] w-auto h-[185px] group-hover/tier-card:top-[-60px] group-focus/tier-card:top-[-60px]">
-                  <img src="./Rewa_files/tier-2.png" alt="Tier 2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-2.png?v=1755855799&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-2.png?v=1755855799&amp;width=400 400w" width="400" height="283" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
+                  <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/tier-2.png' ) ); ?>" alt="Tier 2 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-2.png?v=1755855799&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-2.png?v=1755855799&amp;width=400 400w" width="400" height="283" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
                 </div>
               
               <h3 class="font-heading text-primary font-bold text-[40px] mb-5">Angel Apartments</h3>
@@ -423,7 +423,7 @@
             <div class="relative overflow-y-visible px-6 lg:px-10 pb-6 lg:pb-10 pt-[150px] flex flex-col w-full h-full shrink-0 grow-0 items-center snap-start rounded-[30px] text-center min-h-[300px]  bg-white  hover:bg-secondary group-focus/tier-card:bg-secondary transition-all duration-500">
               
                 <div class="absolute transition-all left-0 right-0 top-[-40px] w-auto h-[185px] group-hover/tier-card:top-[-60px] group-focus/tier-card:top-[-60px]">
-                  <img src="./Rewa_files/tier-3.png" alt="Tier 3 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-3.png?v=1758644587&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-3.png?v=1758644587&amp;width=400 400w" width="400" height="283" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
+                  <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/rewards/tier-3.png' ) ); ?>" alt="Tier 3 image" srcset="//www.skincupid.co.uk/cdn/shop/files/tier-3.png?v=1758644587&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/tier-3.png?v=1758644587&amp;width=400 400w" width="400" height="283" loading="lazy" class="absolute w-auto h-[185px] left-1/2 translate-x-[-50%] object-contain group-hover/tier-card:drop-shadow-[0px_0px_40px_white] group-focus/tier-card:drop-shadow-[0px_0px_40px_white]">
                 </div>
               
               <h3 class="font-heading text-primary font-bold text-[40px] mb-5">Cupid Castle</h3>

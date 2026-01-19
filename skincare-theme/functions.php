@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once get_stylesheet_directory() . '/inc/plugin-setup.php';
+require_once get_stylesheet_directory() . '/inc/assets.php';
 // Demo seeding is handled by the bundled Skincare Site Kit plugin.
 
 // Enqueue Assets

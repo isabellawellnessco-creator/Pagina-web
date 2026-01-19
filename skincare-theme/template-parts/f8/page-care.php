@@ -12,7 +12,7 @@
           
             <picture class="block">
               <source srcset="//www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=1050 1050w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=1150 1150w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=1430 1430w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=1660 1660w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=1870 1870w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission_Website.jpg?v=1728935960&amp;width=2048 2048w" media="(min-width: 1025px)" sizes="100vw">
-              <img src="./Care_files/Our_Mission.jpg" alt="Our Mission Website image" width="3997" height="5954" loading="eager" srcset="
+              <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/Our_Mission.jpg' ) ); ?>" alt="Our Mission Website image" width="3997" height="5954" loading="eager" srcset="
           //www.skincupid.co.uk/cdn/shop/files/Our_Mission.jpg?v=1728935529&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission.jpg?v=1728935529&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission.jpg?v=1728935529&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/Our_Mission.jpg?v=1728935529&amp;width=1200 1200w
           " sizes="(max-width: 1024px) 100vw" class="w-full h-full" fetchpriority="high">
             </picture>
@@ -203,7 +203,7 @@
         <div class="image-and-content__content w-full rounded-[30px] flex items-center lg:w-1/2">
             <div class="image-and-content__content-inner px-[30px] py-[30px] lg:py-20 lg:px-20 flex flex-col justify-center gap-[30px]">
                 
-                    <div class="image-and-content__svg"><img src="./Care_files/heart.svg" alt="" loading="lazy"></div>
+                    <div class="image-and-content__svg"><img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/heart.svg' ) ); ?>" alt="" loading="lazy"></div>
                 
 
                 
@@ -234,7 +234,7 @@
   <div class="lg:px-10 xl:px-15">
     <div class="max-w-5.5xl mx-auto w-full relative lg:grid lg:grid-cols-4 lg:gap-2.5 flickity-mobile-incoming after:hidden after:content-[&#39;flickity&#39;] lg:after:content-[&#39;&#39;]" data-flickity="{ &quot;watchCSS&quot;: true, &quot;cellAlign&quot;: &quot;left&quot;, &quot;wrapAround&quot;: false, &quot;pageDots&quot;: true, &quot;prevNextButtons&quot;: true }"><div x-data="" class="flickity-cell min-h-full w-full px-5 lg:px-0 rounded-[32px] max-lg:h-[480px] featured-block-media--has-content overflow-hidden">
   <div class="featured-block w-full flex flex-col items-center relative max-lg:mx-5 rounded-[32px] group  transition-300" style="aspect-ratio:3/4;"><div class="flex w-full" style="aspect-ratio:3/4;">
-          <img src="./Care_files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png" data-srcset="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450" width="756" height="756" alt="4 f3714918 18c6 43bb 85c8 c57d75b77897 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=1200 1200w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/4_f3714918-18c6-43bb-85c8-c57d75b77897.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450" width="756" height="756" alt="4 f3714918 18c6 43bb 85c8 c57d75b77897 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/4_f3714918-18c6-43bb-85c8-c57d75b77897.png?v=1728066241&amp;width=1200 1200w">
         </div><div class="featured-block-content max-lg:overflow-hidden px-4 py-6 flex flex-col justify-end items-start rounded-b-[32px] w-full bottom-0 left-0 lg:rounded-[32px] z-[2] group-hover:z-[15] relative max-lg:-mt-8 lg:absolute lg:group-hover:h-full"><div class="featured-banner__hover-content-bg !h-full" style="background-color:#ffffff;aspect-ratio:3/4;">
         </div><div class="relative flex flex-col gap-0.5 group-hover:z-10 max-h-full overflow-y-auto hidden-scroll">
           
@@ -248,7 +248,7 @@
   </div>
 </div><div x-data="" class="flickity-cell min-h-full w-full px-5 lg:px-0 rounded-[32px] max-lg:h-[480px] featured-block-media--has-content overflow-hidden">
   <div class="featured-block w-full flex flex-col items-center relative max-lg:mx-5 rounded-[32px] group  transition-300" style="aspect-ratio:3/4;"><div class="flex w-full" style="aspect-ratio:3/4;">
-          <img src="./Care_files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png" data-srcset="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450" width="756" height="756" alt="2 440e6095 569a 4e3e a413 bba2bdddcca7 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=1200 1200w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450" width="756" height="756" alt="2 440e6095 569a 4e3e a413 bba2bdddcca7 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/2_440e6095-569a-4e3e-a413-bba2bdddcca7.png?v=1728066241&amp;width=1200 1200w">
         </div><div class="featured-block-content max-lg:overflow-hidden px-4 py-6 flex flex-col justify-end items-start rounded-b-[32px] w-full bottom-0 left-0 lg:rounded-[32px] z-[2] group-hover:z-[15] relative max-lg:-mt-8 lg:absolute lg:group-hover:h-full"><div class="featured-banner__hover-content-bg !h-full" style="background-color:#ffffff;aspect-ratio:3/4;">
         </div><div class="relative flex flex-col gap-0.5 group-hover:z-10 max-h-full overflow-y-auto hidden-scroll">
           
@@ -262,7 +262,7 @@
   </div>
 </div><div x-data="" class="flickity-cell min-h-full w-full px-5 lg:px-0 rounded-[32px] max-lg:h-[480px] featured-block-media--has-content overflow-hidden">
   <div class="featured-block w-full flex flex-col items-center relative max-lg:mx-5 rounded-[32px] group  transition-300" style="aspect-ratio:3/4;"><div class="flex w-full" style="aspect-ratio:3/4;">
-          <img src="./Care_files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png" data-srcset="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450" width="756" height="756" alt="1 9d511c59 7e12 4124 b100 1719c4f4d583 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=1200 1200w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/1_9d511c59-7e12-4124-b100-1719c4f4d583.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450" width="756" height="756" alt="1 9d511c59 7e12 4124 b100 1719c4f4d583 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/1_9d511c59-7e12-4124-b100-1719c4f4d583.png?v=1728066241&amp;width=1200 1200w">
         </div><div class="featured-block-content max-lg:overflow-hidden px-4 py-6 flex flex-col justify-end items-start rounded-b-[32px] w-full bottom-0 left-0 lg:rounded-[32px] z-[2] group-hover:z-[15] relative max-lg:-mt-8 lg:absolute lg:group-hover:h-full"><div class="featured-banner__hover-content-bg !h-full" style="background-color:#ffffff;aspect-ratio:3/4;">
         </div><div class="relative flex flex-col gap-0.5 group-hover:z-10 max-h-full overflow-y-auto hidden-scroll">
           
@@ -276,7 +276,7 @@
   </div>
 </div><div x-data="" class="flickity-cell min-h-full w-full px-5 lg:px-0 rounded-[32px] max-lg:h-[480px] featured-block-media--has-content overflow-hidden">
   <div class="featured-block w-full flex flex-col items-center relative max-lg:mx-5 rounded-[32px] group  transition-300" style="aspect-ratio:3/4;"><div class="flex w-full" style="aspect-ratio:3/4;">
-          <img src="./Care_files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png" data-srcset="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450" width="756" height="756" alt="3 1cc64645 13aa 40cd 8e49 6429a14fab22 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=1200 1200w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=1200 1200w" data-widths="[450, 650, 800, 1200]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450" width="756" height="756" alt="3 1cc64645 13aa 40cd 8e49 6429a14fab22 image" class="rounded-[32px] w-full object-cover lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:3/4; object-position:50.0% 50.0%" sizes="266px" srcset="//www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/3_1cc64645-13aa-40cd-8e49-6429a14fab22.png?v=1728066241&amp;width=1200 1200w">
         </div><div class="featured-block-content max-lg:overflow-hidden px-4 py-6 flex flex-col justify-end items-start rounded-b-[32px] w-full bottom-0 left-0 lg:rounded-[32px] z-[2] group-hover:z-[15] relative max-lg:-mt-8 lg:absolute lg:group-hover:h-full"><div class="featured-banner__hover-content-bg !h-full" style="background-color:#ffffff;aspect-ratio:3/4;">
         </div><div class="relative flex flex-col gap-0.5 group-hover:z-10 max-h-full overflow-y-auto hidden-scroll">
           
@@ -396,7 +396,7 @@
                 
                     <picture class="contents">
                         <source data-srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1050 1050w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1150 1150w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1430 1430w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1660 1660w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1870 1870w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=2048 2048w" media="(min-width: 1025px)" sizes="100vw" srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1050 1050w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1150 1150w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1430 1430w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1660 1660w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=1870 1870w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design_1.svg?v=1727965770&amp;width=2048 2048w">
-                        <img src="./Care_files/image-and-content line 68)_ invalid url input" data-src="Liquid error (sections/image-and-content line 68): invalid url input" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=1200 1200w" sizes="(max-width: 1024px) 100vw" loading="lazy" width="300" height="300" alt="Untitled design image" class="w-full object-cover rounded-[30px] lazyloaded" fetchpriority="low" srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=1200 1200w">
+                        <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/image-and-content line 68)_ invalid url input' ) ); ?>" data-src="Liquid error (sections/image-and-content line 68): invalid url input" data-srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=1200 1200w" sizes="(max-width: 1024px) 100vw" loading="lazy" width="300" height="300" alt="Untitled design image" class="w-full object-cover rounded-[30px] lazyloaded" fetchpriority="low" srcset="//www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=450 450w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=650 650w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=800 800w, //www.skincupid.co.uk/cdn/shop/files/Untitled_design.svg?v=1727965606&amp;width=1200 1200w">
                     </picture>
                 
             </div>
@@ -426,16 +426,16 @@
     <div id="shopify-block-AcDVSakdmYUwrMkNpT__job_post_career_page_jobly_form_HEQNj4" class="shopify-block shopify-app-block"><div>
 <div id="jobly-preview-div" style="display:none;padding:4rem 1rem">
 <center>
-  <img src="./Care_files/jobly-icon_249x.png" width="249" height="249" loading="lazy">
+  <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/jobly-icon_249x.png' ) ); ?>" width="249" height="249" loading="lazy">
   <p style="color:#9B9B9B;text-align:center;line-height: 3.6rem;font-size: 2.4rem;">Jobly will be displayed here once published. <br>
   (Preview not available in editor view.)</p>
   </center>
 </div>
 <div id="jobly-main-div" width="100%">
 <div data-domain="www.skincupid.co.uk" data-url="https://www.skincupid.co.uk" data-shop-json="" data-shop-surl="https://www.skincupid.co.uk"></div>
-<iframe id="joblyFrame" width="100%" style="border: 0px; min-height: 400px; height: 814px;" src="./Care_files/overview-settings.html"></iframe>
+<iframe id="joblyFrame" width="100%" style="border: 0px; min-height: 400px; height: 814px;" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/overview-settings.html' ) ); ?>"></iframe>
 </div>
-<script defer="" src="./Care_files/jobly.js.download"></script>
+<script defer="" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/care/jobly.js.download' ) ); ?>"></script>
 </div>
 
 
@@ -479,13 +479,13 @@
             
             
                 <p class="text-center font-normal text-base lg:text-lg-xl mt-3 aspect lg:mt-7" style="color:#0f3062;">
-                    <img src="./Care_files/instagram-sc.svg" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
+                    <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/instagram-sc.svg' ) ); ?>" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
                  <a href="https://www.instagram.com/skin.cupid.uk/" target="_blank" title="@skin.cupid.uk" pa-marked="1">@skin.cupid.uk</a>
             
         </p></div>
         
             <div class="embed-content text-center container !px-0 mx-auto w-full">
-                <script src="./Care_files/22680(1)" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
+                <script src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/22680(1)' ) ); ?>" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
@@ -505,7 +505,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Care_files/18070487911579367_thumb.jpg">
+#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18070487911579367_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -535,7 +535,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 📅 December 7th Sat - 22nd Sun
 📍 Outernet, Charing Cross Rd, London, WC2H 8LH
 
-#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="./Care_files/17990969618729332-850w.jpg">
+#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17990969618729332-850w.jpg' ) ); ?>">
                 </picture>
 				</div>
 			<div class="showcase-grid-item-post-info">
@@ -561,7 +561,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Care_files/18065456026688231_thumb.jpg">
+#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18065456026688231_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -590,7 +590,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="./Care_files/17904967569063389_thumb.jpg">
+#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17904967569063389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -626,7 +626,7 @@ We will be giving out goodie bags worth £200 on the following days:
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Care_files/18027468473226417_thumb.jpg">
+#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18027468473226417_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -656,7 +656,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="./Care_files/17892597363104192_thumb.jpg">
+#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17892597363104192_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -684,7 +684,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over CAD80
 
-#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="./Care_files/18473581711001780_thumb.jpg">
+#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18473581711001780_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -715,7 +715,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Care_files/18018236564635389_thumb.jpg">
+#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18018236564635389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -752,7 +752,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="./Care_files/18035783183462967_thumb.jpg">
+#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18035783183462967_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -783,7 +783,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="./Care_files/18069176722655981_thumb.jpg">
+#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18069176722655981_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -814,7 +814,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Care_files/18275602132216336_thumb.jpg">
+#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18275602132216336_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -847,7 +847,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="./Care_files/18030693905520415_thumb.jpg">
+#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18030693905520415_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">

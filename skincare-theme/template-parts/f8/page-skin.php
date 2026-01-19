@@ -50,7 +50,7 @@
                         <picture class="block w-full max-w-xl max-lg:mx-auto lg:max-w-xs">
                             <source srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=992 992," media="(max-width: 992px)">
                             <source srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1280 1280w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1440 1440w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1550 1550w" media="(min-width: 993px)">
-                            <img src="./Skin_files/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png" alt="Demystifying the 10-Step Korean Skincare Routine Demystifying the 10 – Step routine There is a lot of flexibility in..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1280 1280w" width="1280" height="1771" loading="eager" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="high">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png' ) ); ?>" alt="Demystifying the 10-Step Korean Skincare Routine Demystifying the 10 – Step routine There is a lot of flexibility in..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-1_e63bedf4-c54a-4498-a61e-a352450b78dd.png?v=1760012089&amp;width=1280 1280w" width="1280" height="1771" loading="eager" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="high">
                         </picture>
                     
                 </a>
@@ -59,7 +59,7 @@
                 <a href="https://www.skincupid.co.uk/blogs/press/glamour-february-issue-2023" title="February Issue 2023" class="flex flex-col gap-5" pa-marked="1">
                     
                         
-                            <img src="./Skin_files/press-glamour-logo.svg" alt="Press glamour logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="115" loading="eager" class="w-64 h-auto object-cover" fetchpriority="high">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-glamour-logo.svg' ) ); ?>" alt="Press glamour logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="115" loading="eager" class="w-64 h-auto object-cover" fetchpriority="high">
                         
                     
                     <h3 clas="font-medium">February Issue 2023</h3>
@@ -97,7 +97,7 @@
                         <picture class="block lg:max-w-xs">
                             <source data-srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=992 992," media="(max-width: 992px)" srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=992 992,">
                             <source data-srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280 1280w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1440 1440w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1550 1550w" media="(min-width: 993px)" srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280 1280w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1440 1440w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1550 1550w">
-                            <img src="./Skin_files/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png" alt="Discover FWEE’s Blurry Pudding Pot: 3 Creative Ways to Use This K-Beauty Must-Have If you love a cute, multifunctiona..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280 1280w" width="1280" height="1771" loading="lazy" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png' ) ); ?>" alt="Discover FWEE’s Blurry Pudding Pot: 3 Creative Ways to Use This K-Beauty Must-Have If you love a cute, multifunctiona..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280 1280w" width="1280" height="1771" loading="lazy" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/articles/press-vogue_4eef52be-36de-499b-aee6-294a433792c1.png?v=1760012187&amp;width=1280">
                         </picture>
                     
                 </a>
@@ -107,7 +107,7 @@
                     
                         
                             
-                            <img src="./Skin_files/press-vogue-logo.svg" alt="Press vogue logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="129" loading="lazy" class="w-64 h-auto object-cover ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=500">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-vogue-logo.svg' ) ); ?>" alt="Press vogue logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="129" loading="lazy" class="w-64 h-auto object-cover ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/files/press-vogue-logo.svg?v=1722437633&amp;width=500">
                         
                     
                     <h3 clas="font-medium">March Issue 2023</h3>
@@ -150,12 +150,12 @@
   <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/roundlab-1025-dokdo-toner-100ml-200ml-1" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
-        <img src="./Skin_files/ROUNDLAB1025DokdoToner200ml.jpg" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml.jpg?v=1760352113&amp;width=550" width="2000" height="2000" alt="ROUND LAB 1025 Dokdo Toner (100ml/200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w">
+        <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/ROUNDLAB1025DokdoToner200ml.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml.jpg?v=1760352113&amp;width=550" width="2000" height="2000" alt="ROUND LAB 1025 Dokdo Toner (100ml/200ml)" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_350x.jpg?v=1760352113 350w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_450x.jpg?v=1760352113 450w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_750x.jpg?v=1760352113 750w, //www.skincupid.co.uk/cdn/shop/files/ROUNDLAB1025DokdoToner200ml_1000x.jpg?v=1760352113 1000w">
       
 
       <div class="contents">
         
-          <img src="./Skin_files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76.png" data-srcset="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_350x.png?v=1760352114 350w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_450x.png?v=1760352114 450w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_750x.png?v=1760352114 750w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_1000x.png?v=1760352114 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76.png?v=1760352114&amp;width=550" width="2048" height="2048" alt="1025 Dokdo Toner" class="second-image absolute top-0 left-0 -z-[1] opacity-0 w-full object-cover object-center transition-200 rounded-[10px] group-hover:opacity-100 group-hover:z-[1] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_350x.png?v=1760352114 350w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_450x.png?v=1760352114 450w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_750x.png?v=1760352114 750w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_1000x.png?v=1760352114 1000w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76.png' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_350x.png?v=1760352114 350w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_450x.png?v=1760352114 450w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_750x.png?v=1760352114 750w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_1000x.png?v=1760352114 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76.png?v=1760352114&amp;width=550" width="2048" height="2048" alt="1025 Dokdo Toner" class="second-image absolute top-0 left-0 -z-[1] opacity-0 w-full object-cover object-center transition-200 rounded-[10px] group-hover:opacity-100 group-hover:z-[1] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_350x.png?v=1760352114 350w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_450x.png?v=1760352114 450w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_750x.png?v=1760352114 750w, //www.skincupid.co.uk/cdn/shop/files/7C4592A1-E1C8-481A-84E1-702DFCAB0A17_21ba328c-7788-45d2-8b81-f127e265ae76_1000x.png?v=1760352114 1000w">
         
       </div>
 
@@ -320,7 +320,7 @@
                         <picture class="block lg:max-w-xs">
                             <source data-srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=992 992," media="(max-width: 992px)" srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=400 400w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=640 640w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=768 768w,//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=992 992,">
                             <source data-srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280 1280w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1440 1440w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1550 1550w" media="(min-width: 993px)" srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280 1280w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1440 1440w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1550 1550w">
-                            <img src="./Skin_files/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png" alt="Clean Skincare with K-beauty: 6 Vegan and Cruelty-Free Brands Clean Skincare with K-Beauty: 6 Vegan and Cruelty-Free..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280 1280w" width="1280" height="1771" loading="lazy" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png' ) ); ?>" alt="Clean Skincare with K-beauty: 6 Vegan and Cruelty-Free Brands Clean Skincare with K-Beauty: 6 Vegan and Cruelty-Free..." srcset="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=832 832w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1200 1200w, //www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280 1280w" width="1280" height="1771" loading="lazy" class="w-full h-full press-card-image aspect-[1/1] object-cover rounded-xl ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/articles/press-glamour-2_c690dab9-4e1b-404a-8027-0db074b4eaed.png?v=1760012121&amp;width=1280">
                         </picture>
                     
                 </a>
@@ -330,7 +330,7 @@
                     
                         
                             
-                            <img src="./Skin_files/press-glamour-logo.svg" alt="Press glamour logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="115" loading="lazy" class="w-64 h-auto object-cover ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500">
+                            <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/press-glamour-logo.svg' ) ); ?>" alt="Press glamour logo image" srcset="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=352 352w, //www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500 500w" width="500" height="115" loading="lazy" class="w-64 h-auto object-cover ls-is-cached lazyloaded" fetchpriority="low" data-src="//www.skincupid.co.uk/cdn/shop/files/press-glamour-logo.svg?v=1722437633&amp;width=500">
                         
                     
                     <h3 clas="font-medium">January Issue 2023</h3>
@@ -373,12 +373,12 @@
   <a class="flex flex-col w-full" href="https://www.skincupid.co.uk/products/nacific-fresh-herb-origin-serum-50ml" pa-marked="1">
     <div class="relative rounded-[10px] group">
       
-        <img src="./Skin_files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg?v=1760352100&amp;width=550" width="2000" height="2000" alt="NACIFIC Fresh Herb Origin Serum 50ML" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w">
+        <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.jpg?v=1760352100&amp;width=550" width="2000" height="2000" alt="NACIFIC Fresh Herb Origin Serum 50ML" class="primary-image w-full object-cover object-center transition-200 group-hover:opacity-0 rounded-[10px] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.jpg?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.jpg?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.jpg?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.jpg?v=1760352100 1000w">
       
 
       <div class="contents">
         
-          <img src="./Skin_files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.webp" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.webp?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.webp?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.webp?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.webp?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.webp?v=1760352100&amp;width=550" width="800" height="800" alt="NACIFIC Fresh Herb Origin Serum 50ML" class="second-image absolute top-0 left-0 -z-[1] opacity-0 w-full object-cover object-center transition-200 rounded-[10px] group-hover:opacity-100 group-hover:z-[1] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.webp?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.webp?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.webp?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.webp?v=1760352100 1000w">
+          <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/skin/NACIFIC_Fresh_Herb_Origin_Serum_50ML.webp' ) ); ?>" data-srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.webp?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.webp?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.webp?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.webp?v=1760352100 1000w" data-widths="[350, 450, 750, 1000]" data-sizes="auto" data-src="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML.webp?v=1760352100&amp;width=550" width="800" height="800" alt="NACIFIC Fresh Herb Origin Serum 50ML" class="second-image absolute top-0 left-0 -z-[1] opacity-0 w-full object-cover object-center transition-200 rounded-[10px] group-hover:opacity-100 group-hover:z-[1] lazyautosizes ls-is-cached lazyloaded" style="aspect-ratio:9/10;" sizes="220px" srcset="//www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_350x.webp?v=1760352100 350w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_450x.webp?v=1760352100 450w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_750x.webp?v=1760352100 750w, //www.skincupid.co.uk/cdn/shop/files/NACIFIC_Fresh_Herb_Origin_Serum_50ML_1000x.webp?v=1760352100 1000w">
         
       </div>
 
@@ -593,13 +593,13 @@
             
             
                 <p class="text-center font-normal text-base lg:text-lg-xl mt-3 aspect lg:mt-7" style="color:#0f3062;">
-                    <img src="./Skin_files/instagram-sc.svg" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
+                    <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/instagram-sc.svg' ) ); ?>" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
                  <a href="https://www.instagram.com/skin.cupid.uk/" target="_blank" title="@skin.cupid.uk" pa-marked="1">@skin.cupid.uk</a>
             
         </p></div>
         
             <div class="embed-content text-center container !px-0 mx-auto w-full">
-                <script src="./Skin_files/22680(1)" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
+                <script src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/22680(1)' ) ); ?>" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
@@ -619,7 +619,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18070487911579367_thumb.jpg">
+#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18070487911579367_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -649,7 +649,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 📅 December 7th Sat - 22nd Sun
 📍 Outernet, Charing Cross Rd, London, WC2H 8LH
 
-#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="./Skin_files/17990969618729332-850w.jpg">
+#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17990969618729332-850w.jpg' ) ); ?>">
                 </picture>
 				</div>
 			<div class="showcase-grid-item-post-info">
@@ -675,7 +675,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18065456026688231_thumb.jpg">
+#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18065456026688231_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -704,7 +704,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="./Skin_files/17904967569063389_thumb.jpg">
+#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17904967569063389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -740,7 +740,7 @@ We will be giving out goodie bags worth £200 on the following days:
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18027468473226417_thumb.jpg">
+#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18027468473226417_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -770,7 +770,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="./Skin_files/17892597363104192_thumb.jpg">
+#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17892597363104192_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -798,7 +798,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over CAD80
 
-#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18473581711001780_thumb.jpg">
+#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18473581711001780_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -829,7 +829,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18018236564635389_thumb.jpg">
+#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18018236564635389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -866,7 +866,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18035783183462967_thumb.jpg">
+#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18035783183462967_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -897,7 +897,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18069176722655981_thumb.jpg">
+#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18069176722655981_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -928,7 +928,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18275602132216336_thumb.jpg">
+#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18275602132216336_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -961,7 +961,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="./Skin_files/18030693905520415_thumb.jpg">
+#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18030693905520415_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">

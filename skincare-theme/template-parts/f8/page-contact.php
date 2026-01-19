@@ -134,13 +134,13 @@
             
             
                 <p class="text-center font-normal text-base lg:text-lg-xl mt-3 aspect lg:mt-7" style="color:#0f3062;">
-                    <img src="./Cont_files/instagram-sc.svg" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
+                    <img src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/instagram-sc.svg' ) ); ?>" alt="Instagram sc image" srcset="//www.skincupid.co.uk/cdn/shop/files/instagram-sc.svg?v=1721045594&amp;width=50 50w" width="50" height="53" loading="lazy" class="text-icon inline-block w-5 h-5 mb-[3px] aspect-1 mx-2" fetchpriority="low">
                  <a href="https://www.instagram.com/skin.cupid.uk/" target="_blank" title="@skin.cupid.uk" pa-marked="1">@skin.cupid.uk</a>
             
         </p></div>
         
             <div class="embed-content text-center container !px-0 mx-auto w-full">
-                <script src="./Cont_files/22680(1)" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
+                <script src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/22680(1)' ) ); ?>" data-gallery-id="22680" async="" data-initialized="true"></script><div id="showcase-gallery-22680" class="showcase-gallery has-posts"><div class="showcase-grid">
 		<div class="showcase-grid-items viewer-enabled showcase-columns-6 showcase-rows-2">
 			<!-- Post dynamically loaded here -->
 		<div class="showcase-grid-item showcase-grid-item--video">
@@ -160,7 +160,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18070487911579367_thumb.jpg">
+#popularskincare #viralkbeauty #skincarekorean #kbeautyfaves #viralskincare #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18070487911579367_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -190,7 +190,7 @@ We can’t wait to meet you in person and create magical moments together!✨
 📅 December 7th Sat - 22nd Sun
 📍 Outernet, Charing Cross Rd, London, WC2H 8LH
 
-#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="./Cont_files/17990969618729332-850w.jpg">
+#skincarecommunity #popupstore #popup #londonpopup #kbeauty #koreanskincare" data-ll-status="loaded" sizes="100w" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17990969618729332-850w.jpg' ) ); ?>">
                 </picture>
 				</div>
 			<div class="showcase-grid-item-post-info">
@@ -216,7 +216,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18065456026688231_thumb.jpg">
+#rosaceaskincare #rosaceatreatments #sensitiveskincareproducts #koreanskincareroutine #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18065456026688231_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -245,7 +245,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="./Cont_files/17904967569063389_thumb.jpg">
+#koreanskincareroutine #globalskincare #koreanskincare #viralproducts #kbeauty #kviralkbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17904967569063389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -281,7 +281,7 @@ We will be giving out goodie bags worth £200 on the following days:
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18027468473226417_thumb.jpg">
+#londonpoup #popupshop #businessupdate #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18027468473226417_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -311,7 +311,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="./Cont_files/17892597363104192_thumb.jpg">
+#retinolserum #closedcomedones #retinolskincare #porecleansing #pimpletreatment #koreanskincare #kbeauty #skincareadvice #kbeautyshop" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/17892597363104192_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -339,7 +339,7 @@ Stitched: @juliavocadotoast
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over CAD80
 
-#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18473581711001780_thumb.jpg">
+#koreanskincare #kbeauty #blackfridaysale #blackfriday #skincaresale #skincareadvice #kbeautyshop #blackfriday2024" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18473581711001780_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -370,7 +370,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18018236564635389_thumb.jpg">
+#tirtir #cushionfoundation #fullcoveragefoundation #koreanmakeup #kbeauty" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18018236564635389_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -407,7 +407,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18035783183462967_thumb.jpg">
+#koreavlog #conveniencestore #nighttimeroutine #latenightcravings #skincareroutine #kbeautyskincare #koreatrip" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18035783183462967_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -438,7 +438,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18069176722655981_thumb.jpg">
+#popupstore #skincarecommunity #tottenhamcourtroad #kbeautyshop #koreanskincare #koreanskincareroutine #kbeautyroutine" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18069176722655981_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -469,7 +469,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18275602132216336_thumb.jpg">
+#kbeauty #acnecream #acneproneskin #acnetreatment  #darkspottreatment #dralthea #skinbarrierrepair #koreanskincare" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18275602132216336_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -502,7 +502,7 @@ Available on Skin Cupid’s Website!
 🇺🇸 Free US shipping over $50
 🇨🇦 Free CA shipping over $80
 
-#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="./Cont_files/18030693905520415_thumb.jpg">
+#kbeauty #koreanskincare #lipoil #glossylips #lipglosslover #juicylips #lipcare #lipcareproducts" data-ll-status="loaded" class="entered loaded" src="<?php echo esc_url( skincupid_theme_asset_url( 'f8/common/18030693905520415_thumb.jpg' ) ); ?>">
 				</div>
 					<div class="carousel-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">

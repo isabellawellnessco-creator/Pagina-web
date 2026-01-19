@@ -31,14 +31,14 @@ while ( have_posts() ) :
 	?>
 	<main id="main" class="site-main" role="main">
 		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
-			<article <?php post_class( 'sk-page sk-press-page' ); ?>>
-	<section class="sk-press-hero">
+			<section <?php post_class( 'sk-page sk-press-page' ); ?>>
+				<section class="sk-press-hero">
 					<h1 class="sk-press-title"><?php echo esc_html( $press_title ); ?></h1>
 					<p class="sk-press-intro"><?php echo esc_html( $press_subtitle ); ?></p>
 					<?php if ( $content ) : ?>
-						<div class="page-content sk-page-content">
+						<section class="page-content sk-page-content">
 							<?php the_content(); ?>
-						</div>
+						</section>
 					<?php endif; ?>
 				</section>
 
@@ -146,7 +146,7 @@ while ( have_posts() ) :
 						<?php endif; ?>
 					</div>
 				</section>
-			</article>
+			</section>
 		<?php endif; ?>
 	</main>
 <?php endwhile; ?>

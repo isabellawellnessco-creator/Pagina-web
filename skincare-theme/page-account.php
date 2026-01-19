@@ -16,27 +16,27 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 	$content = trim( get_the_content() );
-	$default_shortcode = class_exists( 'WooCommerce' ) ? '[woocommerce_my_account]' : '[sk_account_dashboard]';
+	$default_shortcode_tag = class_exists( 'WooCommerce' ) ? 'woocommerce_my_account' : 'sk_account_dashboard';
 	?>
 	<main id="main" class="site-main" role="main">
 		<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'single' ) ) : ?>
-			<article <?php post_class( 'sk-page' ); ?>>
+			<section <?php post_class( 'sk-page' ); ?>>
 				<header class="sk-page-header">
 					<h1 class="sk-page-title"><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?>
 						<p class="sk-page-subtitle"><?php echo esc_html( get_the_excerpt() ); ?></p>
 					<?php endif; ?>
 				</header>
-				<div class="page-content sk-page-content">
-					<?php
-					if ( $content ) {
-						the_content();
-					} else {
-						echo do_shortcode( $default_shortcode );
-					}
-					?>
-				</div>
-			</article>
+				<?php if ( $content ) : ?>
+					<section class="page-content sk-page-content">
+						<?php the_content(); ?>
+					</section>
+				<?php else : ?>
+					<section class="sk-page-section sk-account-dashboard">
+						<?php echo skincare_safe_shortcode( $default_shortcode_tag ); ?>
+					</section>
+				<?php endif; ?>
+			</section>
 		<?php endif; ?>
 	</main>
 <?php endwhile; ?>

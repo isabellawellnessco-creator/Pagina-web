@@ -26,6 +26,7 @@ class Loader {
 		\Skincare\SiteKit\Modules\Tracking_Manager::init(); // Added
 		\Skincare\SiteKit\Modules\Marketing_Events::init(); // Will create next
 		\Skincare\SiteKit\Modules\Localization::init();
+		\Skincare\SiteKit\Modules\Store_Locator_CPT::init();
 
 		\Skincare\SiteKit\Admin\Rewards_Master::init();
 		\Skincare\SiteKit\Core\Rest_Controller::init();
@@ -58,8 +59,12 @@ class Loader {
 		// Enqueue Scripts
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
 
+		// Register F8 Assets
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_f8_assets' ] );
+
 		// Elementor Sections
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
+		add_action( 'elementor/elements/categories_registered', [ $this, 'register_widget_categories' ] );
 	}
 
 	public function enqueue_assets() {
@@ -82,7 +87,44 @@ class Loader {
 		] );
 	}
 
+	public function register_f8_assets() {
+		wp_register_style( 'sk-f8-bundle', get_stylesheet_directory_uri() . '/assets/f8/css/f8.bundle.css', [], '1.0.0' );
+		wp_register_script( 'sk-f8-bundle', get_stylesheet_directory_uri() . '/assets/f8/js/f8.bundle.js', ['jquery'], '1.0.0', true );
+	}
+
+	public function register_widget_categories( $elements_manager ) {
+		$elements_manager->add_category(
+			'f8-sections',
+			[
+				'title' => __( 'F8 Sections', 'skincare' ),
+				'icon'  => 'fa fa-plug',
+			]
+		);
+	}
+
 	public function register_widgets( $widgets_manager ) {
+		// F8 Sections
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/base/class-f8-widget-base.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-hero.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-store-locator.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-faq.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-misc.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-rewards.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-contact.php';
+		require_once SKINCARE_KIT_PATH . 'inc/widgets/f8/class-f8-layout.php';
+
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Hero() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_StoreLocator() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_FAQ() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Breadcrumbs() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Banner() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Rewards_Dashboard() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Contact_Form() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_ProductSteps() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Embed() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Grid() );
+		$widgets_manager->register( new \Skincare\SiteKit\Widgets\F8\F8_Account_Dashboard() );
+
 		// General Sections
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Hero_Slider() );
 		$widgets_manager->register( new \Skincare\SiteKit\Widgets\Product_Grid() );

@@ -20,6 +20,67 @@ class Wishlist {
 
 		add_action( 'woocommerce_after_shop_loop_item', [ __CLASS__, 'render_wishlist_button' ], 20 );
 		add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'render_wishlist_button' ], 35 );
+		add_action( 'rest_api_init', [ __CLASS__, 'register_rest_routes' ] );
+	}
+
+	public static function register_rest_routes() {
+		register_rest_route( 'skincare/v1', '/wishlist', [
+			[
+				'methods' => 'GET',
+				'callback' => [ __CLASS__, 'rest_get_wishlist' ],
+				'permission_callback' => '__return_true',
+			],
+			[
+				'methods' => 'POST',
+				'callback' => [ __CLASS__, 'rest_toggle_wishlist' ],
+				'permission_callback' => '__return_true',
+			],
+		] );
+	}
+
+	public static function rest_get_wishlist( $request ) {
+		$items = self::get_wishlist_items();
+		$products = [];
+		foreach ( $items as $id ) {
+			$product = wc_get_product( $id );
+			if ( $product ) {
+				$products[] = [
+					'id' => $product->get_id(),
+					'name' => $product->get_name(),
+					'price' => $product->get_price_html(),
+					'image' => wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' ),
+					'permalink' => $product->get_permalink(),
+				];
+			}
+		}
+		return rest_ensure_response( [ 'items' => $products, 'ids' => $items ] );
+	}
+
+	public static function rest_toggle_wishlist( $request ) {
+		$product_id = $request->get_param( 'product_id' );
+		if ( ! $product_id ) {
+			return new \WP_Error( 'missing_param', 'Product ID required', [ 'status' => 400 ] );
+		}
+
+		$items = self::get_wishlist_items();
+		$product_id = (int) $product_id;
+		$added = false;
+
+		if ( in_array( $product_id, $items ) ) {
+			$items = array_diff( $items, [ $product_id ] );
+		} else {
+			$items[] = $product_id;
+			$added = true;
+		}
+
+		self::save_wishlist_items( $items );
+
+		return rest_ensure_response( [
+			'success' => true,
+			'added' => $added,
+			'count' => count( $items ),
+			'items' => $items
+		] );
 	}
 
 	public static function get_wishlist_items() {

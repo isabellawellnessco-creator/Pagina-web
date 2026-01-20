@@ -1,0 +1,104 @@
+/* eslint-env browser */
+/* global window, localStorage */
+(async function () {
+  async function encodeMessage(message) {
+    const msgUint8 = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+  }
+
+  function getIsCookiePolicyRejected() {
+    return localStorage.getItem('tolstoy-cookie-policy') === 'rejected';
+  }
+
+  function getSavedCustomer() {
+    return JSON.parse(localStorage.getItem('tolstoyCurrentCustomer') || '{}');
+  }
+
+  function setSavedCustomer(customer) {
+    localStorage.setItem('tolstoyCurrentCustomer', JSON.stringify(customer));
+  }
+
+  function getAnonymousId() {
+    const anonymousId = localStorage.getItem('tolstoy-anonymousId');
+    if (!anonymousId || ['undefined', 'false'].includes(anonymousId)) {
+      return '';
+    }
+    return anonymousId;
+  }
+
+  function verifyUserConsent() {
+    return window.Shopify?.customerPrivacy?.currentVisitorConsent().analytics !== 'no';
+  }
+
+  async function getShouldSaveCustomer(customer, encodedCustomer) {
+    const savedCustomer = getSavedCustomer() || {};
+    let savedEncodedCustomer = savedCustomer;
+    if (typeof savedCustomer === 'object') {
+      savedEncodedCustomer = await encodeMessage(JSON.stringify(savedCustomer));
+      setSavedCustomer(savedEncodedCustomer);
+    }
+    return savedEncodedCustomer !== encodedCustomer;
+  }
+
+  async function saveCustomer(params) {
+    try {
+      const res = await fetch(window.tolstoyWidgetConfig?.apiBase + '/identify/save-customer', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      });
+      return res;
+    } catch (error) {
+      if (window.tolstoyCaptureError) {
+        window.tolstoyCaptureError(error, 'Error saving customer');
+      }
+    }
+  }
+
+  async function saveCurrentCustomer(customer) {
+    const isCookiePolicyRejected = getIsCookiePolicyRejected();
+    if (isCookiePolicyRejected) {
+      return;
+    }
+    const isUserConsent = verifyUserConsent();
+    if (!isUserConsent) {
+      return;
+    }
+    const encodedCustomer = await encodeMessage(JSON.stringify(customer));
+    const shouldSaveCustomer = await getShouldSaveCustomer(customer, encodedCustomer);
+    if (!shouldSaveCustomer) {
+      return;
+    }
+    const response = await saveCustomer({
+      data: customer,
+    });
+    const responseBody = response && (await response.json());
+    if (!responseBody || !responseBody.id) {
+      return;
+    }
+    setSavedCustomer(encodedCustomer);
+  }
+
+  // Only run if we have the required configuration
+  if (window.tolstoyWidgetConfig?.customer && window.tolstoyWidgetConfig?.shop && window.tolstoyWidgetConfig?.appKey) {
+    const appUrl = window.tolstoyWidgetConfig.shop.url.replace(/https?:\/\//g, '');
+    const currentCustomer = {
+      externalId: window.tolstoyWidgetConfig.customer.id || null,
+      email: window.tolstoyWidgetConfig.customer.email || null,
+      firstName: window.tolstoyWidgetConfig.customer.first_name || null,
+      lastName: window.tolstoyWidgetConfig.customer.last_name || null,
+      phone: window.tolstoyWidgetConfig.customer.phone || null,
+      acceptsMarketing: window.tolstoyWidgetConfig.customer.accepts_marketing || null,
+      appKey: window.tolstoyWidgetConfig.appKey || null,
+      appUrl: appUrl || null,
+      anonymousId: getAnonymousId(),
+    };
+    await saveCurrentCustomer(currentCustomer);
+  }
+})();

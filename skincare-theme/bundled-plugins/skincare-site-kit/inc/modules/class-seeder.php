@@ -407,7 +407,12 @@ class Seeder {
 				'slug' => 'contact',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'sk_contact_section' ],
+					[
+						'widget_type' => 'f8_hero',
+						'settings' => [ 'title' => 'Contáctanos', 'subtitle' => 'Estamos aquí para ayudarte.' ]
+					],
+					[ 'widget_type' => 'f8_contact_form' ],
+					[ 'widget_type' => 'f8_faq' ],
 				],
 				'seed_id' => 'page_contact'
 			],
@@ -417,12 +422,10 @@ class Seeder {
 				'content' => '',
 				'elementor' => [
 					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $faqs_content,
-						],
+						'widget_type' => 'f8_hero',
+						'settings' => [ 'title' => 'Preguntas Frecuentes', 'subtitle' => 'Respuestas a tus dudas.' ]
 					],
-					[ 'widget_type' => 'sk_faq_accordion' ],
+					[ 'widget_type' => 'f8_faq' ],
 				],
 				'seed_id' => 'page_faqs'
 			],
@@ -432,12 +435,10 @@ class Seeder {
 				'content' => '',
 				'elementor' => [
 					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $shipping_content,
-						],
+						'widget_type' => 'f8_hero',
+						'settings' => [ 'title' => 'Envíos y Devoluciones', 'subtitle' => 'Información sobre entregas.' ]
 					],
-					[ 'widget_type' => 'sk_shipping_table' ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $shipping_content ] ],
 				],
 				'seed_id' => 'page_shipping'
 			],
@@ -529,7 +530,8 @@ class Seeder {
 				'slug' => 'wishlist',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'sk_wishlist_grid' ],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Tu Wishlist' ] ],
+					[ 'widget_type' => 'sk_wishlist_grid' ], // Keeping logic widget, maybe wrap in F8 container if needed
 				],
 				'seed_id' => 'page_wishlist'
 			],
@@ -538,9 +540,14 @@ class Seeder {
 				'slug' => 'rewards',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'sk_rewards_castle' ],
-					[ 'widget_type' => 'sk_rewards_earn_redeem' ],
-					[ 'widget_type' => 'sk_rewards_dashboard' ],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Recompensas' ] ],
+					[ 'widget_type' => 'f8_rewards_dashboard' ],
+					[ 'widget_type' => 'f8_product_steps', 'settings' => [ 'steps' => [
+						[ 'title' => 'Paso 1', 'desc' => 'Únete' ],
+						[ 'title' => 'Paso 2', 'desc' => 'Gana puntos' ],
+						[ 'title' => 'Paso 3', 'desc' => 'Canjea' ]
+					] ] ],
+					[ 'widget_type' => 'f8_faq' ],
 				],
 				'seed_id' => 'page_rewards'
 			],
@@ -549,7 +556,7 @@ class Seeder {
 				'slug' => 'account',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'sk_account_dashboard' ],
+					[ 'widget_type' => 'f8_account_dashboard' ],
 				],
 				'seed_id' => 'page_account'
 			],
@@ -558,7 +565,7 @@ class Seeder {
 				'slug' => 'login',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'woocommerce-my-account' ],
+					[ 'widget_type' => 'f8_account_dashboard' ],
 				],
 				'seed_id' => 'page_login'
 			],
@@ -567,7 +574,8 @@ class Seeder {
 				'slug' => 'store-locator',
 				'content' => '',
 				'elementor' => [
-					[ 'widget_type' => 'sk_store_locator' ],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Nuestras Tiendas' ] ],
+					[ 'widget_type' => 'f8_store_locator' ],
 				],
 				'seed_id' => 'page_store_locator'
 			],
@@ -576,12 +584,8 @@ class Seeder {
 				'slug' => 'care',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $care_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Carreras' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $care_content ] ],
 				],
 				'seed_id' => 'page_care'
 			],
@@ -590,12 +594,8 @@ class Seeder {
 				'slug' => 'skin',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $press_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Prensa' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $press_content ] ],
 				],
 				'seed_id' => 'page_press'
 			],
@@ -604,12 +604,8 @@ class Seeder {
 				'slug' => 'korean',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $korean_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'K-Beauty' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $korean_content ] ],
 				],
 				'seed_id' => 'page_korean'
 			],
@@ -618,12 +614,8 @@ class Seeder {
 				'slug' => 'makeup',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $makeup_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Maquillaje' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $makeup_content ] ],
 				],
 				'seed_id' => 'page_makeup'
 			],
@@ -632,12 +624,8 @@ class Seeder {
 				'slug' => 'vegan',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $vegan_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Vegano' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $vegan_content ] ],
 				],
 				'seed_id' => 'page_vegan'
 			],
@@ -646,12 +634,8 @@ class Seeder {
 				'slug' => 'learn',
 				'content' => '',
 				'elementor' => [
-					[
-						'widget_type' => 'text-editor',
-						'settings' => [
-							'editor' => $learn_content,
-						],
-					],
+					[ 'widget_type' => 'f8_hero', 'settings' => [ 'title' => 'Aprende' ] ],
+					[ 'widget_type' => 'f8_embed', 'settings' => [ 'html' => $learn_content ] ],
 				],
 				'seed_id' => 'page_learn'
 			],

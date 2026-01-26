@@ -1186,3 +1186,670 @@
         display: none !important;
     }
 }
+
+/* =========================================
+   Rewards Page Sections (New Replica)
+   ========================================= */
+
+/* Hero Section */
+.sk-rewards-hero {
+    position: relative;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #F8F5F1; /* Background Main */
+    color: #0F3062; /* Text Primary */
+    overflow: hidden;
+}
+
+.sk-rewards-hero__bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    /* Placeholder for background image */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+}
+
+.sk-rewards-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sk-rewards-hero__title {
+    font-family: 'Quincy', serif; /* Atlas Heading Font */
+    font-size: 3rem;
+    color: #E5757E; /* Heading Primary */
+    margin-bottom: 20px;
+}
+
+.sk-rewards-hero__subtitle {
+    font-size: 1.2rem;
+    color: #0F3062;
+    margin-bottom: 30px;
+}
+
+.sk-rewards-hero__status {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(15, 48, 98, 0.08);
+}
+
+.sk-rewards-hero__points {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #E5757E;
+    line-height: 1;
+}
+
+.sk-rewards-hero__label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    color: #7f8a9b;
+}
+
+.sk-rewards-hero__actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Steps (How it works) */
+.sk-rewards-steps {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sk-section-title {
+    font-family: 'Quincy', serif;
+    font-size: 2.5rem;
+    color: #0F3062;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sk-rewards-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.sk-rewards-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sk-rewards-step__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #E5757E;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sk-rewards-step h3 {
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+/* VIP Tiers Table */
+.sk-rewards-tiers {
+    padding: 60px 20px;
+    background: #fff;
+}
+
+.sk-rewards-tiers__table {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sk-tier-header, .sk-tier-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.sk-tier-header {
+    background: #F8F5F1;
+    border-bottom: 2px solid #eee;
+}
+
+.sk-tier-header h3 {
+    margin: 0;
+    color: #0F3062;
+    font-size: 1.2rem;
+}
+
+.sk-tier-header span {
+    display: block;
+    font-size: 0.85rem;
+    color: #E5757E;
+    margin-top: 5px;
+}
+
+.sk-tier-row {
+    border-bottom: 1px solid #eee;
+}
+
+.sk-tier-row:last-child {
+    border-bottom: none;
+}
+
+.sk-tier-col.sk-tier-label {
+    text-align: left;
+    font-weight: bold;
+    color: #0F3062;
+    padding-left: 20px;
+}
+
+/* Ways to Earn Grid */
+.sk-rewards-earn {
+    padding: 60px 20px;
+    background: #F8F5F1;
+}
+
+.sk-rewards-earn__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sk-earn-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.sk-earn-card:hover {
+    transform: translateY(-5px);
+}
+
+.sk-earn-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sk-earn-card h4 {
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+.sk-earn-card p {
+    color: #E5757E;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sk-rewards-steps__grid,
+    .sk-tier-header, .sk-tier-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Stack table for mobile or make scrollable */
+    .sk-rewards-tiers__table {
+        overflow-x: auto;
+    }
+
+    .sk-tier-header, .sk-tier-row {
+        min-width: 600px; /* Force scroll */
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+}
+
+/* =========================================
+   Account & Wishlist Sections
+   ========================================= */
+
+/* Account Dashboard */
+.sk-account-section {
+    padding: 60px 20px;
+    background: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sk-account-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sk-account-header h2 {
+    font-family: 'Quincy', serif;
+    font-size: 2.5rem;
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+.sk-link-logout {
+    color: #E5757E;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sk-account-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.sk-account-block h3 {
+    font-size: 1.2rem;
+    color: #0F3062;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.sk-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.sk-order-number {
+    font-weight: bold;
+    color: #0F3062;
+    display: block;
+}
+
+.sk-order-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.sk-btn--small {
+    padding: 6px 15px;
+    font-size: 12px;
+}
+
+.sk-details-content p {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* Wishlist Section */
+.sk-wishlist-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sk-wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sk-wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.sk-product-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.sk-product-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.sk-product-image {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.sk-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sk-remove-from-wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #888;
+}
+
+.sk-remove-from-wishlist:hover {
+    color: #cc1e32;
+}
+
+.sk-product-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.sk-product-title a {
+    color: #0F3062;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sk-product-price {
+    color: #E5757E;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .sk-account-grid, .sk-wishlist-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   Contact & FAQ Sections
+   ========================================= */
+
+/* Contact Section */
+.sk-contact-section {
+    padding: 80px 20px;
+    background: #fff;
+}
+
+.sk-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sk-contact-info {
+    padding-right: 20px;
+}
+
+.sk-contact-details {
+    margin-top: 30px;
+    display: grid;
+    gap: 20px;
+}
+
+.sk-contact-item h4 {
+    margin: 0 0 5px;
+    color: #0F3062;
+    font-size: 1.1rem;
+}
+
+.sk-contact-social {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+}
+
+.sk-social-icon {
+    width: 40px;
+    height: 40px;
+    background: #F8F5F1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0F3062;
+    transition: background 0.3s;
+}
+
+.sk-social-icon:hover {
+    background: #E5757E;
+    color: #fff;
+}
+
+.sk-contact-form-wrapper {
+    background: #F8F5F1;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.sk-form-group {
+    margin-bottom: 20px;
+}
+
+.sk-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #0F3062;
+}
+
+.sk-form-group input,
+.sk-form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.sk-form-group input:focus,
+.sk-form-group textarea:focus {
+    outline: none;
+    border-color: #0F3062;
+}
+
+/* FAQ Section */
+.sk-faq-section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sk-faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sk-faq-search {
+    position: relative;
+    max-width: 500px;
+    margin: 20px auto 0;
+}
+
+.sk-faq-search input {
+    width: 100%;
+    padding: 15px 40px 15px 20px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.sk-faq-search i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.sk-faq-categories {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.sk-faq-cat {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.sk-faq-cat.active, .sk-faq-cat:hover {
+    background: #0F3062;
+    color: #fff;
+    border-color: #0F3062;
+}
+
+.sk-faq-item {
+    border-bottom: 1px solid #eee;
+}
+
+.sk-faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0F3062;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sk-faq-answer {
+    display: none;
+    padding-bottom: 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.sk-faq-icon {
+    font-size: 20px;
+    color: #E5757E;
+}
+
+@media (max-width: 768px) {
+    .sk-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sk-contact-info {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .sk-contact-social {
+        justify-content: center;
+    }
+}
+
+/* =========================================
+   Store Locator & Shipping Sections
+   ========================================= */
+
+/* Store Locator */
+.sk-store-locator-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sk-store-locator-header {
+    margin-bottom: 40px;
+}
+
+.sk-store-locator-header h1 {
+    font-family: 'Quincy', serif;
+    font-size: 2.5rem;
+    color: #0F3062;
+    margin-bottom: 10px;
+}
+
+.sk-stockist-wrapper {
+    min-height: 500px;
+    background: #f9f9f9; /* Placeholder bg while loading */
+}
+
+/* Shipping Page */
+.sk-shipping-section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sk-content-wrapper {
+    color: #35455f;
+    line-height: 1.6;
+}
+
+.sk-content-wrapper h2 {
+    font-family: 'Quincy', serif;
+    font-size: 2rem;
+    color: #0F3062;
+    margin: 40px 0 20px;
+    text-align: center;
+}
+
+.sk-content-wrapper h3 {
+    font-size: 1.3rem;
+    color: #0F3062;
+    margin: 30px 0 15px;
+}
+
+.sk-content-wrapper p {
+    margin-bottom: 15px;
+}
+
+.sk-content-wrapper ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.sk-content-wrapper li {
+    margin-bottom: 8px;
+    list-style-type: disc;
+}
+
+.p-rich_text_section {
+    margin-bottom: 15px;
+}
